@@ -154,7 +154,7 @@ def build_motions(rig,obj,profile=None):
         leg('R',lerp((-p['ankle_x'],p['ankle_y'],p['ankle_z']),p['kneel_back'],blend),math.pi*.5*blend)
         recoil=0
         if 2.4<=seconds<5.8:
-            phase=(seconds-2.4)%.32;recoil=.07*max(0,1-phase/.1)
+            phase=(seconds-2.4)%p.get('fire_interval',.32);recoil=.07*max(0,1-phase/.1)
         world_rotation('upper_arm.R',-1.07*blend+recoil*.4)
         world_rotation('forearm.R',-math.pi*.5*blend+recoil)
         world_rotation('hand.R',-math.pi*.5*blend+recoil)
@@ -187,6 +187,7 @@ def build_motions(rig,obj,profile=None):
         rig.animation_data.action=None;previous={};max_correction=0
         for frame in range(1,frames+1):
             fn((frame-1)/(frames-1))
+            if p.get('pose_adjust'):p['pose_adjust'](name,(frame-1)/(frames-1))
             # Final contact pass uses actual armor vertices, not an estimated box.
             ev=obj.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=ev.to_mesh();lowest=min(v.co.z for v in mesh.vertices);ev.to_mesh_clear()
             if lowest<0:

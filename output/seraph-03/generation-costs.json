@@ -1,0 +1,20 @@
+{
+  "operations": [
+    {
+      "operation": "source",
+      "task_id": "fa47e26c-98f7-4ae5-baec-99f8e93b748b",
+      "credits": 30.0,
+      "status": "success"
+    },
+    {
+      "operation": "retopo",
+      "task_id": "643b8c72-4326-491e-aa6f-1f029a03ab78",
+      "credits": 30.0,
+      "status": "success"
+    }
+  ],
+  "total_credits": 60,
+  "usd_per_credit": 0.01,
+  "total_usd": 0.6,
+  "authorized_cap_usd": 1
+}

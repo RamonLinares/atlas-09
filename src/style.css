@@ -14,3 +14,7 @@
 @media(min-width:701px) and (max-width:900px){.brand-light{display:none}}
 
 @media(max-width:700px){.animation-buttons{grid-template-columns:repeat(4,1fr)}.animation-buttons button{font-size:7px;letter-spacing:0;padding:10px 3px}.animation-buttons button[data-clip=PunchCombo]{grid-column:span 2}}
+
+body[data-character=seraph-03] h1 span{color:#bca487}body[data-character=seraph-03] dd.wear{color:#e2c3a0;font-size:9px;line-height:1.7}
+@media(max-width:700px){.character-picker button{padding:9px 5px;font-size:9px}.character-picker button small{font-size:8px}body[data-character=seraph-03] .animation-buttons button[data-clip=WingDeploy]{grid-column:auto}}
+@media(max-width:700px){body[data-character=seraph-03] .animation-buttons{grid-template-columns:repeat(3,1fr)}body[data-character=seraph-03] .animation-buttons button{font-size:8px}}

@@ -1,0 +1,201 @@
+{
+  "reports": [
+    {
+      "name": "Sentinel",
+      "width": 1440,
+      "samples": 73,
+      "lowestWorldY": 0.0012580044695714547,
+      "projectedMin": [
+        -0.2492645896542323,
+        -0.630856115928979
+      ],
+      "projectedMax": [
+        0.38027148150242956,
+        0.5448006547939815
+      ]
+    },
+    {
+      "name": "Run",
+      "width": 1440,
+      "samples": 14,
+      "lowestWorldY": 0.0012586167590916961,
+      "projectedMin": [
+        -0.21426951827681276,
+        -0.538663548467909
+      ],
+      "projectedMax": [
+        0.30413303942327496,
+        0.5246470599977208
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "width": 1440,
+      "samples": 97,
+      "lowestWorldY": -3.0876402095056964e-07,
+      "projectedMin": [
+        -0.27451766681246953,
+        -0.5835304136794137
+      ],
+      "projectedMax": [
+        0.3742396593134885,
+        0.5087347876883644
+      ]
+    },
+    {
+      "name": "Backflip",
+      "width": 1440,
+      "samples": 44,
+      "lowestWorldY": 0.0012767696191545491,
+      "projectedMin": [
+        -0.08608906618319156,
+        -0.5582819475874355
+      ],
+      "projectedMax": [
+        0.259179590300663,
+        0.5007551817028455
+      ]
+    },
+    {
+      "name": "WingDeploy",
+      "width": 1440,
+      "samples": 73,
+      "lowestWorldY": 0.0012580044695714547,
+      "projectedMin": [
+        -0.25398602125855513,
+        -0.6022468284358594
+      ],
+      "projectedMax": [
+        0.4291711859003173,
+        0.5210054484034996
+      ]
+    },
+    {
+      "name": "Flight",
+      "width": 1440,
+      "samples": 97,
+      "lowestWorldY": 0.0012580155614893573,
+      "projectedMin": [
+        -0.1951962373360724,
+        -0.5533894644510355
+      ],
+      "projectedMax": [
+        0.35842411500632393,
+        0.5339040296815002
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "width": 390,
+      "samples": 73,
+      "lowestWorldY": 0.0012580044695714547,
+      "projectedMin": [
+        -0.6235908127590684,
+        -0.5319812833409077
+      ],
+      "projectedMax": [
+        0.6196687212832482,
+        0.22427465807449234
+      ]
+    },
+    {
+      "name": "Run",
+      "width": 390,
+      "samples": 14,
+      "lowestWorldY": 0.0012586167590916961,
+      "projectedMin": [
+        -0.554823343437956,
+        -0.4787747990368151
+      ],
+      "projectedMax": [
+        0.48448137081532855,
+        0.21581902934434122
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "width": 390,
+      "samples": 97,
+      "lowestWorldY": -3.0876402095056964e-07,
+      "projectedMin": [
+        -0.6753353902134703,
+        -0.5077169229473424
+      ],
+      "projectedMax": [
+        0.6300837643786058,
+        0.21162917885771365
+      ]
+    },
+    {
+      "name": "Backflip",
+      "width": 390,
+      "samples": 44,
+      "lowestWorldY": 0.0012767696191545491,
+      "projectedMin": [
+        -0.30802719739710305,
+        -0.489855506950209
+      ],
+      "projectedMax": [
+        0.39878295905296146,
+        0.16943746200261708
+      ]
+    },
+    {
+      "name": "WingDeploy",
+      "width": 390,
+      "samples": 73,
+      "lowestWorldY": 0.0012580044695714547,
+      "projectedMin": [
+        -0.635538476908623,
+        -0.516077050921622
+      ],
+      "projectedMax": [
+        0.6815840260626559,
+        0.2010355978519579
+      ]
+    },
+    {
+      "name": "Flight",
+      "width": 390,
+      "samples": 97,
+      "lowestWorldY": 0.0012580155614893573,
+      "projectedMin": [
+        -0.5169201852990326,
+        -0.48652674320644784
+      ],
+      "projectedMax": [
+        0.5579468893773337,
+        0.20737366071641491
+      ]
+    }
+  ],
+  "firing": {
+    "alignment": 0.9933318971772025,
+    "states": [
+      {
+        "time": 2.42,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": true
+      },
+      {
+        "time": 2.8,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": false
+      },
+      {
+        "time": 3.06,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": true
+      },
+      {
+        "time": 3.7,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": true
+      }
+    ]
+  }
+}

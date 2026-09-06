@@ -1,3 +1,5 @@
+import seraphMotionBounds from './seraph-motion-bounds.json';
+
 export const characters = {
   'atlas-09': {
     name: 'ATLAS', number: '09', model: `${import.meta.env.BASE_URL}models/atlas-09.glb?v=6`, concept: `${import.meta.env.BASE_URL}concept.png`,
@@ -16,5 +18,17 @@ export const characters = {
     caption: 'AGILE FRAME / OPERATIONAL', study: '002', conceptTitle: 'The shape of velocity.',
     conceptAlt: 'Original athletic AETHER concept with streamlined white steel and opaque smoky glass panels',
     accent: '#bde9f6', reactorLightIntensity: 0,
+  },
+  'seraph-03': {
+    name: 'SERAPH', number: '03', model: `${import.meta.env.BASE_URL}models/seraph-03.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-seraph-03.png`,
+    className: 'AERIAL CLASS / WINGED MECHA', height: '20.0', condition: 'TITANIUM / SILVER WINGS',
+    tagline: ['Steel in the sky.', 'Thunder in its arm.'],
+    description: ['Articulated metal wings.', 'An integrated heavy cannon.'],
+    caption: 'AERIAL FRAME / CANNON ARM', study: '003', conceptTitle: 'Forged for the sky.',
+    conceptAlt: 'Original winged SERAPH mecha with silver metal wings, dark titanium armor, amber lighting and a huge cannon replacing its right arm',
+    accent: '#ffd09a', reactorLightIntensity: 0, displayReferenceHeight: 15.5, fogDensity:.014, inspectionFill:1.2,
+    motionOrder: ['Sentinel','Run','KneelFire','Backflip','WingDeploy','Flight'],
+    motionBounds: seraphMotionBounds,
+    effects: {color:'#ffc171',flashColor:'#ffe5b0',radius:.075,length:1.8,flashRadius:.3,interval:.64,useMuzzleDirection:true,muzzleAxis:[0,-1,0]},
   },
 };

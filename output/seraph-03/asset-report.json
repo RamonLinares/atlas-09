@@ -1,0 +1,83 @@
+{
+  "source": "assets/seraph-03/retopo/643b8c72-4326-491e-aa6f-1f029a03ab78-model_url.glb",
+  "height_m": 20,
+  "source_triangles": 25700,
+  "vertices": 15137,
+  "triangles": 28386,
+  "bones": 22,
+  "materials": [
+    "SERAPH titanium and silver \u2014 amber emission",
+    "SERAPH graphite actuators"
+  ],
+  "boundary_edges": 1893,
+  "textures": [
+    {
+      "semantic": "BaseColor",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/seraph-03/Seraph_BaseColor.jpg"
+    },
+    {
+      "semantic": "ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/seraph-03/Seraph_ORM.png"
+    },
+    {
+      "semantic": "Normal",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/seraph-03/Seraph_Normal.jpg"
+    }
+  ],
+  "animations": [
+    {
+      "name": "Backflip",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "Flight",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "Run",
+      "frames": [
+        1.0,
+        35.0
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    },
+    {
+      "name": "WingDeploy",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    }
+  ]
+}

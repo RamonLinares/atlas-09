@@ -46,6 +46,7 @@ key.shadow.normalBias = 0.03; key.shadow.bias = -0.0002;
 scene.add(key);
 const rim = new THREE.DirectionalLight('#a3cad2', 3.2); rim.position.set(5, 7, -4); scene.add(rim);
 const fill = new THREE.DirectionalLight('#d7e1b8', 0.8); fill.position.set(4, 3, 5); scene.add(fill);
+const inspectionFill = new THREE.DirectionalLight('#eef3ff', 0); scene.add(inspectionFill, inspectionFill.target);
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: '#29312c', roughness: 0.92, metalness: 0.1 }));
 floor.rotation.x = -Math.PI / 2; floor.position.y = -0.025; floor.receiveShadow = true; scene.add(floor);
 const pad = new THREE.Mesh(new THREE.CylinderGeometry(3.4, 3.5, 0.12, 96), new THREE.MeshStandardMaterial({ color: '#303830', roughness: 0.79, metalness: 0.5 }));
@@ -66,12 +67,38 @@ const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.
 composer.addPass(bloom); composer.addPass(new OutputPass());
 const hero = new THREE.Group(); scene.add(hero);
 let model, mixer, skeleton, activeAction, paused = false, clipName = 'Sentinel';
+let activeCharacter = null, loadSequence = 0;
 let motionFX;
 const actions = new Map(), materials = new Set(), emitters = [];
 const powerLight = new THREE.PointLight('#63f4ff', 0, 3, 2); scene.add(powerLight);
 let time = 0, power = 0.84;
 function resetCamera() {
   const mobile = innerWidth < 701;
+  const compactDesktop = !mobile && innerHeight < 850;
+  const bounds = characters[activeCharacter]?.motionBounds?.[clipName];
+  if (bounds && model) {
+    // The wing/cannon silhouette changes substantially by clip. Fit the
+    // verified offline motion envelope, including its complete root motion.
+    const points=[];
+    model.updateMatrixWorld(true);
+    for (const x of [bounds.min[0],bounds.max[0]]) for (const y of [bounds.min[1],bounds.max[1]]) for (const z of [bounds.min[2],bounds.max[2]]) points.push(new THREE.Vector3(x,z,-y).applyMatrix4(model.matrixWorld));
+    const center=new THREE.Box3().setFromPoints(points).getCenter(new THREE.Vector3());
+    const direction=new THREE.Vector3(.38,.24,1).normalize();
+    const right=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),direction).normalize();
+    const up=new THREE.Vector3().crossVectors(direction,right).normalize();
+    const tangent=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));
+    let distance=0;
+    for (const point of points) {
+      const v=point.clone().sub(center),depth=v.dot(direction);
+      distance=Math.max(distance,depth+Math.abs(v.dot(right))/(tangent*camera.aspect*(mobile?.90:.62)),depth+Math.abs(v.dot(up))/(tangent*(mobile?.44:compactDesktop?.66:.73)));
+    }
+    distance=Math.max(12,distance*1.04);
+    controls.maxDistance=Math.max(42,distance*1.5);
+    center.addScaledVector(up,2*distance*tangent*(mobile?.075:compactDesktop?0:.01));
+    if(!mobile)center.addScaledVector(right,-2*distance*tangent*camera.aspect*.035);
+    controls.target.copy(center);camera.position.copy(center).addScaledVector(direction,distance);controls.update();return;
+  }
+  controls.maxDistance=42;
   if (clipName === 'Backflip') {
     camera.position.set(mobile ? 13 : 11, mobile ? 10 : 9, mobile ? 31 : 24);
     controls.target.set(0, mobile ? 5.4 : 4.6, 0);
@@ -89,7 +116,7 @@ function resetCamera() {
 }
 resetCamera();
 function setClip(name) {
-  name = name === 'Rest' ? 'Walk' : name === 'Awaken' ? 'PunchCombo' : name;
+  name = name === 'Rest' ? 'Walk' : name === 'Awaken' ? (actions.has('WingDeploy') ? 'WingDeploy' : 'PunchCombo') : name;
   const previous = clipName;
   clipName = name;
   document.querySelectorAll('[data-clip]').forEach(b => b.classList.toggle('active', b.dataset.clip === name));
@@ -101,10 +128,9 @@ function setClip(name) {
   next.setLoop(name === 'Collapse' ? THREE.LoopOnce : THREE.LoopRepeat, name === 'Collapse' ? 1 : Infinity);
   next.clampWhenFinished = name === 'Collapse';
   next.reset().setEffectiveWeight(1).setEffectiveTimeScale(1).play(); activeAction = next;
-  if (['Backflip','KneelFire','Collapse'].includes(previous) || ['Backflip','KneelFire','Collapse'].includes(name)) resetCamera();
+  if (characters[activeCharacter]?.motionBounds || ['Backflip','KneelFire','Collapse'].includes(previous) || ['Backflip','KneelFire','Collapse'].includes(name)) resetCamera();
   paused = false; $('#pause').textContent = 'Ⅱ'; $('#pause').setAttribute('aria-label','Pause animation');
 }
-let activeCharacter = null, loadSequence = 0;
 function disposeModel(root) {
   const geometries = new Set(), mats = new Set(), textures = new Set(), skeletons = new Set();
   root?.traverse(o => {
@@ -130,6 +156,9 @@ function showCharacterInfo(id) {
   $('.view-caption').innerHTML = `<span class="cross">+</span><span>MODEL ${c.study}<br><b>${c.caption}</b></span>`;
   $('.edition b').textContent = `${c.study}—26`;
   $('.download').href = c.model;
+  const labels={Sentinel:'IDLE',Run:'RUN',KneelFire:'KNEEL & FIRE',Backflip:'BACKFLIP',PunchCombo:'PUNCH COMBO',Walk:'WALK',Collapse:'COLLAPSE',WingDeploy:'DEPLOY WINGS',Flight:'FLIGHT'};
+  const order=c.motionOrder || ['Sentinel','Run','KneelFire','Backflip','PunchCombo','Walk','Collapse'];
+  $('.animation-buttons').innerHTML=order.filter(name=>actions.has(name)).map(name=>`<button data-clip="${name}">${labels[name] || name}</button>`).join('');
   $('#conceptDialog img').src = c.concept; $('#conceptDialog img').alt = c.conceptAlt;
   $('#conceptDialog h2').textContent = c.conceptTitle;
   document.querySelectorAll('[data-character]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.character === id)));
@@ -151,15 +180,18 @@ async function loadCharacter(id) {
   if (skeleton) { scene.remove(skeleton); skeleton.dispose(); }
   motionFX?.dispose(); actions.clear(); materials.clear(); emitters.length = 0;
   activeCharacter = id;
+  scene.fog.density = character.fogDensity ?? .035;
+  inspectionFill.intensity = character.inspectionFill ?? 0;
+  floor.scale.setScalar(character.motionBounds ? 10 : 1);
   model = gltf.scene;
   const box = new THREE.Box3().setFromObject(model);
   const size = box.getSize(new THREE.Vector3());
-  const scale = 6.5 / size.y;
+  const scale = 6.5 / (character.displayReferenceHeight || size.y);
   model.scale.setScalar(scale);
   const center = box.getCenter(new THREE.Vector3());
   model.position.set(-center.x * scale, -box.min.y * scale, -center.z * scale);
   hero.add(model);
-  motionFX = createMotionFX(scene, model);
+  motionFX = createMotionFX(scene, model, character.effects);
   let triangles = 0, boneCount = 0;
   model.traverse(o => {
     if (o.isBone) boneCount++;
@@ -198,7 +230,7 @@ toggle('#wireframe', on => materials.forEach(m => { m.wireframe = on; }));
 toggle('#skeleton', on => { if (skeleton) skeleton.visible = on; });
 toggle('#rotate', on => { controls.autoRotate = on; });
 $('#power').addEventListener('input', e => { power = Number(e.target.value) / 100; $('#powerReading').innerHTML = `${e.target.value}<small>%</small>`; $('.status').innerHTML = `<span class="dot"></span> ${power > 0 ? 'CORE ONLINE' : 'CORE STANDBY'}`; });
-document.querySelectorAll('[data-clip]').forEach(button => button.addEventListener('click', () => setClip(button.dataset.clip)));
+$('.animation-buttons').addEventListener('click', event => { const button=event.target.closest('[data-clip]'); if(button)setClip(button.dataset.clip); });
 $('#pause').addEventListener('click', () => { paused = !paused; $('#pause').textContent = paused ? '▷' : 'Ⅱ'; $('#pause').setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation'); });
 $('#reset').addEventListener('click', resetCamera);
 $('#conceptButton').addEventListener('click', () => $('#conceptDialog').showModal());
@@ -215,9 +247,9 @@ renderer.setAnimationLoop(now => {
   }
   emitters.forEach(({ mat, intensity }) => { mat.emissiveIntensity = intensity * power * (1 + Math.sin(time * 2.3) * 0.06); });
   powerLight.intensity = power * (characters[activeCharacter]?.reactorLightIntensity ?? 0); powerLight.position.set(0, 4.35, 0.8);
-  controls.update(); renderer.info.reset(); composer.render();
+  controls.update(); inspectionFill.position.copy(camera.position); inspectionFill.target.position.copy(controls.target); renderer.info.reset(); composer.render();
   frameCount++;
   if (now - sampleStart > 1500) { const fps = Math.round(frameCount * 1000 / (now - sampleStart)); $('#renderStatus').textContent = `${fps} FPS / REALTIME PBR`; if (window.atlas) Object.assign(window.atlas.stats, { fps, drawCalls: renderer.info.render.calls, renderedTriangles: renderer.info.render.triangles, textureCount: renderer.info.memory.textures }); frameCount = 0; sampleStart = now; }
 });
 let wasMobile = innerWidth < 701;
-window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); const mobile = innerWidth < 701; if (mobile !== wasMobile) resetCamera(); wasMobile = mobile; });
+window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); const mobile = innerWidth < 701; if (mobile !== wasMobile || characters[activeCharacter]?.motionBounds) resetCamera(); wasMobile = mobile; });

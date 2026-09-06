@@ -1,0 +1,130 @@
+{
+  "rigid_vertices": true,
+  "rigid_faces": true,
+  "uv_maps": [
+    {
+      "name": "Seraph_Surface",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    },
+    {
+      "name": "Seraph_Lightmap",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    }
+  ],
+  "mirrored_leg_vertices_checked": 2075,
+  "isolation": [
+    {
+      "bone": "upper_arm.R",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "wings": 0.0,
+        "cannon": 9.13757038116455,
+        "left_arm": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "wings": 0.0,
+        "cannon": 0.0,
+        "left_arm": 4.367303848266602
+      }
+    },
+    {
+      "bone": "thigh.R",
+      "displacement_m": {
+        "legs": 5.180088520050049,
+        "torso": 0.0,
+        "wings": 0.0,
+        "cannon": 0.0,
+        "left_arm": 0.0
+      }
+    },
+    {
+      "bone": "thigh.L",
+      "displacement_m": {
+        "legs": 5.180088996887207,
+        "torso": 0.0,
+        "wings": 0.0,
+        "cannon": 0.0,
+        "left_arm": 0.0
+      }
+    },
+    {
+      "bone": "wing_root.R",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "wings": 8.703536987304688,
+        "cannon": 0.0,
+        "left_arm": 0.0
+      }
+    },
+    {
+      "bone": "wing_root.L",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "wings": 8.703536033630371,
+        "cannon": 0.0,
+        "left_arm": 0.0
+      }
+    }
+  ],
+  "animations": [
+    {
+      "name": "Sentinel",
+      "lowest_vertex_m": 0.002999914577230811,
+      "rigid_edge_error_m": 5.707144737243652e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 0.2626003324985504,
+      "max_ground_clearance_m": 0.002999914577230811
+    },
+    {
+      "name": "WingDeploy",
+      "lowest_vertex_m": 0.002999914577230811,
+      "rigid_edge_error_m": 5.0067901611328125e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 7.7933526039123535,
+      "max_ground_clearance_m": 0.002999914577230811
+    },
+    {
+      "name": "Run",
+      "lowest_vertex_m": 0.002999931573867798,
+      "rigid_edge_error_m": 7.420778274536133e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 5.868443012237549,
+      "max_ground_clearance_m": 0.045944944024086
+    },
+    {
+      "name": "KneelFire",
+      "lowest_vertex_m": 5.233656565906131e-07,
+      "rigid_edge_error_m": 8.672475814819336e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 11.395822525024414,
+      "max_ground_clearance_m": 0.006626381538808346
+    },
+    {
+      "name": "Backflip",
+      "lowest_vertex_m": 0.0029997711535543203,
+      "rigid_edge_error_m": 9.08970832824707e-06,
+      "loop_error_m": 6.106495220592478e-06,
+      "max_displacement_m": 29.31951904296875,
+      "max_ground_clearance_m": 18.529085159301758
+    },
+    {
+      "name": "Flight",
+      "lowest_vertex_m": 0.002999914577230811,
+      "rigid_edge_error_m": 5.0067901611328125e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 18.196813583374023,
+      "max_ground_clearance_m": 6.104458808898926
+    }
+  ],
+  "packed_textures": true
+}

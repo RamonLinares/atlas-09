@@ -1,0 +1,37 @@
+[
+  {
+    "from": "shoulder.L",
+    "to": "wing_outer.L",
+    "faces": 13
+  },
+  {
+    "from": "shoulder.L",
+    "to": "wing_outer.L",
+    "faces": 2
+  },
+  {
+    "from": "wing_outer.L",
+    "to": "wing_root.L",
+    "faces": 1
+  },
+  {
+    "from": "shoulder.R",
+    "to": "wing_outer.R",
+    "faces": 13
+  },
+  {
+    "from": "shoulder.R",
+    "to": "wing_outer.R",
+    "faces": 2
+  },
+  {
+    "from": "wing_outer.R",
+    "to": "forearm.R",
+    "faces": 39
+  },
+  {
+    "from": "wing_outer.R",
+    "to": "wing_root.R",
+    "faces": 1
+  }
+]

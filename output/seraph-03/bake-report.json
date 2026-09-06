@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Run",
+    "frames": 35,
+    "duration": 1.1333333333333333,
+    "max_ground_correction_m": 1.1622905731201172e-06,
+    "interpolation_lift_m": 0.0066424100399017335
+  },
+  {
+    "name": "KneelFire",
+    "frames": 241,
+    "duration": 8.0,
+    "max_ground_correction_m": 0.4125911593437195,
+    "interpolation_lift_m": 0.0039541213512420655
+  },
+  {
+    "name": "Backflip",
+    "frames": 109,
+    "duration": 3.6,
+    "max_ground_correction_m": 2.471737843734445e-06,
+    "interpolation_lift_m": 0.011810670115053653
+  },
+  {
+    "name": "Sentinel",
+    "frames": 181,
+    "duration": 6.0,
+    "interpolation_lift_m": 0.003000344911029515
+  },
+  {
+    "name": "WingDeploy",
+    "frames": 181,
+    "duration": 6.0,
+    "interpolation_lift_m": 0.003000344911029515
+  },
+  {
+    "name": "Flight",
+    "frames": 241,
+    "duration": 8.0,
+    "interpolation_lift_m": 0.003000344911029515
+  }
+]

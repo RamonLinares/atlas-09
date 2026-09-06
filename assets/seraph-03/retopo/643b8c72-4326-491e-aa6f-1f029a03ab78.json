@@ -1,0 +1,18 @@
+{
+  "type": "highpoly_to_lowpoly",
+  "status": "success",
+  "progress": 100,
+  "input": {
+    "quad": false,
+    "face_limit": 20000,
+    "original_model_id": "fa47e26c-98f7-4ae5-baec-99f8e93b748b"
+  },
+  "output": {
+    "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_378575a3e29046b18e0ecbc4db519851/20260906/643b8c72-4326-491e-aa6f-1f029a03ab78/tripo_poly_643b8c72-4326-491e-aa6f-1f029a03ab78.glb?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMzc4NTc1YTNlMjkwNDZiMThlMGVjYmM0ZGI1MTk4NTEvMjAyNjA5MDYvNjQzYjhjNzItNDMyNi00OTFlLWFhNmYtMWYwMjlhMDNhYjc4L3RyaXBvX3BvbHlfNjQzYjhjNzItNDMyNi00OTFlLWFhNmYtMWYwMjlhMDNhYjc4LmdsYiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc4ODc5MTQwOX19fV19&Signature=QrUDhMZ3scdZY2DEdgCU79fOJqsI4DJBVtmhq1d24T9hJTcaRUBDGBV77txUlLUGshClUIPkw1ZvEoE6N2laZ3OBqZZbP3HICmrXEpAMPIKINEerP4pt~r2wdglaGl1jXNgZM0d014H6L0RAYjEF97j23dNNCpWxpNV6bzQUdwBJCqL3lxdY1OFCYx9bS8rl72rjpauP5fmQXdT22O~jFX1HsTncnXSJDFfXbs5jP1tnT1esXxOBU8hdBrnZh8rDQedhL-aQiHmk~sog2IJKKDe-ewsWSl~gzu98w-FWL7-ghQWg7vgsX8ZAOWuE8qR6nKL~BbGAPRmrSVey1Pkn9A__&Key-Pair-Id=K1676C64NMVM2J",
+    "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_378575a3e29046b18e0ecbc4db519851/20260906/643b8c72-4326-491e-aa6f-1f029a03ab78/legacy_mesh.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmlwby1kYXRhLnJnMS5kYXRhLnRyaXBvM2QuY29tL3RjbGlfMzc4NTc1YTNlMjkwNDZiMThlMGVjYmM0ZGI1MTk4NTEvMjAyNjA5MDYvNjQzYjhjNzItNDMyNi00OTFlLWFhNmYtMWYwMjlhMDNhYjc4L2xlZ2FjeV9tZXNoLndlYnAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3ODg3OTE0MDl9fX1dfQ__&Signature=KNBDZDF9JycFSgTrljAf6xeTVAiVnAuWhgFcPRsFyO6Tfv58-RNwHAh5F6LLQzG3pv5kPgzplJYefyYMedas2uJPYeuTL57mSS17wWrpQCu7rFEwUDr3qr9gk~O1AlAcG7BvYNOCLbFAsaymTR5t90CvolhV6N9NqKLbqkYHUafeBmq6reBwGJ7es9MKl0fAgfmv7wtqwF2OnqRXO4BrQJidvhdyV1s7hBjP-hh0pk2aV8FMDI3mNesQw1DNxgTb0mX~atENHpcYUTp4e~RlyqTr52fmWdcNAT4p-IAVehd5JcQaTU8KMqytdFGHGYEk5IqcaDXhTvsvNP3vXZhKDA__&Key-Pair-Id=K1676C64NMVM2J"
+  },
+  "task_id": "643b8c72-4326-491e-aa6f-1f029a03ab78",
+  "created_at": "2026-09-06T14:22:59.272427Z",
+  "completed_at": "2026-09-06T14:30:08.143630Z",
+  "credits_consumed": 30.0
+}

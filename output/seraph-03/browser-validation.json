@@ -1,0 +1,135 @@
+{
+  "inventory": {
+    "character": "seraph-03",
+    "triangles": 28386,
+    "boneCount": 22,
+    "materials": 2,
+    "clips": [
+      {
+        "name": "Backflip",
+        "duration": 3.5999999046325684,
+        "tracks": 66
+      },
+      {
+        "name": "Flight",
+        "duration": 8,
+        "tracks": 66
+      },
+      {
+        "name": "KneelFire",
+        "duration": 8,
+        "tracks": 66
+      },
+      {
+        "name": "Run",
+        "duration": 1.1333333253860474,
+        "tracks": 66
+      },
+      {
+        "name": "Sentinel",
+        "duration": 6,
+        "tracks": 66
+      },
+      {
+        "name": "WingDeploy",
+        "duration": 6,
+        "tracks": 66
+      }
+    ],
+    "motionFX": {
+      "muzzleFound": true,
+      "visibleProjectiles": 0,
+      "flash": false
+    },
+    "activeClip": "Sentinel",
+    "clipTime": 0.14940000000000012
+  },
+  "reports": [
+    {
+      "clip": "Sentinel",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "WingDeploy",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Run",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "KneelFire",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 124,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Backflip",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Flight",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Sentinel",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "WingDeploy",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Run",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "KneelFire",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 124,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Backflip",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    },
+    {
+      "clip": "Flight",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 122,
+      "modelDownload": "http://127.0.0.1:5175/models/seraph-03.glb?v=1"
+    }
+  ],
+  "playbackAdvanced": true,
+  "errors": []
+}
