@@ -103,7 +103,7 @@ def bone(name,head,tail,parent=None,deform=True):
 bone('root',(0,0,0),(0,0,1),deform=False)
 bone('pelvis',(0,.15,8.15),(0,.1,9.35),'root')
 bone('chest',(0,.1,9.35),(0,.05,12.05),'pelvis')
-bone('head',(0,.05,12.05),(.12,-.15,13.8),'chest')
+bone('head',(0,.05,12.05),(0,.05,13.8),'chest')
 for s,side in [(1,'L'),(-1,'R')]:
  bone('shoulder.'+side,(s*1.05,.25,11.35),(s*1.65,.25,11.25),'chest')
  bone('upper_arm.'+side,(s*1.65,.25,11.25),(s*2.25,.12,9.5),'shoulder.'+side)
@@ -119,11 +119,22 @@ for b in rig.pose.bones:b.rotation_mode='XYZ'
 # The generated source looks 35 degrees left. Correct the head armor in rest
 # space so every clip and the downloadable model face along the body axis.
 head=rig.data.bones['head'];head_yaw_correction=math.radians(-35)
-head_rotation=Matrix.Rotation(head_yaw_correction,3,(head.tail_local-head.head_local).normalized())
+head_rotation=Matrix.Rotation(head_yaw_correction,3,Vector((.12,-.20,1.75)).normalized())
 for vi in weights['head']:
  mesh.vertices[vi].co=head.head_local+head_rotation@(mesh.vertices[vi].co-head.head_local)
+# Fit from paired helmet surfaces above z=12.55 after the coarse correction.
+# Align the measured bilateral plane with the body's x=0 plane; this corrects
+# the residual yaw, roll and offset together without deforming the helmet.
+head_plane_normal=Vector((.9830565589,.1690857281,-.0707800722))
+head_plane_point=Vector((.0111953519,-.0052036355,13.09961375))
+head_alignment=head_plane_normal.rotation_difference(Vector((1,0,0)))
+head_center=Vector((0,head_plane_point.y,head_plane_point.z))
+for vi in weights['head']:
+ mesh.vertices[vi].co=head_center+head_alignment@(mesh.vertices[vi].co-head_plane_point)
 mesh.update()
 rig['head_rest_yaw_correction_degrees']=-35
+rig['head_alignment_plane_normal']=list(head_plane_normal)
+rig['head_alignment_plane_point']=list(head_plane_point)
 
 # Compact actuator housings close the visual gaps under the separated armor.
 def material(name,color,metallic,roughness):
@@ -166,7 +177,7 @@ rig.animation_data_create()
 def neutral():
  for pb in rig.pose.bones:pb.rotation_euler=(0,0,0);pb.location=(0,0,0);pb.scale=(1,1,1)
 def idle(t):
- neutral();rig.pose.bones['head'].rotation_euler.y=.07*math.sin(t)
+ neutral()
  for s,side in [(1,'L'),(-1,'R')]:rig.pose.bones['forearm.'+side].rotation_euler.x=.025*(1-math.cos(t));rig.pose.bones['shoulder.'+side].rotation_euler.y=s*.012*math.sin(t)
 def awaken(t):
  neutral();rise=(1-math.cos(t))*.5;rig.pose.bones['head'].rotation_euler.x=-.06*rise
@@ -178,7 +189,7 @@ for name,frames,fn in [('Sentinel',181,idle),('Awaken',151,awaken)]:
   for pb in rig.pose.bones:pb.keyframe_insert('rotation_euler',frame=frame,group=pb.name)
  action=rig.animation_data.action;action.name=name;action.use_fake_user=True;rig.animation_data.action=None
  track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,action);track.mute=True
-motion_report=build_motions(rig,obj,dict(run_drop=.48,run_bob=.15,stride=2.0,ankle_z=1.28,ankle_y=.6,ankle_x=2.0,run_x=1.8,step_lift=2.15,
+motion_report=build_motions(rig,obj,dict(head_sway=0,run_drop=.48,run_bob=.15,stride=2.0,ankle_z=1.28,ankle_y=.6,ankle_x=2.0,run_x=1.8,step_lift=2.15,
  kneel_drop=4.6,kneel_front=(1.6,-2.8,1.28),kneel_back=(-1.1,4.7,2.3),crouch=1.2,landing=1.1,tuck_width=.5,tuck_back=1.65,tuck_lift=3.7,jump=7.2,pivot=(0,.15,8.15),flight=.32))
 (OUT/'bake-report.json').write_text(json.dumps(motion_report,indent=2))
 rig['README']='AETHER-02, 14m athletic mecha. Rigid armor, opaque glass (no transmission), five baked clips. Anatomical segmentation follows the inspected model; source retopology remains a realtime prototype.'

@@ -43,7 +43,13 @@ report['animations']=[]
 for name in ['Sentinel','Awaken','Run','KneelFire','Backflip']:
  rig.animation_data.action=bpy.data.actions[name];start,end=map(int,rig.animation_data.action.frame_range);first=sample(start);last=sample(end);base=np.linalg.norm(first[edges[:,0]]-first[edges[:,1]],axis=1);stretch=0;ground=1e9;clearance=-1e9;motion=0
  for frame in range(start,end+1,3):
-  p=sample(frame);assert np.isfinite(p).all();stretch=max(stretch,float(abs(np.linalg.norm(p[edges[:,0]]-p[edges[:,1]],axis=1)-base).max()));ground=min(ground,float(p[:,2].min()));clearance=max(clearance,float(p[:,2].min()));motion=max(motion,float(np.linalg.norm(p-first,axis=1).max()))
+  p=sample(frame)
+  if name in ['Sentinel','Run']:
+   # Head and chest share a lateral axis: no residual yaw/roll during the cycle.
+   head_axis=rig.pose.bones['head'].matrix.to_3x3().col[0].normalized()
+   chest_axis=rig.pose.bones['chest'].matrix.to_3x3().col[0].normalized()
+   assert (head_axis-chest_axis).length<1e-5
+  assert np.isfinite(p).all();stretch=max(stretch,float(abs(np.linalg.norm(p[edges[:,0]]-p[edges[:,1]],axis=1)-base).max()));ground=min(ground,float(p[:,2].min()));clearance=max(clearance,float(p[:,2].min()));motion=max(motion,float(np.linalg.norm(p-first,axis=1).max()))
  closure=float(np.linalg.norm(first-last,axis=1).max());assert stretch<.0001 and closure<.0001 and ground>-.001 and motion>.01
  report['animations'].append({'name':name,'max_edge_stretch_m':stretch,'loop_error_m':closure,'lowest_vertex_m':ground,'max_clearance_m':clearance,'max_displacement_m':motion})
 report['packed_textures']=all(im.packed_file for im in bpy.data.images if im.type=='IMAGE' and im.name!='Render Result')

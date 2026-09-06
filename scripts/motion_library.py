@@ -85,7 +85,7 @@ def build_motions(rig,obj,profile=None):
                 f=(phase-.5)/.5;y=p['ankle_y']+p['stride']-2*p['stride']*smooth(f);z=p['ankle_z']+p['step_lift']*math.sin(math.pi*f)
             leg(side,(s*p['run_x'],y,z))
         arms(.72*math.cos(theta),-.72*math.cos(theta),.72)
-        bones['head'].rotation_euler.y=.035*math.sin(theta);update()
+        bones['head'].rotation_euler.y=p.get('head_sway',.035)*math.sin(theta);update()
         flight=p['flight']*max(0,math.cos(theta*2))**4
         bones['root'].matrix=Matrix.Translation((0,0,flight))@bones['root'].matrix;update()
     def kneel(u):
