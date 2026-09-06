@@ -1,6 +1,6 @@
 # FORGE — Character Lab
 
-Four original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
+Five original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
 
 | Character | Design | Blender source | Animated model |
 | --- | --- | --- | --- |
@@ -8,12 +8,13 @@ Four original mecha characters, reconstructed and retopologized with Tripo, prep
 | AETHER / 02 | Athletic 14-metre mecha with streamlined white steel and opaque smoked glass | [AETHER-02.blend](blender/AETHER-02.blend) | [aether-02.glb](public/models/aether-02.glb) |
 | SERAPH / 03 | Titanium mecha with metal wings, 20-metre wingtip height, and a heavy right cannon arm | [SERAPH-03.blend](blender/SERAPH-03.blend) | [seraph-03.glb](public/models/seraph-03.glb) |
 | RONIN / 04 | 16-metre samurai mecha with crimson armor, gold crescent helmet and katana | [RONIN-04.blend](blender/RONIN-04.blend) | [ronin-04.glb](public/models/ronin-04.glb) |
+| SCORPIO / 05 | 17-metre scorpion predator mecha with hydraulic pincer claws and plasma stinger tail | [SCORPIO-05.blend](blender/SCORPIO-05.blend) | [scorpio-05.glb](public/models/scorpio-05.glb) |
 
-Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS and AETHER have seven motions; SERAPH has six, including wing deployment and flight; RONIN has six, including a blade salute and sword slash. The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH framed for its larger wing and cannon envelope; their physical design heights remain embedded in the source assets.
+Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS and AETHER have seven motions; SERAPH, RONIN, and SCORPIO have six motions each, including specialized combat attacks (wing deployment/flight, blade salute/slash, and stinger strike/pincer strike). The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH and SCORPIO framed for their respective wing and stinger envelopes; their physical design heights remain embedded in the source assets.
 
-Direct links can select a character and motion, for example `/?character=aether-02&motion=Run`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [AETHER](https://ramonlinares.github.io/atlas-09/?character=aether-02). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
+Direct links can select a character and motion, for example `/?character=scorpio-05&motion=StingerStrike`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [SCORPIO](https://ramonlinares.github.io/atlas-09/?character=scorpio-05). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
 
-The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md) , [SERAPH-03.md](SERAPH-03.md), and [RONIN-04.md](RONIN-04.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
+The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md), [SERAPH-03.md](SERAPH-03.md), [RONIN-04.md](RONIN-04.md), and [SCORPIO-05.md](SCORPIO-05.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
 
 ## Open the result
 
@@ -56,8 +57,9 @@ blender -b --python scripts/build_mecha.py
 blender -b --python scripts/validate_scene.py
 blender -b --python scripts/build_aether.py
 blender -b --python scripts/validate_aether.py
-npm run validate:asset
-node scripts/validate_glb.mjs public/models/aether-02.glb output/aether-02/gltf-validation.json
+blender -b --python scripts/build_scorpio.py
+blender -b --python scripts/validate_scorpio.py
+node scripts/validate_glb.mjs public/models/scorpio-05.glb output/scorpio-05/gltf-validation.json
 ```
 
 The preparation script reads the already downloaded Tripo retopology in `assets/retopo`, so rebuilding is local and uses no provider credits. It recreates the mesh, unwrap, rig, clips, textures, GLB, Blender file, beauty render, and audit data. It also repairs a rare zero tangent at a split vertex using the local triangle's UV differential.

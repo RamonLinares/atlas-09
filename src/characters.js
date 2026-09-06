@@ -1,5 +1,6 @@
 import roninMotionBounds from './ronin-motion-bounds.json';
 import seraphMotionBounds from './seraph-motion-bounds.json';
+import scorpioMotionBounds from './scorpio-motion-bounds.json';
 
 export const characters = {
   'atlas-09': {
@@ -41,5 +42,27 @@ export const characters = {
     accent:'#f3b39b', reactorLightIntensity:0, fogDensity:.014, inspectionFill:1.2,
     motionOrder:['Sentinel','BladeSalute','SwordSlash','Run','KneelFire','Backflip'], motionBounds:roninMotionBounds,
     effects:{muzzleName:'Muzzle_L',forearmName:'forearmL',handName:'handL',color:'#ffcc83',flashColor:'#ffe8b8',interval:.48,useMuzzleDirection:true,muzzleAxis:[0,-1,0]},
+  },
+  'scorpio-05': {
+    name: 'SCORPIO', number: '05', model: `${import.meta.env.BASE_URL}models/scorpio-05.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-scorpio-05.png`,
+    className: 'PREDATOR CLASS / SCORPION MECHA', height: '17.0', condition: 'BLACKENED CHITIN / VENOM EMISSION',
+    tagline: ['Predator of the dunes.', 'Silent sting.'],
+    description: ['Hydraulic pincer claws. Segmented plasma tail.', 'Built for ambush and lethal precision.'],
+    caption: 'PREDATOR FRAME / STINGER', study: '005', conceptTitle: 'Nature’s lethality, mechanized.',
+    conceptAlt: 'Original SCORPIO predator mecha with blackened chitin armor, hydraulic pincer claws, and an arched stinger tail',
+    accent: '#52ff83', reactorLightIntensity: 0, displayReferenceHeight: 16.0, fogDensity: .014, inspectionFill: 1.2,
+    motionOrder: ['Sentinel', 'StingerStrike', 'ClawSlash', 'Run', 'KneelFire', 'Backflip'],
+    motionBounds: scorpioMotionBounds,
+    effects: {
+      muzzleName: 'Muzzle_Stinger',
+      color: '#52ff83',
+      flashColor: '#d6ffd6',
+      radius: .075,
+      length: 1.8,
+      flashRadius: .32,
+      interval: .48,
+      useMuzzleDirection: true,
+      muzzleAxis: [0, 0, -1]
+    },
   },
 };

@@ -1,0 +1,135 @@
+{
+  "rigid_vertices": true,
+  "rigid_faces": true,
+  "uv_maps": [
+    {
+      "name": "Scorpio_Surface",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    },
+    {
+      "name": "Scorpio_Lightmap",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    }
+  ],
+  "isolation": [
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 5.5145392417907715,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.R",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 5.599799156188965,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "thigh.L",
+      "displacement_m": {
+        "legs": 4.155410289764404,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "thigh.R",
+      "displacement_m": {
+        "legs": 4.152898788452148,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "tail_02",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 6.163515567779541,
+        "stinger": 10.028280258178711
+      }
+    },
+    {
+      "bone": "stinger",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 8.062276840209961
+      }
+    }
+  ],
+  "animations": [
+    {
+      "name": "Sentinel",
+      "lowest_vertex_m": 0.003000108525156975,
+      "rigid_edge_error_m": 6.906688213348389e-06,
+      "loop_error_m": 1.5838371295687643e-17,
+      "max_displacement_m": 3.1367087364196777,
+      "max_ground_clearance_m": 0.003000108525156975
+    },
+    {
+      "name": "StingerStrike",
+      "lowest_vertex_m": 0.003000108525156975,
+      "rigid_edge_error_m": 4.813075065612793e-06,
+      "loop_error_m": 2.4771547317504883,
+      "max_displacement_m": 17.431320190429688,
+      "max_ground_clearance_m": 0.003000108525156975
+    },
+    {
+      "name": "ClawSlash",
+      "lowest_vertex_m": 0.003000108525156975,
+      "rigid_edge_error_m": 4.954636096954346e-06,
+      "loop_error_m": 4.1388139724731445,
+      "max_displacement_m": 8.876663208007812,
+      "max_ground_clearance_m": 0.003000108525156975
+    },
+    {
+      "name": "Run",
+      "lowest_vertex_m": 0.0029994959477335215,
+      "rigid_edge_error_m": 6.511807441711426e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 6.23305082321167,
+      "max_ground_clearance_m": 0.039211489260196686
+    },
+    {
+      "name": "KneelFire",
+      "lowest_vertex_m": 1.9073486328125e-06,
+      "rigid_edge_error_m": 4.857778549194336e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 15.304773330688477,
+      "max_ground_clearance_m": 0.02978992462158203
+    },
+    {
+      "name": "Backflip",
+      "lowest_vertex_m": 0.002999770687893033,
+      "rigid_edge_error_m": 5.990266799926758e-06,
+      "loop_error_m": 6.294430932030082e-06,
+      "max_displacement_m": 28.227588653564453,
+      "max_ground_clearance_m": 15.310567855834961
+    }
+  ],
+  "packed_textures": true
+}

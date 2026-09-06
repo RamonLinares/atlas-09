@@ -1,0 +1,93 @@
+{
+  "source": "assets/scorpio-05/retopo/09644c4a-ec3f-45cb-be11-91056907e615-model_url.glb",
+  "height_m": 17.0,
+  "source_triangles": 24393,
+  "vertices": 15709,
+  "triangles": 28877,
+  "bones": 23,
+  "materials": [
+    "SCORPIO blackened chitin, desert bronze \u2014 venom emission",
+    "SCORPIO graphite actuators",
+    "SCORPIO desert bronze trim",
+    "SCORPIO venom emission"
+  ],
+  "boundary_edges": 2635,
+  "textures": [
+    {
+      "semantic": "BaseColor",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/scorpio-05/Scorpio_BaseColor.jpg"
+    },
+    {
+      "semantic": "ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/scorpio-05/Scorpio_ORM.png"
+    },
+    {
+      "semantic": "Normal",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/scorpio-05/Scorpio_Normal.jpg"
+    },
+    {
+      "semantic": "Emission",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/scorpio-05/Scorpio_Emission.png"
+    }
+  ],
+  "animations": [
+    {
+      "name": "Backflip",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "ClawSlash",
+      "frames": [
+        1.0,
+        121.0
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "Run",
+      "frames": [
+        1.0,
+        38.0
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    },
+    {
+      "name": "StingerStrike",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    }
+  ]
+}
