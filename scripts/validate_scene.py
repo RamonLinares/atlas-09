@@ -40,12 +40,12 @@ assert panel_motion>.001  # Even vertices close to the hinge must follow it.
 report['thigh_arm_isolation']={'panel_faces':len(panel_faces),'panel_vertices':len(panel_ids),'max_panel_motion_with_arms_m':panel_error,'min_panel_motion_with_thighs_m':panel_motion}
 reset_pose()
 report['animations']=[]
-for name in ['Sentinel','Awaken','Run','KneelFire','Backflip']:
+for name in ['Sentinel','Run','KneelFire','Backflip','Walk','PunchCombo','Collapse']:
  rig.animation_data.action=bpy.data.actions[name];start,end=map(int,rig.animation_data.action.frame_range);rest=evaluated(start);last=evaluated(end);base_lengths=np.linalg.norm(rest[edges[:,0]]-rest[edges[:,1]],axis=1);disp=0;stretch=0
  ground_min=1e9;ground_max=-1e9
  for frame in range(start,end+1,3):
   p=evaluated(frame);assert np.isfinite(p).all();disp=max(disp,float(np.linalg.norm(p-rest,axis=1).max()));lengths=np.linalg.norm(p[edges[:,0]]-p[edges[:,1]],axis=1);stretch=max(stretch,float(np.abs(lengths-base_lengths).max()));ground_min=min(ground_min,float(p[:,2].min()));ground_max=max(ground_max,float(p[:,2].min()))
  report['animations'].append({'name':name,'max_vertex_displacement_m':disp,'max_rigid_edge_length_change_m':stretch,'loop_closure_max_error_m':float(np.linalg.norm(last-rest,axis=1).max()),'ground_min_m':ground_min,'max_clearance_m':ground_max})
 assert report['all_vertices_have_one_rigid_weight'] and report['faces_span_only_one_bone'] and report['paired_chains']
-assert all(a['max_rigid_edge_length_change_m']<.0001 and a['loop_closure_max_error_m']<.0001 for a in report['animations'])
+assert all(a['max_rigid_edge_length_change_m']<.0001 and (a['name']=='Collapse' or a['loop_closure_max_error_m']<.0001) for a in report['animations'])
 (ROOT/'output/blender-validation.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))

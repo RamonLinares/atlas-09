@@ -1,0 +1,15 @@
+{
+  "revision": "f5be3eaba23fa646f50d886c7ddb69f9db41779b",
+  "reports": [
+    {
+      "asset": "aether-02",
+      "meshAttributesUnchanged": 35,
+      "retainedAnimationChannelsUnchanged": 216
+    },
+    {
+      "asset": "atlas-09",
+      "meshAttributesUnchanged": 28,
+      "retainedAnimationChannelsUnchanged": 216
+    }
+  ]
+}

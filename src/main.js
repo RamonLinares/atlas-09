@@ -75,6 +75,9 @@ function resetCamera() {
   if (clipName === 'Backflip') {
     camera.position.set(mobile ? 13 : 11, mobile ? 10 : 9, mobile ? 31 : 24);
     controls.target.set(0, mobile ? 5.4 : 4.6, 0);
+  } else if (clipName === 'Collapse') {
+    camera.position.set(mobile ? 12 : 11, mobile ? 9 : 8, mobile ? 30 : 21);
+    controls.target.set(0, mobile ? 3.2 : 2.1, -1.2);
   } else if (clipName === 'KneelFire') {
     camera.position.set(mobile ? 11 : 9, mobile ? 7.2 : 6.7, mobile ? 27 : 18.5);
     controls.target.set(mobile ? 0 : -0.35, mobile ? 3.35 : 2.65, 0);
@@ -86,18 +89,19 @@ function resetCamera() {
 }
 resetCamera();
 function setClip(name) {
+  name = name === 'Rest' ? 'Walk' : name === 'Awaken' ? 'PunchCombo' : name;
   const previous = clipName;
   clipName = name;
-  if (name === 'Rest' && ['Backflip','KneelFire'].includes(previous)) resetCamera();
   document.querySelectorAll('[data-clip]').forEach(b => b.classList.toggle('active', b.dataset.clip === name));
   if (!mixer) return;
-  if (name === 'Rest') { mixer.stopAllAction(); model.traverse(o => { if (o.isSkinnedMesh) o.pose(); }); activeAction = null; return; }
   const next = actions.get(name);
   if (!next) return;
   // Reset completed fades and root transforms before a large-motion clip.
   mixer.stopAllAction();
+  next.setLoop(name === 'Collapse' ? THREE.LoopOnce : THREE.LoopRepeat, name === 'Collapse' ? 1 : Infinity);
+  next.clampWhenFinished = name === 'Collapse';
   next.reset().setEffectiveWeight(1).setEffectiveTimeScale(1).play(); activeAction = next;
-  if (['Backflip','KneelFire'].includes(previous) || ['Backflip','KneelFire'].includes(name)) resetCamera();
+  if (['Backflip','KneelFire','Collapse'].includes(previous) || ['Backflip','KneelFire','Collapse'].includes(name)) resetCamera();
   paused = false; $('#pause').textContent = 'Ⅱ'; $('#pause').setAttribute('aria-label','Pause animation');
 }
 let activeCharacter = null, loadSequence = 0;
@@ -178,7 +182,7 @@ async function loadCharacter(id) {
   $('#triangles').textContent = Math.round(triangles).toLocaleString(); $('#bones').textContent = boneCount;
   $('#loading').style.display = 'none';
   showCharacterInfo(id);
-  setClip(requestedMotion === 'Rest' || actions.has(requestedMotion) ? requestedMotion : 'Sentinel'); resetCamera();
+  setClip(['Rest','Awaken'].includes(requestedMotion) || actions.has(requestedMotion) ? requestedMotion : 'Sentinel'); resetCamera();
   const url = new URL(location.href); url.searchParams.set('character', id); history.replaceState(null, '', url);
   window.atlas = { model, scene, camera, controls, renderer, mixer, actions, skeleton, setClip, motionFX, loadCharacter, stats: { character: id, triangles, boneCount, materials: materials.size, clips: gltf.animations.map(c => ({name:c.name, duration:c.duration, tracks:c.tracks.length})) } };
   } catch (error) {

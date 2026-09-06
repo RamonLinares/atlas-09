@@ -12,7 +12,7 @@ A second frame in the FORGE character lab: a stylized, athletic humanoid mecha w
 - Reproducible build: [scripts/build_aether.py](scripts/build_aether.py)
 - Rig and motion validation: [scripts/validate_aether.py](scripts/validate_aether.py)
 
-The browser's character selector preserves access to ATLAS. `/?character=aether-02&motion=Run` opens AETHER running. The model includes Sentinel (idle), Awaken, Run, KneelFire and Backflip. A compact wrist emitter supports the firing animation; pulse rounds and muzzle flash are synchronized in Three.js.
+The browser's character selector preserves access to ATLAS. `/?character=aether-02&motion=Run` opens AETHER running. The model includes Sentinel (idle), Run, KneelFire, Backflip, Walk, PunchCombo and Collapse. A compact wrist emitter supports the firing animation; pulse rounds and muzzle flash are synchronized in Three.js.
 
 ## Provenance and cost
 
@@ -38,7 +38,7 @@ The new model uses five materials, packed textures, and two UV channels. The opa
 Validation evidence:
 
 - [Asset inventory](output/aether-02/asset-report.json): geometry, material names, texture dimensions, rig and clip inventory.
-- [Blender checks](output/aether-02/blender-validation.json): 3,288 leg vertices and 1,330 arm vertices tested independently, with zero displacement of the unrelated limb region. All five clips are sampled for finite positions, rigid edge lengths, ground penetration and loop closure.
+- [Blender checks](output/aether-02/blender-validation.json): 3,288 leg vertices and 1,330 arm vertices tested independently, with zero displacement of the unrelated limb region. All seven clips are sampled for finite positions, rigid edge lengths, ground penetration and loop closure (Collapse is intentionally a one-shot).
 - [glTF validator](output/aether-02/gltf-validation.json): zero errors and zero warnings. Informational messages concern unused UV/tangent attributes and the intentional muzzle socket.
 - [Browser checks](output/aether-02/browser-validation.json): both run phases, kneeling fire, backflip, repeated character switches and a 390×844 phone viewport. No page errors or horizontal overflow. Repeated swaps retain one skeleton helper and one effect group; reported geometry/texture counts remain stable across the same character.
 - Screenshots in `output/aether-02/`: desktop idle/action poses and mobile run/backflip.
@@ -81,3 +81,9 @@ The regression check in `validate_aether.py` confirms 12 vertices around the pic
 The Run clip now lasts 0.933 seconds. Its ankle tracks are 1.9 m apart, close to the 1.96 m hip-joint spacing, replacing the previous 3.6 m track width. A planted-foot phase rolls from heel settling through toe-off, then the heel recovers behind the body before swinging forward. The pelvis and chest counter-rotate, elbows stay flexed closer to the torso, and a small support-phase compression replaces the old additive hopping motion. The head keeps its alignment to the chest.
 
 Validation samples include half-frames: maximum midfoot travel-fit error is 0.00035 m, planted-foot ground error remains below 0.008 m, foot roll spans approximately -4.6 to 35.5 degrees, and the detected flight fraction is 14%. All five motion/rig checks and the waist-skirt regression pass. The GLB starts each clip at zero for seamless loops; pose values of the other four animations are unchanged. See `output/motion/run-validation.json` and the `run-v5-*` browser screenshots.
+
+## Distinct library motions
+
+Replaced Awaken and the Rest selector with Punch Combo and Walk, and added Collapse. The selected Quaternius CC0 Standard source clips are preserved with their licenses and hashes in `assets/animations/quaternius/`. PunchCombo joins jab, cross, hook and recovery with guard-pose blends. The retargeter adapts the T-pose source to the armor’s A-pose, adds elbow clearance and corrects foot contact, including interpolation between keys. Collapse settles the rigid torso while solving the legs around the boot volume; the viewer holds the last pose until another action or replay is selected.
+
+The resulting seven clips pass rig/deformation checks. In the new clips, sampled floor penetration stays below 0.00005 m, Walk and PunchCombo endpoints match within 0.000005 m, and the collapse hold has zero motion. The prior four clips, skin weights, mesh attributes and UVs match the previous GLB exactly. Updated evidence: `output/motion/library-validation.json`, `output/motion/preserved-assets-validation.json`, and `output/playwright/library-v6-*`.

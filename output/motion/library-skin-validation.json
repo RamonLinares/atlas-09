@@ -1,0 +1,48 @@
+[
+  {
+    "asset": "aether-02",
+    "clips": [
+      {
+        "name": "Walk",
+        "samples": 81,
+        "lowestWorldY": 0.0009311096820822097,
+        "worstTime": 0.08333333333333333
+      },
+      {
+        "name": "PunchCombo",
+        "samples": 235,
+        "lowestWorldY": -2.40050529959406e-05,
+        "worstTime": 0.7166666666666672
+      },
+      {
+        "name": "Collapse",
+        "samples": 181,
+        "lowestWorldY": -5.858390805135727e-06,
+        "worstTime": 1.649999999999999
+      }
+    ]
+  },
+  {
+    "asset": "atlas-09",
+    "clips": [
+      {
+        "name": "Walk",
+        "samples": 97,
+        "lowestWorldY": 0.0007769758523523687,
+        "worstTime": 0.11666666666666665
+      },
+      {
+        "name": "PunchCombo",
+        "samples": 283,
+        "lowestWorldY": -8.895629506484744e-06,
+        "worstTime": 0.7500000000000007
+      },
+      {
+        "name": "Collapse",
+        "samples": 217,
+        "lowestWorldY": -0.000520028267129602,
+        "worstTime": 1.2166666666666672
+      }
+    ]
+  }
+]

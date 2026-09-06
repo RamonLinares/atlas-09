@@ -182,10 +182,7 @@ def neutral():
 def idle(t):
  neutral()
  for s,side in [(1,'L'),(-1,'R')]:rig.pose.bones['forearm.'+side].rotation_euler.x=.025*(1-math.cos(t));rig.pose.bones['shoulder.'+side].rotation_euler.y=s*.012*math.sin(t)
-def awaken(t):
- neutral();rise=(1-math.cos(t))*.5;rig.pose.bones['head'].rotation_euler.x=-.06*rise
- for s,side in [(1,'L'),(-1,'R')]:rig.pose.bones['upper_arm.'+side].rotation_euler.z=s*.07*rise;rig.pose.bones['forearm.'+side].rotation_euler.x=-.2*rise
-for name,frames,fn in [('Sentinel',181,idle),('Awaken',151,awaken)]:
+for name,frames,fn in [('Sentinel',181,idle)]:
  rig.animation_data.action=None
  for frame in range(1,frames+1,3):
   fn((frame-1)/(frames-1)*math.tau)
@@ -197,8 +194,10 @@ motion_report=build_motions(rig,obj,dict(run_frames=29,run_stance=.40,run_width=
  run_hip_roll=.012,run_shift=.035,run_toeoff=.62,run_recovery=2.6,run_arm_swing=.54,run_elbow=1.45,run_arm_out=.15,
  ankle_z=1.28,ankle_y=.6,ankle_x=2.0,
  kneel_drop=4.6,kneel_front=(1.6,-2.8,1.28),kneel_back=(-1.1,4.7,2.3),crouch=1.2,landing=1.1,tuck_width=.5,tuck_back=1.65,tuck_lift=3.7,jump=7.2,pivot=(0,.15,8.15)))
+from retarget_library import retarget_motions
+motion_report+=retarget_motions(rig,obj)
 (OUT/'bake-report.json').write_text(json.dumps(motion_report,indent=2))
-rig['README']='AETHER-02, 14m athletic mecha. Rigid armor, opaque glass (no transmission), five baked clips. Anatomical segmentation follows the inspected model; source retopology remains a realtime prototype.'
+rig['README']='AETHER-02, 14m athletic mecha. Rigid armor, opaque glass (no transmission), seven baked clips. Anatomical segmentation follows the inspected model; source retopology remains a realtime prototype.'
 neutral();scene.frame_set(1);scene.frame_start=1;scene.frame_end=181
 bm=bmesh.new();bm.from_mesh(mesh);boundary=sum(e.is_boundary for e in bm.edges);bm.free()
 report={'source':str(source.relative_to(ROOT)),'height_m':14,'source_triangles':intake_triangles,'vertices':len(mesh.vertices),'triangles':sum(len(f.vertices)-2 for f in mesh.polygons),'bones':len(rig.data.bones),'materials':[m.name for m in mesh.materials],'glass_faces':sum(f.material_index==1 for f in mesh.polygons),'boundary_edges':boundary,'textures':textures,'animations':[{'name':a.name,'frames':list(a.frame_range)} for a in bpy.data.actions]}

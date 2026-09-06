@@ -2,7 +2,7 @@
   "uri": "public/models/aether-02.glb",
   "mimeType": "model/gltf-binary",
   "validatorVersion": "2.0.0-dev.3.10",
-  "validatedAt": "2026-09-06T12:19:15.327Z",
+  "validatedAt": "2026-09-06T14:07:01.758Z",
   "issues": {
     "numErrors": 0,
     "numWarnings": 0,
@@ -96,7 +96,7 @@
         "pointer": "/buffers/0",
         "mimeType": "application/gltf-buffer",
         "storage": "glb",
-        "byteLength": 5745320
+        "byteLength": 5798692
       },
       {
         "pointer": "/images/0",
@@ -147,7 +147,7 @@
         }
       }
     ],
-    "animationCount": 5,
+    "animationCount": 7,
     "materialCount": 5,
     "hasMorphTargets": false,
     "hasSkins": true,

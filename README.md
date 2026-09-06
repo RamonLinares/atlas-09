@@ -7,7 +7,7 @@ Two original mecha characters, reconstructed and retopologized with Tripo, prepa
 | ATLAS / 09 | Battle-worn 18-metre heavy mecha with olive armor | [ATLAS-09.blend](blender/ATLAS-09.blend) | [atlas-09.glb](public/models/atlas-09.glb) |
 | AETHER / 02 | Athletic 14-metre mecha with streamlined white steel and opaque smoked glass | [AETHER-02.blend](blender/AETHER-02.blend) | [aether-02.glb](public/models/aether-02.glb) |
 
-Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and five clips. The viewer releases the previous character's graphics resources when switching. Both are normalized to the same display height for inspection; their physical design heights remain embedded in the source assets.
+Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and seven clips. The viewer releases the previous character's graphics resources when switching. Both are normalized to the same display height for inspection; their physical design heights remain embedded in the source assets.
 
 Direct links can select a character and motion, for example `/?character=aether-02&motion=Run`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [AETHER](https://ramonlinares.github.io/atlas-09/?character=aether-02). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
 
@@ -22,7 +22,7 @@ AETHER's full provenance, checks and limitations are in [AETHER-02.md](AETHER-02
 - Production assessment: `PRODUCTION-READINESS.md`
 - Prompts, provider tasks, settings and cost: `ASSET-PROVENANCE.md`
 
-The `.blend` includes packed textures, two UV layers, a named 18-bone FK rig, rigid weights, five animation actions, and a studio stage. Press Play on the Blender timeline for Sentinel; select Run, KneelFire, Backflip or Awaken in the Action Editor for the other motions. The same character and clips are embedded in the GLB. Blender's studio floor, lights and camera are excluded from that character export.
+The `.blend` includes packed textures, two UV layers, a named 18-bone FK rig, rigid weights, seven animation actions, and a studio stage. Press Play on the Blender timeline for Sentinel; select Run, KneelFire, Backflip, Walk, PunchCombo or Collapse in the Action Editor for the other motions. The same character and clips are embedded in the GLB. Blender's studio floor, lights and camera are excluded from that character export.
 
 ## Run the Three.js viewer
 
@@ -33,7 +33,7 @@ npm run dev
 
 Open the localhost address printed by Vite. In this session the server is at `http://127.0.0.1:5175` because two lower ports were already occupied.
 
-Drag to orbit, scroll/pinch to zoom, and choose **Idle**, **Run**, **Kneel & Fire**, **Backflip**, **Awaken**, or **Rest**. The pulse cannon's muzzle flash and projectiles are added in Three.js and synchronized to the firing clip. The backflip camera pulls back to keep the jump visible. Wireframe, skeleton and turntable remain available. The core-intensity slider changes emissive output. Get Model downloads the complete animated GLB. Concept opens the original reference.
+Drag to orbit, scroll/pinch to zoom, and choose **Idle**, **Run**, **Kneel & Fire**, **Backflip**, **Punch Combo**, **Walk**, or **Collapse**. The pulse cannon's muzzle flash and projectiles are added in Three.js and synchronized to the firing clip. The backflip camera pulls back to keep the jump visible. Wireframe, skeleton and turntable remain available. The core-intensity slider changes emissive output. Get Model downloads the complete animated GLB. Concept opens the original reference.
 
 The viewer uses local model assets. Fonts load from Google Fonts with local fallbacks. WebGL2 is required. No Tripo or image-generation key is needed to view or rebuild the application.
 
@@ -69,7 +69,10 @@ The preparation script reads the already downloaded Tripo retopology in `assets/
 - UV0 / `Atlas_Surface`: baked base color, metal/roughness, normal and derived emission.
 - UV1 / `Atlas_Lightmap`: additional packed Blender unwrap, available for future baking.
 - Four materials, one Blender mesh (four glTF primitives), 17 rigid sections, 18 bones. The extra geometry consists of joint housings and an integrated pulse cannon.
-- Sentinel: approximately 6 seconds. Awaken: approximately 5 seconds. Both loop in place.
+- Sentinel: 6-second idle loop. Awaken and the unanimated Rest button have been replaced by distinct library motions.
+- Walk: 1.33 seconds on AETHER, 1.60 seconds on ATLAS.
+- PunchCombo: jab, cross, hook and recovery, 3.90 seconds on AETHER and 4.70 seconds on ATLAS.
+- Collapse: backward fall followed by a held pose, 3.0 seconds on AETHER and 3.60 seconds on ATLAS. It plays once; click Collapse again to replay.
 - Run: 1.13-second ATLAS cycle and 0.93-second AETHER cycle, with narrower foot placement, heel settling, toe push-off, early heel recovery and opposing hip/shoulder rotation. KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
 - New poses use an analytic two-bone IK solver during baking; the exported clips use ordinary bone transforms and require no runtime IK library.
 - Rig uses `.L` / `.R` suffixes in Blender. Three.js sanitizes dots in node names when loading; use the loaded bone names when extending the viewer.
@@ -81,3 +84,7 @@ This is a realtime prototype and presentation asset. Read the production assessm
 The run now uses contact and recovery phases instead of broad oval foot paths. Foot spacing is approximately the hip-joint spacing (previously much wider), with compact elbow motion and a small torso counter-rotation. Boot geometry determines ground height and the forefoot pivot. ATLAS has longer support and less flight; AETHER has a faster cadence and more pronounced heel recovery. Baked Run keys use linear interpolation to prevent planted-foot overshoot. All exported clips start at zero, eliminating the previous initial hold.
 
 The Blender and GLB downloads include the updated motion. Other clips retain their sampled poses. `scripts/validate_run.py` measures contact, placement, rolling, coordination and flight from the actual baked armor; [run validation](output/motion/run-validation.json) and [browser verification](output/motion/run-browser-validation.json) record the results. Existing rig, head and thigh isolation checks also pass.
+
+## Imported motion library
+
+Walk, PunchCombo and Collapse are adapted from Quaternius / Gonzalo Furnier’s CC0 Universal Animation Libraries. The free Standard packs supplied all six source clips; no payment, account or cloud animation service was needed. See [motion provenance and rebuild instructions](assets/animations/quaternius/README.md). The existing Idle, Run, KneelFire and Backflip clips are retained.

@@ -34,14 +34,6 @@
       "max_displacement_m": 0.1890236884355545
     },
     {
-      "name": "Awaken",
-      "max_edge_stretch_m": 1.862645149230957e-06,
-      "loop_error_m": 0.0,
-      "lowest_vertex_m": -1.7881393432617188e-07,
-      "max_clearance_m": -1.7881393432617188e-07,
-      "max_displacement_m": 0.8015192747116089
-    },
-    {
       "name": "Run",
       "max_edge_stretch_m": 5.125999450683594e-06,
       "loop_error_m": 0.0,
@@ -64,6 +56,30 @@
       "lowest_vertex_m": -4.746479589812225e-06,
       "max_clearance_m": 12.916309356689453,
       "max_displacement_m": 20.530351638793945
+    },
+    {
+      "name": "Walk",
+      "max_edge_stretch_m": 6.318092346191406e-06,
+      "loop_error_m": 0.0,
+      "lowest_vertex_m": 0.0041241939179599285,
+      "max_clearance_m": 0.03767276555299759,
+      "max_displacement_m": 7.673694610595703
+    },
+    {
+      "name": "PunchCombo",
+      "max_edge_stretch_m": 8.165836334228516e-06,
+      "loop_error_m": 4.291534423828125e-06,
+      "lowest_vertex_m": -5.759707164543215e-06,
+      "max_clearance_m": 0.09211359173059464,
+      "max_displacement_m": 12.613115310668945
+    },
+    {
+      "name": "Collapse",
+      "max_edge_stretch_m": 6.020069122314453e-06,
+      "loop_error_m": 16.258638381958008,
+      "lowest_vertex_m": -9.5367431640625e-07,
+      "max_clearance_m": 0.045516014099121094,
+      "max_displacement_m": 16.904144287109375
     }
   ],
   "packed_textures": true,

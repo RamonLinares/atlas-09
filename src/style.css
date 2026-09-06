@@ -12,3 +12,5 @@
 @media(min-width:701px){.edition{display:none}.character-picker{top:20px}}
 @media(min-width:701px) and (max-width:1100px){.character-picker>span{display:none}}
 @media(min-width:701px) and (max-width:900px){.brand-light{display:none}}
+
+@media(max-width:700px){.animation-buttons{grid-template-columns:repeat(4,1fr)}.animation-buttons button{font-size:7px;letter-spacing:0;padding:10px 3px}.animation-buttons button[data-clip=PunchCombo]{grid-column:span 2}}

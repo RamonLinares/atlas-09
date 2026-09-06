@@ -1,0 +1,183 @@
+{
+  "results": [
+    {
+      "state": {
+        "character": "aether-02",
+        "clips": [
+          "Backflip",
+          "Collapse",
+          "KneelFire",
+          "PunchCombo",
+          "Run",
+          "Sentinel",
+          "Walk"
+        ],
+        "runDuration": 0.9333333373069763,
+        "active": "Run",
+        "download": "http://127.0.0.1:5175/models/aether-02.glb?v=6"
+      },
+      "motions": [
+        {
+          "clip": "Walk",
+          "time": 0.35,
+          "drawCalls": 128
+        },
+        {
+          "clip": "PunchCombo",
+          "time": 0.43,
+          "drawCalls": 128
+        },
+        {
+          "clip": "Collapse",
+          "time": 2.4,
+          "drawCalls": 128
+        }
+      ],
+      "held": {
+        "t1": 3,
+        "t2": 3,
+        "paused": true,
+        "duration": 3
+      },
+      "replay": 0
+    },
+    {
+      "state": {
+        "character": "atlas-09",
+        "clips": [
+          "Backflip",
+          "Collapse",
+          "KneelFire",
+          "PunchCombo",
+          "Run",
+          "Sentinel",
+          "Walk"
+        ],
+        "runDuration": 1.1333333253860474,
+        "active": "Run",
+        "download": "http://127.0.0.1:5175/models/atlas-09.glb?v=6"
+      },
+      "motions": [
+        {
+          "clip": "Walk",
+          "time": 0.42,
+          "drawCalls": 126
+        },
+        {
+          "clip": "PunchCombo",
+          "time": 0.516,
+          "drawCalls": 126
+        },
+        {
+          "clip": "Collapse",
+          "time": 2.88,
+          "drawCalls": 126
+        }
+      ],
+      "held": {
+        "t1": 3.5999999046325684,
+        "t2": 3.5999999046325684,
+        "paused": true,
+        "duration": 3.5999999046325684
+      },
+      "replay": 0
+    }
+  ],
+  "layout": {
+    "overflow": false,
+    "buttons": [
+      {
+        "label": "IDLE",
+        "rect": {
+          "x": 30,
+          "y": 705,
+          "width": 71,
+          "height": 32,
+          "top": 705,
+          "right": 101,
+          "bottom": 737,
+          "left": 30
+        }
+      },
+      {
+        "label": "RUN",
+        "rect": {
+          "x": 104,
+          "y": 705,
+          "width": 71,
+          "height": 32,
+          "top": 705,
+          "right": 175,
+          "bottom": 737,
+          "left": 104
+        }
+      },
+      {
+        "label": "KNEEL & FIRE",
+        "rect": {
+          "x": 178,
+          "y": 705,
+          "width": 71,
+          "height": 32,
+          "top": 705,
+          "right": 249,
+          "bottom": 737,
+          "left": 178
+        }
+      },
+      {
+        "label": "BACKFLIP",
+        "rect": {
+          "x": 252,
+          "y": 705,
+          "width": 71,
+          "height": 32,
+          "top": 705,
+          "right": 323,
+          "bottom": 737,
+          "left": 252
+        }
+      },
+      {
+        "label": "PUNCH COMBO",
+        "rect": {
+          "x": 30,
+          "y": 740,
+          "width": 145,
+          "height": 32,
+          "top": 740,
+          "right": 175,
+          "bottom": 772,
+          "left": 30
+        }
+      },
+      {
+        "label": "WALK",
+        "rect": {
+          "x": 178,
+          "y": 740,
+          "width": 71,
+          "height": 32,
+          "top": 740,
+          "right": 249,
+          "bottom": 772,
+          "left": 178
+        }
+      },
+      {
+        "label": "COLLAPSE",
+        "rect": {
+          "x": 252,
+          "y": 740,
+          "width": 71,
+          "height": 32,
+          "top": 740,
+          "right": 323,
+          "bottom": 772,
+          "left": 252
+        }
+      }
+    ]
+  },
+  "errors": []
+}

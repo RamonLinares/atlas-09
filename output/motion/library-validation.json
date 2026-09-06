@@ -1,0 +1,108 @@
+[
+  {
+    "asset": "AETHER-02",
+    "clips": [
+      {
+        "clip": "Walk",
+        "half_frame_samples": 81,
+        "lowest_vertex_m": 0.0020000338554382324,
+        "highest_support_foot_m": 0.03767276555299759,
+        "loop_error_m": 0.0,
+        "hand_travel_m": {
+          "L": 2.627905505086311,
+          "R": 2.660795175986542
+        },
+        "head_height_start_end_m": [
+          11.533665657043457,
+          11.533665657043457
+        ],
+        "final_hold_error_m": null
+      },
+      {
+        "clip": "PunchCombo",
+        "half_frame_samples": 235,
+        "lowest_vertex_m": -4.3616004404611886e-05,
+        "highest_support_foot_m": 0.2640385627746582,
+        "loop_error_m": 4.291534423828125e-06,
+        "hand_travel_m": {
+          "L": 7.071518832247772,
+          "R": 10.66390300323655
+        },
+        "head_height_start_end_m": [
+          10.986613273620605,
+          10.986613273620605
+        ],
+        "final_hold_error_m": null
+      },
+      {
+        "clip": "Collapse",
+        "half_frame_samples": 181,
+        "lowest_vertex_m": -9.5367431640625e-06,
+        "highest_support_foot_m": 3.0019235610961914,
+        "loop_error_m": null,
+        "hand_travel_m": {
+          "L": 11.345012760002051,
+          "R": 11.725283512762951
+        },
+        "head_height_start_end_m": [
+          11.848408699035645,
+          1.823836326599121
+        ],
+        "final_hold_error_m": 0.0
+      }
+    ]
+  },
+  {
+    "asset": "ATLAS-09",
+    "clips": [
+      {
+        "clip": "Walk",
+        "half_frame_samples": 97,
+        "lowest_vertex_m": 0.0020000040531158447,
+        "highest_support_foot_m": 0.04498746246099472,
+        "loop_error_m": 0.0,
+        "hand_travel_m": {
+          "L": 4.699562634034676,
+          "R": 4.746215440847146
+        },
+        "head_height_start_end_m": [
+          14.989970207214355,
+          14.989970207214355
+        ],
+        "final_hold_error_m": null
+      },
+      {
+        "clip": "PunchCombo",
+        "half_frame_samples": 283,
+        "lowest_vertex_m": -3.7948848330415785e-05,
+        "highest_support_foot_m": 0.25995779037475586,
+        "loop_error_m": 0.0,
+        "hand_travel_m": {
+          "L": 11.58678397301152,
+          "R": 17.20350875414871
+        },
+        "head_height_start_end_m": [
+          14.301109313964844,
+          14.301109313964844
+        ],
+        "final_hold_error_m": null
+      },
+      {
+        "clip": "Collapse",
+        "half_frame_samples": 217,
+        "lowest_vertex_m": -2.002716064453125e-05,
+        "highest_support_foot_m": 3.086026668548584,
+        "loop_error_m": null,
+        "hand_travel_m": {
+          "L": 15.485098748570287,
+          "R": 15.293853458708414
+        },
+        "head_height_start_end_m": [
+          15.575039863586426,
+          4.144306182861328
+        ],
+        "final_hold_error_m": 0.0
+      }
+    ]
+  }
+]

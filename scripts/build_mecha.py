@@ -122,7 +122,7 @@ for pb in rig.pose.bones:pb.rotation_mode='XYZ'
 rig['README']='Rigid mechanical rig. Each armor section is bound at weight 1 to one bone. Run, KneelFire and Backflip were authored using analytic two-bone IK and baked into portable FK keys. Source generation remains a prototype mesh.'
 rig['Design_height_m']=18.0
 
-# Author two loopable animations in Blender; glTF uses the exact same keyframes.
+# Author the idle loop; glTF uses the same baked keyframes.
 scene=bpy.context.scene;scene.render.fps=30
 def create_action(name,frames,fn):
  rig.animation_data_create();rig.animation_data.action=None
@@ -144,15 +144,7 @@ def sentinel(t):
  for sign,side in [(1,'L'),(-1,'R')]:
   rig.pose.bones['forearm.'+side].rotation_euler[0]=.022*(1-math.cos(t))
   rig.pose.bones['shoulder.'+side].rotation_euler[1]=sign*.012*math.sin(t)
-def awaken(t):
- sentinel(0);rise=(1-math.cos(t))*.5
- rig.pose.bones['head'].rotation_euler[0]=-.08*rise
- rig.pose.bones['chest'].rotation_euler[0]=-.018*rise
- for sign,side in [(1,'L'),(-1,'R')]:
-  rig.pose.bones['upper_arm.'+side].rotation_euler[2]=sign*.055*rise
-  rig.pose.bones['forearm.'+side].rotation_euler[0]=-.17*rise
-  rig.pose.bones['hand.'+side].rotation_euler[1]=sign*.07*rise
-create_action('Sentinel',181,sentinel);create_action('Awaken',151,awaken)
+create_action('Sentinel',181,sentinel)
 sys.path.insert(0,str(ROOT/'scripts'))
 from motion_library import add_hardware,build_motions
 muzzle=add_hardware(obj,rig)
@@ -161,6 +153,8 @@ weights={g.name:[] for g in obj.vertex_groups}
 for v in mesh.vertices:
  for g in v.groups:weights[obj.vertex_groups[g.group].name].append(v.index)
 motion_report=build_motions(rig,obj)
+from retarget_library import retarget_motions
+motion_report+=retarget_motions(rig,obj)
 (ROOT/'output/motion/bake-report.json').write_text(json.dumps(motion_report,indent=2))
 sentinel(0);scene.frame_set(1);scene.frame_start=1;scene.frame_end=181
 
@@ -176,7 +170,7 @@ def uv_report(layer):
  (ROOT/'output'/f'{layer.name}.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><rect width="1024" height="1024" fill="#18201d"/><g fill="none" stroke="#d5f3a5" stroke-width="0.35">'+''.join(lines)+'</g></svg>')
  return {'name':layer.name,'out_of_bounds_faces':invalid,'zero_area_faces':degenerate}
 bm=bmesh.new();bm.from_mesh(mesh);boundary=sum(e.is_boundary for e in bm.edges);nonmanifold=sum(not e.is_manifold for e in bm.edges);bm.free()
-report={'source':str(source.relative_to(ROOT)),'retopo_intake':source_count,'vertices':len(mesh.vertices),'triangles':sum(len(f.vertices)-2 for f in mesh.polygons),'materials':len(mesh.materials),'textures':texture_report,'height_m':18,'bounds':[[min(v.co[i] for v in mesh.vertices),max(v.co[i] for v in mesh.vertices)] for i in range(3)],'bones':len(rig.data.bones),'rigid_sections':{k:len(v) for k,v in weights.items()},'uv_maps':[uv_report(l) for l in mesh.uv_layers],'unweighted_vertices':sum(not v.groups for v in mesh.vertices),'boundary_edges_after_joint_separation':boundary,'nonmanifold_edges_after_joint_separation':nonmanifold,'animations':[{'name':a.name,'frames':list(a.frame_range)} for a in bpy.data.actions],'limitations':['Automatic triangular retopology, not hand-authored subdivision edge loops.','Rigid sections have open boundaries at joints, covered by added joint housings. Arbitrary extreme poses still require manual cleanup.','FK export with analytic IK used during motion baking. Five supplied clips; no interactive IK controls or finger articulation.','UV0 retains baked source textures; UV1 is a new packed Blender lightmap unwrap. UV0 overlap has not been exhaustively measured.','No collision shapes, LODs, or mobile device performance certification.']}
+report={'source':str(source.relative_to(ROOT)),'retopo_intake':source_count,'vertices':len(mesh.vertices),'triangles':sum(len(f.vertices)-2 for f in mesh.polygons),'materials':len(mesh.materials),'textures':texture_report,'height_m':18,'bounds':[[min(v.co[i] for v in mesh.vertices),max(v.co[i] for v in mesh.vertices)] for i in range(3)],'bones':len(rig.data.bones),'rigid_sections':{k:len(v) for k,v in weights.items()},'uv_maps':[uv_report(l) for l in mesh.uv_layers],'unweighted_vertices':sum(not v.groups for v in mesh.vertices),'boundary_edges_after_joint_separation':boundary,'nonmanifold_edges_after_joint_separation':nonmanifold,'animations':[{'name':a.name,'frames':list(a.frame_range)} for a in bpy.data.actions],'limitations':['Automatic triangular retopology, not hand-authored subdivision edge loops.','Rigid sections have open boundaries at joints, covered by added joint housings. Arbitrary extreme poses still require manual cleanup.','FK export with analytic IK used during motion baking. Seven supplied clips; no interactive IK controls or finger articulation.','UV0 retains baked source textures; UV1 is a new packed Blender lightmap unwrap. UV0 overlap has not been exhaustively measured.','No collision shapes, LODs, or mobile device performance certification.']}
 (ROOT/'output/asset-report.json').write_text(json.dumps(report,indent=2))
 
 # Export the same rig and animated mesh used in the .blend.

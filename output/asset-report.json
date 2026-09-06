@@ -84,14 +84,14 @@
   "nonmanifold_edges_after_joint_separation": 1893,
   "animations": [
     {
-      "name": "Awaken",
+      "name": "Backflip",
       "frames": [
         1.0,
-        151.0
+        109.0
       ]
     },
     {
-      "name": "Backflip",
+      "name": "Collapse",
       "frames": [
         1.0,
         109.0
@@ -102,6 +102,13 @@
       "frames": [
         1.0,
         241.0
+      ]
+    },
+    {
+      "name": "PunchCombo",
+      "frames": [
+        1.0,
+        142.0
       ]
     },
     {
@@ -117,12 +124,19 @@
         1.0,
         181.0
       ]
+    },
+    {
+      "name": "Walk",
+      "frames": [
+        1.0,
+        49.0
+      ]
     }
   ],
   "limitations": [
     "Automatic triangular retopology, not hand-authored subdivision edge loops.",
     "Rigid sections have open boundaries at joints, covered by added joint housings. Arbitrary extreme poses still require manual cleanup.",
-    "FK export with analytic IK used during motion baking. Five supplied clips; no interactive IK controls or finger articulation.",
+    "FK export with analytic IK used during motion baking. Seven supplied clips; no interactive IK controls or finger articulation.",
     "UV0 retains baked source textures; UV1 is a new packed Blender lightmap unwrap. UV0 overlap has not been exhaustively measured.",
     "No collision shapes, LODs, or mobile device performance certification."
   ]

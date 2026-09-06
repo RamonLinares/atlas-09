@@ -42,13 +42,6 @@
   ],
   "animations": [
     {
-      "name": "Awaken",
-      "frames": [
-        1.0,
-        151.0
-      ]
-    },
-    {
       "name": "Backflip",
       "frames": [
         1.0,
@@ -56,10 +49,24 @@
       ]
     },
     {
+      "name": "Collapse",
+      "frames": [
+        1.0,
+        91.0
+      ]
+    },
+    {
       "name": "KneelFire",
       "frames": [
         1.0,
         241.0
+      ]
+    },
+    {
+      "name": "PunchCombo",
+      "frames": [
+        1.0,
+        118.0
       ]
     },
     {
@@ -74,6 +81,13 @@
       "frames": [
         1.0,
         181.0
+      ]
+    },
+    {
+      "name": "Walk",
+      "frames": [
+        1.0,
+        41.0
       ]
     }
   ]

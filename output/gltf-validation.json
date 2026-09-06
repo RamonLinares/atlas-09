@@ -2,7 +2,7 @@
   "uri": "public/models/atlas-09.glb",
   "mimeType": "model/gltf-binary",
   "validatorVersion": "2.0.0-dev.3.10",
-  "validatedAt": "2026-09-06T12:19:14.997Z",
+  "validatedAt": "2026-09-06T14:07:01.901Z",
   "issues": {
     "numErrors": 0,
     "numWarnings": 0,
@@ -89,7 +89,7 @@
         "pointer": "/buffers/0",
         "mimeType": "application/gltf-buffer",
         "storage": "glb",
-        "byteLength": 6651728
+        "byteLength": 6710176
       },
       {
         "pointer": "/images/0",
@@ -140,7 +140,7 @@
         }
       }
     ],
-    "animationCount": 5,
+    "animationCount": 7,
     "materialCount": 4,
     "hasMorphTargets": false,
     "hasSkins": true,

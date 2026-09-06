@@ -13,9 +13,9 @@ Assessed 2026-09-06 in Blender 5.1.2 and the Three.js viewer. This is an assessm
 | Materials | Four materials (armor, housings, collars, cannon glow); base color 2048², ORM 1024², normal 1024², emission 2048² | Packed and portable. Emission is derived from cyan surface elements. Source base-color and normal JPEG formats are preserved. |
 | UVs | Baked surface UV0 plus newly generated packed lightmap UV1 | Both have zero out-of-bounds or zero-area UV faces. Full overlap and texel-density certification has not been performed. |
 | Rig | 18 bones, 17 rigid sections, paired limb chains | All vertices have exactly one weight of 1. Every triangle belongs entirely to one bone, so armor does not rubberize. |
-| Animation | Five clips: Sentinel, Awaken, Run, KneelFire, Backflip; 54 exported tracks each | Loop closure error stays below 0.000004 metres. Supplied poses have been checked in Blender and Three.js. |
-| Export | Self-contained GLB, 6,710,980 bytes | Khronos glTF validator: **0 errors, 0 warnings**. Informational items concern unused UV/tangent attributes and the intentionally empty muzzle socket. |
-| Blender source | Packed `.blend`, 4,644,554 bytes | Actual character, rig, animations, UVs, textures, camera and studio lighting. Default timeline plays Sentinel. |
+| Animation | Seven clips: Sentinel, Run, KneelFire, Backflip, Walk, PunchCombo, Collapse; 54 exported tracks each | Six looping clips plus a one-shot collapse. Supplied poses are checked in Blender and Three.js. |
+| Export | Self-contained GLB, 6,797,024 bytes | Khronos glTF validator: **0 errors, 0 warnings**. Informational items concern unused UV/tangent attributes and the intentionally empty muzzle socket. |
+| Blender source | Packed `.blend`, 4,946,658 bytes | Actual character, rig, animations, UVs, textures, camera and studio lighting. Default timeline plays Sentinel. |
 | Browser | Approximately 56–60 FPS observed, 1440×1000 desktop viewport | Final recorded sample: 60 FPS. This is an observation on this Mac, not a benchmark guarantee. |
 | Responsive layout | 390×844 phone viewport checked | No horizontal overflow; model and inspection controls remain visible. This is desktop browser emulation, not a physical-device certification. |
 
@@ -36,9 +36,9 @@ New evidence: `output/motion/browser-check.json`, `output/motion/bake-report.jso
 - `output/playwright/desktop-final.png`, `mobile-final.png`, `awaken.png`, `wireframe.png`, `skeleton.png`: visual checks.
 - `output/atlas-09-beauty.png`: Blender render of the same character.
 
-Blender deformation checks sample every third frame of all five clips. Maximum change in rigid edge length stayed below 0.000006 metres. Loop endpoints matched within 0.000004 metres. The run includes a 0.42-metre flight phase. The browser sampled 2,327 skinned vertices: all were finite and the activation pose moved vertices by up to approximately 1.12 metres in model space.
+Blender deformation checks sample every third frame of all seven clips. Rigid edge-length change stays below 0.000009 metres, and looping endpoints match within 0.000005 metres. Collapse intentionally ends in a different pose and holds it. The imported motions also receive half-frame contact checks; contact corrections during baking sample eighth-frames. See `output/motion/library-validation.json` and `output/motion/preserved-assets-validation.json`. The latter compares mesh attributes and all 216 retained animation channels per character against the previous delivery.
 
-The viewer controls were exercised through the rendered UI: animation switching, pause/play, rest pose, camera reset, wireframe, skeleton, turntable, reactor intensity, concept dialog and GLB download. Browser console checks found zero errors and zero warnings after the final fixes. The Vite production build passes; it retains an advisory about the size of the single Three.js bundle.
+The viewer controls were exercised through the rendered UI: animation switching, pause/play, collapse hold/replay, camera reset, wireframe, skeleton, turntable, reactor intensity, concept dialog and GLB download. Browser console checks found zero errors and zero warnings after the final fixes. The Vite production build passes; it retains an advisory about the size of the single Three.js bundle.
 
 ## Corrections made during review
 
@@ -66,3 +66,9 @@ For a shipping game, add collision proxies, distance-based LODs, texture compres
 Tripo generation: 30 credits. User-approved smart retopology: 30 credits. **Total: 60 credits ($0.60).** All later mesh preparation, UV work, rigging, animation, rendering and export were local. See `ASSET-PROVENANCE.md` for task IDs, settings and the exact concept prompt.
 
 9. Rebuilt the run with foot spacing under the hips, boot-derived ground contact and toe-off, heel recovery, flexed elbows and opposing pelvis/chest rotation. ATLAS retains a slower, heavier cycle than AETHER. Baked Run keys are linear, and exports start at zero. Both assets pass the contact/coordination audit in `output/motion/run-validation.json`, the existing animation/rig regressions, GLB validation and desktop/mobile browser checks. Other clips retain their sampled poses.
+
+## Imported library motions
+
+Quaternius / Gonzalo Furnier’s free CC0 Standard libraries supply a walking loop, jab, cross, hook/recovery, and backward death motion. These become Walk, PunchCombo and Collapse; Awaken and the unanimated Rest button are removed. ATLAS durations are 1.60, 4.70 and 3.60 seconds respectively. AETHER durations are 1.33, 3.90 and 3.00 seconds. The collapsed torso settles with a separate leg solve to accommodate thick boots. The hands retain their existing rigid mechanical grip.
+
+Current browser evidence is in `output/playwright/library-v6-*`; motion source licenses, hashes and rebuild instructions are in `assets/animations/quaternius/`. The original four retained clips and all mesh attributes are byte-for-byte unchanged. This motion update used no paid services.

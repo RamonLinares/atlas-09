@@ -42,3 +42,7 @@ The browser loads the Blender-exported GLB with GLTFLoader and plays the embedde
 Reference documentation: [Tripo image generation](https://developers.tripo3d.ai/en/docs/generation-image-to-model/h), [Tripo pricing](https://developers.tripo3d.ai/en/pricing), [Three.js](https://threejs.org/docs/).
 
 The run refinement is also local: no provider calls or additional credits. `motion_library.py` now authors foot contact, rolling, recovery and body counter-rotation using character-specific timing. Both Blender sources and GLBs include it.
+
+## CC0 animation library update — 2026-09-06
+
+Walk, PunchCombo and Collapse now replace Awaken and the unanimated Rest selector. Quaternius / Gonzalo Furnier’s free Universal Animation Library 1 supplies Walk_Loop, Punch_Jab, Punch_Cross and Death01; Library 2 supplies Melee_Hook and Melee_Hook_Rec. Both packs carry CC0-1.0. We preserve the original licenses, source SHA-256 hashes and selected skeleton/animation data in `assets/animations/quaternius/`. Retargeting calibrates source global rotations to the mecha rest pose, scales motion to leg length, adjusts sole contact and armor clearance, blends the four punch segments, and bakes ordinary bone curves. ATLAS plays these clips 20% slower than AETHER. No provider credits or purchases were used. Seven skeletal clips now ship in both Blender and GLB.

@@ -1,0 +1,34 @@
+[
+  {
+    "library": 1,
+    "source_page": "https://quaternius.itch.io/universal-animation-library",
+    "original_sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997",
+    "original_bytes": 7618436,
+    "subset": "UAL1_selected.glb",
+    "subset_sha256": "fe2339cda41168ed1f21c548720ac6e27274db947fc8f94539b9b22f3fb5faf1",
+    "clips": [
+      "Walk_Loop",
+      "Punch_Jab",
+      "Punch_Cross",
+      "Death01"
+    ],
+    "license": "CC0-1.0",
+    "downloaded": "2026-09-06",
+    "price_paid_usd": 0
+  },
+  {
+    "library": 2,
+    "source_page": "https://quaternius.itch.io/universal-animation-library-2",
+    "original_sha256": "8cee20ab1bc55130092447e810e26df22dd2803eccc54f52137a7d54d7ab88a8",
+    "original_bytes": 8091444,
+    "subset": "UAL2_selected.glb",
+    "subset_sha256": "c1535e425d16f1b33575183b3627f42ef420bd82bac09d622f2e3faf3e79b925",
+    "clips": [
+      "Melee_Hook",
+      "Melee_Hook_Rec"
+    ],
+    "license": "CC0-1.0",
+    "downloaded": "2026-09-06",
+    "price_paid_usd": 0
+  }
+]

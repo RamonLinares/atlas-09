@@ -10,3 +10,6 @@ output/*.zip
 .env
 .env.*
 !.env.example
+
+# Full downloaded CC0 libraries; selected motion subsets are versioned.
+assets/animations/quaternius/*_Standard.glb

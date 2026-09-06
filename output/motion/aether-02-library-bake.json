@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Walk",
+    "duration": 1.3333333333333333,
+    "frames": 41,
+    "source_clips": [
+      "Walk_Loop"
+    ],
+    "max_ground_correction_m": 0,
+    "playback": "loop",
+    "max_interpolation_contact_lift_m": 0.00671845269203186
+  },
+  {
+    "name": "PunchCombo",
+    "duration": 3.9,
+    "frames": 118,
+    "source_clips": [
+      "Punch_Jab",
+      "Punch_Cross",
+      "Melee_Hook",
+      "Melee_Hook_Rec"
+    ],
+    "max_ground_correction_m": 1.5719604562036693e-05,
+    "playback": "loop",
+    "max_interpolation_contact_lift_m": 0.22877940130233765
+  },
+  {
+    "name": "Collapse",
+    "duration": 3.0,
+    "frames": 91,
+    "source_clips": [
+      "Death01"
+    ],
+    "max_ground_correction_m": 0.8133057355880737,
+    "playback": "once, hold final pose",
+    "max_interpolation_contact_lift_m": 0.04785510492324829
+  }
+]
