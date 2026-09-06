@@ -35,7 +35,16 @@ arms=sample();arm_leak=float(np.linalg.norm(arms[leg_ids]-neutral[leg_ids],axis=
 assert arm_leak<1e-5;assert np.linalg.norm(arms[arm_ids]-neutral[arm_ids],axis=1).max()>.5
 clear()
 for side in ['L','R']:rig.pose.bones['thigh.'+side].rotation_euler.x=.7
-legs=sample();leg_leak=float(np.linalg.norm(legs[arm_ids]-neutral[arm_ids],axis=1).max())
+legs=sample()
+# The protruding triangle was ray-picked in KneelFire. Its waist-skirt corner
+# and the matching opposite-side region must stay with the pelvis as hips flex.
+skirt_ids=[v.index for v in obj.data.vertices if .72<abs(v.co.x)<.95 and 8.5<v.co.z<8.75 and -.95<v.co.y<-.65]
+assert len(skirt_ids)>=3
+assert all(obj.vertex_groups[obj.data.vertices[i].groups[0].group].name=='pelvis' for i in skirt_ids)
+skirt_leak=float(np.linalg.norm(legs[skirt_ids]-neutral[skirt_ids],axis=1).max())
+assert skirt_leak<1e-5
+report['waist_skirt_isolation']={'vertices':len(skirt_ids),'motion_from_thighs_m':skirt_leak}
+leg_leak=float(np.linalg.norm(legs[arm_ids]-neutral[arm_ids],axis=1).max())
 assert leg_leak<1e-5;assert np.linalg.norm(legs[leg_ids]-neutral[leg_ids],axis=1).max()>.5
 report['anatomical_isolation']={'leg_vertices':len(leg_ids),'arm_vertices':len(arm_ids),'leg_motion_from_arms_m':arm_leak,'arm_motion_from_legs_m':leg_leak}
 clear();edges=np.array([e.vertices[:] for e in obj.data.edges],dtype=np.int32)

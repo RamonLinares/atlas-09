@@ -2,7 +2,7 @@
   "source": "assets/aether-02/retopo/71b9da3c-c71e-4861-b892-5ab03bf38e6d-model_url.glb",
   "height_m": 14,
   "source_triangles": 21022,
-  "vertices": 12860,
+  "vertices": 12790,
   "triangles": 24310,
   "bones": 18,
   "materials": [
@@ -13,7 +13,7 @@
     "AETHER wrist reactor emission"
   ],
   "glass_faces": 447,
-  "boundary_edges": 1378,
+  "boundary_edges": 1234,
   "textures": [
     {
       "semantic": "BaseColor",

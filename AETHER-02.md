@@ -38,7 +38,7 @@ The new model uses five materials, packed textures, and two UV channels. The opa
 Validation evidence:
 
 - [Asset inventory](output/aether-02/asset-report.json): geometry, material names, texture dimensions, rig and clip inventory.
-- [Blender checks](output/aether-02/blender-validation.json): 3,310 leg vertices and 1,330 arm vertices tested independently, with zero displacement of the unrelated limb region. All five clips are sampled for finite positions, rigid edge lengths, ground penetration and loop closure.
+- [Blender checks](output/aether-02/blender-validation.json): 3,288 leg vertices and 1,330 arm vertices tested independently, with zero displacement of the unrelated limb region. All five clips are sampled for finite positions, rigid edge lengths, ground penetration and loop closure.
 - [glTF validator](output/aether-02/gltf-validation.json): zero errors and zero warnings. Informational messages concern unused UV/tangent attributes and the intentional muzzle socket.
 - [Browser checks](output/aether-02/browser-validation.json): both run phases, kneeling fire, backflip, repeated character switches and a 390×844 phone viewport. No page errors or horizontal overflow. Repeated swaps retain one skeleton helper and one effect group; reported geometry/texture counts remain stable across the same character.
 - Screenshots in `output/aether-02/`: desktop idle/action poses and mobile run/backflip.
@@ -47,7 +47,7 @@ The production build passes. The existing Three.js bundle-size advisory remains.
 
 ## Limitations
 
-This is a realtime presentation/prototype asset. Generated topology and baked surface detail remain softer than hand-modeled production armor. Rigid joints have open cut boundaries (1,378 boundary edges) with compact housings covering their interiors; arbitrary extreme poses can still reveal gaps or intersections. Motion uses authored analytic two-bone IK during baking and portable FK keyframes at runtime. No interactive IK controls, individual finger animation, collision rig, LOD chain or physics controller are included.
+This is a realtime presentation/prototype asset. Generated topology and baked surface detail remain softer than hand-modeled production armor. Rigid joints have open cut boundaries (1,234 boundary edges) with compact housings covering their interiors; arbitrary extreme poses can still reveal gaps or intersections. Motion uses authored analytic two-bone IK during baking and portable FK keyframes at runtime. No interactive IK controls, individual finger animation, collision rig, LOD chain or physics controller are included.
 
 ## Rebuild locally
 
@@ -69,3 +69,9 @@ The viewer now uses a per-character reactor-light intensity. AETHER uses zero ex
 Verification: Blender rig/UV/isolation and all five motion checks pass; GLB validation reports zero errors and warnings; production build passes. Browser checks confirm a forward-facing head in rest, idle and run, zero extra reactor-light intensity on AETHER, and 2.52 intensity on ATLAS at the default 84% slider value after switching. No browser errors. Visual evidence: `output/playwright/aether-front-before.png`, `aether-front-after.png`, `aether-fixed-IDLE.png` and `aether-fixed-RUN.png`.
 
 The close-up follow-up is verified with `scripts/measure_aether_head.py`, which independently fits reflected helmet points using nearest-neighbor distances. The corrected plane normal is [1, 0, 0], with a lateral offset below 0.00002 m. Generated surface asymmetry remains, but the helmet plane is aligned. `validate_aether.py` also checks that the head and chest lateral axes match throughout idle and run. The phone-sized Run close-up is `output/playwright/aether-head-v3-mobile-run.png`; desktop before/after close-ups are `aether-head-v2-close.png` and `aether-head-v3-close.png` in the same directory. GLB validation and the production build pass, with no browser errors.
+
+## Waist-skirt / upper-thigh binding correction
+
+A triangle selected directly from the visible spike in KneelFire belonged to the waist skirt near x=0.75–0.92, y=-0.92–-0.70, z=8.58–8.74 m, but was bound to thigh.L. The pelvis boundary now widens toward the belt instead of using a vertical inner cutoff, keeping the upper skirt corners on the pelvis on both sides. No source triangles are removed and no armor surfaces are deformed. The final mesh has 12,790 vertices and the same 24,310 triangles.
+
+The regression check in `validate_aether.py` confirms 12 vertices around the picked corner and its opposite-side counterpart have zero displacement when both thighs rotate. All five animation checks, UV/rig checks, GLB validation and the production build pass. The original kneeling close-up and its corrected counterpart are `output/playwright/aether-hip-v3-before.png` and `aether-hip-v4-after.png`; the opposite hip and both running sides were also inspected. Browser console: zero errors.

@@ -14,8 +14,12 @@
       "zero_area_faces": 0
     }
   ],
+  "waist_skirt_isolation": {
+    "vertices": 12,
+    "motion_from_thighs_m": 0.0
+  },
   "anatomical_isolation": {
-    "leg_vertices": 3310,
+    "leg_vertices": 3288,
     "arm_vertices": 1330,
     "leg_motion_from_arms_m": 0.0,
     "arm_motion_from_legs_m": 0.0
@@ -39,7 +43,7 @@
     },
     {
       "name": "Run",
-      "max_edge_stretch_m": 3.255903720855713e-06,
+      "max_edge_stretch_m": 2.3990869522094727e-06,
       "loop_error_m": 0.0,
       "lowest_vertex_m": -3.490546532702865e-06,
       "max_clearance_m": 0.3199946880340576,

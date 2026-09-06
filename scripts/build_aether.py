@@ -61,7 +61,10 @@ def section(p):
   if z>7.55:return 'forearm.'+s
   return 'hand.'+s
  if z>9.35:return 'chest'
- if z>8.7 or (z>7.35 and a<.7):return 'pelvis'
+ # The waist skirt widens toward the belt. A vertical x=.7 cut assigned
+ # its upper corner to the thigh, which became a spike when the hip flexed.
+ pelvis_inner=.7+.45*max(0,z-7.35)
+ if z>8.7 or (z>7.35 and a<pelvis_inner):return 'pelvis'
  if z>5.55:return 'thigh.'+s
  if z>1.28:return 'shin.'+s
  return 'foot.'+s
