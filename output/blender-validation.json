@@ -1,0 +1,72 @@
+{
+  "packed_textures": [
+    {
+      "name": "Atlas_Emission",
+      "packed": true
+    },
+    {
+      "name": "tripo_node_e5192c06-e783-49b4-a2c1-1b25441ecbc7_BaseColor",
+      "packed": true
+    },
+    {
+      "name": "tripo_node_e5192c06-e783-49b4-a2c1-1b25441ecbc7_Metallic-tripo_node_e5192c06-e783-49b4-a2c1-1b25441ecbc7_Roughness",
+      "packed": true
+    },
+    {
+      "name": "tripo_node_e5192c06-e783-49b4-a2c1-1b25441ecbc7_Normal_Bake",
+      "packed": true
+    }
+  ],
+  "all_vertices_have_one_rigid_weight": true,
+  "faces_span_only_one_bone": true,
+  "default_action": "Sentinel",
+  "paired_chains": true,
+  "thigh_arm_isolation": {
+    "panel_faces": 244,
+    "panel_vertices": 170,
+    "max_panel_motion_with_arms_m": 0.0,
+    "min_panel_motion_with_thighs_m": 0.043525658547878265
+  },
+  "animations": [
+    {
+      "name": "Sentinel",
+      "max_vertex_displacement_m": 0.35005179047584534,
+      "max_rigid_edge_length_change_m": 4.500150680541992e-06,
+      "loop_closure_max_error_m": 0.0,
+      "ground_min_m": 8.940696716308594e-08,
+      "max_clearance_m": 8.940696716308594e-08
+    },
+    {
+      "name": "Awaken",
+      "max_vertex_displacement_m": 1.1299151182174683,
+      "max_rigid_edge_length_change_m": 4.708766937255859e-06,
+      "loop_closure_max_error_m": 0.0,
+      "ground_min_m": 8.940696716308594e-08,
+      "max_clearance_m": 8.940696716308594e-08
+    },
+    {
+      "name": "Run",
+      "max_vertex_displacement_m": 9.781585693359375,
+      "max_rigid_edge_length_change_m": 5.62518835067749e-06,
+      "loop_closure_max_error_m": 5.702387101135398e-18,
+      "ground_min_m": 2.3482537017116556e-06,
+      "max_clearance_m": 0.419999897480011
+    },
+    {
+      "name": "KneelFire",
+      "max_vertex_displacement_m": 10.073026657104492,
+      "max_rigid_edge_length_change_m": 4.500150680541992e-06,
+      "loop_closure_max_error_m": 0.0,
+      "ground_min_m": -1.7881393432617188e-07,
+      "max_clearance_m": 3.0994415283203125e-06
+    },
+    {
+      "name": "Backflip",
+      "max_vertex_displacement_m": 25.18398094177246,
+      "max_rigid_edge_length_change_m": 5.21540641784668e-06,
+      "loop_closure_max_error_m": 3.43852161677205e-06,
+      "ground_min_m": -1.5816826248737925e-07,
+      "max_clearance_m": 13.928817749023438
+    }
+  ]
+}

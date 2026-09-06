@@ -1,0 +1,129 @@
+{
+  "source": "assets/retopo/e7b54117-37cf-494b-a3ce-d7d3ead2920c-model_url.glb",
+  "retopo_intake": {
+    "vertices": 33220,
+    "triangles": 22843
+  },
+  "vertices": 14256,
+  "triangles": 26519,
+  "materials": 4,
+  "textures": [
+    {
+      "semantic": "BaseColor",
+      "width": 2048,
+      "height": 2048,
+      "file": "Atlas_BaseColor.jpg"
+    },
+    {
+      "semantic": "ORM",
+      "width": 1024,
+      "height": 1024,
+      "file": "Atlas_ORM.png"
+    },
+    {
+      "semantic": "Normal",
+      "width": 1024,
+      "height": 1024,
+      "file": "Atlas_Normal.jpg"
+    },
+    {
+      "semantic": "Emission",
+      "width": 2048,
+      "height": 2048
+    }
+  ],
+  "height_m": 18,
+  "bounds": [
+    [
+      -7.634718418121338,
+      7.309197425842285
+    ],
+    [
+      -3.117417097091675,
+      3.0821919441223145
+    ],
+    [
+      0.0,
+      18.0
+    ]
+  ],
+  "bones": 18,
+  "rigid_sections": {
+    "foot.R": 754,
+    "foot.L": 768,
+    "shin.R": 1000,
+    "shin.L": 1008,
+    "hand.R": 464,
+    "hand.L": 464,
+    "thigh.R": 591,
+    "thigh.L": 591,
+    "forearm.R": 960,
+    "forearm.L": 798,
+    "pelvis": 430,
+    "chest": 3606,
+    "upper_arm.R": 532,
+    "upper_arm.L": 566,
+    "shoulder.L": 601,
+    "shoulder.R": 587,
+    "head": 536
+  },
+  "uv_maps": [
+    {
+      "name": "Atlas_Surface",
+      "out_of_bounds_faces": 0,
+      "zero_area_faces": 0
+    },
+    {
+      "name": "Atlas_Lightmap",
+      "out_of_bounds_faces": 0,
+      "zero_area_faces": 0
+    }
+  ],
+  "unweighted_vertices": 0,
+  "boundary_edges_after_joint_separation": 1892,
+  "nonmanifold_edges_after_joint_separation": 1893,
+  "animations": [
+    {
+      "name": "Awaken",
+      "frames": [
+        1.0,
+        151.0
+      ]
+    },
+    {
+      "name": "Backflip",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "Run",
+      "frames": [
+        1.0,
+        43.0
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    }
+  ],
+  "limitations": [
+    "Automatic triangular retopology, not hand-authored subdivision edge loops.",
+    "Rigid sections have open boundaries at joints, covered by added joint housings. Arbitrary extreme poses still require manual cleanup.",
+    "FK export with analytic IK used during motion baking. Five supplied clips; no interactive IK controls or finger articulation.",
+    "UV0 retains baked source textures; UV1 is a new packed Blender lightmap unwrap. UV0 overlap has not been exhaustively measured.",
+    "No collision shapes, LODs, or mobile device performance certification."
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 1000,
+    "dpr": 1
+  },
+  "animation": {
+    "sampledVertices": 2327,
+    "maxDisplacementMetres": 1.1175514345826527,
+    "allFinite": true,
+    "clipTracks": 54,
+    "clips": [
+      {
+        "name": "Awaken",
+        "duration": 5.0333333015441895,
+        "tracks": 54
+      },
+      {
+        "name": "Sentinel",
+        "duration": 6.0333333015441895,
+        "tracks": 54
+      }
+    ]
+  },
+  "skeleton": true,
+  "wireframe": true,
+  "turntable": true,
+  "powerOff": " CORE STANDBY",
+  "concept": true,
+  "stats": {
+    "triangles": 22843,
+    "boneCount": 18,
+    "materials": 1,
+    "clips": [
+      {
+        "name": "Awaken",
+        "duration": 5.0333333015441895,
+        "tracks": 54
+      },
+      {
+        "name": "Sentinel",
+        "duration": 6.0333333015441895,
+        "tracks": 54
+      }
+    ],
+    "fps": 60,
+    "drawCalls": 118,
+    "renderedTriangles": 48262,
+    "textureCount": 22
+  },
+  "glbStatus": 200,
+  "mobileOverflow": false
+}

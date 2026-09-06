@@ -1,0 +1,22 @@
+{
+  "name": "atlas-09",
+  "version": "1.0.0",
+  "description": "ATLAS / 09 \u2014 veteran mecha asset lab",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "validate:asset": "node scripts/validate_glb.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "three": "^0.185.1",
+    "vite": "^8.2.2"
+  },
+  "devDependencies": {
+    "gltf-validator": "^2.0.0-dev.3.10"
+  }
+}

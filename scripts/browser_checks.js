@@ -1,0 +1,57 @@
+async (page) => {
+  await page.setViewportSize({width:1440,height:1000});
+  await page.getByRole('button',{name:'Reset camera',exact:true}).click();
+  const result = { viewport: await page.evaluate(() => ({ width:innerWidth, height:innerHeight, dpr:devicePixelRatio })) };
+  const check = (condition, message) => { if (!condition) throw new Error(message); };
+  await page.getByRole('button', { name: 'AWAKEN', exact: true }).click();
+  if(await page.getByRole('button', { name: 'Pause animation', exact: true }).isVisible()) await page.getByRole('button', { name: 'Pause animation', exact: true }).click();
+  result.animation = await page.evaluate(() => {
+    const a=window.atlas;const action=a.actions.get('Awaken');a.mixer.stopAllAction();action.reset().setEffectiveWeight(1).play();
+    let skinned;a.model.traverse(o=>{if(o.isSkinnedMesh)skinned=o;});
+    const sample=(t)=>{ a.mixer.setTime(t); a.model.updateMatrixWorld(true); skinned.skeleton.update(); const v=skinned.position.clone(); const out=[];for(let i=0;i<skinned.geometry.attributes.position.count;i+=17){v.fromBufferAttribute(skinned.geometry.attributes.position,i);skinned.applyBoneTransform(i,v);out.push(v.toArray());}return out; };
+    const rest=sample(0),peak=sample(2.5);let maxDisplacement=0,finite=true;
+    for(let i=0;i<rest.length;i++){maxDisplacement=Math.max(maxDisplacement,Math.hypot(...peak[i].map((v,j)=>v-rest[i][j])));finite=finite&&peak[i].every(Number.isFinite);}
+    return { sampledVertices:rest.length, maxDisplacementMetres:maxDisplacement, allFinite:finite, clipTracks:action.getClip().tracks.length, clips:a.stats.clips };
+  });
+  check(result.animation.maxDisplacementMetres>0.1,'Awaken must move the actual skinned vertices');
+  check(result.animation.allFinite,'Animation produced invalid vertex coordinates');
+  await page.screenshot({path:'output/playwright/awaken.png'});
+  await page.getByRole('switch',{name:'Toggle skeleton',exact:true}).click();
+  result.skeleton=await page.evaluate(()=>window.atlas.skeleton.visible);
+  check(result.skeleton,'Skeleton switch failed');
+  await page.screenshot({path:'output/playwright/skeleton.png'});
+  await page.getByRole('switch',{name:'Toggle skeleton',exact:true}).click();
+  await page.getByRole('switch',{name:'Toggle wireframe',exact:true}).click();
+  result.wireframe=await page.evaluate(()=>{let yes=true;window.atlas.model.traverse(o=>{if(o.isMesh)yes=yes&&o.material.wireframe;});return yes;});
+  check(result.wireframe,'Wireframe switch failed');
+  await page.screenshot({path:'output/playwright/wireframe.png'});
+  await page.getByRole('switch',{name:'Toggle wireframe',exact:true}).click();
+  await page.getByRole('switch',{name:'Toggle turntable',exact:true}).click();
+  result.turntable=await page.evaluate(()=>window.atlas.controls.autoRotate);
+  check(result.turntable,'Turntable switch failed');
+  await page.getByRole('switch',{name:'Toggle turntable',exact:true}).click();
+  await page.getByRole('slider',{name:'Reactor intensity',exact:true}).fill('0');
+  await page.getByRole('slider',{name:'Reactor intensity',exact:true}).dispatchEvent('input');
+  result.powerOff=await page.locator('.status').textContent();
+  check(result.powerOff.includes('STANDBY'),'Reactor control failed');
+  await page.getByRole('slider',{name:'Reactor intensity',exact:true}).fill('84');
+  await page.getByRole('slider',{name:'Reactor intensity',exact:true}).dispatchEvent('input');
+  await page.getByRole('button',{name:'VIEW THE CONCEPT',exact:false}).click();
+  result.concept=await page.getByRole('dialog').isVisible();
+  check(result.concept,'Concept dialog failed');
+  await page.getByRole('button',{name:'Close concept',exact:true}).click();
+  await page.getByRole('button',{name:'REST POSE',exact:true}).click();
+  await page.getByRole('button',{name:'Reset camera',exact:true}).click();
+  result.stats=await page.evaluate(()=>window.atlas.stats);
+  result.glbStatus=(await page.request.get('http://127.0.0.1:5175/models/atlas-09.glb')).status();
+  check(result.glbStatus===200,'Download link failed');
+  await page.screenshot({path:'output/playwright/desktop-final.png'});
+  await page.setViewportSize({width:390,height:844});
+  await page.screenshot({path:'output/playwright/mobile-final.png'});
+  result.mobileOverflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+  check(!result.mobileOverflow,'Mobile layout overflows horizontally');
+  await page.setViewportSize({width:1440,height:1000});
+  await page.getByRole('button',{name:'SENTINEL',exact:true}).click();
+  await page.getByRole('button',{name:'Play animation',exact:true}).click();
+  return result;
+}
