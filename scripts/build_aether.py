@@ -116,6 +116,15 @@ bpy.ops.object.mode_set(mode='OBJECT')
 obj.parent=rig;mod=obj.modifiers.new('Rigid mechanical skin','ARMATURE');mod.object=rig
 for b in rig.pose.bones:b.rotation_mode='XYZ'
 
+# The generated source looks 35 degrees left. Correct the head armor in rest
+# space so every clip and the downloadable model face along the body axis.
+head=rig.data.bones['head'];head_yaw_correction=math.radians(-35)
+head_rotation=Matrix.Rotation(head_yaw_correction,3,(head.tail_local-head.head_local).normalized())
+for vi in weights['head']:
+ mesh.vertices[vi].co=head.head_local+head_rotation@(mesh.vertices[vi].co-head.head_local)
+mesh.update()
+rig['head_rest_yaw_correction_degrees']=-35
+
 # Compact actuator housings close the visual gaps under the separated armor.
 def material(name,color,metallic,roughness):
  m=bpy.data.materials.new(name);m.use_nodes=True;p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=color;p.inputs['Metallic'].default_value=metallic;p.inputs['Roughness'].default_value=roughness;return m

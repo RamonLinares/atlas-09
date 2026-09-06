@@ -59,3 +59,11 @@ npm run build
 ```
 
 The existing downloaded retopology is the build input. Rebuilding does not call Tripo or require an API key. The shared motion library accepts a body-proportion profile; its original defaults remain the ATLAS values.
+
+## Head alignment and chest lighting correction
+
+The generated mesh originally faced about 35 degrees to its left in the rest pose. `build_aether.py` now rotates only the head armor around the neck joint by -35 degrees before export. This changes the Blender source and downloadable GLB, so the correction applies to rest and all five clips. Rigid weights, UVs and animation tracks remain valid.
+
+The viewer now uses a per-character reactor-light intensity. AETHER uses zero extra point-light intensity, removing the cyan hotspot cast onto its torso by ATLAS’s fixed reactor light. Its textured emission details and studio lighting remain active. ATLAS retains its original reactor illumination. A model revision query refreshes previously cached AETHER downloads.
+
+Verification: Blender rig/UV/isolation and all five motion checks pass; GLB validation reports zero errors and warnings; production build passes. Browser checks confirm a forward-facing head in rest, idle and run, zero extra reactor-light intensity on AETHER, and 2.52 intensity on ATLAS at the default 84% slider value after switching. No browser errors. Visual evidence: `output/playwright/aether-front-before.png`, `aether-front-after.png`, `aether-fixed-IDLE.png` and `aether-fixed-RUN.png`.

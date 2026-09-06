@@ -68,7 +68,7 @@ const hero = new THREE.Group(); scene.add(hero);
 let model, mixer, skeleton, activeAction, paused = false, clipName = 'Sentinel';
 let motionFX;
 const actions = new Map(), materials = new Set(), emitters = [];
-const powerLight = new THREE.PointLight('#63f4ff', 6, 3, 2); scene.add(powerLight);
+const powerLight = new THREE.PointLight('#63f4ff', 0, 3, 2); scene.add(powerLight);
 let time = 0, power = 0.84;
 function resetCamera() {
   const mobile = innerWidth < 701;
@@ -210,7 +210,7 @@ renderer.setAnimationLoop(now => {
     if(window.atlas) {window.atlas.stats.motionFX=fx;window.atlas.stats.activeClip=clipName;window.atlas.stats.clipTime=activeAction?.time ?? 0;}
   }
   emitters.forEach(({ mat, intensity }) => { mat.emissiveIntensity = intensity * power * (1 + Math.sin(time * 2.3) * 0.06); });
-  powerLight.intensity = power * 3; powerLight.position.set(0, 4.35, 0.8);
+  powerLight.intensity = power * (characters[activeCharacter]?.reactorLightIntensity ?? 0); powerLight.position.set(0, 4.35, 0.8);
   controls.update(); renderer.info.reset(); composer.render();
   frameCount++;
   if (now - sampleStart > 1500) { const fps = Math.round(frameCount * 1000 / (now - sampleStart)); $('#renderStatus').textContent = `${fps} FPS / REALTIME PBR`; if (window.atlas) Object.assign(window.atlas.stats, { fps, drawCalls: renderer.info.render.calls, renderedTriangles: renderer.info.render.triangles, textureCount: renderer.info.memory.textures }); frameCount = 0; sampleStart = now; }
