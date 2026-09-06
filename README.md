@@ -1,6 +1,17 @@
-# ATLAS / 09
+# FORGE — Character Lab
 
-A battle-worn 18-metre mecha, created from an original AI concept, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
+Two original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
+
+| Character | Design | Blender source | Animated model |
+| --- | --- | --- | --- |
+| ATLAS / 09 | Battle-worn 18-metre heavy mecha with olive armor | [ATLAS-09.blend](blender/ATLAS-09.blend) | [atlas-09.glb](public/models/atlas-09.glb) |
+| AETHER / 02 | Athletic 14-metre mecha with streamlined white steel and opaque smoked glass | [AETHER-02.blend](blender/AETHER-02.blend) | [aether-02.glb](public/models/aether-02.glb) |
+
+Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and five clips. The viewer releases the previous character's graphics resources when switching. Both are normalized to the same display height for inspection; their physical design heights remain embedded in the source assets.
+
+Direct links can select a character and motion, for example `/?character=aether-02&motion=Run`. The production preview for this session is `http://127.0.0.1:5186/?character=aether-02`.
+
+AETHER's full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
 
 ## Open the result
 
@@ -41,7 +52,10 @@ To reproduce local asset preparation with Blender installed:
 ```sh
 blender -b --python scripts/build_mecha.py
 blender -b --python scripts/validate_scene.py
+blender -b --python scripts/build_aether.py
+blender -b --python scripts/validate_aether.py
 npm run validate:asset
+node scripts/validate_glb.mjs public/models/aether-02.glb output/aether-02/gltf-validation.json
 ```
 
 The preparation script reads the already downloaded Tripo retopology in `assets/retopo`, so rebuilding is local and uses no provider credits. It recreates the mesh, unwrap, rig, clips, textures, GLB, Blender file, beauty render, and audit data. It also repairs a rare zero tangent at a split vertex using the local triangle's UV differential.

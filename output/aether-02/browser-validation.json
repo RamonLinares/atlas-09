@@ -1,0 +1,282 @@
+{
+  "results": [
+    {
+      "character": "aether-02",
+      "triangles": 24310,
+      "boneCount": 18,
+      "materials": 5,
+      "clips": [
+        {
+          "name": "Awaken",
+          "duration": 5.0333333015441895,
+          "tracks": 54
+        },
+        {
+          "name": "Backflip",
+          "duration": 3.633333444595337,
+          "tracks": 54
+        },
+        {
+          "name": "KneelFire",
+          "duration": 8.033333778381348,
+          "tracks": 54
+        },
+        {
+          "name": "Run",
+          "duration": 1.4333332777023315,
+          "tracks": 54
+        },
+        {
+          "name": "Sentinel",
+          "duration": 6.0333333015441895,
+          "tracks": 54
+        }
+      ],
+      "motionFX": {
+        "muzzleFound": true,
+        "visibleProjectiles": 0,
+        "flash": false
+      },
+      "activeClip": "Sentinel",
+      "clipTime": 0,
+      "memory": {
+        "geometries": 59,
+        "textures": 22
+      },
+      "effects": 1
+    },
+    {
+      "character": "aether-02",
+      "triangles": 24310,
+      "boneCount": 18,
+      "materials": 5,
+      "clips": [
+        {
+          "name": "Awaken",
+          "duration": 5.0333333015441895,
+          "tracks": 54
+        },
+        {
+          "name": "Backflip",
+          "duration": 3.633333444595337,
+          "tracks": 54
+        },
+        {
+          "name": "KneelFire",
+          "duration": 8.033333778381348,
+          "tracks": 54
+        },
+        {
+          "name": "Run",
+          "duration": 1.4333332777023315,
+          "tracks": 54
+        },
+        {
+          "name": "Sentinel",
+          "duration": 6.0333333015441895,
+          "tracks": 54
+        }
+      ],
+      "motionFX": {
+        "muzzleFound": true,
+        "visibleProjectiles": 0,
+        "flash": false
+      },
+      "activeClip": "Run",
+      "clipTime": 0.27,
+      "memory": {
+        "geometries": 59,
+        "textures": 22
+      },
+      "effects": 1
+    },
+    {
+      "character": "aether-02",
+      "triangles": 24310,
+      "boneCount": 18,
+      "materials": 5,
+      "clips": [
+        {
+          "name": "Awaken",
+          "duration": 5.0333333015441895,
+          "tracks": 54
+        },
+        {
+          "name": "Backflip",
+          "duration": 3.633333444595337,
+          "tracks": 54
+        },
+        {
+          "name": "KneelFire",
+          "duration": 8.033333778381348,
+          "tracks": 54
+        },
+        {
+          "name": "Run",
+          "duration": 1.4333332777023315,
+          "tracks": 54
+        },
+        {
+          "name": "Sentinel",
+          "duration": 6.0333333015441895,
+          "tracks": 54
+        }
+      ],
+      "motionFX": {
+        "muzzleFound": true,
+        "visibleProjectiles": 0,
+        "flash": false
+      },
+      "activeClip": "Run",
+      "clipTime": 0.97,
+      "memory": {
+        "geometries": 59,
+        "textures": 22
+      },
+      "effects": 1
+    },
+    {
+      "character": "aether-02",
+      "triangles": 24310,
+      "boneCount": 18,
+      "materials": 5,
+      "clips": [
+        {
+          "name": "Awaken",
+          "duration": 5.0333333015441895,
+          "tracks": 54
+        },
+        {
+          "name": "Backflip",
+          "duration": 3.633333444595337,
+          "tracks": 54
+        },
+        {
+          "name": "KneelFire",
+          "duration": 8.033333778381348,
+          "tracks": 54
+        },
+        {
+          "name": "Run",
+          "duration": 1.4333332777023315,
+          "tracks": 54
+        },
+        {
+          "name": "Sentinel",
+          "duration": 6.0333333015441895,
+          "tracks": 54
+        }
+      ],
+      "motionFX": {
+        "muzzleFound": true,
+        "visibleProjectiles": 2,
+        "flash": true
+      },
+      "activeClip": "KneelFire",
+      "clipTime": 3.37,
+      "memory": {
+        "geometries": 61,
+        "textures": 22
+      },
+      "effects": 1
+    },
+    {
+      "character": "aether-02",
+      "triangles": 24310,
+      "boneCount": 18,
+      "materials": 5,
+      "clips": [
+        {
+          "name": "Awaken",
+          "duration": 5.0333333015441895,
+          "tracks": 54
+        },
+        {
+          "name": "Backflip",
+          "duration": 3.633333444595337,
+          "tracks": 54
+        },
+        {
+          "name": "KneelFire",
+          "duration": 8.033333778381348,
+          "tracks": 54
+        },
+        {
+          "name": "Run",
+          "duration": 1.4333332777023315,
+          "tracks": 54
+        },
+        {
+          "name": "Sentinel",
+          "duration": 6.0333333015441895,
+          "tracks": 54
+        }
+      ],
+      "motionFX": {
+        "muzzleFound": true,
+        "visibleProjectiles": 0,
+        "flash": false
+      },
+      "activeClip": "Backflip",
+      "clipTime": 1.79,
+      "fps": 37,
+      "drawCalls": 130,
+      "renderedTriangles": 51564,
+      "textureCount": 22,
+      "memory": {
+        "geometries": 61,
+        "textures": 22
+      },
+      "effects": 1
+    },
+    {
+      "character": "atlas-09",
+      "memory": {
+        "geometries": 58,
+        "textures": 22
+      },
+      "effects": 1,
+      "download": "/models/atlas-09.glb",
+      "skeletons": 1
+    },
+    {
+      "character": "aether-02",
+      "memory": {
+        "geometries": 59,
+        "textures": 22
+      },
+      "effects": 1,
+      "download": "/models/aether-02.glb",
+      "skeletons": 1
+    },
+    {
+      "character": "atlas-09",
+      "memory": {
+        "geometries": 58,
+        "textures": 22
+      },
+      "effects": 1,
+      "download": "/models/atlas-09.glb",
+      "skeletons": 1
+    },
+    {
+      "character": "aether-02",
+      "memory": {
+        "geometries": 59,
+        "textures": 22
+      },
+      "effects": 1,
+      "download": "/models/aether-02.glb",
+      "skeletons": 1
+    },
+    {
+      "mobile": true,
+      "overflow": false,
+      "canvas": [
+        390,
+        844
+      ]
+    }
+  ],
+  "errors": []
+}

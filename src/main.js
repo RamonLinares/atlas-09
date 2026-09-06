@@ -7,6 +7,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { createMotionFX } from './motion-fx.js';
+import { characters } from './characters.js';
 import './style.css';
 
 const $ = (s) => document.querySelector(s);
@@ -99,7 +100,53 @@ function setClip(name) {
   if (['Backflip','KneelFire'].includes(previous) || ['Backflip','KneelFire'].includes(name)) resetCamera();
   paused = false; $('#pause').textContent = 'Ⅱ'; $('#pause').setAttribute('aria-label','Pause animation');
 }
-new GLTFLoader().load('/models/atlas-09.glb', (gltf) => {
+let activeCharacter = null, loadSequence = 0;
+function disposeModel(root) {
+  const geometries = new Set(), mats = new Set(), textures = new Set(), skeletons = new Set();
+  root?.traverse(o => {
+    if (o.geometry) geometries.add(o.geometry);
+    if (o.skeleton) skeletons.add(o.skeleton);
+    for (const mat of o.material ? (Array.isArray(o.material) ? o.material : [o.material]) : []) mats.add(mat);
+  });
+  mats.forEach(m => { Object.values(m).forEach(v => { if (v?.isTexture) textures.add(v); }); m.dispose(); });
+  textures.forEach(t => t.dispose()); geometries.forEach(g => g.dispose()); skeletons.forEach(s => s.dispose());
+}
+function showCharacterInfo(id) {
+  const c = characters[id];
+  document.title = `${c.name} / ${c.number} — FORGE Asset Lab`;
+  document.body.dataset.character = id;
+  document.documentElement.style.setProperty('--acid', c.accent);
+  $('#scene').setAttribute('aria-label', `Interactive 3D model of ${c.name}, ${c.className.toLowerCase()}`);
+  $('.intro .eyebrow').innerHTML = `<span class="dot"></span> ${c.className}`;
+  $('.intro h1').innerHTML = `${c.name}<span>/ ${c.number}</span>`;
+  $('.tagline').innerHTML = c.tagline.join('<br>');
+  $('.description').innerHTML = c.description.join('<br>');
+  $('.inspector dl dd').innerHTML = `${c.height} <small>m</small>`;
+  $('.wear').textContent = c.condition;
+  $('.view-caption').innerHTML = `<span class="cross">+</span><span>MODEL ${c.study}<br><b>${c.caption}</b></span>`;
+  $('.edition b').textContent = `${c.study}—26`;
+  $('.download').href = c.model;
+  $('#conceptDialog img').src = c.concept; $('#conceptDialog img').alt = c.conceptAlt;
+  $('#conceptDialog h2').textContent = c.conceptTitle;
+  document.querySelectorAll('[data-character]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.character === id)));
+}
+async function loadCharacter(id) {
+  if (!characters[id]) return;
+  if (id === activeCharacter) { ++loadSequence; $('#loading').style.display = 'none'; return; }
+  const sequence = ++loadSequence, character = characters[id];
+  $('#loading').innerHTML = `<div class="load-ring"></div><span>ASSEMBLING ${character.name}</span><small id="loadingProgress">Loading geometry & materials</small>`;
+  $('#loading').style.display = 'flex';
+  try {
+  const gltf = await new GLTFLoader().loadAsync(character.model, event => {
+    if (sequence === loadSequence && event.total) $('#loadingProgress').textContent = `${Math.round(event.loaded / event.total * 100)}% · Loading geometry & materials`;
+  });
+  if (sequence !== loadSequence) { disposeModel(gltf.scene); return; }
+  const requestedMotion = activeCharacter ? clipName : new URLSearchParams(location.search).get('motion');
+  mixer?.stopAllAction();
+  if (model) { mixer?.uncacheRoot(model); hero.remove(model); disposeModel(model); }
+  if (skeleton) { scene.remove(skeleton); skeleton.dispose(); }
+  motionFX?.dispose(); actions.clear(); materials.clear(); emitters.length = 0;
+  activeCharacter = id;
   model = gltf.scene;
   const box = new THREE.Box3().setFromObject(model);
   const size = box.getSize(new THREE.Vector3());
@@ -117,24 +164,31 @@ new GLTFLoader().load('/models/atlas-09.glb', (gltf) => {
     triangles += (o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3;
     for (const mat of Array.isArray(o.material) ? o.material : [o.material]) {
       materials.add(mat);
+      mat.wireframe = $('#wireframe').getAttribute('aria-checked') === 'true';
       if (mat.map) mat.map.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
       if (mat.name.toLowerCase().includes('reactor') || mat.name.toLowerCase().includes('emission')) {
         emitters.push({ mat, intensity: mat.emissiveIntensity || 1 });
       }
     }
   });
-  skeleton = new THREE.SkeletonHelper(model); skeleton.visible = false;
+  skeleton = new THREE.SkeletonHelper(model); skeleton.visible = $('#skeleton').getAttribute('aria-checked') === 'true';
   skeleton.material.depthTest = false; skeleton.material.transparent = true; skeleton.renderOrder = 100; scene.add(skeleton);
   mixer = new THREE.AnimationMixer(model);
   gltf.animations.forEach(clip => actions.set(clip.name, mixer.clipAction(clip)));
   $('#triangles').textContent = Math.round(triangles).toLocaleString(); $('#bones').textContent = boneCount;
   $('#loading').style.display = 'none';
-  const requestedMotion = new URLSearchParams(location.search).get('motion');
-  setClip(actions.has(requestedMotion) ? requestedMotion : 'Sentinel');
-  window.atlas = { model, scene, camera, controls, renderer, mixer, actions, skeleton, setClip, motionFX, stats: { triangles, boneCount, materials: materials.size, clips: gltf.animations.map(c => ({name:c.name, duration:c.duration, tracks:c.tracks.length})) } };
-}, (event) => { if (event.total) $('#loadingProgress').textContent = `${Math.round(event.loaded / event.total * 100)}% · Loading geometry & materials`; }, (error) => {
-  console.error(error); $('#loading').innerHTML = '<span>MODEL COULD NOT LOAD</span><small>Refresh to retry. Check that the model file is available.</small>';
-});
+  showCharacterInfo(id);
+  setClip(requestedMotion === 'Rest' || actions.has(requestedMotion) ? requestedMotion : 'Sentinel'); resetCamera();
+  const url = new URL(location.href); url.searchParams.set('character', id); history.replaceState(null, '', url);
+  window.atlas = { model, scene, camera, controls, renderer, mixer, actions, skeleton, setClip, motionFX, loadCharacter, stats: { character: id, triangles, boneCount, materials: materials.size, clips: gltf.animations.map(c => ({name:c.name, duration:c.duration, tracks:c.tracks.length})) } };
+  } catch (error) {
+    if (sequence !== loadSequence) return;
+    console.error(error); $('#loading').innerHTML = '<span>MODEL COULD NOT LOAD</span><small>Choose another frame or refresh to retry.</small>';
+  }
+}
+const requestedCharacter = new URLSearchParams(location.search).get('character');
+loadCharacter(characters[requestedCharacter] ? requestedCharacter : 'atlas-09');
+document.querySelectorAll('[data-character]').forEach(button => button.addEventListener('click', () => loadCharacter(button.dataset.character)));
 function toggle(id, fn) { $(id).addEventListener('click', e => { const b = e.currentTarget, enabled = b.getAttribute('aria-checked') !== 'true'; b.setAttribute('aria-checked', String(enabled)); fn(enabled); }); }
 toggle('#wireframe', on => materials.forEach(m => { m.wireframe = on; }));
 toggle('#skeleton', on => { if (skeleton) skeleton.visible = on; });

@@ -44,9 +44,13 @@ def add_hardware(obj, rig):
     bm=bmesh.new();bm.from_mesh(obj.data);bmesh.ops.triangulate(bm,faces=[f for f in bm.faces if len(f.verts)>3]);bm.to_mesh(obj.data);bm.free();obj.data.update()
     return muzzle
 
-def build_motions(rig,obj):
+def build_motions(rig,obj,profile=None):
     scene=bpy.context.scene
     bones=rig.pose.bones
+    p=dict(run_drop=.75,run_bob=.22,stride=2.7,ankle_z=1.7,ankle_y=0,ankle_x=3.65,run_x=3.35,step_lift=2.7,
+           kneel_drop=5.72,kneel_front=(3.3,-3.7,1.7),kneel_back=(-2.25,5.27,3.12),
+           crouch=1.65,landing=1.5,tuck_width=.8,tuck_back=2.1,tuck_lift=4.8,jump=10.0,pivot=(0,0,9.1),flight=.42)
+    if profile:p.update(profile)
     rear_group=obj.vertex_groups['shin.R'].index
     rear_indices=[v.index for v in obj.data.vertices if any(g.group==rear_group for g in v.groups)]
     def update():bpy.context.view_layer.update()
@@ -73,22 +77,23 @@ def build_motions(rig,obj):
     def base(lower=0,lean=0):
         clear();bones['root'].matrix=Matrix.Translation((0,0,lower))@bones['root'].bone.matrix_local;update();world_rotation('pelvis',lean);world_rotation('chest',lean*1.3)
     def run(u):
-        theta=u*math.tau;base(-.75+.22*math.cos(theta*2),.14)
+        theta=u*math.tau;base(-p['run_drop']+p['run_bob']*math.cos(theta*2),.14)
         for s,side,offset in [(1,'L',0),(-1,'R',.5)]:
             phase=(u+offset)%1
-            if phase<.5:y=-2.7+5.4*(phase/.5);z=1.7
+            if phase<.5:y=p['ankle_y']-p['stride']+2*p['stride']*(phase/.5);z=p['ankle_z']
             else:
-                f=(phase-.5)/.5;y=2.7-5.4*smooth(f);z=1.7+2.7*math.sin(math.pi*f)
-            leg(side,(s*3.35,y,z))
+                f=(phase-.5)/.5;y=p['ankle_y']+p['stride']-2*p['stride']*smooth(f);z=p['ankle_z']+p['step_lift']*math.sin(math.pi*f)
+            leg(side,(s*p['run_x'],y,z))
         arms(.72*math.cos(theta),-.72*math.cos(theta),.72)
         bones['head'].rotation_euler.y=.035*math.sin(theta);update()
-        flight=.42*max(0,math.cos(theta*2))**4
+        flight=p['flight']*max(0,math.cos(theta*2))**4
         bones['root'].matrix=Matrix.Translation((0,0,flight))@bones['root'].matrix;update()
     def kneel(u):
         seconds=u*8;blend=smooth(seconds/2.15)*(1-smooth((seconds-6)/2))
-        base(-5.72*blend,.015*blend)
-        leg('L',lerp((3.65,0,1.7),(3.3,-3.7,1.7),blend))
-        leg('R',lerp((-3.65,0,1.7),(-2.25,5.27,3.12),blend),math.pi*.5*blend)
+        base(-p['kneel_drop']*blend,.015*blend)
+        front_rest=(p['ankle_x'],p['ankle_y'],p['ankle_z'])
+        leg('L',lerp(front_rest,p['kneel_front'],blend))
+        leg('R',lerp((-p['ankle_x'],p['ankle_y'],p['ankle_z']),p['kneel_back'],blend),math.pi*.5*blend)
         recoil=0
         if 2.4<=seconds<5.8:
             phase=(seconds-2.4)%.32;recoil=.07*max(0,1-phase/.1)
@@ -103,20 +108,20 @@ def build_motions(rig,obj):
             ev=obj.evaluated_get(bpy.context.evaluated_depsgraph_get());m=ev.to_mesh();low=min(m.vertices[i].co.z for i in rear_indices);ev.to_mesh_clear()
             if low<0:
                 bones['root'].matrix=Matrix.Translation((0,0,-low))@bones['root'].matrix;update()
-                leg('L',lerp((3.65,0,1.7),(3.3,-3.7,1.7),blend))
+                leg('L',lerp(front_rest,p['kneel_front'],blend))
     def backflip(u):
         # Compress, launch, tuck for a full backward rotation, then absorb landing.
         air=max(0,min(1,(u-.22)/.56))
         prep=smooth(u/.18)*(1-smooth((u-.18)/.12))
         landing=smooth((u-.78)/.06)*(1-smooth((u-.84)/.16))
         tuck=math.sin(math.pi*air)**1.2
-        lower=-1.65*prep-1.5*landing
+        lower=-p['crouch']*prep-p['landing']*landing
         base(lower, .12*(prep+landing))
-        for s,side in [(1,'L'),(-1,'R')]:leg(side,(s*(3.65-.8*tuck),2.1*tuck,1.7+4.8*tuck))
+        for s,side in [(1,'L'),(-1,'R')]:leg(side,(s*(p['ankle_x']-p['tuck_width']*tuck),p['ankle_y']+p['tuck_back']*tuck,p['ankle_z']+p['tuck_lift']*tuck))
         arms(.6*prep-2.15*tuck,.6*prep-2.15*tuck,.4+.7*tuck)
-        jump=10.0*math.sin(math.pi*air)**.85
+        jump=p['jump']*math.sin(math.pi*air)**.85
         angle=-math.tau*smooth(air)
-        pivot=Vector((0,0,9.1));root=bones['root']
+        pivot=Vector(p['pivot']);root=bones['root']
         root.matrix=Matrix.Translation(pivot+Vector((0,.7*math.sin(math.pi*air),jump))) @ Matrix.Rotation(angle,4,'X') @ Matrix.Translation(-pivot) @ root.matrix
         update()
     report=[]

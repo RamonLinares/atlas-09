@@ -44,5 +44,10 @@ export function createMotionFX(scene, model) {
     }
     return {muzzleFound:!!muzzle,visibleProjectiles:renderedShots,flash:flash.visible};
   }
-  return {group,update,muzzle};
+  function dispose() {
+    scene.remove(group);
+    group.traverse(o => { o.geometry?.dispose(); o.material?.dispose(); });
+    shotMaterial.dispose();
+  }
+  return {group,update,muzzle,dispose};
 }

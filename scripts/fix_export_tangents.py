@@ -6,7 +6,7 @@ and orthogonalized against the exported normal. Geometry and skin data stay exac
 import json,struct,math
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-path=ROOT/'public/models/atlas-09.glb';raw=bytearray(path.read_bytes())
+path=Path(globals().get('ASSET_PATH',ROOT/'public/models/atlas-09.glb'));raw=bytearray(path.read_bytes())
 json_length=struct.unpack_from('<I',raw,12)[0];doc=json.loads(raw[20:20+json_length]);binary_offset=20+json_length+8
 def accessor(index):
  a=doc['accessors'][index];view=doc['bufferViews'][a['bufferView']]
@@ -33,5 +33,5 @@ for mesh in doc.get('meshes',[]):
    if replacement is None:raise RuntimeError(f'No valid triangle differential for tangent {vi}')
    struct.pack_into('<3f',raw,offset+vi*stride,*replacement);repairs.append({'vertex':vi,'tangent':replacement})
 path.write_bytes(raw)
-(ROOT/'output/tangent-repairs.json').write_text(json.dumps({'count':len(repairs),'repairs':repairs},indent=2))
+Path(globals().get('REPORT_PATH',ROOT/'output/tangent-repairs.json')).write_text(json.dumps({'count':len(repairs),'repairs':repairs},indent=2))
 print('Export tangent repairs:',len(repairs))

@@ -1,0 +1,71 @@
+{
+  "all_vertices_have_one_rigid_weight": true,
+  "faces_span_only_one_bone": true,
+  "paired_chains": true,
+  "uv_maps": [
+    {
+      "name": "Aether_Surface",
+      "out_of_bounds_faces": 0,
+      "zero_area_faces": 0
+    },
+    {
+      "name": "Aether_Lightmap",
+      "out_of_bounds_faces": 0,
+      "zero_area_faces": 0
+    }
+  ],
+  "anatomical_isolation": {
+    "leg_vertices": 3310,
+    "arm_vertices": 1330,
+    "leg_motion_from_arms_m": 0.0,
+    "arm_motion_from_legs_m": 0.0
+  },
+  "animations": [
+    {
+      "name": "Sentinel",
+      "max_edge_stretch_m": 1.7285346984863281e-06,
+      "loop_error_m": 0.0,
+      "lowest_vertex_m": -1.7881393432617188e-07,
+      "max_clearance_m": -1.7881393432617188e-07,
+      "max_displacement_m": 0.1890236884355545
+    },
+    {
+      "name": "Awaken",
+      "max_edge_stretch_m": 1.862645149230957e-06,
+      "loop_error_m": 0.0,
+      "lowest_vertex_m": -1.7881393432617188e-07,
+      "max_clearance_m": -1.7881393432617188e-07,
+      "max_displacement_m": 0.8015192747116089
+    },
+    {
+      "name": "Run",
+      "max_edge_stretch_m": 3.255903720855713e-06,
+      "loop_error_m": 0.0,
+      "lowest_vertex_m": -3.490546532702865e-06,
+      "max_clearance_m": 0.3199946880340576,
+      "max_displacement_m": 6.302523612976074
+    },
+    {
+      "name": "KneelFire",
+      "max_edge_stretch_m": 6.794929504394531e-06,
+      "loop_error_m": 0.0,
+      "lowest_vertex_m": -5.9604644775390625e-06,
+      "max_clearance_m": 2.3515767679782584e-06,
+      "max_displacement_m": 7.11252498626709
+    },
+    {
+      "name": "Backflip",
+      "max_edge_stretch_m": 3.5017728805541992e-06,
+      "loop_error_m": 2.678895498320344e-06,
+      "lowest_vertex_m": -4.746479589812225e-06,
+      "max_clearance_m": 12.981592178344727,
+      "max_displacement_m": 20.530351638793945
+    }
+  ],
+  "packed_textures": true,
+  "opaque_glass": {
+    "alpha": 1.0,
+    "transmission": 0.0,
+    "roughness": 0.3199999928474426
+  }
+}
