@@ -1,0 +1,47 @@
+# Reusable character creation prompt
+
+Copy the prompt below and replace only the character description on the first line. It includes authorization for up to US$1 in generation and retopology costs and creation of a private GitHub repository.
+
+```text
+Create this character: [DESCRIBE THE CHARACTER I WANT]
+
+Complete the entire process autonomously, from concept to an animated 3D character in Blender and an interactive Three.js viewer. Make sensible creative and technical decisions without asking me to choose between options.
+
+Creative direction
+- Expand my description into a coherent design, choosing an appropriate style, palette, materials, proportions, and details.
+- Generate an original reference image using OpenAI’s built-in image generation.
+- Make the character readable in 3D, with clear separation between limbs, equipment, and accessories.
+
+3D asset
+- Use Tripo to generate the textured model from the reference.
+- Check current costs before running paid operations. I authorize up to US$1 total for generation and retopology, including premium options when useful. Do not exceed this budget.
+- Perform appropriate retopology, inspect the UVs, and preserve the textures.
+- Prepare a portable Blender file with packed textures, organized objects, sensible scale, and clearly named bones.
+- Preserve the original generated assets and make the preparation process reproducible.
+
+Rigging and animation
+- Choose a rig appropriate to the character’s anatomy.
+- Assign geometry according to actual body parts. Do not rely solely on broad spatial cutoffs that can accidentally attach leg geometry to an arm.
+- Use rigid bindings for hard armor and suitable deformation weights for flexible surfaces.
+- Check every limb independently: raising an arm must not move the thighs, torso panels, or unrelated accessories.
+- Create idle, activation, running, one-knee firing, and backflip animations. Adapt these intelligently if the anatomy requires it.
+- Check foot contact, joint separation, intersections, loop transitions, and takeoff/landing.
+- Bake animations into the exported GLB so they work outside Blender.
+
+Interactive viewer
+- Build a polished Three.js viewer with appropriate lighting, shadows, materials, and responsive framing.
+- Include animation selection, pause/play, camera reset, orbit/zoom, wireframe, skeleton inspection, and model download.
+- Add synchronized firing effects where appropriate.
+- Keep the character visible throughout every animation on desktop and mobile layouts.
+
+Verification and delivery
+- Inspect the actual animated result in a browser; numerical checks alone are insufficient.
+- Fix visible binding, deformation, framing, and rendering problems before delivery.
+- Validate the GLB, run the production build, and check the browser console.
+- Deliver the Blender file, animated GLB, textures, viewer source, reproducible scripts, and a README.
+- Document generation costs, provenance, validation results, and remaining limitations honestly.
+- Create a new private GitHub repository under my authenticated account, push the completed project, and verify its privacy and uploaded commit.
+- Open the finished viewer and provide the repository and artifact links.
+
+Continue until the deliverables are complete. Ask for input only if credentials, an unavoidable permission requirement, or the spending cap prevents further progress.
+```
