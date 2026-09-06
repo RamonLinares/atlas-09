@@ -2,7 +2,7 @@
   "uri": "public/models/scorpio-05.glb",
   "mimeType": "model/gltf-binary",
   "validatorVersion": "2.0.0-dev.3.10",
-  "validatedAt": "2026-09-06T18:07:27.932Z",
+  "validatedAt": "2026-09-06T18:48:39.121Z",
   "issues": {
     "numErrors": 0,
     "numWarnings": 0,
@@ -90,7 +90,7 @@
         "pointer": "/buffers/0",
         "mimeType": "application/gltf-buffer",
         "storage": "glb",
-        "byteLength": 7404748
+        "byteLength": 7634636
       },
       {
         "pointer": "/images/0",
@@ -148,8 +148,8 @@
     "hasTextures": true,
     "hasDefaultScene": true,
     "drawCallCount": 4,
-    "totalVertexCount": 46911,
-    "totalTriangleCount": 28877,
+    "totalVertexCount": 48465,
+    "totalTriangleCount": 30445,
     "maxUVs": 2,
     "maxInfluences": 4,
     "maxAttributes": 7

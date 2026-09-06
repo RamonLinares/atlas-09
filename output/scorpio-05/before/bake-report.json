@@ -1,21 +1,21 @@
 [
   {
     "name": "Run",
-    "frames": 43,
-    "duration": 1.4,
-    "max_ground_correction_m": 9.462237358093262e-07
+    "frames": 38,
+    "duration": 1.2333333333333334,
+    "max_ground_correction_m": 1.5273690223693848e-06
   },
   {
     "name": "KneelFire",
     "frames": 241,
     "duration": 8.0,
-    "max_ground_correction_m": 1.6097624211397488e-06
+    "max_ground_correction_m": 3.6554250717163086
   },
   {
     "name": "Backflip",
     "frames": 109,
     "duration": 3.6,
-    "max_ground_correction_m": 4.2930469135171734e-07
+    "max_ground_correction_m": 1.079484224319458
   },
   {
     "name": "Sentinel",

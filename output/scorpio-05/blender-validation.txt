@@ -1,0 +1,113 @@
+00:01.199  blend            | Read blend: "/Users/ramonlinarespallares/Documents/BlendSol/blender/SCORPIO-05.blend"
+BLENDER_VALIDATION_SUCCESS {
+  "rigid_vertices": true,
+  "rigid_faces": true,
+  "uv_maps": [
+    {
+      "name": "Scorpio_Surface",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    },
+    {
+      "name": "Scorpio_Lightmap",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    }
+  ],
+  "isolation": [
+    {
+      "bone": "head",
+      "displacement_m": {
+        "head": 1.2604994773864746,
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 5.228238582611084,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.R",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 5.30019474029541,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "thigh.L",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 3.810368061065674,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "thigh.R",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 3.800330638885498,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "tail_02",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 7.319896221160889,
+        "stinger": 8.574767112731934
+      }
+    },
+    {
+      "bone": "stinger",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 3.3955256938934326
+      }
+    }
+  ],
+  "kneel_contact_m": {
+    "foot.L": 8.735987648833543e-07,
+    "foot.R": 0.00675201416015625,
+    "thigh.R": 0.001878976821899414,
+    "shin.R": 0.10799622535705566
+  },
+  "packed_textures": true
+}
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:30:33)
+
+Blender quit

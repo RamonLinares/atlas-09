@@ -11,7 +11,7 @@ TEX = ROOT / 'public/textures/scorpio-05'
 OUT.mkdir(parents=True, exist_ok=True)
 TEX.mkdir(parents=True, exist_ok=True)
 sys.path.insert(0, str(ROOT / 'scripts'))
-from motion_library import build_motions
+from scorpio_anatomy import section, TAIL_POINTS, TAIL_NAMES, BARREL_AXIS, STINGER_END, MUZZLE_CENTER
 
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete(use_global=False)
@@ -96,54 +96,6 @@ if base:
     bsdf.inputs['Emission Strength'].default_value = 3.5
     textures.append({'semantic': 'Emission', 'size': [w, h], 'file': em.filepath_raw})
 
-def section(p):
-    x, y, z = p
-    a = abs(x)
-    side = 'L' if x > 0 else 'R'
-    
-    # Tail sections
-    if z > 13.2 and y <= 0.0 and a < 2.0:
-        return 'stinger'
-    if z > 14.8 and y > 0.0 and a < 2.2:
-        return 'tail_04' if y < 4.2 else 'tail_03'
-    if y > 2.2 and a < 2.2 and z > 6.0:
-        if z > 12.0:
-            return 'tail_03'
-        elif z > 8.8:
-            return 'tail_02'
-        else:
-            return 'tail_01'
-    if y > 1.2 and a < 1.4 and 6.0 < z < 8.2:
-        return 'tail_01'
-        
-    # Head
-    if z > 10.4 and a < 1.3 and -1.6 < y < 1.4:
-        return 'head'
-        
-    # Arms, Forearms, Pincer Claws
-    if a > 2.0 and z > 3.0:
-        if a > 4.5 and z < 7.2:
-            return 'hand.' + side
-        if a > 3.8 and z < 8.5:
-            return 'forearm.' + side
-        if a > 2.6 and z > 8.0:
-            return 'shoulder.' + side if z > 9.8 else 'upper_arm.' + side
-        if a > 2.0 and z > 9.6:
-            return 'shoulder.' + side
-            
-    # Torso
-    if z > 8.8:
-        return 'chest'
-    if z > 6.8:
-        return 'pelvis'
-        
-    # Legs
-    if z > 3.8:
-        return 'thigh.' + side
-    if z > 1.2:
-        return 'shin.' + side
-    return 'foot.' + side
-
 labels = {f.index: section(f.center) for f in mesh.polygons}
 parts = defaultdict(list)
 for fi, name in labels.items():
@@ -202,27 +154,21 @@ def bone(name, head, tail, parent=None, deform=True):
         b.parent = eb[parent]
     return b
 
-bone('root', (0, 0, 0), (0, 0, 1), deform=False)
-bone('pelvis', (0, -1.48, 7.2), (0, -1.75, 8.8), 'root')
-bone('chest', (0, -1.75, 8.8), (0, -1.85, 10.5), 'pelvis')
-bone('head', (0, -1.85, 10.5), (0, -1.0, 11.8), 'chest')
-
-for sign, side in [(1, 'L'), (-1, 'R')]:
-    bone('shoulder.' + side, (sign * 1.8, -1.8, 10.2), (sign * 2.6, -1.75, 10.0), 'chest')
-    bone('upper_arm.' + side, (sign * 2.6, -1.75, 10.0), (sign * 3.6, -1.65, 8.7), 'shoulder.' + side)
-    bone('forearm.' + side, (sign * 3.6, -1.65, 8.7), (sign * 5.2, -2.4, 7.6), 'upper_arm.' + side)
-    bone('hand.' + side, (sign * 5.2, -2.4, 7.6), (sign * 6.5, -3.2, 5.9), 'forearm.' + side)
-    
-    bone('thigh.' + side, (sign * 1.3, -1.5, 7.2), (sign * 1.6, -2.0, 5.4), 'pelvis')
-    bone('shin.' + side, (sign * 1.6, -2.0, 5.4), (sign * 2.5, -1.6, 2.6), 'thigh.' + side)
-    bone('foot.' + side, (sign * 2.5, -1.6, 2.6), (sign * 3.2, -1.8, 0.4), 'shin.' + side)
-
-# 5-segment tail chain
-bone('tail_01', (0, 1.2, 7.2), (0.3, 3.5, 7.5), 'pelvis')
-bone('tail_02', (0.3, 3.5, 7.5), (0.8, 6.2, 10.5), 'tail_01')
-bone('tail_03', (0.8, 6.2, 10.5), (0.8, 5.6, 13.8), 'tail_02')
-bone('tail_04', (0.8, 5.6, 13.8), (0.3, 2.2, 15.9), 'tail_03')
-bone('stinger', (0.3, 2.2, 15.9), (-0.98, -7.23, 13.44), 'tail_04')
+bone('root',(0,0,0),(0,0,1),deform=False)
+bone('pelvis',(0,-1.45,6.80),(0,-1.65,8.55),'root')
+bone('chest',(0,-1.65,8.55),(0,-2.10,10.30),'pelvis')
+bone('head',(0,-2.10,10.30),(0,-2.05,11.85),'chest')
+for sign,side in [(1,'L'),(-1,'R')]:
+    bone('shoulder.'+side,(sign*1.80,-1.80,10.10),(sign*2.60,-1.60,9.70),'chest')
+    bone('upper_arm.'+side,(sign*2.60,-1.60,9.70),(sign*3.65,-1.40,8.30),'shoulder.'+side)
+    bone('forearm.'+side,(sign*3.65,-1.40,8.30),(sign*4.50,-1.95,7.65),'upper_arm.'+side)
+    bone('hand.'+side,(sign*4.50,-1.95,7.65),(sign*7.35,-2.50,4.10),'forearm.'+side)
+    bone('thigh.'+side,(sign*1.40,-1.45,6.80),(sign*2.50,-1.30,3.40),'pelvis')
+    bone('shin.'+side,(sign*2.50,-1.30,3.40),(sign*3.10,-1.20,1.20),'thigh.'+side)
+    bone('foot.'+side,(sign*3.10,-1.20,1.20),(sign*3.25,-2.80,.35),'shin.'+side)
+for i,name in enumerate(TAIL_NAMES):
+    bone(name,TAIL_POINTS[i],TAIL_POINTS[i+1],TAIL_NAMES[i-1] if i else 'pelvis')
+bone('stinger',TAIL_POINTS[-1],STINGER_END,TAIL_NAMES[-1])
 
 bpy.ops.object.mode_set(mode='OBJECT')
 obj.parent = rig
@@ -273,24 +219,22 @@ def cylinder(center, radius, length, direction, name, mat):
 for side in ['L', 'R']:
     for name, radius in [('upper_arm', .42), ('forearm', .34), ('hand', .28), ('thigh', .48), ('shin', .38), ('foot', .26)]:
         sphere(rig.data.bones[name + '.' + side].head_local, radius, name + '.' + side)
-sphere((0, -1.85, 10.5), .42, 'chest')
-sphere((0, -1.0, 11.8), .30, 'head')
+sphere((0,-1.65,8.55),.40,'chest')
+sphere((0,-2.10,10.30),.32,'head')
 
-# Tail joint vertebrae
-sphere((0, 1.2, 7.2), .45, 'tail_01')
-sphere((0.3, 3.5, 7.5), .42, 'tail_02')
-sphere((0.8, 6.2, 10.5), .38, 'tail_03')
-sphere((0.8, 5.6, 13.8), .35, 'tail_04')
-sphere((0.3, 2.2, 15.9), .32, 'stinger')
+# Small internal couplings cover the rotating seams without replacing the
+# source armor or extending a joint with bone translation.
+for i,name in enumerate(TAIL_NAMES+['stinger']):
+    sphere(TAIL_POINTS[i],.34 if i<len(TAIL_NAMES) else .38,name)
 
-# Stinger rail cannon nozzle and muzzle empty
-direction = Vector((0, -1, -0.05)).normalized()
-center = Vector((-0.98, -7.23, 13.44))
-cylinder(center, .18, .9, direction, 'stinger', joint)
-cylinder(center + direction * .45, .22, .12, direction, 'stinger', trim)
-cylinder(center + direction * .52, .15, .04, direction, 'stinger', glow)
+# The nozzle sits inside the source stinger's open prongs, along its barrel.
+direction=BARREL_AXIS
+center=MUZZLE_CENTER
+cylinder(center,.15,.45,direction,'stinger',joint)
+cylinder(center+direction*.225,.18,.08,direction,'stinger',trim)
+cylinder(center+direction*.275,.13,.025,direction,'stinger',glow)
 
-bpy.ops.object.empty_add(type='ARROWS', location=center + direction * .56)
+bpy.ops.object.empty_add(type='ARROWS', location=center + direction * .30)
 muzzle = bpy.context.object
 muzzle.name = 'Muzzle_Stinger'
 muzzle.rotation_euler = direction.to_track_quat('-Z', 'Y').to_euler()
@@ -339,7 +283,7 @@ from scorpio_motions import build_scorpio_motions
 motion_report = build_scorpio_motions(rig, obj)
 (OUT / 'bake-report.json').write_text(json.dumps(motion_report, indent=2))
 
-rig['README'] = 'SCORPIO-05, 17m scorpion predator mecha. Articulated hydraulic claws and 5-segment plasma stinger tail. Six baked motions.'
+rig['README'] = 'SCORPIO-05, 17m scorpion predator mecha. Articulated hydraulic claws and anatomically articulated plasma stinger tail. Six baked motions.'
 neutral()
 scene.frame_set(1)
 scene.frame_start = 1
@@ -441,7 +385,7 @@ bpy.ops.object.select_all(action='DESELECT')
 rig.select_set(True)
 bpy.context.view_layer.objects.active = rig
 rig.animation_data.action = bpy.data.actions['StingerStrike']
-scene.frame_set(75)
+scene.frame_set(1)
 
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT / 'blender/SCORPIO-05.blend'))
 scene.render.filepath = str(OUT / 'scorpio-05-beauty.png')

@@ -44,7 +44,7 @@ export const characters = {
     effects:{muzzleName:'Muzzle_L',forearmName:'forearmL',handName:'handL',color:'#ffcc83',flashColor:'#ffe8b8',interval:.48,useMuzzleDirection:true,muzzleAxis:[0,-1,0]},
   },
   'scorpio-05': {
-    name: 'SCORPIO', number: '05', model: `${import.meta.env.BASE_URL}models/scorpio-05.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-scorpio-05.png`,
+    name: 'SCORPIO', number: '05', model: `${import.meta.env.BASE_URL}models/scorpio-05.glb?v=2`, concept: `${import.meta.env.BASE_URL}concept-scorpio-05.png`,
     className: 'PREDATOR CLASS / SCORPION MECHA', height: '17.0', condition: 'BLACKENED CHITIN / VENOM EMISSION',
     tagline: ['Predator of the dunes.', 'Silent sting.'],
     description: ['Hydraulic pincer claws. Segmented plasma tail.', 'Built for ambush and lethal precision.'],
@@ -62,7 +62,7 @@ export const characters = {
       flashRadius: .32,
       interval: .48,
       useMuzzleDirection: true,
-      muzzleAxis: [0, 0, -1]
+      muzzleAxis: [0, -1, 0]
     },
   },
 };

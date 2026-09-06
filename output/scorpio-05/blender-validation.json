@@ -15,11 +15,24 @@
   ],
   "isolation": [
     {
-      "bone": "upper_arm.L",
+      "bone": "head",
       "displacement_m": {
+        "head": 1.2604994773864746,
         "legs": 0.0,
         "torso": 0.0,
-        "left_arm": 5.5145392417907715,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "tail": 0.0,
+        "stinger": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "head": 0.0,
+        "legs": 0.0,
+        "torso": 0.0,
+        "left_arm": 5.228238582611084,
         "right_arm": 0.0,
         "tail": 0.0,
         "stinger": 0.0
@@ -28,10 +41,11 @@
     {
       "bone": "upper_arm.R",
       "displacement_m": {
+        "head": 0.0,
         "legs": 0.0,
         "torso": 0.0,
         "left_arm": 0.0,
-        "right_arm": 5.599799156188965,
+        "right_arm": 5.30019474029541,
         "tail": 0.0,
         "stinger": 0.0
       }
@@ -39,7 +53,8 @@
     {
       "bone": "thigh.L",
       "displacement_m": {
-        "legs": 4.155410289764404,
+        "head": 0.0,
+        "legs": 3.810368061065674,
         "torso": 0.0,
         "left_arm": 0.0,
         "right_arm": 0.0,
@@ -50,7 +65,8 @@
     {
       "bone": "thigh.R",
       "displacement_m": {
-        "legs": 4.152898788452148,
+        "head": 0.0,
+        "legs": 3.800330638885498,
         "torso": 0.0,
         "left_arm": 0.0,
         "right_arm": 0.0,
@@ -61,75 +77,101 @@
     {
       "bone": "tail_02",
       "displacement_m": {
+        "head": 0.0,
         "legs": 0.0,
         "torso": 0.0,
         "left_arm": 0.0,
         "right_arm": 0.0,
-        "tail": 6.163515567779541,
-        "stinger": 10.028280258178711
+        "tail": 7.319896221160889,
+        "stinger": 8.574767112731934
       }
     },
     {
       "bone": "stinger",
       "displacement_m": {
+        "head": 0.0,
         "legs": 0.0,
         "torso": 0.0,
         "left_arm": 0.0,
         "right_arm": 0.0,
         "tail": 0.0,
-        "stinger": 8.062276840209961
+        "stinger": 3.3955256938934326
       }
     }
   ],
   "animations": [
     {
       "name": "Sentinel",
-      "lowest_vertex_m": 0.003000108525156975,
-      "rigid_edge_error_m": 6.906688213348389e-06,
-      "loop_error_m": 1.5838371295687643e-17,
-      "max_displacement_m": 3.1367087364196777,
-      "max_ground_clearance_m": 0.003000108525156975
+      "joint_gap_m": 0,
+      "non_root_translation_m": 0,
+      "max_half_frame_angular_step_rad": 0.000976562509701277,
+      "lowest_vertex_m": 0.0029997765086591244,
+      "rigid_edge_error_m": 6.623566150665283e-06,
+      "loop_error_m": 1.4100617029946442e-18,
+      "max_displacement_m": 0.2124474197626114,
+      "max_ground_clearance_m": 0.0029997765086591244
     },
     {
       "name": "StingerStrike",
-      "lowest_vertex_m": 0.003000108525156975,
-      "rigid_edge_error_m": 4.813075065612793e-06,
-      "loop_error_m": 2.4771547317504883,
-      "max_displacement_m": 17.431320190429688,
-      "max_ground_clearance_m": 0.003000108525156975
+      "joint_gap_m": 2.5317945522841704e-06,
+      "non_root_translation_m": 2.2492363767758854e-06,
+      "max_half_frame_angular_step_rad": 0.0187083143605176,
+      "lowest_vertex_m": 0.0029997765086591244,
+      "rigid_edge_error_m": 6.377696990966797e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 5.79453706741333,
+      "max_ground_clearance_m": 0.0029997765086591244
     },
     {
       "name": "ClawSlash",
-      "lowest_vertex_m": 0.003000108525156975,
-      "rigid_edge_error_m": 4.954636096954346e-06,
-      "loop_error_m": 4.1388139724731445,
-      "max_displacement_m": 8.876663208007812,
-      "max_ground_clearance_m": 0.003000108525156975
+      "joint_gap_m": 1.5266237824995157e-06,
+      "non_root_translation_m": 1.5125963140069866e-06,
+      "max_half_frame_angular_step_rad": 0.09014281435570491,
+      "lowest_vertex_m": 0.0029997765086591244,
+      "rigid_edge_error_m": 5.930662155151367e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 8.514208793640137,
+      "max_ground_clearance_m": 0.0029997765086591244
     },
     {
       "name": "Run",
-      "lowest_vertex_m": 0.0029994959477335215,
-      "rigid_edge_error_m": 6.511807441711426e-06,
+      "joint_gap_m": 2.1457672119140625e-06,
+      "non_root_translation_m": 2.431401974483864e-06,
+      "max_half_frame_angular_step_rad": 0.10785139370965233,
+      "lowest_vertex_m": 0.0029995664954185486,
+      "rigid_edge_error_m": 7.778406143188477e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 6.23305082321167,
-      "max_ground_clearance_m": 0.039211489260196686
+      "max_displacement_m": 4.391242027282715,
+      "max_ground_clearance_m": 0.025675177574157715
     },
     {
       "name": "KneelFire",
-      "lowest_vertex_m": 1.9073486328125e-06,
-      "rigid_edge_error_m": 4.857778549194336e-06,
+      "joint_gap_m": 2.4145399451886527e-06,
+      "non_root_translation_m": 2.707914517307412e-06,
+      "max_half_frame_angular_step_rad": 0.028438168825068673,
+      "lowest_vertex_m": 8.735987648833543e-07,
+      "rigid_edge_error_m": 6.161630153656006e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 15.304773330688477,
-      "max_ground_clearance_m": 0.02978992462158203
+      "max_displacement_m": 6.586419582366943,
+      "max_ground_clearance_m": 0.0036962032318115234
     },
     {
       "name": "Backflip",
-      "lowest_vertex_m": 0.002999770687893033,
-      "rigid_edge_error_m": 5.990266799926758e-06,
-      "loop_error_m": 6.294430932030082e-06,
-      "max_displacement_m": 28.227588653564453,
-      "max_ground_clearance_m": 15.310567855834961
+      "joint_gap_m": 4.2985653238541585e-06,
+      "non_root_translation_m": 3.844384073399806e-06,
+      "max_half_frame_angular_step_rad": 0.1301258540132543,
+      "lowest_vertex_m": 0.0030000770930200815,
+      "rigid_edge_error_m": 5.543231964111328e-06,
+      "loop_error_m": 3.7242173220874975e-06,
+      "max_displacement_m": 21.536884307861328,
+      "max_ground_clearance_m": 8.945368766784668
     }
   ],
+  "kneel_contact_m": {
+    "foot.L": 8.735987648833543e-07,
+    "foot.R": 0.00675201416015625,
+    "thigh.R": 0.001878976821899414,
+    "shin.R": 0.10799622535705566
+  },
   "packed_textures": true
 }

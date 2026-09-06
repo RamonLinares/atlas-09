@@ -2,16 +2,16 @@
   "source": "assets/scorpio-05/retopo/09644c4a-ec3f-45cb-be11-91056907e615-model_url.glb",
   "height_m": 17.0,
   "source_triangles": 24393,
-  "vertices": 15709,
-  "triangles": 28877,
-  "bones": 23,
+  "vertices": 16522,
+  "triangles": 30445,
+  "bones": 30,
   "materials": [
     "SCORPIO blackened chitin, desert bronze \u2014 venom emission",
     "SCORPIO graphite actuators",
     "SCORPIO desert bronze trim",
     "SCORPIO venom emission"
   ],
-  "boundary_edges": 2635,
+  "boundary_edges": 2651,
   "textures": [
     {
       "semantic": "BaseColor",
@@ -72,7 +72,7 @@
       "name": "Run",
       "frames": [
         1.0,
-        38.0
+        43.0
       ]
     },
     {

@@ -1,5 +1,5 @@
 """Validate rigid binding, anatomy isolation, UVs, and swept motion geometry for SCORPIO-05."""
-import bpy, json, numpy as np
+import bpy, json, math, numpy as np
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,8 +47,9 @@ clear()
 p = sample()
 
 domains = {
+    'head': np.where((abs(p[:, 0]) < .8) & (p[:, 2] > 10.8) & (p[:, 2] < 11.6) & (p[:, 1] < -1.7))[0],
     'legs': np.where((abs(p[:, 0]) < 2.5) & (p[:, 2] > 2.0) & (p[:, 2] < 6.0) & (p[:, 1] > -3.0) & (p[:, 1] < 0))[0],
-    'torso': np.where((abs(p[:, 0]) < 1.0) & (p[:, 2] > 9.0) & (p[:, 2] < 11.0) & (p[:, 1] < 0))[0],
+    'torso': np.where((abs(p[:, 0]) < 1.0) & (p[:, 2] > 9.0) & (p[:, 2] < 9.8) & (p[:, 1] < 0))[0],
     'left_arm': np.where((p[:, 0] > 4.5) & (p[:, 2] > 5.0) & (p[:, 2] < 8.0))[0],
     'right_arm': np.where((p[:, 0] < -4.5) & (p[:, 2] > 5.0) & (p[:, 2] < 8.0))[0],
     'tail': np.where((abs(p[:, 0]) < 1.5) & (p[:, 1] > 4.0) & (p[:, 2] > 9.0) & (p[:, 2] < 15.0))[0],
@@ -58,6 +59,7 @@ assert all(len(v) > 15 for v in domains.values()), {k: len(v) for k, v in domain
 
 report['isolation'] = []
 isolation_tests = [
+    ('head', ['head']),
     ('upper_arm.L', ['left_arm']),
     ('upper_arm.R', ['right_arm']),
     ('thigh.L', ['legs']),
@@ -80,10 +82,16 @@ for name, moved in isolation_tests:
 clear()
 edges = np.array([e.vertices[:] for e in o.data.edges])
 report['animations'] = []
+part_ids = {name: np.array([v.index for v in o.data.vertices if o.vertex_groups[v.groups[0].group].name == name]) for name in ['foot.L','foot.R','thigh.R','shin.R']}
 
 for name in ['Sentinel', 'StingerStrike', 'ClawSlash', 'Run', 'KneelFire', 'Backflip']:
     rig.animation_data.action = bpy.data.actions[name]
     start, end = map(int, rig.animation_data.action.frame_range)
+    if name == 'KneelFire':
+        hold=sample(100)
+        report['kneel_contact_m']={k:float(hold[ids,2].min()) for k,ids in part_ids.items()}
+        assert abs(report['kneel_contact_m']['foot.L']) < .03, 'Front boot floats during firing'
+        assert abs(report['kneel_contact_m']['thigh.R']) < .03, 'Rear knee shield does not contact the floor'
     first = sample(start)
     last = sample(end)
     base = np.linalg.norm(first[edges[:, 0]] - first[edges[:, 1]], axis=1)
@@ -91,17 +99,39 @@ for name in ['Sentinel', 'StingerStrike', 'ClawSlash', 'Run', 'KneelFire', 'Back
     stretch = 0
     motion = 0
     maxclear = 0
+    joint_error = 0
+    translation_error = 0
+    angular_step = 0
+    previous = None
+    largest_step = None
     for frame in np.arange(start, end + .1, .5):
         q = sample(float(frame))
         assert np.isfinite(q).all()
+        rotations = {b.name:b.matrix.to_quaternion() for b in rig.pose.bones}
+        if previous:
+            for k,v in rotations.items():
+                step=2*math.acos(min(1,abs(previous[k].dot(v))))
+                if step>angular_step: angular_step=step;largest_step=(float(frame),k)
+        previous = rotations
+        for b in rig.pose.bones:
+            if b.name != 'root': translation_error = max(translation_error,b.location.length)
+            if b.parent and (b.bone.head_local-b.parent.bone.tail_local).length < 1e-5 and (b.name.startswith(('tail_', 'shin.', 'foot.', 'forearm.', 'hand.')) or b.name == 'stinger'):
+                joint_error = max(joint_error,(b.head-b.parent.tail).length)
+
         low = min(low, float(q[:, 2].min()))
         maxclear = max(maxclear, float(q[:, 2].min()))
         stretch = max(stretch, float(abs(np.linalg.norm(q[edges[:, 0]] - q[edges[:, 1]], axis=1) - base).max()))
         motion = max(motion, float(np.linalg.norm(q - first, axis=1).max()))
     closure = float(np.linalg.norm(first - last, axis=1).max())
+    assert closure < .0001, (name, 'Loop discontinuity', closure)
+    assert joint_error < .0001 and translation_error < .0001, (name, joint_error, translation_error)
+    assert angular_step < .35, (name, 'Pose discontinuity', angular_step,largest_step)
     assert low > -.005 and stretch < .0001 and motion > .01, (name, low, stretch, motion)
     report['animations'].append({
         'name': name,
+        'joint_gap_m': joint_error,
+        'non_root_translation_m': translation_error,
+        'max_half_frame_angular_step_rad': angular_step,
         'lowest_vertex_m': low,
         'rigid_edge_error_m': stretch,
         'loop_error_m': closure,
