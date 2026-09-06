@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Run",
+    "frames": 41,
+    "duration": 1.3333333333333333,
+    "max_ground_correction_m": 2.1010637283325195e-06,
+    "interpolation_lift_m": 0.004945853233337402
+  },
+  {
+    "name": "KneelFire",
+    "frames": 241,
+    "duration": 8.0,
+    "max_ground_correction_m": 0.396193265914917,
+    "interpolation_lift_m": 0.003986684579402208
+  },
+  {
+    "name": "Backflip",
+    "frames": 109,
+    "duration": 3.6,
+    "max_ground_correction_m": 3.150450993416598e-06,
+    "interpolation_lift_m": 0.014250802315771579
+  },
+  {
+    "name": "Sentinel",
+    "frames": 181,
+    "duration": 6.0,
+    "interpolation_lift_m": 0.0030001716941682162
+  },
+  {
+    "name": "BladeSalute",
+    "frames": 181,
+    "duration": 6.0,
+    "interpolation_lift_m": 0.0030001716941682162
+  },
+  {
+    "name": "SwordSlash",
+    "frames": 121,
+    "duration": 4.0,
+    "interpolation_lift_m": 0.0030001716941682162
+  }
+]

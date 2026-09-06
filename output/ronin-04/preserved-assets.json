@@ -1,0 +1,17 @@
+[
+  {
+    "asset": "atlas-09",
+    "unchanged": true,
+    "sha256": "b506f058331c43277be9418968a52503b64cf5c1ff9483597151af31e26c8a4c"
+  },
+  {
+    "asset": "aether-02",
+    "unchanged": true,
+    "sha256": "0a96882bdc925f306e08ac9101d7057e4d5c39babcc2da2342526a1ebf65ee5e"
+  },
+  {
+    "asset": "seraph-03",
+    "unchanged": true,
+    "sha256": "b844b36f4ed7b64c29553c9c606dc1bc163067e36cb93bdc4f494ccb28372680"
+  }
+]

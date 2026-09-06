@@ -3,8 +3,8 @@ import * as THREE from 'three';
 /** Visual pulse rounds and contact effects, synchronized to the baked clips. */
 export function createMotionFX(scene, model, options = {}) {
   const group = new THREE.Group(); group.name = 'Motion effects'; scene.add(group);
-  const muzzle = model.getObjectByName('Muzzle_R');
-  const forearm = model.getObjectByName('forearmR'), hand = model.getObjectByName('handR');
+  const muzzle = model.getObjectByName(options.muzzleName || 'Muzzle_R');
+  const forearm = model.getObjectByName(options.forearmName || 'forearmR'), hand = model.getObjectByName(options.handName || 'handR');
   const forearmPosition = new THREE.Vector3();
   const shotMaterial = new THREE.MeshBasicMaterial({ color: options.color || '#9dfaff', transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
   const shots = Array.from({length: 5}, () => {

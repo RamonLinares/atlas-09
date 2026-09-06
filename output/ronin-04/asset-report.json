@@ -1,0 +1,85 @@
+{
+  "source": "assets/ronin-04/retopo/d544a72e-1082-4fbd-8f88-7183fe80350b-model_url.glb",
+  "height_m": 16,
+  "source_triangles": 24466,
+  "vertices": 15025,
+  "triangles": 27381,
+  "bones": 21,
+  "materials": [
+    "RONIN crimson lacquer, aged gold and steel",
+    "RONIN graphite actuators",
+    "RONIN aged gold trim",
+    "RONIN wrist reactor emission"
+  ],
+  "boundary_edges": 2625,
+  "textures": [
+    {
+      "semantic": "BaseColor",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/ronin-04/Ronin_BaseColor.jpg"
+    },
+    {
+      "semantic": "ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/ronin-04/Ronin_ORM.png"
+    },
+    {
+      "semantic": "Normal",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "/Users/ramonlinarespallares/Documents/BlendSol/public/textures/ronin-04/Ronin_Normal.jpg"
+    }
+  ],
+  "animations": [
+    {
+      "name": "Backflip",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "BladeSalute",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "Run",
+      "frames": [
+        1.0,
+        41.0
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    },
+    {
+      "name": "SwordSlash",
+      "frames": [
+        1.0,
+        121.0
+      ]
+    }
+  ]
+}

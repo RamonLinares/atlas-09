@@ -1,0 +1,135 @@
+{
+  "rigid_vertices": true,
+  "rigid_faces": true,
+  "uv_maps": [
+    {
+      "name": "Ronin_Surface",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    },
+    {
+      "name": "Ronin_Lightmap",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    }
+  ],
+  "isolation": [
+    {
+      "bone": "upper_arm.R",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "sword": 9.720471382141113,
+        "left_arm": 0.0,
+        "right_arm": 4.234111785888672,
+        "head": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "sword": 0.0,
+        "left_arm": 4.492622375488281,
+        "right_arm": 0.0,
+        "head": 0.0
+      }
+    },
+    {
+      "bone": "thigh.R",
+      "displacement_m": {
+        "legs": 5.806792736053467,
+        "torso": 0.0,
+        "sword": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "head": 0.0
+      }
+    },
+    {
+      "bone": "thigh.L",
+      "displacement_m": {
+        "legs": 5.811724662780762,
+        "torso": 0.0,
+        "sword": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "head": 0.0
+      }
+    },
+    {
+      "bone": "head",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "sword": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "head": 2.3975839614868164
+      }
+    },
+    {
+      "bone": "sword.R",
+      "displacement_m": {
+        "legs": 0.0,
+        "torso": 0.0,
+        "sword": 5.916971683502197,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "head": 0.0
+      }
+    }
+  ],
+  "animations": [
+    {
+      "name": "Sentinel",
+      "lowest_vertex_m": 0.0030000878032296896,
+      "rigid_edge_error_m": 3.3080577850341797e-06,
+      "loop_error_m": 1.9594349475926563e-18,
+      "max_displacement_m": 0.06334047764539719,
+      "max_ground_clearance_m": 0.0030000878032296896
+    },
+    {
+      "name": "BladeSalute",
+      "lowest_vertex_m": 0.0030000878032296896,
+      "rigid_edge_error_m": 3.2335519790649414e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 19.51112937927246,
+      "max_ground_clearance_m": 0.0030000878032296896
+    },
+    {
+      "name": "SwordSlash",
+      "lowest_vertex_m": 0.0030000878032296896,
+      "rigid_edge_error_m": 3.516674041748047e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 19.309600830078125,
+      "max_ground_clearance_m": 0.0030000878032296896
+    },
+    {
+      "name": "Run",
+      "lowest_vertex_m": 0.0029995350632816553,
+      "rigid_edge_error_m": 3.7550926208496094e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 5.075571537017822,
+      "max_ground_clearance_m": 0.03291158378124237
+    },
+    {
+      "name": "KneelFire",
+      "lowest_vertex_m": 1.8027171222456673e-07,
+      "rigid_edge_error_m": 3.129243850708008e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 12.79743480682373,
+      "max_ground_clearance_m": 0.007814710028469563
+    },
+    {
+      "name": "Backflip",
+      "lowest_vertex_m": 0.0029995774384588003,
+      "rigid_edge_error_m": 5.140900611877441e-06,
+      "loop_error_m": 3.053247610296239e-06,
+      "max_displacement_m": 29.01616096496582,
+      "max_ground_clearance_m": 17.974395751953125
+    }
+  ],
+  "packed_textures": true
+}

@@ -1,18 +1,19 @@
 # FORGE — Character Lab
 
-Three original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
+Four original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
 
 | Character | Design | Blender source | Animated model |
 | --- | --- | --- | --- |
 | ATLAS / 09 | Battle-worn 18-metre heavy mecha with olive armor | [ATLAS-09.blend](blender/ATLAS-09.blend) | [atlas-09.glb](public/models/atlas-09.glb) |
 | AETHER / 02 | Athletic 14-metre mecha with streamlined white steel and opaque smoked glass | [AETHER-02.blend](blender/AETHER-02.blend) | [aether-02.glb](public/models/aether-02.glb) |
 | SERAPH / 03 | Titanium mecha with metal wings, 20-metre wingtip height, and a heavy right cannon arm | [SERAPH-03.blend](blender/SERAPH-03.blend) | [seraph-03.glb](public/models/seraph-03.glb) |
+| RONIN / 04 | 16-metre samurai mecha with crimson armor, gold crescent helmet and katana | [RONIN-04.blend](blender/RONIN-04.blend) | [ronin-04.glb](public/models/ronin-04.glb) |
 
-Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS and AETHER have seven motions; SERAPH has six, including wing deployment and flight. The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH framed for its larger wing and cannon envelope; their physical design heights remain embedded in the source assets.
+Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS and AETHER have seven motions; SERAPH has six, including wing deployment and flight; RONIN has six, including a blade salute and sword slash. The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH framed for its larger wing and cannon envelope; their physical design heights remain embedded in the source assets.
 
 Direct links can select a character and motion, for example `/?character=aether-02&motion=Run`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [AETHER](https://ramonlinares.github.io/atlas-09/?character=aether-02). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
 
-The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md) and [SERAPH-03.md](SERAPH-03.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
+The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md) , [SERAPH-03.md](SERAPH-03.md), and [RONIN-04.md](RONIN-04.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
 
 ## Open the result
 
