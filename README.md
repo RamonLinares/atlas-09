@@ -9,7 +9,7 @@ Two original mecha characters, reconstructed and retopologized with Tripo, prepa
 
 Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and five clips. The viewer releases the previous character's graphics resources when switching. Both are normalized to the same display height for inspection; their physical design heights remain embedded in the source assets.
 
-Direct links can select a character and motion, for example `/?character=aether-02&motion=Run`. The production preview for this session is `http://127.0.0.1:5186/?character=aether-02`.
+Direct links can select a character and motion, for example `/?character=aether-02&motion=Run`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [AETHER](https://ramonlinares.github.io/atlas-09/?character=aether-02). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
 
 AETHER's full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
 
