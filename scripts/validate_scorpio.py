@@ -93,6 +93,20 @@ for name in ['Sentinel', 'StingerStrike', 'ClawSlash', 'Run', 'KneelFire', 'Back
         assert abs(report['kneel_contact_m']['foot.L']) < .03, 'Front boot floats during firing'
         assert abs(report['kneel_contact_m']['thigh.R']) < .03, 'Rear knee shield does not contact the floor'
     first = sample(start)
+    if name in ['StingerStrike','ClawSlash']:
+        part='stinger' if name == 'StingerStrike' else 'hand.R'
+        ids=np.array([v.index for v in o.data.vertices if o.vertex_groups[v.groups[0].group].name == part])
+        chest_rest=rig.pose.bones['chest'].matrix.to_quaternion()
+        impact=sample(65 if name == 'StingerStrike' else 32)
+        chest_turn=2*math.acos(min(1,abs(chest_rest.dot(rig.pose.bones['chest'].matrix.to_quaternion()))))
+        report.setdefault('attack_torso_rotation_deg',{})[name]=math.degrees(chest_turn)
+        assert chest_turn>.09, (name, 'Torso does not drive the strike')
+        for foot in ['foot.L','foot.R']:
+            foot_motion=float(np.linalg.norm(impact[part_ids[foot]]-first[part_ids[foot]],axis=1).max())
+            assert foot_motion<.01, (name, foot, 'Foot moved during planted strike', foot_motion)
+        reach=float(first[ids,1].min()-impact[ids,1].min())
+        report.setdefault('attack_forward_reach_m',{})[name]=reach
+        assert reach>2, (name, 'Strike does not reach forward', reach)
     last = sample(end)
     base = np.linalg.norm(first[edges[:, 0]] - first[edges[:, 1]], axis=1)
     low = 1e9

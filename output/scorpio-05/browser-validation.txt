@@ -1,5 +1,5 @@
 ### Result
-{"inventory":{"character":"scorpio-05","triangles":30445,"boneCount":30,"materials":4,"clips":[{"name":"Backflip","duration":3.5999999046325684,"tracks":90},{"name":"ClawSlash","duration":4,"tracks":90},{"name":"KneelFire","duration":8,"tracks":90},{"name":"Run","duration":1.399999976158142,"tracks":90},{"name":"Sentinel","duration":6,"tracks":90},{"name":"StingerStrike","duration":6,"tracks":90}],"motionFX":{"muzzleFound":true,"visibleProjectiles":0,"flash":false},"activeClip":"Sentinel","clipTime":0.06669999999999993},"reports":[{"clip":"Sentinel","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"StingerStrike","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"ClawSlash","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"Run","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"KneelFire","width":1440,"overflow":false,"drawCalls":127,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"Backflip","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"Sentinel","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"StingerStrike","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"ClawSlash","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"Run","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"KneelFire","width":390,"overflow":false,"drawCalls":127,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"},{"clip":"Backflip","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=2"}],"playbackAdvanced":true,"errors":[]}
+{"inventory":{"character":"scorpio-05","triangles":30445,"boneCount":30,"materials":4,"clips":[{"name":"Backflip","duration":3.5999999046325684,"tracks":90},{"name":"ClawSlash","duration":4,"tracks":90},{"name":"KneelFire","duration":8,"tracks":90},{"name":"Run","duration":1.399999976158142,"tracks":90},{"name":"Sentinel","duration":6,"tracks":90},{"name":"StingerStrike","duration":6,"tracks":90}],"motionFX":{"muzzleFound":true,"visibleProjectiles":0,"flash":false},"activeClip":"Sentinel","clipTime":0.01669999999999999},"reports":[{"clip":"Sentinel","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"StingerStrike","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"ClawSlash","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"Run","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"KneelFire","width":1440,"overflow":false,"drawCalls":127,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"Backflip","width":1440,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"Sentinel","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"StingerStrike","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"ClawSlash","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"Run","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"KneelFire","width":390,"overflow":false,"drawCalls":127,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"},{"clip":"Backflip","width":390,"overflow":false,"drawCalls":126,"modelDownload":"http://127.0.0.1:5175/models/scorpio-05.glb?v=3"}],"playbackAdvanced":true,"errors":[]}
 ### Ran Playwright code
 ```js
 await (async page => {
@@ -11,8 +11,8 @@ await (async page => {
   if (inventory.clips.length !== 6) throw Error('Incorrect Scorpio clips: ' + inventory.clips.length);
   const poses = [
     ['IDLE', 'Sentinel', 0],
-    ['STINGER STRIKE', 'StingerStrike', 2.8],
-    ['PINCER STRIKE', 'ClawSlash', 1.8],
+    ['STINGER STRIKE', 'StingerStrike', 2.12],
+    ['PINCER STRIKE', 'ClawSlash', 1.04],
     ['RUN', 'Run', 0.35],
     ['KNEEL & FIRE', 'KneelFire', 3.1],
     ['BACKFLIP', 'Backflip', 1.8]
@@ -45,6 +45,12 @@ await (async page => {
     await page.getByRole('button', { name: label, exact: true }).click();
     await page.waitForFunction(id => atlas.stats.character === id, id);
     if (await page.locator('[data-clip]').count() !== count) throw Error('Incorrect buttons after swap to ' + id);
+  }
+  for (const [label,time] of [['STINGER STRIKE',2.12],['PINCER STRIKE',1.04]]) {
+    await page.getByRole('button',{name:label,exact:true}).click();
+    await page.getByRole('button',{name:'Pause animation',exact:true}).click();
+    await page.evaluate(t=>{atlas.mixer.setTime(t);atlas.camera.position.copy(atlas.controls.target).add({x:12,y:3,z:2});atlas.controls.update();},time);
+    await page.screenshot({path:`output/playwright/scorpio-side-${label.replaceAll(' ','-')}.png`});
   }
   await page.getByRole('button', { name: 'STINGER STRIKE', exact: true }).click();
   const before = await page.evaluate(() => atlas.mixer.time);

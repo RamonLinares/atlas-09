@@ -26,19 +26,6 @@ def build_scorpio_motions(rig,obj):
     def aim(name,direction):
         b=bones[name];q=axis(name).rotation_difference(Vector(direction).normalized())@b.bone.matrix_local.to_quaternion()
         b.matrix=Matrix.Translation(b.head)@q.to_matrix().to_4x4();update()
-    def arm(side,target,weight=1):
-        if weight<=1e-8:return
-        upper=bones['upper_arm.'+side];lower=bones['forearm.'+side]
-        h=upper.head.copy();v=Vector(target)-h;l1=upper.bone.length;l2=lower.bone.length
-        dist=min(l1+l2-.003,max(abs(l1-l2)+.003,v.length));d=v.normalized()
-        pole=Vector((1 if side=='L' else -1,0,-.4));pole-=d*pole.dot(d);pole.normalize()
-        along=(l1*l1-l2*l2+dist*dist)/(2*dist)
-        elbow=h+d*along+pole*math.sqrt(max(0,l1*l1-along*along))
-        aim(upper.name,elbow-h);aim(lower.name,Vector(target)-lower.head)
-        for b in [upper,lower]:
-            b.rotation_euler=Quaternion().slerp(b.rotation_euler.to_quaternion(),weight).to_euler()
-            b.location=(0,0,0)
-        update()
     def front_leg(target):
         h=bones['thigh.L'].head.copy();a=Vector(target)
         l1=bones['thigh.L'].bone.length;l2=bones['shin.L'].bone.length
@@ -111,31 +98,60 @@ def build_scorpio_motions(rig,obj):
         bones['chest'].rotation_euler.x=.004*math.sin(t)
         bones['head'].rotation_euler.z=.018*math.sin(t)
         tail_pose(.025*math.sin(t),.0025,t)
+    def torso(pitch,yaw=0):
+        b=bones['chest']
+        b.matrix=Matrix.Translation(b.head)@Matrix.Rotation(yaw,4,'Z')@Matrix.Rotation(pitch,4,'X')@b.bone.matrix_local.to_quaternion().to_matrix().to_4x4()
+        update()
     def stinger_strike(u):
         neutral()
-        q=curve(u,[(0,0),(.24,-.7),(.34,-.7),(.46,1.2),(.56,1.2),(.86,0),(1,0)])
-        threat=curve(u,[(0,0),(.20,.65),(.62,.65),(.90,0),(1,0)])
-        bones['chest'].rotation_euler.x=.015*q;update()
-        carry(threat);tail_pose(q)
-        aim('stinger',Matrix.Rotation(.04*q,3,'X')@BARREL_AXIS)
-        bones['head'].rotation_euler.x=-.015*q
+        # Rearward cock, a 0.24-second whip, then a measured return.
+        wind=curve(u,[(0,0),(.22,1),(.30,1),(.34,0),(1,0)])
+        hit=curve(u,[(0,0),(.30,0),(.34,1),(.38,1),(.72,0),(1,0)])
+        ready=curve(u,[(0,0),(.20,.75),(.44,.75),(.80,0),(1,0)])
+        torso(.12*hit-.065*wind)
+        carry(ready)
+        wind_angles=[-.16,-.06,-.03,0,.02,.02,.02,.02,.02,.02,.02]
+        hit_angles=[.35,.12,.10,.04,-.02,-.02,-.02,-.02,-.02,-.02,-.02]
+        for i,name in enumerate(TAIL_NAMES):
+            bone=bones[name];r=bone.bone.matrix_local.to_3x3()
+            bone.rotation_euler=(r.inverted()@Matrix.Rotation(wind_angles[i]*wind+hit_angles[i]*hit,3,'X')@r).to_euler()
+        update()
+        # Keep the stinger aligned with the whipping tail instead of cancelling
+        # its forward travel by independently aiming back at the rest direction.
+        bones['head'].rotation_euler.x=-.025*hit
     def claw_slash(u):
         neutral()
-        for sign,side,delay in [(-1,'R',0),(1,'L',.28)]:
+        pitch=yaw=0
+        for sign,delay in [(-1,0),(1,.38)]:
             t=u-delay
-            c=curve(t,[(0,0),(.18,.55),(.32,1),(.42,1),(.67,0)])
-            rest=Vector((sign*4.50,-1.95,7.65))
-            target=curve(t,[(0,rest),(.18,Vector((sign*4.70,-1.30,7.90))),
-                           (.32,Vector((sign*3.35,-3.70,7.90))),(.42,Vector((sign*3.35,-3.70,7.90))),(.67,rest)])
-            arm(side,target,smooth(min(1,c*1.4)))
-            aim('hand.'+side,axis('hand.'+side).lerp(Vector((sign*.23,-1,-.08)).normalized(),c))
+            ready=curve(t,[(0,0),(.16,1),(.31,1),(.58,0)])
+            hit=curve(t,[(0,0),(.19,0),(.25,1),(.29,1),(.58,0)])
+            yaw+=sign*(.12*ready-.34*hit)
+            pitch+=.105*hit-.035*ready
+        torso(pitch,yaw)
+        frame=body_frame()
+        for sign,side,delay in [(-1,'R',0),(1,'L',.38)]:
+            t=u-delay
+            ready=curve(t,[(0,0),(.16,1),(.31,1),(.58,0)])
+            hit=curve(t,[(0,0),(.19,0),(.25,1),(.29,1),(.58,0)])
+            # Authored joint orientations avoid an IK elbow branch flip during
+            # the fast reversal from the wide pullback to the forward hit.
+            for part,cock,contact in [
+                ('upper_arm',(sign*.95,.20,-.15),(sign*.18,-1,-.15)),
+                ('forearm',(sign*.85,.05,.50),(sign*.12,-1,.10)),
+                ('hand',(sign*.65,-.30,.45),(-sign*.15,-1,-.05))]:
+                name=part+'.'+side;bone=bones[name];rest=bone.bone.matrix_local.to_quaternion()
+                wind_q=axis(name).rotation_difference(Vector(cock).normalized())@rest
+                hit_q=axis(name).rotation_difference(Vector(contact).normalized())@rest
+                orientation=rest.slerp(wind_q,ready).slerp(hit_q,hit)
+                bone.matrix=Matrix.Translation(bone.head)@(frame@orientation.to_matrix()).to_4x4();update()
         tail_pose(-.06*math.sin(u*math.pi)**2,.002,u*math.tau)
     for name,frames,fn in [('Sentinel',181,idle),('StingerStrike',181,stinger_strike),('ClawSlash',121,claw_slash)]:
         rig.animation_data.action=None;previous={}
         for frame in range(1,frames+1):
             fn((frame-1)/(frames-1));update()
             for b in bones:
-                if b.name in previous:b.rotation_euler.make_compatible(previous[b.name])
+                if b.name in previous:b.rotation_euler=b.rotation_euler.to_quaternion().to_euler('XYZ',previous[b.name])
                 previous[b.name]=b.rotation_euler.copy()
                 b.keyframe_insert('rotation_euler',frame=frame,group=b.name)
                 b.keyframe_insert('location',frame=frame,group=b.name)

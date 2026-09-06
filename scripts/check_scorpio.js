@@ -7,8 +7,8 @@ async page => {
   if (inventory.clips.length !== 6) throw Error('Incorrect Scorpio clips: ' + inventory.clips.length);
   const poses = [
     ['IDLE', 'Sentinel', 0],
-    ['STINGER STRIKE', 'StingerStrike', 2.8],
-    ['PINCER STRIKE', 'ClawSlash', 1.8],
+    ['STINGER STRIKE', 'StingerStrike', 2.12],
+    ['PINCER STRIKE', 'ClawSlash', 1.04],
     ['RUN', 'Run', 0.35],
     ['KNEEL & FIRE', 'KneelFire', 3.1],
     ['BACKFLIP', 'Backflip', 1.8]

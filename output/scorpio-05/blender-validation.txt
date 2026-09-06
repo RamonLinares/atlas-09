@@ -1,4 +1,4 @@
-00:01.199  blend            | Read blend: "/Users/ramonlinarespallares/Documents/BlendSol/blender/SCORPIO-05.blend"
+00:01.477  blend            | Read blend: "/Users/ramonlinarespallares/Documents/BlendSol/blender/SCORPIO-05.blend"
 BLENDER_VALIDATION_SUCCESS {
   "rigid_vertices": true,
   "rigid_faces": true,
@@ -100,6 +100,14 @@ BLENDER_VALIDATION_SUCCESS {
       }
     }
   ],
+  "attack_torso_rotation_deg": {
+    "StingerStrike": 6.875501493208864,
+    "ClawSlash": 13.225377527727712
+  },
+  "attack_forward_reach_m": {
+    "StingerStrike": 2.784712314605713,
+    "ClawSlash": 4.729405403137207
+  },
   "kneel_contact_m": {
     "foot.L": 8.735987648833543e-07,
     "foot.R": 0.00675201416015625,

@@ -107,30 +107,30 @@
       "max_half_frame_angular_step_rad": 0.000976562509701277,
       "lowest_vertex_m": 0.0029997765086591244,
       "rigid_edge_error_m": 6.623566150665283e-06,
-      "loop_error_m": 1.4100617029946442e-18,
-      "max_displacement_m": 0.2124474197626114,
+      "loop_error_m": 9.5367431640625e-07,
+      "max_displacement_m": 0.21244798600673676,
       "max_ground_clearance_m": 0.0029997765086591244
     },
     {
       "name": "StingerStrike",
-      "joint_gap_m": 2.5317945522841704e-06,
-      "non_root_translation_m": 2.2492363767758854e-06,
-      "max_half_frame_angular_step_rad": 0.0187083143605176,
+      "joint_gap_m": 1.5078914929239175e-06,
+      "non_root_translation_m": 1.7192608239479013e-06,
+      "max_half_frame_angular_step_rad": 0.08894156259887927,
       "lowest_vertex_m": 0.0029997765086591244,
-      "rigid_edge_error_m": 6.377696990966797e-06,
+      "rigid_edge_error_m": 5.364418029785156e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 5.79453706741333,
+      "max_displacement_m": 6.904716968536377,
       "max_ground_clearance_m": 0.0029997765086591244
     },
     {
       "name": "ClawSlash",
-      "joint_gap_m": 1.5266237824995157e-06,
-      "non_root_translation_m": 1.5125963140069866e-06,
-      "max_half_frame_angular_step_rad": 0.09014281435570491,
+      "joint_gap_m": 2.3240079539873482e-06,
+      "non_root_translation_m": 2.1358100017510553e-06,
+      "max_half_frame_angular_step_rad": 0.21209892709877226,
       "lowest_vertex_m": 0.0029997765086591244,
       "rigid_edge_error_m": 5.930662155151367e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 8.514208793640137,
+      "max_displacement_m": 12.141778945922852,
       "max_ground_clearance_m": 0.0029997765086591244
     },
     {
@@ -167,6 +167,14 @@
       "max_ground_clearance_m": 8.945368766784668
     }
   ],
+  "attack_torso_rotation_deg": {
+    "StingerStrike": 6.875501493208864,
+    "ClawSlash": 13.225377527727712
+  },
+  "attack_forward_reach_m": {
+    "StingerStrike": 2.784712314605713,
+    "ClawSlash": 4.729405403137207
+  },
   "kneel_contact_m": {
     "foot.L": 8.735987648833543e-07,
     "foot.R": 0.00675201416015625,
