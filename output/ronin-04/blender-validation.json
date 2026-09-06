@@ -19,9 +19,9 @@
       "displacement_m": {
         "legs": 0.0,
         "torso": 0.0,
-        "sword": 9.720471382141113,
+        "sword": 9.720466613769531,
         "left_arm": 0.0,
-        "right_arm": 4.234111785888672,
+        "right_arm": 4.2341108322143555,
         "head": 0.0
       }
     },
@@ -31,7 +31,7 @@
         "legs": 0.0,
         "torso": 0.0,
         "sword": 0.0,
-        "left_arm": 4.492622375488281,
+        "left_arm": 4.492619037628174,
         "right_arm": 0.0,
         "head": 0.0
       }
@@ -74,7 +74,7 @@
       "displacement_m": {
         "legs": 0.0,
         "torso": 0.0,
-        "sword": 5.916971683502197,
+        "sword": 5.916970252990723,
         "left_arm": 0.0,
         "right_arm": 0.0,
         "head": 0.0
@@ -93,23 +93,23 @@
     {
       "name": "BladeSalute",
       "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 3.2335519790649414e-06,
+      "rigid_edge_error_m": 4.887580871582031e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 19.51112937927246,
+      "max_displacement_m": 18.453296661376953,
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
       "name": "SwordSlash",
       "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 3.516674041748047e-06,
+      "rigid_edge_error_m": 5.245208740234375e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 19.309600830078125,
+      "max_displacement_m": 18.573129653930664,
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
       "name": "Run",
       "lowest_vertex_m": 0.0029995350632816553,
-      "rigid_edge_error_m": 3.7550926208496094e-06,
+      "rigid_edge_error_m": 3.814697265625e-06,
       "loop_error_m": 0.0,
       "max_displacement_m": 5.075571537017822,
       "max_ground_clearance_m": 0.03291158378124237
@@ -117,16 +117,16 @@
     {
       "name": "KneelFire",
       "lowest_vertex_m": 1.8027171222456673e-07,
-      "rigid_edge_error_m": 3.129243850708008e-06,
+      "rigid_edge_error_m": 4.887580871582031e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 12.79743480682373,
+      "max_displacement_m": 12.797456741333008,
       "max_ground_clearance_m": 0.007814710028469563
     },
     {
       "name": "Backflip",
       "lowest_vertex_m": 0.0029995774384588003,
       "rigid_edge_error_m": 5.140900611877441e-06,
-      "loop_error_m": 3.053247610296239e-06,
+      "loop_error_m": 3.814697265625e-06,
       "max_displacement_m": 29.01616096496582,
       "max_ground_clearance_m": 17.974395751953125
     }

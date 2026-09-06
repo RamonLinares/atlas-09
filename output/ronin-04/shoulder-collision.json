@@ -1,0 +1,618 @@
+{
+  "BladeSalute": [
+    {
+      "frame": 1,
+      "upper_arm.R": 42,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 4,
+      "upper_arm.R": 28,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 7,
+      "upper_arm.R": 28,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 10,
+      "upper_arm.R": 26,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 13,
+      "upper_arm.R": 16,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 16,
+      "upper_arm.R": 10,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 19,
+      "upper_arm.R": 3,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 22,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 25,
+      "upper_arm.R": 1,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 28,
+      "upper_arm.R": 2,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 31,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 34,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 37,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 40,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 43,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 46,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 49,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 52,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 55,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 58,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 61,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 64,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 67,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 70,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 73,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 76,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 79,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 82,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 85,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 88,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 91,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 94,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 97,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 100,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 103,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 106,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 109,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 112,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 115,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 118,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 121,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 124,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 127,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 130,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 133,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 136,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 139,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 142,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 145,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 148,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 151,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 154,
+      "upper_arm.R": 1,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 157,
+      "upper_arm.R": 1,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 160,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 163,
+      "upper_arm.R": 2,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 166,
+      "upper_arm.R": 21,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 169,
+      "upper_arm.R": 22,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 172,
+      "upper_arm.R": 26,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 175,
+      "upper_arm.R": 28,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 178,
+      "upper_arm.R": 32,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 181,
+      "upper_arm.R": 42,
+      "forearm.R": 0,
+      "hand.R": 0
+    }
+  ],
+  "SwordSlash": [
+    {
+      "frame": 1,
+      "upper_arm.R": 42,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 4,
+      "upper_arm.R": 27,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 7,
+      "upper_arm.R": 17,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 10,
+      "upper_arm.R": 3,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 13,
+      "upper_arm.R": 1,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 16,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 19,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 22,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 25,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 28,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 31,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 34,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 37,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 40,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 43,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 46,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 49,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 52,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 55,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 58,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 61,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 64,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 67,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 70,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 73,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 76,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 79,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 82,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 85,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 88,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 91,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 94,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 97,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 100,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 103,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 106,
+      "upper_arm.R": 0,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 109,
+      "upper_arm.R": 7,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 112,
+      "upper_arm.R": 21,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 115,
+      "upper_arm.R": 27,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 118,
+      "upper_arm.R": 36,
+      "forearm.R": 0,
+      "hand.R": 0
+    },
+    {
+      "frame": 121,
+      "upper_arm.R": 42,
+      "forearm.R": 0,
+      "hand.R": 0
+    }
+  ]
+}

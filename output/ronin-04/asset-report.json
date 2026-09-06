@@ -2,7 +2,7 @@
   "source": "assets/ronin-04/retopo/d544a72e-1082-4fbd-8f88-7183fe80350b-model_url.glb",
   "height_m": 16,
   "source_triangles": 24466,
-  "vertices": 15025,
+  "vertices": 15013,
   "triangles": 27381,
   "bones": 21,
   "materials": [
@@ -11,7 +11,7 @@
     "RONIN aged gold trim",
     "RONIN wrist reactor emission"
   ],
-  "boundary_edges": 2625,
+  "boundary_edges": 2597,
   "textures": [
     {
       "semantic": "BaseColor",

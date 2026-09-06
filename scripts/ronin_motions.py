@@ -17,13 +17,29 @@ def build_ronin_motions(rig,obj):
  def arm(side,target):
   upper=bones['upper_arm.'+side];lower=bones['forearm.'+side];h=upper.head.copy();v=Vector(target)-h
   l1=upper.bone.length;l2=lower.bone.length;dist=min(l1+l2-.003,max(abs(l1-l2)+.003,v.length));axis=v.normalized()
-  pole=Vector((1 if side=='L' else -1,0,-.3));pole-=axis*pole.dot(axis);pole.normalize()
+  pole=Vector((.35 if side=='L' else -.35,-.2,-1));pole-=axis*pole.dot(axis);pole.normalize()
   along=(l1*l1-l2*l2+dist*dist)/(2*dist);k=h+axis*along+pole*math.sqrt(max(0,l1*l1-along*along))
   aim('upper_arm.'+side,k-h);aim('forearm.'+side,Vector(target)-bones['forearm.'+side].head)
- def blade(direction):
+ # The bright beveled edge was identified in a normal-facing blade close-up.
+ # These orthogonal axes come from the actual long blade, not the grip bone.
+ blade_axis=Vector((-.2719205,-.5876843,-.76202783)).normalized()
+ blade_edge=Vector((-.28816719,-.70580132,.6471508)).normalized()
+ source_frame=Matrix((blade_edge,blade_axis.cross(blade_edge),blade_axis)).transposed()
+ def blade(direction,edge=None,roll_blend=1):
   hand=bones['hand.R'];rest=hand.bone;sword=bones['sword.R'].bone
-  delta=(sword.tail_local-sword.head_local).rotation_difference(Vector(direction))
+  d=Vector(direction).normalized()
+  delta=(sword.tail_local-sword.head_local).rotation_difference(d)
+  if edge is not None:
+   e=Vector(edge);e=(e-d*e.dot(d)).normalized()
+   target_frame=Matrix((e,d.cross(e),d)).transposed()
+   oriented=(target_frame@source_frame.transposed()).to_quaternion()
+   delta=delta.slerp(oriented,roll_blend)
   hand.matrix=Matrix.Translation(hand.head)@(delta@rest.matrix_local.to_quaternion()).to_matrix().to_4x4();update()
+ def protector(amount):
+  # Independent hinge: the upper arm is parented to the chest so lifting
+  # its protector does not displace the shoulder joint or the solved grip.
+  b=bones['shoulder.R'];r=b.bone.matrix_local
+  b.matrix=Matrix.Translation(r.translation)@Matrix.Rotation(-.15*amount,4,'Z')@Matrix.Rotation(.9*amount,4,'Y')@r.to_quaternion().to_matrix().to_4x4();update()
  def skirt():
   for side in ['L','R']:
    thigh=bones['thigh.'+side];b=bones['skirt.'+side]
@@ -60,15 +76,17 @@ def build_ronin_motions(rig,obj):
   neutral();bones['chest'].rotation_euler.x=.006*math.sin(u*math.tau);bones['head'].rotation_euler.y=.025*math.sin(u*math.tau);update()
  def salute(u):
   neutral();b=smooth(u/.3)*(1-smooth((u-.68)/.32))
-  arm('R',Vector((-3.55,-.25,8)).lerp(Vector((-3.4,-1.9,11.8)),b))
-  blade(restblade.lerp(Vector((-.12,-.15,1)).normalized(),b))
+  protector(smooth(b/.4))
+  arm('R',Vector((-3.55,-.25,8)).lerp(Vector((-4,-2.8,10.6)),b))
+  blade(restblade.lerp(Vector((-.12,-.15,1)).normalized(),b),Vector((0,-1,0)),b)
   bones['head'].rotation_euler.x=.08*b;update()
  def slash(u):
   neutral();ready=smooth(u/.23);strike=smooth((u-.28)/.16);return_=smooth((u-.64)/.36)
-  target=Vector((-3.55,-.25,8)).lerp(Vector((-3.6,-1.5,12.1)),ready).lerp(Vector((-3.4,-2.0,9.2)),strike).lerp(Vector((-3.55,-.25,8)),return_)
+  protector(smooth(ready*(1-return_)/.4))
+  target=Vector((-3.55,-.25,8)).lerp(Vector((-4,-2.8,10.8)),ready).lerp(Vector((-3.4,-2.0,9.2)),strike).lerp(Vector((-3.55,-.25,8)),return_)
   arm('R',target)
   direction=restblade.lerp(Vector((-.3,.05,1)).normalized(),ready).lerp(Vector((-.55,-1,-.18)).normalized(),strike).lerp(restblade,return_)
-  blade(direction);bones['chest'].rotation_euler.z=.08*math.sin(u*math.tau)*(1-return_);update()
+  blade(direction,Vector((-.55,-1,-.18)).normalized()-Vector((-.3,.05,1)).normalized(),ready*(1-return_));update()
  for name,frames,fn in [('Sentinel',181,idle),('BladeSalute',181,salute),('SwordSlash',121,slash)]:
   rig.animation_data.action=None;previous={}
   for frame in range(1,frames+1):

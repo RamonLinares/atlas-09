@@ -47,7 +47,7 @@ def section(p):
  # The sword pommel rises behind the right wrist; it belongs to the grip.
  if x< -2.8 and y>.9 and 7.5<z<8.5:return 'hand.R'
  # Follow the diagonal lower edge of the complete shoulder plate.
- if z>10.9 and a>max(1.65,1.7+.57*(13.7-z)):return 'shoulder.'+side
+ if z>10.9 and a>max(1.65,1.35+.50*(13.7-z)):return 'shoulder.'+side
  arm_inner=min(2.95,1.8+.30*max(0,12-z))
  if a>arm_inner and z>6.1:
   if z>10.15:return 'upper_arm.'+side
@@ -92,7 +92,7 @@ bone('chest',(0,0,10.0),(0,.15,13.05),'pelvis')
 bone('head',(0,.15,13.05),(0,.15,14.5),'chest')
 for sign,side in [(1,'L'),(-1,'R')]:
  bone('shoulder.'+side,(sign*1.6,.15,12.6),(sign*2.3,.15,12.15),'chest')
- bone('upper_arm.'+side,(sign*2.3,.15,12.15),(sign*3.05,-.05,10.15),'shoulder.'+side)
+ bone('upper_arm.'+side,(sign*2.3,.15,12.15),(sign*3.05,-.05,10.15),'chest')
  bone('forearm.'+side,(sign*3.05,-.05,10.15),(sign*3.55,-.25,8.0),'upper_arm.'+side)
  bone('hand.'+side,(sign*3.55,-.25,8.0),(sign*3.65,-.45,7.1),'forearm.'+side)
  bone('thigh.'+side,(sign*1.05,0,8.85),(sign*1.75,.05,5.15),'pelvis')
