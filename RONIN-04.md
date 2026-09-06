@@ -10,7 +10,7 @@ An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold cres
 - [Extracted textures](public/textures/ronin-04/)
 - [Blender preview](output/ronin-04/ronin-04-beauty.png)
 - [Build script](scripts/build_ronin.py), [authored motions](scripts/ronin_motions.py), and [anatomical validation](scripts/validate_ronin.py)
-- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=BladeSalute&v=9)
+- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=BladeSalute&v=8)
 
 The GLB contains six ordinary baked skeletal clips: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), and Backflip (3.6 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. The katana remains held throughout all six clips.
 
@@ -27,7 +27,7 @@ The user's reusable [creation prompt](assets/ronin-04/creation-prompt.txt) autho
 
 ## Preparation and checks
 
-The final mesh has **27,381 triangles**, **15,013 Blender vertices**, **21 bones**, four materials and two UV layers. Base color is 2048²; normal and packed occlusion/roughness/metallic textures are 1024². All image textures are packed into the Blender project and embedded in the GLB.
+The final mesh has **27,381 triangles**, **15,025 Blender vertices**, **21 bones**, four materials and two UV layers. Base color is 2048²; normal and packed occlusion/roughness/metallic textures are 1024². All image textures are packed into the Blender project and embedded in the GLB.
 
 The source was inspected from the front, side and back before binding. The rig includes separate shoulder, arm, leg, skirt, head and sword controls. Geometry is split at mechanical boundaries and given full rigid weights. The shoulder boundary follows the plate's diagonal edge; the sword pommel behind the wrist follows the grip. A sloping blade boundary avoids attaching boot geometry to the weapon. Compact actuator housings cover joints. The skirt follows each thigh around the hip during running and kneeling.
 
@@ -53,10 +53,4 @@ The build uses the preserved retopology locally. No API key or paid call is requ
 
 ## Remaining limitations
 
-This is a realtime mechanical character prototype. The generated armor has irregular topology and baked surface detail; separated rigid sections leave 2,597 boundary edges, so this is not a watertight manufacturing mesh. Joint housings and simplified two-panel skirt articulation support these authored clips, but extreme custom poses can reveal seams or armor overlap. Fingers are fixed around the grip; the sword has no separate draw/sheath animation. There is no physics, gameplay collision rig, facial rig, or LOD chain. The backflip is deliberately stylized for a giant mecha. Browser firing effects are not embedded as particles in the GLB.
-
-## Shoulder and cutting-edge correction
-
-The arm now attaches directly to the chest, while the complete shoulder protector (including its inner lip) uses a separate hinge. During BladeSalute and SwordSlash the protector opens before the arm raises; the lower, forward windup and elbow path clear the armor. BVH checks find no protector intersections with the forearm or hand across both clips. Closed upper-arm hinge/seam contacts are reported separately.
-
-The katana orientation now specifies both its long axis and its sharpened edge, identified from the actual beveled blade surface. Its grip rolls during preparation so the cutting edge leads the strike rather than the spine or flat. The sampled edge-to-swing alignment exceeds 0.99999. Both animations were visually rechecked in the browser and rebaked into the Blender and GLB files. No additional generation charges were incurred.
+This is a realtime mechanical character prototype. The generated armor has irregular topology and baked surface detail; separated rigid sections leave 2,625 boundary edges, so this is not a watertight manufacturing mesh. Joint housings and simplified two-panel skirt articulation support these authored clips, but extreme custom poses can reveal seams or armor overlap. Fingers are fixed around the grip; the sword has no separate draw/sheath animation. There is no physics, gameplay collision rig, facial rig, or LOD chain. The backflip is deliberately stylized for a giant mecha. Browser firing effects are not embedded as particles in the GLB.
