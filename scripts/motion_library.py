@@ -47,9 +47,13 @@ def add_hardware(obj, rig):
 def build_motions(rig,obj,profile=None):
     scene=bpy.context.scene
     bones=rig.pose.bones
-    p=dict(run_drop=.75,run_bob=.22,stride=2.7,ankle_z=1.7,ankle_y=0,ankle_x=3.65,run_x=3.35,step_lift=2.7,
+    p=dict(ankle_z=1.7,ankle_y=0,ankle_x=3.65,
            kneel_drop=5.72,kneel_front=(3.3,-3.7,1.7),kneel_back=(-2.25,5.27,3.12),
-           crouch=1.65,landing=1.5,tuck_width=.8,tuck_back=2.1,tuck_lift=4.8,jump=10.0,pivot=(0,0,9.1),flight=.42)
+           crouch=1.65,landing=1.5,tuck_width=.8,tuck_back=2.1,tuck_lift=4.8,jump=10.0,pivot=(0,0,9.1),
+           run_frames=35,run_stance=.44,run_width=2.15,run_front=.85,run_back=2.5,
+           run_compression=.42,run_bounce=.16,run_lean=.12,run_hip_twist=.065,run_chest_twist=.045,
+           run_hip_roll=.012,run_shift=.055,run_toeoff=.48,run_recovery=2.5,
+           run_arm_swing=.44,run_elbow=1.35,run_arm_out=.20)
     if profile:p.update(profile)
     rear_group=obj.vertex_groups['shin.R'].index
     rear_indices=[v.index for v in obj.data.vertices if any(g.group==rear_group for g in v.groups)]
@@ -76,18 +80,72 @@ def build_motions(rig,obj,profile=None):
             world_rotation('upper_arm.'+side,angle);world_rotation('forearm.'+side,angle-bend);world_rotation('hand.'+side,angle-bend)
     def base(lower=0,lean=0):
         clear();bones['root'].matrix=Matrix.Translation((0,0,lower))@bones['root'].bone.matrix_local;update();world_rotation('pelvis',lean);world_rotation('chest',lean*1.3)
+    # Solve foot contact from the actual rigid boot geometry. In the old cycle
+    # every boot stayed flat and a root translation lifted planted feet.
+    foot_points={}
+    for side in ['L','R']:
+        name='foot.'+side;group=obj.vertex_groups[name].index;origin=rig.data.bones[name].head_local
+        foot_points[side]=[v.co-origin for v in obj.data.vertices if any(g.group==group for g in v.groups)]
+    def foot_support(side,pitch):
+        rotation=Matrix.Rotation(pitch,3,'X')
+        points=foot_points[side]
+        # Keep the forefoot's ground travel continuous through toe-off.
+        toe=min(points,key=lambda v:v.y)
+        return -min((rotation@v).z for v in points),toe.y-(rotation@toe).y
+    def hermite(t,a,b,va,vb,span):
+        return (2*t**3-3*t*t+1)*a+(t**3-2*t*t+t)*va*span+(-2*t**3+3*t*t)*b+(t**3-t*t)*vb*span
+    def curve(phase,keys):
+        for (ta,a,va),(tb,b,vb) in zip(keys,keys[1:]):
+            if phase<=tb+1e-9:return hermite((phase-ta)/(tb-ta),a,b,va,vb,tb-ta)
+        return keys[-1][1]
+    def world_euler(name,lean,roll=0,yaw=0):
+        b=bones[name]
+        rotation=Matrix.Rotation(yaw,4,'Z')@Matrix.Rotation(roll,4,'Y')@Matrix.Rotation(lean,4,'X')
+        b.matrix=Matrix.Translation(b.head)@rotation@b.bone.matrix_local.to_quaternion().to_matrix().to_4x4();update()
     def run(u):
-        theta=u*math.tau;base(-p['run_drop']+p['run_bob']*math.cos(theta*2),.14)
-        for s,side,offset in [(1,'L',0),(-1,'R',.5)]:
+        theta=u*math.tau;duty=p['run_stance'];speed=(p['run_front']+p['run_back'])/duty
+        clear()
+        # Compression during support; a small rise toward flight, without
+        # translating the feet after their contact solve.
+        root_z=-p['run_compression']+p['run_bounce']*math.cos(4*math.pi*(u-.47))
+        bones['root'].matrix=Matrix.Translation((p['run_shift']*math.sin(theta),0,root_z))@bones['root'].bone.matrix_local;update()
+        world_euler('pelvis',p['run_lean'],p['run_hip_roll']*math.sin(theta),-p['run_hip_twist']*math.cos(theta))
+        chest_yaw=p['run_chest_twist']*math.cos(theta)
+        world_euler('chest',p['run_lean']*1.1,-p['run_hip_roll']*.4*math.sin(theta),chest_yaw)
+        for sign,side,offset in [(1,'L',0),(-1,'R',.5)]:
             phase=(u+offset)%1
-            if phase<.5:y=p['ankle_y']-p['stride']+2*p['stride']*(phase/.5);z=p['ankle_z']
+            if phase<=duty:
+                # Heel settling, midfoot support, then a forefoot pivot.
+                settle=smooth(phase/(duty*.28))
+                roll=smooth((phase-duty*.52)/(duty*.48))
+                pitch=-.08*(1-settle)+p['run_toeoff']*roll
+                height,roll_y=foot_support(side,pitch)
+                y=p['ankle_y']-p['run_front']+speed*phase+roll_y
             else:
-                f=(phase-.5)/.5;y=p['ankle_y']+p['stride']-2*p['stride']*smooth(f);z=p['ankle_z']+p['step_lift']*math.sin(math.pi*f)
-            leg(side,(s*p['run_x'],y,z))
-        arms(.72*math.cos(theta),-.72*math.cos(theta),.72)
-        bones['head'].rotation_euler.y=p.get('head_sway',.035)*math.sin(theta);update()
-        flight=p['flight']*max(0,math.cos(theta*2))**4
-        bones['root'].matrix=Matrix.Translation((0,0,flight))@bones['root'].matrix;update()
+                pitch=curve(phase,[(duty,p['run_toeoff'],0),(.60,.60,0),(.84,-.08,0),(1,-.08,0)])
+                height,_=foot_support(side,pitch)
+                clearance=curve(phase,[(duty,0,0),(.61,p['run_recovery'],0),(.84,.45,-5),(1,0,0)])
+                height+=max(0,clearance)
+                _,toeoff_y=foot_support(side,p['run_toeoff'])
+                _,landing_y=foot_support(side,-.08)
+                y=p['ankle_y']+curve(phase,[
+                    (duty,p['run_back']+toeoff_y,speed),
+                    (.61,p['run_back']*1.05,-speed*.5),
+                    (.87,-p['run_front']*1.65,0),
+                    (1,-p['run_front']+landing_y,speed)])
+            leg(side,(sign*p['run_width'],y,height),pitch)
+        # Elbows stay flexed and swing opposite the legs, with enough lateral
+        # clearance for armor but without carrying over the wide A-pose.
+        shoulder_frame=Matrix.Rotation(chest_yaw,3,'Z')@Matrix.Rotation(p['run_lean']*1.1,3,'X')
+        for sign,side in [(1,'L'),(-1,'R')]:
+            swing=sign*p['run_arm_swing']*math.cos(theta)
+            elbow=p['run_elbow']+.10*math.sin(theta+(.0 if side=='L' else math.pi))
+            upper=Vector((sign*p['run_arm_out'],math.sin(swing),-math.cos(swing)))
+            lower=Vector((sign*p['run_arm_out']*.45,math.sin(swing-elbow),-math.cos(swing-elbow)))
+            aim('upper_arm.'+side,shoulder_frame@upper)
+            aim('forearm.'+side,shoulder_frame@lower)
+            aim('hand.'+side,shoulder_frame@lower)
+        update()
     def kneel(u):
         seconds=u*8;blend=smooth(seconds/2.15)*(1-smooth((seconds-6)/2))
         base(-p['kneel_drop']*blend,.015*blend)
@@ -125,7 +183,7 @@ def build_motions(rig,obj,profile=None):
         root.matrix=Matrix.Translation(pivot+Vector((0,.7*math.sin(math.pi*air),jump))) @ Matrix.Rotation(angle,4,'X') @ Matrix.Translation(-pivot) @ root.matrix
         update()
     report=[]
-    for name,frames,fn in [('Run',43,run),('KneelFire',241,kneel),('Backflip',109,backflip)]:
+    for name,frames,fn in [('Run',p['run_frames'],run),('KneelFire',241,kneel),('Backflip',109,backflip)]:
         rig.animation_data.action=None;previous={};max_correction=0
         for frame in range(1,frames+1):
             fn((frame-1)/(frames-1))
@@ -139,6 +197,14 @@ def build_motions(rig,obj,profile=None):
                 previous[b.name]=b.rotation_euler.copy()
                 b.keyframe_insert('rotation_euler',frame=frame,group=b.name);b.keyframe_insert('location',frame=frame,group=b.name)
         action=rig.animation_data.action;action.name=name;action.use_fake_user=True
+        if name=='Run':
+            # These are sampled IK poses; Bezier handle easing overshoots the
+            # planted-foot path. Match glTF's linear interpolation for the bake.
+            for layer in action.layers:
+                for strip in layer.strips:
+                    for bag in strip.channelbags:
+                        for fcurve in bag.fcurves:
+                            for key in fcurve.keyframe_points:key.interpolation='LINEAR'
         rig.animation_data.action=None;track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,action);track.mute=True
         report.append({'name':name,'frames':frames,'duration':(frames-1)/30,'max_ground_correction_m':max_correction})
     clear()

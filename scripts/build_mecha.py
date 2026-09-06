@@ -183,7 +183,7 @@ report={'source':str(source.relative_to(ROOT)),'retopo_intake':source_count,'ver
 bpy.ops.object.select_all(action='DESELECT');obj.select_set(True);rig.select_set(True);bpy.context.view_layer.objects.active=rig
 muzzle.select_set(True)
 obj.parent=None
-bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/atlas-09.glb'),export_format='GLB',use_selection=True,export_animations=True,export_animation_mode='ACTIONS',export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
+bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/atlas-09.glb'),export_format='GLB',use_selection=True,export_animations=True,export_animation_mode='ACTIONS',export_anim_slide_to_zero=True,export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
 runpy.run_path(str(ROOT/'scripts/fix_export_tangents.py'),run_name='__main__')
 obj.parent=rig
 

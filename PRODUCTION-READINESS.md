@@ -23,7 +23,7 @@ The expanded studio reports about 126 draw calls at idle. The character uses one
 
 ## Motion expansion
 
-Added locally with no additional provider credits: a 1.4-second run, an 8-second kneel/fire/stand sequence, and a 3.6-second backward somersault. Joint housings cover opened articulations. The front boot is planted while the rear armored knee/shin pad rests on the floor. Muzzle flash, pulse rounds and a landing ring are Three.js effects synchronized to the exported motion.
+Added locally with no additional provider credits: a 1.13-second run, an 8-second kneel/fire/stand sequence, and a 3.6-second backward somersault. Joint housings cover opened articulations. The front boot is planted while the rear armored knee/shin pad rests on the floor. Muzzle flash, pulse rounds and a landing ring are Three.js effects synchronized to the exported motion.
 
 New evidence: `output/motion/browser-check.json`, `output/motion/bake-report.json`, and the Run/KneelFire/Backflip screenshots in `output/motion/`.
 
@@ -64,3 +64,5 @@ For a shipping game, add collision proxies, distance-based LODs, texture compres
 ## Cost
 
 Tripo generation: 30 credits. User-approved smart retopology: 30 credits. **Total: 60 credits ($0.60).** All later mesh preparation, UV work, rigging, animation, rendering and export were local. See `ASSET-PROVENANCE.md` for task IDs, settings and the exact concept prompt.
+
+9. Rebuilt the run with foot spacing under the hips, boot-derived ground contact and toe-off, heel recovery, flexed elbows and opposing pelvis/chest rotation. ATLAS retains a slower, heavier cycle than AETHER. Baked Run keys are linear, and exports start at zero. Both assets pass the contact/coordination audit in `output/motion/run-validation.json`, the existing animation/rig regressions, GLB validation and desktop/mobile browser checks. Other clips retain their sampled poses.

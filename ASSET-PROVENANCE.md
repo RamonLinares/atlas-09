@@ -40,3 +40,5 @@ Added locally at the user's request: Run, KneelFire and Backflip. No additional 
 The browser loads the Blender-exported GLB with GLTFLoader and plays the embedded clips with AnimationMixer. The model is normalized to 6.5 display units in the studio viewer; the downloadable GLB and Blender source preserve 18-metre physical height. The viewer adds its own lighting, studio floor, bloom and inspection controls. No generation credentials or live provider calls are included in the client.
 
 Reference documentation: [Tripo image generation](https://developers.tripo3d.ai/en/docs/generation-image-to-model/h), [Tripo pricing](https://developers.tripo3d.ai/en/pricing), [Three.js](https://threejs.org/docs/).
+
+The run refinement is also local: no provider calls or additional credits. `motion_library.py` now authors foot contact, rolling, recovery and body counter-rotation using character-specific timing. Both Blender sources and GLBs include it.

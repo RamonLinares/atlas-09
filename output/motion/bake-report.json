@@ -1,9 +1,9 @@
 [
   {
     "name": "Run",
-    "frames": 43,
-    "duration": 1.4,
-    "max_ground_correction_m": 2.859164851543028e-06
+    "frames": 35,
+    "duration": 1.1333333333333333,
+    "max_ground_correction_m": 3.337860107421875e-06
   },
   {
     "name": "KneelFire",

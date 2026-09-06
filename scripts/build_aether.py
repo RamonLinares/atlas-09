@@ -192,8 +192,11 @@ for name,frames,fn in [('Sentinel',181,idle),('Awaken',151,awaken)]:
   for pb in rig.pose.bones:pb.keyframe_insert('rotation_euler',frame=frame,group=pb.name)
  action=rig.animation_data.action;action.name=name;action.use_fake_user=True;rig.animation_data.action=None
  track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,action);track.mute=True
-motion_report=build_motions(rig,obj,dict(head_sway=0,run_drop=.48,run_bob=.15,stride=2.0,ankle_z=1.28,ankle_y=.6,ankle_x=2.0,run_x=1.8,step_lift=2.15,
- kneel_drop=4.6,kneel_front=(1.6,-2.8,1.28),kneel_back=(-1.1,4.7,2.3),crouch=1.2,landing=1.1,tuck_width=.5,tuck_back=1.65,tuck_lift=3.7,jump=7.2,pivot=(0,.15,8.15),flight=.32))
+motion_report=build_motions(rig,obj,dict(run_frames=29,run_stance=.40,run_width=.95,run_front=.65,run_back=2.0,
+ run_compression=.35,run_bounce=.15,run_lean=.16,run_hip_twist=.085,run_chest_twist=.06,
+ run_hip_roll=.012,run_shift=.035,run_toeoff=.62,run_recovery=2.6,run_arm_swing=.54,run_elbow=1.45,run_arm_out=.15,
+ ankle_z=1.28,ankle_y=.6,ankle_x=2.0,
+ kneel_drop=4.6,kneel_front=(1.6,-2.8,1.28),kneel_back=(-1.1,4.7,2.3),crouch=1.2,landing=1.1,tuck_width=.5,tuck_back=1.65,tuck_lift=3.7,jump=7.2,pivot=(0,.15,8.15)))
 (OUT/'bake-report.json').write_text(json.dumps(motion_report,indent=2))
 rig['README']='AETHER-02, 14m athletic mecha. Rigid armor, opaque glass (no transmission), five baked clips. Anatomical segmentation follows the inspected model; source retopology remains a realtime prototype.'
 neutral();scene.frame_set(1);scene.frame_start=1;scene.frame_end=181
@@ -202,7 +205,7 @@ report={'source':str(source.relative_to(ROOT)),'height_m':14,'source_triangles':
 (OUT/'asset-report.json').write_text(json.dumps(report,indent=2))
 bpy.ops.object.select_all(action='DESELECT');obj.select_set(True);rig.select_set(True);muzzle.select_set(True);bpy.context.view_layer.objects.active=rig
 obj.parent=None
-bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/aether-02.glb'),export_format='GLB',use_selection=True,export_animations=True,export_animation_mode='ACTIONS',export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
+bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/aether-02.glb'),export_format='GLB',use_selection=True,export_animations=True,export_animation_mode='ACTIONS',export_anim_slide_to_zero=True,export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
 runpy.run_path(str(ROOT/'scripts/fix_export_tangents.py'),init_globals={'ASSET_PATH':ROOT/'public/models/aether-02.glb','REPORT_PATH':OUT/'tangent-repairs.json'},run_name='__main__')
 obj.parent=rig
 

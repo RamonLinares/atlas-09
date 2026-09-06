@@ -70,8 +70,14 @@ The preparation script reads the already downloaded Tripo retopology in `assets/
 - UV1 / `Atlas_Lightmap`: additional packed Blender unwrap, available for future baking.
 - Four materials, one Blender mesh (four glTF primitives), 17 rigid sections, 18 bones. The extra geometry consists of joint housings and an integrated pulse cannon.
 - Sentinel: approximately 6 seconds. Awaken: approximately 5 seconds. Both loop in place.
-- Run: 1.4-second in-place cycle with alternating contacts and flight phases. KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
+- Run: 1.13-second ATLAS cycle and 0.93-second AETHER cycle, with narrower foot placement, heel settling, toe push-off, early heel recovery and opposing hip/shoulder rotation. KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
 - New poses use an analytic two-bone IK solver during baking; the exported clips use ordinary bone transforms and require no runtime IK library.
 - Rig uses `.L` / `.R` suffixes in Blender. Three.js sanitizes dots in node names when loading; use the loaded bone names when extending the viewer.
 
 This is a realtime prototype and presentation asset. Read the production assessment before using it for demanding animation, close-up film shots or mobile production.
+
+## Refined run cycles
+
+The run now uses contact and recovery phases instead of broad oval foot paths. Foot spacing is approximately the hip-joint spacing (previously much wider), with compact elbow motion and a small torso counter-rotation. Boot geometry determines ground height and the forefoot pivot. ATLAS has longer support and less flight; AETHER has a faster cadence and more pronounced heel recovery. Baked Run keys use linear interpolation to prevent planted-foot overshoot. All exported clips start at zero, eliminating the previous initial hold.
+
+The Blender and GLB downloads include the updated motion. Other clips retain their sampled poses. `scripts/validate_run.py` measures contact, placement, rolling, coordination and flight from the actual baked armor; [run validation](output/motion/run-validation.json) and [browser verification](output/motion/run-browser-validation.json) record the results. Existing rig, head and thigh isolation checks also pass.

@@ -1,6 +1,6 @@
 export const characters = {
   'atlas-09': {
-    name: 'ATLAS', number: '09', model: `${import.meta.env.BASE_URL}models/atlas-09.glb`, concept: `${import.meta.env.BASE_URL}concept.png`,
+    name: 'ATLAS', number: '09', model: `${import.meta.env.BASE_URL}models/atlas-09.glb?v=5`, concept: `${import.meta.env.BASE_URL}concept.png`,
     className: 'VETERAN CLASS / HEAVY MECHA', height: '18.0', condition: 'HEAVILY WORN',
     tagline: ['Seen better days.', 'Still standing.'],
     description: ['Scarred armor. Exposed machinery.', 'A reactor that refuses to go dark.'],
@@ -9,7 +9,7 @@ export const characters = {
     accent: '#d5f3a5', reactorLightIntensity: 3,
   },
   'aether-02': {
-    name: 'AETHER', number: '02', model: `${import.meta.env.BASE_URL}models/aether-02.glb?v=4`, concept: `${import.meta.env.BASE_URL}concept-aether-02.png`,
+    name: 'AETHER', number: '02', model: `${import.meta.env.BASE_URL}models/aether-02.glb?v=5`, concept: `${import.meta.env.BASE_URL}concept-aether-02.png`,
     className: 'VELOCITY CLASS / ATHLETIC MECHA', height: '14.0', condition: 'WHITE STEEL / OPAQUE GLASS',
     tagline: ['Built for motion.', 'Made of light.'],
     description: ['Sculpted white steel. Smoked glass.', 'Precision in every stride.'],

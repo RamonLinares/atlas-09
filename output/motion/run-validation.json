@@ -1,0 +1,52 @@
+[
+  {
+    "character": "ATLAS-09",
+    "cycle_seconds": 1.1333333333333333,
+    "sampled_frames": 69,
+    "foot_width_over_hip_width": [
+      0.9770111392408904,
+      0.9780477181771079
+    ],
+    "foot_pitch_degrees": [
+      -4.587829954647925,
+      34.27142355683361
+    ],
+    "max_planted_foot_ground_error_m": 0.0045351386070251465,
+    "lowest_armor_m": -0.0045351386070251465,
+    "max_midfoot_travel_fit_error_m": 0.00032302396638073105,
+    "hip_yaw_degrees": [
+      -3.7242289468411527,
+      3.7242289468411527
+    ],
+    "chest_yaw_degrees": [
+      -2.5783148762965964,
+      2.5783148762965964
+    ],
+    "flight_fraction": 0.028985507246376812
+  },
+  {
+    "character": "AETHER-02",
+    "cycle_seconds": 0.9333333333333333,
+    "sampled_frames": 57,
+    "foot_width_over_hip_width": [
+      0.969236249208718,
+      0.9719991677245478
+    ],
+    "foot_pitch_degrees": [
+      -4.588916381612781,
+      35.459873057321246
+    ],
+    "max_planted_foot_ground_error_m": 0.007867187261581421,
+    "lowest_armor_m": -0.007867187261581421,
+    "max_midfoot_travel_fit_error_m": 0.00034939646720866246,
+    "hip_yaw_degrees": [
+      -4.8701430173857085,
+      4.8701430173857085
+    ],
+    "chest_yaw_degrees": [
+      -3.4377422116336684,
+      3.4377422116336684
+    ],
+    "flight_fraction": 0.14035087719298245
+  }
+]
