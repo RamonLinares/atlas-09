@@ -9,6 +9,8 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { createMotionFX } from './motion-fx.js';
 import { characters } from './characters.js';
 import './style.css';
+import { createPoseRig } from './pose-rig.js';
+import { createWebcamPose } from './webcam-pose.js';
 
 const $ = (s) => document.querySelector(s);
 const renderer = new THREE.WebGLRenderer({ canvas: $('#scene'), antialias: true, powerPreference: 'high-performance' });
@@ -68,13 +70,35 @@ composer.addPass(bloom); composer.addPass(new OutputPass());
 const hero = new THREE.Group(); scene.add(hero);
 let model, mixer, skeleton, activeAction, paused = false, clipName = 'Sentinel';
 let activeCharacter = null, loadSequence = 0;
-let motionFX;
+let motionFX, poseRig;
+const webcam = createWebcamPose({
+  onStart() {
+    if (!poseRig?.supported) return false;
+    mixer.stopAllAction(); poseRig.restore(); paused = true;
+    activeAction = null; controls.autoRotate = false; $('#rotate').setAttribute('aria-checked', 'false');
+    document.querySelectorAll('[data-clip]').forEach(b => b.classList.remove('active'));
+    $('#pause').disabled = true; resetCamera(); return true;
+  },
+  onStop(resume) { poseRig?.restore(); $('#pause').disabled = false; if (resume && mixer) setClip(actions.has(clipName) ? clipName : 'Sentinel'); },
+  onPose(world, mirror, now) { return poseRig?.accept(world, mirror, now) ?? false; },
+});
 const actions = new Map(), materials = new Set(), emitters = [];
 const powerLight = new THREE.PointLight('#63f4ff', 0, 3, 2); scene.add(powerLight);
 let time = 0, power = 0.84;
 function resetCamera() {
   const mobile = innerWidth < 701;
   const compactDesktop = !mobile && innerHeight < 850;
+  if (webcam.active && model) {
+    model.updateMatrixWorld(true);
+    const box = new THREE.Box3().setFromObject(model, true), size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    const tangent = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    const height = Math.max(size.y * 1.4, 8.5), width = Math.max(size.x * 1.15, height * 1.2);
+    const distance = Math.max(height / (2 * tangent * (mobile ? .50 : .70)), width / (2 * tangent * camera.aspect * (mobile ? .88 : .60)));
+    center.y += mobile ? height * .04 : 0;
+    controls.maxDistance = Math.max(42, distance * 1.5);
+    controls.target.copy(center); camera.position.copy(center).add(new THREE.Vector3(0, .2, distance)); controls.update(); return;
+  }
   const bounds = characters[activeCharacter]?.motionBounds?.[clipName];
   if (bounds && model) {
     // The wing/cannon silhouette changes substantially by clip. Fit the
@@ -87,14 +111,15 @@ function resetCamera() {
     const right=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),direction).normalize();
     const up=new THREE.Vector3().crossVectors(direction,right).normalize();
     const tangent=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));
+    const toolbarExtra = mobile ? Math.max(0, ($('.toolbar')?.getBoundingClientRect().height || 96) - 96) / innerHeight : 0;
     let distance=0;
     for (const point of points) {
       const v=point.clone().sub(center),depth=v.dot(direction);
-      distance=Math.max(distance,depth+Math.abs(v.dot(right))/(tangent*camera.aspect*(mobile?.90:.62)),depth+Math.abs(v.dot(up))/(tangent*(mobile?.44:compactDesktop?.66:.73)));
+      distance=Math.max(distance,depth+Math.abs(v.dot(right))/(tangent*camera.aspect*(mobile?.90:.62)),depth+Math.abs(v.dot(up))/(tangent*(mobile ? Math.max(.28, .44 - toolbarExtra) : compactDesktop?.66:.73)));
     }
     distance=Math.max(12,distance*1.04);
     controls.maxDistance=Math.max(42,distance*1.5);
-    center.addScaledVector(up,2*distance*tangent*(mobile?.075:compactDesktop?0:.01));
+    center.addScaledVector(up,2*distance*tangent*(mobile ? .075 - toolbarExtra / 2 : compactDesktop?0:.01));
     if(!mobile)center.addScaledVector(right,-2*distance*tangent*camera.aspect*.035);
     controls.target.copy(center);camera.position.copy(center).addScaledVector(direction,distance);controls.update();return;
   }
@@ -116,6 +141,8 @@ function resetCamera() {
 }
 resetCamera();
 function setClip(name) {
+  if (webcam.active) webcam.stop('', false);
+  poseRig?.restore();
   name = name === 'Rest' ? 'Walk' : name === 'Awaken' ? (actions.has('WingDeploy') ? 'WingDeploy' : 'PunchCombo') : name;
   const previous = clipName;
   clipName = name;
@@ -167,6 +194,7 @@ function showCharacterInfo(id) {
 async function loadCharacter(id) {
   if (!characters[id]) return;
   if (id === activeCharacter) { ++loadSequence; $('#loading').style.display = 'none'; return; }
+  webcam.stop('', false);
   const sequence = ++loadSequence, character = characters[id];
   $('#loading').innerHTML = `<div class="load-ring"></div><span>ASSEMBLING ${character.name}</span><small id="loadingProgress">Loading geometry & materials</small>`;
   $('#loading').style.display = 'flex';
@@ -192,6 +220,7 @@ async function loadCharacter(id) {
   const center = box.getCenter(new THREE.Vector3());
   model.position.set(-center.x * scale, -box.min.y * scale, -center.z * scale);
   hero.add(model);
+  poseRig = createPoseRig(model);
   motionFX = createMotionFX(scene, model, character.effects);
   let triangles = 0, boneCount = 0;
   model.traverse(o => {
@@ -217,7 +246,7 @@ async function loadCharacter(id) {
   showCharacterInfo(id);
   setClip(['Rest','Awaken'].includes(requestedMotion) || actions.has(requestedMotion) ? requestedMotion : 'Sentinel'); resetCamera();
   const url = new URL(location.href); url.searchParams.set('character', id); history.replaceState(null, '', url);
-  window.atlas = { model, scene, camera, controls, renderer, mixer, actions, skeleton, setClip, motionFX, loadCharacter, stats: { character: id, triangles, boneCount, materials: materials.size, clips: gltf.animations.map(c => ({name:c.name, duration:c.duration, tracks:c.tracks.length})) } };
+  window.atlas = { webcam, poseRig, model, scene, camera, controls, renderer, mixer, actions, skeleton, setClip, motionFX, loadCharacter, stats: { character: id, triangles, boneCount, materials: materials.size, clips: gltf.animations.map(c => ({name:c.name, duration:c.duration, tracks:c.tracks.length})) } };
   } catch (error) {
     if (sequence !== loadSequence) return;
     console.error(error); $('#loading').innerHTML = '<span>MODEL COULD NOT LOAD</span><small>Choose another frame or refresh to retry.</small>';
@@ -240,10 +269,11 @@ $('#conceptDialog').addEventListener('click', e => { if (e.target === $('#concep
 let last = performance.now(), frameCount = 0, sampleStart = last;
 renderer.setAnimationLoop(now => {
   const dt = Math.min((now - last) / 1000, 0.05); last = now; time += dt;
-  if (mixer && !paused) mixer.update(dt);
+  if (webcam.active) poseRig?.update(dt, now);
+  else if (mixer && !paused) mixer.update(dt);
   if (motionFX) {
     model.updateMatrixWorld(true);
-    const fx=motionFX.update(clipName,activeAction?.time ?? 0);
+    const fx=motionFX.update(webcam.active ? 'Webcam' : clipName,activeAction?.time ?? 0);
     if(window.atlas) {window.atlas.stats.motionFX=fx;window.atlas.stats.activeClip=clipName;window.atlas.stats.clipTime=activeAction?.time ?? 0;}
   }
   emitters.forEach(({ mat, intensity }) => { mat.emissiveIntensity = intensity * power * (1 + Math.sin(time * 2.3) * 0.06); });
@@ -255,4 +285,7 @@ renderer.setAnimationLoop(now => {
 let wasMobile = innerWidth < 701;
 window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); const mobile = innerWidth < 701; if (mobile !== wasMobile || characters[activeCharacter]?.motionBounds) resetCamera(); wasMobile = mobile; });
 
-new ResizeObserver(([entry]) => document.documentElement.style.setProperty('--motion-toolbar-height', `${entry.target.getBoundingClientRect().height}px`)).observe(document.querySelector('.toolbar'));
+new ResizeObserver(([entry]) => {
+  document.documentElement.style.setProperty('--motion-toolbar-height', `${entry.target.getBoundingClientRect().height}px`);
+  if (model && innerWidth < 701) resetCamera();
+}).observe(document.querySelector('.toolbar'));

@@ -13,3 +13,5 @@ output/*.zip
 
 # Full downloaded CC0 libraries; selected motion subsets are versioned.
 assets/animations/quaternius/*_Standard.glb
+
+public/tracking/runtime/

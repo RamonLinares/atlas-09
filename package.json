@@ -6,13 +6,16 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "validate:asset": "node scripts/validate_glb.mjs"
+    "validate:asset": "node scripts/validate_glb.mjs",
+    "predev": "node scripts/prepare-pose-runtime.mjs",
+    "prebuild": "node scripts/prepare-pose-runtime.mjs"
   },
   "keywords": [],
   "author": "",
   "type": "module",
   "private": true,
   "dependencies": {
+    "@mediapipe/tasks-vision": "1.0.1",
     "three": "^0.185.1",
     "vite": "^8.2.2"
   },

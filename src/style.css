@@ -23,3 +23,16 @@ body[data-character=seraph-03] h1 span{color:#bca487}body[data-character=seraph-
 @media(min-width:701px){.toolbar.expanded{max-width:calc(100vw - 70px);gap:12px}.toolbar.expanded .animation-buttons{display:grid;grid-template-columns:repeat(6,auto)}.toolbar.expanded .animation-buttons button{padding:10px 9px;font-size:8px}.toolbar.expanded .motion-label{display:none}}
 @media(max-width:700px){.toolbar.expanded .animation-buttons{grid-template-columns:repeat(4,minmax(0,1fr))}.toolbar.expanded .animation-buttons button{grid-column:auto;font-size:7px;padding:10px 2px}.inspector{bottom:calc(62px + var(--motion-toolbar-height, 91px) + 12px)}}
 @media(max-width:700px){.character-picker{gap:0;padding:4px}.character-picker button{min-width:0;padding:9px 3px;font-size:8px;letter-spacing:.2px}.character-picker button small{font-size:6px}}
+
+/* Webcam body control */
+#webcamToggle{flex-shrink:0;background:transparent;border:1px solid var(--line);color:var(--acid);padding:10px 12px;font:9px 'IBM Plex Mono',monospace;letter-spacing:.7px;margin:0 8px}
+#webcamToggle[aria-pressed=true]{background:var(--acid);color:#18201b;border-color:var(--acid)}
+.webcam-panel[hidden]{display:none}.webcam-panel{position:fixed;z-index:5;left:30px;bottom:calc(var(--motion-toolbar-height,90px) + 110px);width:230px;padding:12px;background:#18201bf2;border:1px solid var(--line);box-shadow:0 12px 40px #0004}
+.webcam-heading{display:flex;align-items:center;justify-content:space-between;font:10px 'IBM Plex Mono',monospace;letter-spacing:1px;color:var(--acid)}.webcam-heading button{border:0;background:none;font-size:24px;padding:0 3px;line-height:1}
+.webcam-preview{position:relative;aspect-ratio:4/3;background:#0b100e;margin-top:10px;overflow:hidden}.webcam-preview video,.webcam-preview canvas{position:absolute;width:100%;height:100%;object-fit:contain;transform:scaleX(-1)}.unmirrored .webcam-preview video,.unmirrored .webcam-preview canvas{transform:none}
+.webcam-panel p{font-size:12px;line-height:1.5;min-height:36px;margin:10px 0}.webcam-mirror{display:flex;align-items:center;gap:6px;font-size:11px}.webcam-mirror input{accent-color:var(--acid)}.webcam-panel small{display:block;font-size:10px;line-height:1.5;color:var(--muted);margin-top:9px}
+.webcam-active .intro{opacity:.18}.webcam-active .inspector{opacity:.3}#pause:disabled{opacity:.3;cursor:default}
+@media(min-width:701px){.toolbar{max-width:calc(100vw - 48px)}.animation-buttons{flex-wrap:wrap} .toolbar #webcamToggle{max-width:104px}}
+@media(max-width:700px){#webcamToggle{font-size:8px;padding:8px;margin:4px 4px 0 0}.webcam-panel{left:12px;top:125px;bottom:auto;width:155px;padding:8px}.webcam-panel p{font-size:10px;margin:6px 0;min-height:30px}.webcam-panel small{font-size:8px}.webcam-heading{font-size:8px}.webcam-preview{margin-top:5px}.webcam-mirror{font-size:9px}.webcam-active .intro{opacity:0}}
+@media(min-width:701px){.toolbar{width:max-content}.toolbar.expanded .animation-buttons{grid-template-columns:repeat(5,auto)}.playback{flex-shrink:0}}
+@media(max-width:700px){.toolbar #webcamToggle{order:3;flex:1;margin:0}.toolbar .animation-buttons{flex-basis:calc(100% - 45px)}.toolbar .playback{flex-shrink:0}}
