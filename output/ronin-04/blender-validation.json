@@ -33,7 +33,7 @@
       "displacement_m": {
         "legs": 0.0,
         "torso": 0.0,
-        "sword": 9.803718566894531,
+        "sword": 9.355020523071289,
         "left_arm": 0.0,
         "right_arm": 4.234111785888672,
         "head": 0.0
@@ -88,7 +88,7 @@
       "displacement_m": {
         "legs": 0.0,
         "torso": 0.0,
-        "sword": 6.056478977203369,
+        "sword": 5.881656646728516,
         "left_arm": 0.0,
         "right_arm": 0.0,
         "head": 0.0
@@ -107,23 +107,23 @@
     {
       "name": "BladeSalute",
       "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 3.635883331298828e-06,
+      "rigid_edge_error_m": 4.76837158203125e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 19.319522857666016,
+      "max_displacement_m": 18.671350479125977,
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
       "name": "SwordSlash",
       "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 3.337860107421875e-06,
+      "rigid_edge_error_m": 4.231929779052734e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 18.307167053222656,
+      "max_displacement_m": 17.637956619262695,
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
       "name": "Run",
       "lowest_vertex_m": 0.0029995350632816553,
-      "rigid_edge_error_m": 3.814697265625e-06,
+      "rigid_edge_error_m": 3.874301910400391e-06,
       "loop_error_m": 0.0,
       "max_displacement_m": 5.075571537017822,
       "max_ground_clearance_m": 0.03291158378124237
@@ -133,13 +133,13 @@
       "lowest_vertex_m": 1.8027171222456673e-07,
       "rigid_edge_error_m": 3.0621886253356934e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 12.62169075012207,
+      "max_displacement_m": 12.022723197937012,
       "max_ground_clearance_m": 0.007814710028469563
     },
     {
       "name": "Backflip",
       "lowest_vertex_m": 0.0029995774384588003,
-      "rigid_edge_error_m": 5.140900611877441e-06,
+      "rigid_edge_error_m": 5.364418029785156e-06,
       "loop_error_m": 3.053247610296239e-06,
       "max_displacement_m": 29.01616096496582,
       "max_ground_clearance_m": 17.974395751953125
@@ -157,10 +157,10 @@
   },
   "katana_cutting_edge": {
     "leading_edge_alignment": [
-      0.9530429812148213,
-      0.9289057850837708,
-      0.8938725143671036,
-      0.8772051653359085
+      0.9338193386793137,
+      0.9178924337029457,
+      0.8868836462497711,
+      0.8668089900165796
     ],
     "minimum_required": 0.8
   },

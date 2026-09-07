@@ -1,0 +1,201 @@
+{
+  "reports": [
+    {
+      "name": "Sentinel",
+      "width": 1440,
+      "samples": 73,
+      "lowestWorldY": 0.0012176375171658246,
+      "projectedMin": [
+        -0.25066867862514636,
+        -0.5911756280695052
+      ],
+      "projectedMax": [
+        0.3614582791456596,
+        0.5666203988534495
+      ]
+    },
+    {
+      "name": "Run",
+      "width": 1440,
+      "samples": 17,
+      "lowestWorldY": 0.0012179450370220569,
+      "projectedMin": [
+        -0.16071629161917533,
+        -0.6329726202580946
+      ],
+      "projectedMax": [
+        0.3026522411983359,
+        0.5748529859132295
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "width": 1440,
+      "samples": 97,
+      "lowestWorldY": 4.3247663551515733e-07,
+      "projectedMin": [
+        -0.338237129613544,
+        -0.6175086510903564
+      ],
+      "projectedMax": [
+        0.3907619673288169,
+        0.48854176127490956
+      ]
+    },
+    {
+      "name": "Backflip",
+      "width": 1440,
+      "samples": 44,
+      "lowestWorldY": 0.0012325673457337606,
+      "projectedMin": [
+        -0.1460959786986476,
+        -0.6291092395932659
+      ],
+      "projectedMax": [
+        0.31285432434552707,
+        0.5560144245361245
+      ]
+    },
+    {
+      "name": "BladeSalute",
+      "width": 1440,
+      "samples": 73,
+      "lowestWorldY": 0.0012176375171658246,
+      "projectedMin": [
+        -0.2296619342137267,
+        -0.5681841829003524
+      ],
+      "projectedMax": [
+        0.33179920367958554,
+        0.5715509409135267
+      ]
+    },
+    {
+      "name": "SwordSlash",
+      "width": 1440,
+      "samples": 49,
+      "lowestWorldY": 0.0012176375171658246,
+      "projectedMin": [
+        -0.22294893537455804,
+        -0.5000466300443107
+      ],
+      "projectedMax": [
+        0.36422121680311564,
+        0.5280607777747929
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "width": 390,
+      "samples": 73,
+      "lowestWorldY": 0.0012176375171658246,
+      "projectedMin": [
+        -0.6211045903977854,
+        -0.5061508019925308
+      ],
+      "projectedMax": [
+        0.5690314616617652,
+        0.21298050030236207
+      ]
+    },
+    {
+      "name": "Run",
+      "width": 390,
+      "samples": 17,
+      "lowestWorldY": 0.0012179450370220569,
+      "projectedMin": [
+        -0.4455698871039079,
+        -0.5286890052806987
+      ],
+      "projectedMax": [
+        0.44821182735686754,
+        0.21454092571021957
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "width": 390,
+      "samples": 97,
+      "lowestWorldY": 4.3247663551515733e-07,
+      "projectedMin": [
+        -0.7977400078082065,
+        -0.5260246293397597
+      ],
+      "projectedMax": [
+        0.6272287228951283,
+        0.16390739956661615
+      ]
+    },
+    {
+      "name": "Backflip",
+      "width": 390,
+      "samples": 44,
+      "lowestWorldY": 0.0012325673457337606,
+      "projectedMin": [
+        -0.4182564131352071,
+        -0.5282321759907566
+      ],
+      "projectedMax": [
+        0.47903536001806335,
+        0.20010488804133503
+      ]
+    },
+    {
+      "name": "BladeSalute",
+      "width": 390,
+      "samples": 73,
+      "lowestWorldY": 0.0012176375171658246,
+      "projectedMin": [
+        -0.5771811955309579,
+        -0.49238571047267926
+      ],
+      "projectedMax": [
+        0.5173097249957797,
+        0.21744085732992652
+      ]
+    },
+    {
+      "name": "SwordSlash",
+      "width": 390,
+      "samples": 49,
+      "lowestWorldY": 0.0012176375171658246,
+      "projectedMin": [
+        -0.5743336310393862,
+        -0.45440486076771475
+      ],
+      "projectedMax": [
+        0.5918773507792939,
+        0.20401575934027255
+      ]
+    }
+  ],
+  "firing": {
+    "alignment": 0.9999255204277334,
+    "states": [
+      {
+        "time": 2.42,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": true
+      },
+      {
+        "time": 2.8,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": false
+      },
+      {
+        "time": 2.9,
+        "muzzleFound": true,
+        "visibleProjectiles": 2,
+        "flash": true
+      },
+      {
+        "time": 3.38,
+        "muzzleFound": true,
+        "visibleProjectiles": 2,
+        "flash": true
+      }
+    ]
+  }
+}
