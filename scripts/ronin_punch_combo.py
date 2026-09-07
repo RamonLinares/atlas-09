@@ -1,7 +1,7 @@
 """Magnetic katana stow around the same library combo used by Atlas and Aether."""
 import math
-from mathutils import Vector,Matrix
-from ronin_equipment import ANCHOR,HANDLE_AXIS,DOCK_ANCHOR,DOCK_AXIS
+from mathutils import Vector,Matrix,Quaternion
+from ronin_equipment import ANCHOR,DOCK_ANCHOR,dock_rotation
 
 DURATION=12.0
 
@@ -13,35 +13,57 @@ def make_punch_combo(rig,obj):
         bpy.context.view_layer.update()
     def smooth(x):
         x=max(0,min(1,x));return x*x*(3-2*x)
-    def curve(t,keys):
-        if t<=keys[0][0]:return keys[0][1]
-        for (ta,a),(tb,c) in zip(keys,keys[1:]):
-            if t<=tb:return a+(c-a)*smooth((t-ta)/(tb-ta))
-        return keys[-1][1]
-    dock_q=HANDLE_AXIS.rotation_difference(DOCK_AXIS)
+    dock_q=dock_rotation()
     dock=Matrix.Translation(DOCK_ANCHOR)@dock_q.to_matrix().to_4x4()@Matrix.Translation(-ANCHOR)
     dock_hand=dock@rest['hand.R'];dock_wrist=dock_hand.translation
-    def direction_q(name,direction):
-        bone=b[name].bone
-        return (bone.tail_local-bone.head_local).rotation_difference(Vector(direction).normalized())@rest[name].to_quaternion()
     def set_q(name,q):
         bone=b[name];bone.matrix=Matrix.Translation(bone.head)@q.to_matrix().to_4x4();update()
+    upper_rest=(rest['forearm.R'].translation-rest['upper_arm.R'].translation).normalized()
+    lower_rest=(rest['hand.R'].translation-rest['forearm.R'].translation).normalized()
+    rest_normal=upper_rest.cross(lower_rest).normalized()
+    hand_relative=rest['forearm.R'].to_quaternion().inverted()@rest['hand.R'].to_quaternion()
+    def hinge_frame(direction,normal):
+        y=direction.normalized();x=y.cross(normal).normalized();z=x.cross(y)
+        return Matrix((x,y,z)).transposed()
+    def reach(target,progress):
+        shoulder=rest['upper_arm.R'].translation;v=target-shoulder;axis=v.normalized()
+        l1=b['upper_arm.R'].bone.length;l2=b['forearm.R'].bone.length
+        length=min(l1+l2-.001,max(abs(l1-l2)+.001,v.length))
+        guide_keys=[(0,rest['forearm.R'].translation),(.7,Vector((-4.1,-.5,10.8))),
+                    (1.4,Vector((-4.3,-1.0,12.9))),(1.9,Vector((-4.0,-1.0,13.5))),
+                    (2.4,Vector((-3.21,-1.12,13.63)))]
+        guide=guide_keys[-1][1]
+        for (ta,a),(tb,c) in zip(guide_keys,guide_keys[1:]):
+            if progress*2.4<=tb:guide=a.lerp(c,smooth((progress*2.4-ta)/(tb-ta)));break
+        pole=guide-shoulder;pole=(pole-axis*pole.dot(axis)).normalized()
+        along=(l1*l1-l2*l2+length*length)/(2*length)
+        elbow=shoulder+axis*along+pole*math.sqrt(max(0,l1*l1-along*along))
+        upper=(elbow-shoulder).normalized();lower=(target-elbow).normalized();normal=upper.cross(lower).normalized()
+        uq=(hinge_frame(upper,normal)@hinge_frame(upper_rest,rest_normal).inverted()).to_quaternion()@rest['upper_arm.R'].to_quaternion()
+        fq=(hinge_frame(lower,normal)@hinge_frame(lower_rest,rest_normal).inverted()).to_quaternion()@rest['forearm.R'].to_quaternion()
+        return uq,fq,lower
+    # Share the grip adjustment between forearm pronation and a modest wrist
+    # bend. The wrist follows the forearm throughout the lift.
+    uq,fq,direction=reach(dock_wrist,1)
+    wanted=dock_hand.to_quaternion()@hand_relative.inverted()
+    aligned=(wanted@Vector((0,1,0))).rotation_difference(direction)@wanted
+    delta=aligned@fq.inverted()
+    twist=2*math.atan2(Vector((delta.x,delta.y,delta.z)).dot(direction),delta.w)
+    twist=(twist+math.pi)%(2*math.pi)-math.pi
+    final_forearm=Quaternion(direction,twist)@fq
+    wrist_delta=(final_forearm@hand_relative).inverted()@dock_hand.to_quaternion()
     def carry(t):
-        # Arc around the outside of the right shoulder, then settle onto the back.
-        keys=[(0,rest['hand.R'].translation),(1.0,Vector((-5.0,.9,10.6))),
-              (1.8,Vector((-4.0,2.9,12.5))),(2.4,dock_wrist)]
+        progress=max(0,min(1,t/2.4))
+        keys=[(0,rest['hand.R'].translation),(.7,Vector((-3.8,-2.0,11.0))),
+              (1.4,Vector((-2.9,-.7,14.0))),(1.9,Vector((-2.7,.5,13.8))),(2.4,dock_wrist)]
         target=keys[-1][1]
         for (ta,a),(tb,c) in zip(keys,keys[1:]):
             if t<=tb:target=a.lerp(c,smooth((t-ta)/(tb-ta)));break
-        upper=b['upper_arm.R'];lower=b['forearm.R'];v=target-upper.head
-        l1=upper.bone.length;l2=lower.bone.length;length=min(l1+l2-.001,max(abs(l1-l2)+.001,v.length));axis=v.normalized()
-        pole=Vector((-1,-1,0));pole=(pole-axis*pole.dot(axis)).normalized()
-        along=(l1*l1-l2*l2+length*length)/(2*length)
-        elbow=upper.head+axis*along+pole*math.sqrt(max(0,l1*l1-along*along))
-        set_q('upper_arm.R',direction_q('upper_arm.R',elbow-upper.head))
-        set_q('forearm.R',direction_q('forearm.R',target-lower.head))
-        q=rest['hand.R'].to_quaternion().slerp(dock_hand.to_quaternion(),smooth(t/2.4))
-        set_q('hand.R',q)
+        uq,fq,direction=reach(target,progress)
+        pronation=smooth(progress)
+        fq=Quaternion(direction,twist*pronation)@fq
+        set_q('upper_arm.R',uq);set_q('forearm.R',fq)
+        set_q('hand.R',fq@hand_relative@Quaternion().slerp(wrist_delta,pronation))
     def dock_weapon():
         chest_delta=b['chest'].matrix@rest['chest'].inverted()
         b['sword.R'].matrix=chest_delta@dock@rest['sword.R'];update()
@@ -97,7 +119,7 @@ def refine_docked_keys(rig):
     import bpy
     b=rig.pose.bones;s=bpy.context.scene
     rig.animation_data.action=bpy.data.actions['PunchCombo']
-    dock_q=HANDLE_AXIS.rotation_difference(DOCK_AXIS)
+    dock_q=dock_rotation()
     dock=Matrix.Translation(DOCK_ANCHOR)@dock_q.to_matrix().to_4x4()@Matrix.Translation(-ANCHOR)
     sword=b['sword.R'];previous=None
     # Its hierarchy still follows the hand during the other six clips. Dense

@@ -123,9 +123,9 @@
     {
       "name": "PunchCombo",
       "lowest_vertex_m": 5.883997005184938e-07,
-      "rigid_edge_error_m": 3.606081008911133e-06,
-      "loop_error_m": 2.1851424207852688e-06,
-      "max_displacement_m": 14.066411018371582,
+      "rigid_edge_error_m": 4.366040229797363e-06,
+      "loop_error_m": 2.5788913262658753e-06,
+      "max_displacement_m": 20.7058048248291,
       "max_ground_clearance_m": 0.25666022300720215
     },
     {
@@ -174,13 +174,13 @@
   },
   "punch_combo": {
     "arm_joint_gap_m": 3.2340669551493016e-06,
-    "held_sword_gap_m": 3.371747880871523e-07,
-    "dock_drift_m": 6.4373016357421875e-06,
+    "held_sword_gap_m": 5.960464477539062e-07,
+    "dock_drift_m": 4.76837158203125e-06,
     "rotation_step_rad": 0.9572738053596248,
     "foot_motion_m": 6.830578625050643,
     "fist_forward_travel_m": {
       "L": 5.719851016998291,
-      "R": 6.210782289505005
+      "R": 6.210783004760742
     },
     "reference_rotation_step_rad": 0.9122476145167594
   },

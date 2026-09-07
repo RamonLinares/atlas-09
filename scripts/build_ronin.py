@@ -137,7 +137,7 @@ for side in ['L','R']:
 sphere((0,0,10),.45,'chest');sphere((0,.15,13.05),.32,'head')
 from ronin_grip import add_sword_fingers
 (OUT/'grip-repair.json').write_text(json.dumps(add_sword_fingers(bind,joint),indent=2))
-(OUT/'magnetic-dock.json').write_text(json.dumps(add_equipment(bind,joint,trim,glow),indent=2))
+(OUT/'magnetic-dock.json').write_text(json.dumps(add_equipment(bind,joint,trim,glow,obj),indent=2))
 
 # Pulse emitter integrated into the left wrist bracer.
 direction=Vector((.22,-.09,-1)).normalized();center=Vector((3.92,-.3,8.55))

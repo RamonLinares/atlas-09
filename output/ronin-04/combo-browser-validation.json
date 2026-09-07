@@ -1,9 +1,9 @@
 {
-  "maxDockDrift": 0.00033477697167327847,
-  "maxSwordStep": 0.030723412232474583,
+  "maxDockDrift": 0.0002474862586758775,
+  "maxSwordStep": 0.05259052659892683,
   "duration": 12,
   "playback": {
-    "renderedFrames": 702,
+    "renderedFrames": 714,
     "completedLoop": true
   }
 }
