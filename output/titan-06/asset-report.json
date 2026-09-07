@@ -1,0 +1,117 @@
+{
+  "source": "assets/titan-06/retopo/0379bea6-ab60-4230-8a03-4c88de362974-model.glb",
+  "height_m": 19.0,
+  "source_triangles": 23427,
+  "vertices": 14892,
+  "triangles": 27579,
+  "bones": 16,
+  "materials": [
+    "TITAN royal blue lacquer, crimson chest and gold",
+    "TITAN graphite actuators",
+    "TITAN aged gold trim",
+    "TITAN reactor emission",
+    "TITAN chest lens emission"
+  ],
+  "boundary_edges": 2227,
+  "textures": [
+    {
+      "semantic": "BaseColor",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "public/textures/titan-06/Titan_BaseColor.jpg"
+    },
+    {
+      "semantic": "ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "public/textures/titan-06/Titan_ORM.png"
+    },
+    {
+      "semantic": "Normal",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "public/textures/titan-06/Titan_Normal.jpg"
+    }
+  ],
+  "sections": {
+    "foot.R": 1178,
+    "foot.L": 1178,
+    "shin.R": 680,
+    "shin.L": 680,
+    "thigh.R": 1103,
+    "thigh.L": 1108,
+    "hand.R": 1916,
+    "hand.L": 1916,
+    "pelvis": 1174,
+    "forearm.R": 832,
+    "forearm.L": 832,
+    "chest": 3595,
+    "upper_arm.R": 1981,
+    "upper_arm.L": 1981,
+    "head": 3273
+  },
+  "hardware": {
+    "joint_housings": 14,
+    "rocket_nozzles": 2,
+    "knuckle_blasters": 2,
+    "chest_lens": 1,
+    "eye_lenses": 2,
+    "muzzles": [
+      "Muzzle_Rocket_L",
+      "Muzzle_Rocket_R",
+      "Muzzle_L",
+      "Muzzle_R",
+      "Muzzle_Chest"
+    ]
+  },
+  "animations": [
+    {
+      "name": "Backflip",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "ChestBeam",
+      "frames": [
+        1.0,
+        121.0
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "RocketPunch",
+      "frames": [
+        1.0,
+        106.0
+      ]
+    },
+    {
+      "name": "Run",
+      "frames": [
+        1.0,
+        37.0
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    }
+  ]
+}

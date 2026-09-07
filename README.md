@@ -1,8 +1,8 @@
 # FORGE — Character Lab
 
-**All five mecha models are free for everyone to use, modify, redistribute, and sell, for commercial or noncommercial purposes. No attribution or permission required.** Models, Blender sources, textures, rigs, and animations are released under [CC0 1.0](ASSET-LICENSE.md). Project code is [MIT licensed](LICENSE).
+**All seven mecha models are free for everyone to use, modify, redistribute, and sell, for commercial or noncommercial purposes. No attribution or permission required.** Models, Blender sources, textures, rigs, and animations are released under [CC0 1.0](ASSET-LICENSE.md). Project code is [MIT licensed](LICENSE).
 
-Five original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
+Seven original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
 
 | Character | Design | Blender source | Animated model |
 | --- | --- | --- | --- |
@@ -11,12 +11,14 @@ Five original mecha characters, reconstructed and retopologized with Tripo, prep
 | SERAPH / 03 | Titanium mecha with metal wings, 20-metre wingtip height, and a heavy right cannon arm | [SERAPH-03.blend](blender/SERAPH-03.blend) | [seraph-03.glb](public/models/seraph-03.glb) |
 | RONIN / 04 | 16-metre samurai mecha with crimson armor, gold crescent helmet and katana | [RONIN-04.blend](blender/RONIN-04.blend) | [ronin-04.glb](public/models/ronin-04.glb) |
 | SCORPIO / 05 | 17-metre scorpion predator mecha with hydraulic pincer claws and plasma stinger tail | [SCORPIO-05.blend](blender/SCORPIO-05.blend) | [scorpio-05.glb](public/models/scorpio-05.glb) |
+| TITAN / 06 | 19-metre classic super robot with royal blue armor, golden horns, launchable rocket fists and a chest beam lens | [TITAN-06.blend](blender/TITAN_06.blend) | [titan-06.glb](public/models/titan-06.glb) |
+| VANGUARD / 07 | 18-metre classic real-robot military frame with beam rifle, forearm shield, skirt plates and backpack verniers | [VANGUARD-07.blend](blender/VANGUARD_07.blend) | [vanguard-07.glb](public/models/vanguard-07.glb) |
 
-Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS has ten motions, AETHER eleven, SERAPH nine, RONIN twelve, and SCORPIO six. The humanoid frames share chest/head hit reactions and a knockback; AETHER adds a forward dodge roll, and RONIN adds a source-based sword combo and block alongside his magnetic katana stow/punch/retrieval sequence. The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH and SCORPIO framed for their respective wing and stinger envelopes; their physical design heights remain embedded in the source assets.
+Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS has ten motions, AETHER eleven, SERAPH nine, RONIN twelve, SCORPIO six, TITAN six, and VANGUARD seven. The first four humanoid frames share chest/head hit reactions and a knockback; AETHER adds a forward dodge roll, and RONIN adds a source-based sword combo and block alongside his magnetic katana stow/punch/retrieval sequence. TITAN launches a rocket fist and fires a chest beam; VANGUARD fires a rifle burst, braces behind its shield and boosts into a vernier jump. The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH and SCORPIO framed for their respective wing and stinger envelopes; their physical design heights remain embedded in the source assets.
 
 Direct links can select a character and motion, for example `/?character=scorpio-05&motion=StingerStrike`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [SCORPIO](https://ramonlinares.github.io/atlas-09/?character=scorpio-05). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
 
-The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md), [SERAPH-03.md](SERAPH-03.md), [RONIN-04.md](RONIN-04.md), and [SCORPIO-05.md](SCORPIO-05.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
+The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md), [SERAPH-03.md](SERAPH-03.md), [RONIN-04.md](RONIN-04.md), [SCORPIO-05.md](SCORPIO-05.md), [TITAN-06.md](TITAN-06.md), and [VANGUARD-07.md](VANGUARD-07.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
 
 ## Open the result
 
@@ -62,6 +64,10 @@ blender -b --python scripts/validate_aether.py
 blender -b --python scripts/build_scorpio.py
 blender -b --python scripts/validate_scorpio.py
 node scripts/validate_glb.mjs public/models/scorpio-05.glb output/scorpio-05/gltf-validation.json
+blender -b --python scripts/build_titan.py
+blender -b --python scripts/validate_classic.py -- titan-06
+blender -b --python scripts/build_vanguard.py
+blender -b --python scripts/validate_classic.py -- vanguard-07
 ```
 
 The preparation script reads the already downloaded Tripo retopology in `assets/retopo`, so rebuilding is local and uses no provider credits. It recreates the mesh, unwrap, rig, clips, textures, GLB, Blender file, beauty render, and audit data. It also repairs a rare zero tangent at a split vertex using the local triangle's UV differential.
@@ -112,7 +118,7 @@ Click **WEBCAM CONTROL**, allow camera access, and keep your shoulders and arms 
 
 Tracking runs on-device using MediaPipe Pose Landmarker Lite in a background worker. The model and runtime are self-hosted; frames are neither recorded nor uploaded, and no microphone is requested. The camera requires HTTPS or localhost and a browser that supports webcam access, ImageBitmap, WebAssembly and worker WebGL. If access is denied, the panel explains how to retry.
 
-`src/pose-rig.js` maps landmark directions to each GLB's actual rest skeleton, smooths rotations, keeps child joint offsets fixed and grounds the lowest boot using its skinned surface. It supports all five existing mechas, including attached weapons and wings. Tracking loss eases back to neutral after 650 ms. Single-camera depth is approximate; hidden limbs, extreme rotations and self-occlusion can reduce fidelity. This is live pose control, not recorded motion capture or full-body collision simulation.
+`src/pose-rig.js` maps landmark directions to each GLB's actual rest skeleton, smooths rotations, keeps child joint offsets fixed and grounds the lowest boot using its skinned surface. It supports all seven mechas, including attached weapons, wings, TITAN's pauldrons and VANGUARD's rifle and shield. Tracking loss eases back to neutral after 650 ms. Single-camera depth is approximate; hidden limbs, extreme rotations and self-occlusion can reduce fidelity. This is live pose control, not recorded motion capture or full-body collision simulation.
 
 Runtime preparation is automatic in `npm run dev` and `npm run build`. Asset provenance is in `public/tracking/README.md`. Browser verification uses `scripts/validate-pose-browser.js` as an evaluated async function in the running viewer: standing, one arm raised, T pose, squat, mirror-side selection, fixed joint offsets, rigid triangle edges, grounded feet and recovery after tracking loss on every character. Camera lifecycle checks use simulated streams rather than personal camera footage.
 

@@ -1,10 +1,10 @@
-# All five mecha models are free to use — CC0
+# All seven mecha models are free to use — CC0
 
-**ATLAS / 09, AETHER / 02, SERAPH / 03, RONIN / 04, and SCORPIO / 05 are released under the CC0 1.0 Universal Public Domain Dedication. Anyone may use them for commercial or noncommercial purposes, free of charge, without asking permission or providing attribution.**
+**ATLAS / 09, AETHER / 02, SERAPH / 03, RONIN / 04, SCORPIO / 05, TITAN / 06, and VANGUARD / 07 are released under the CC0 1.0 Universal Public Domain Dedication. Anyone may use them for commercial or noncommercial purposes, free of charge, without asking permission or providing attribution.**
 
 You may modify, animate, render, redistribute, sell, and incorporate these models into games, films, applications, products, or other projects. Attribution is welcome but never required.
 
-To the extent possible under law, Ramon Linares dedicates all copyright and related rights he holds in these character assets to the public under [CC0 1.0](LICENSES/CC0-1.0.txt). The dedication covers the five characters' GLB models, Blender projects (including preserved versions), rigs, baked animations, textures, original concepts, renders, and source/retopology assets in `public/models/`, `public/textures/`, `blender/`, `assets/`, and character renders in `output/`. Original character concept images in `public/` are also included.
+To the extent possible under law, Ramon Linares dedicates all copyright and related rights he holds in these character assets to the public under [CC0 1.0](LICENSES/CC0-1.0.txt). The dedication covers the seven characters' GLB models, Blender projects (including preserved versions), rigs, baked animations, textures, original concepts, renders, and source/retopology assets in `public/models/`, `public/textures/`, `blender/`, `assets/`, and character renders in `output/`. Original character concept images in `public/` are also included.
 
 The full legal text is in [LICENSES/CC0-1.0.txt](LICENSES/CC0-1.0.txt). A copy travels with the hosted downloads at [public/models/LICENSE.txt](public/models/LICENSE.txt).
 

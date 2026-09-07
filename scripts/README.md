@@ -4,6 +4,7 @@ Run commands from the repository root. Use Node.js 22 for JavaScript tools and B
 
 - `prepare-pose-runtime.mjs`: copies the installed MediaPipe runtime to `public/tracking/runtime/`; automatically runs before development and production builds.
 - `build_mecha.py`, `build_aether.py`, `build_seraph.py`, `build_ronin.py`, `build_scorpio.py`: base asset preparation. Follow the character guides for subsequent motion upgrades.
+- `build_titan.py`, `build_vanguard.py`: the classic super-robot and real-robot frames, sharing `classic_mecha.py` (rigid sectioning, hardware, baking, export) with anatomy in `titan_anatomy.py` / `vanguard_anatomy.py` and motion in `titan_motions.py` / `vanguard_motions.py`. `inspect_classic.py` renders and measures a retopology before sectioning; `validate_classic.py -- <character-id>` checks the result; `render_classic_frames.py` renders review frames of every clip.
 - `add_combat_motions.py`: appends selected combat animations to prepared character files.
 - `upgrade_seraph_wings.py`: adds independent feather hinges and the revised deployment.
 - `validate_glb.mjs`: validates an exported GLB. Example: `node scripts/validate_glb.mjs public/models/seraph-03.glb /tmp/seraph-validation.json`.

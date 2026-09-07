@@ -1,0 +1,61 @@
+[
+  {
+    "name": "Run",
+    "frames": 33,
+    "duration": 1.0666666666666667,
+    "max_ground_correction_m": 1.1799261301348452e-06,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0079,
+    "interpolation_lift_frame": 11
+  },
+  {
+    "name": "KneelFire",
+    "frames": 241,
+    "duration": 8.0,
+    "max_ground_correction_m": 1.0016331672668457,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0041,
+    "interpolation_lift_frame": 232
+  },
+  {
+    "name": "Backflip",
+    "frames": 109,
+    "duration": 3.6,
+    "max_ground_correction_m": 1.8480632206774317e-06,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0151,
+    "interpolation_lift_frame": 86
+  },
+  {
+    "name": "Sentinel",
+    "frames": 181,
+    "duration": 6.0,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0,
+    "interpolation_lift_frame": 1
+  },
+  {
+    "name": "RifleBurst",
+    "frames": 97,
+    "duration": 3.2,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0034,
+    "interpolation_lift_frame": 87
+  },
+  {
+    "name": "ShieldGuard",
+    "frames": 91,
+    "duration": 3.0,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0038,
+    "interpolation_lift_frame": 82
+  },
+  {
+    "name": "BoostJump",
+    "frames": 109,
+    "duration": 3.6,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0131,
+    "interpolation_lift_frame": 93
+  }
+]

@@ -20,4 +20,4 @@ Describe the problem, the resulting behavior, and the checks you ran. Include sc
 
 Keep generated dependencies, local credentials, editor files, and caches out of commits. Retain intentional asset sources and useful validation reports. Do not include webcam recordings or personal images in tests; use synthetic inputs or appropriately licensed fixtures.
 
-Code and documentation contributions are under the project's MIT license. Contributions to the five mecha asset collections are under CC0 as described in [ASSET-LICENSE.md](ASSET-LICENSE.md). Only submit material you have permission to contribute, and preserve all third-party notices.
+Code and documentation contributions are under the project's MIT license. Contributions to the seven mecha asset collections are under CC0 as described in [ASSET-LICENSE.md](ASSET-LICENSE.md). Only submit material you have permission to contribute, and preserve all third-party notices.

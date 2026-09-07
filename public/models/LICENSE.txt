@@ -1,6 +1,6 @@
 FORGE MECHA ASSETS — CC0 1.0 UNIVERSAL
 
-ATLAS / 09, AETHER / 02, SERAPH / 03, RONIN / 04 and SCORPIO / 05, including their meshes, textures, rigs and baked animations, are free for anyone to use, modify, redistribute and sell for commercial or noncommercial purposes. No attribution or permission is required.
+ATLAS / 09, AETHER / 02, SERAPH / 03, RONIN / 04, SCORPIO / 05, TITAN / 06 and VANGUARD / 07, including their meshes, textures, rigs and baked animations, are free for anyone to use, modify, redistribute and sell for commercial or noncommercial purposes. No attribution or permission is required.
 
 To the extent possible under law, Ramon Linares dedicates all copyright and related rights he holds in these character assets under CC0 1.0. Third-party tracking software and sample photography are excluded.
 

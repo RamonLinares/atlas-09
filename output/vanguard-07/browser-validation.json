@@ -1,0 +1,36 @@
+{
+  "method": "Interactive in-app browser session against the Vite dev server (127.0.0.1:5175); clip poses set through window.atlas.setClip and atlas.mixer.setTime; effect flags read from atlas.stats.motionFX; layout checked at 1440x1000, 820x600 and 375x812.",
+  "console_errors": 0,
+  "horizontal_overflow": false,
+  "date": "2026-09-07T00:00:00",
+  "character": "vanguard-07",
+  "stats": {
+    "clips": [
+      "Backflip:3.60",
+      "BoostJump:3.60",
+      "KneelFire:8.00",
+      "RifleBurst:3.20",
+      "Run:1.07",
+      "Sentinel:6.00",
+      "ShieldGuard:3.00"
+    ],
+    "bones": 19,
+    "triangles": 27320,
+    "muzzle": "Muzzle_Rifle"
+  },
+  "effects": {
+    "RifleBurst@1.25s": {
+      "projectiles": "visible beam rounds"
+    },
+    "BoostJump@1.6s": {
+      "flame": true,
+      "airborne": true
+    },
+    "KneelFire@3.1s": {
+      "projectiles": "visible beam rounds"
+    },
+    "ShieldGuard@1.5s": {
+      "shield_covers_torso": true
+    }
+  }
+}

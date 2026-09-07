@@ -1,0 +1,133 @@
+{
+  "source": "assets/vanguard-07/retopo/6769b5d3-cf8f-4613-a0f7-7070589641a6-model.glb",
+  "height_m": 18.0,
+  "source_triangles": 23578,
+  "vertices": 14764,
+  "triangles": 27320,
+  "bones": 19,
+  "materials": [
+    "VANGUARD white armor, cobalt chest and signal red",
+    "VANGUARD graphite actuators",
+    "VANGUARD signal yellow trim",
+    "VANGUARD sensor emission",
+    "VANGUARD beam emitter emission"
+  ],
+  "boundary_edges": 2222,
+  "textures": [
+    {
+      "semantic": "BaseColor",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "public/textures/vanguard-07/Vanguard_BaseColor.jpg"
+    },
+    {
+      "semantic": "ORM",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "public/textures/vanguard-07/Vanguard_ORM.png"
+    },
+    {
+      "semantic": "Normal",
+      "size": [
+        1024,
+        1024
+      ],
+      "file": "public/textures/vanguard-07/Vanguard_Normal.jpg"
+    },
+    {
+      "semantic": "Emission",
+      "size": [
+        2048,
+        2048
+      ],
+      "file": "public/textures/vanguard-07/Vanguard_Emission.png",
+      "emissive_texels": 2326
+    }
+  ],
+  "sections": {
+    "foot.R": 1281,
+    "foot.L": 1287,
+    "shin.R": 773,
+    "shin.L": 773,
+    "thigh.R": 578,
+    "thigh.L": 576,
+    "rifle.R": 1982,
+    "pelvis": 729,
+    "skirt.R": 245,
+    "skirt.L": 247,
+    "shield.L": 652,
+    "chest": 5430,
+    "hand.R": 1222,
+    "hand.L": 770,
+    "forearm.R": 321,
+    "upper_arm.R": 1538,
+    "upper_arm.L": 2247,
+    "forearm.L": 286,
+    "head": 2639
+  },
+  "hardware": {
+    "joint_housings": 14,
+    "verniers": 2,
+    "rifle_emitter": 1,
+    "muzzles": [
+      "Muzzle_Thruster_L",
+      "Muzzle_Thruster_R",
+      "Muzzle_Rifle"
+    ]
+  },
+  "animations": [
+    {
+      "name": "Backflip",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "BoostJump",
+      "frames": [
+        1.0,
+        109.0
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "frames": [
+        1.0,
+        241.0
+      ]
+    },
+    {
+      "name": "RifleBurst",
+      "frames": [
+        1.0,
+        97.0
+      ]
+    },
+    {
+      "name": "Run",
+      "frames": [
+        1.0,
+        33.0
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "frames": [
+        1.0,
+        181.0
+      ]
+    },
+    {
+      "name": "ShieldGuard",
+      "frames": [
+        1.0,
+        91.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "rigid_vertices": true,
+  "rigid_faces": true,
+  "uv_maps": [
+    {
+      "name": "Vanguard_Surface",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    },
+    {
+      "name": "Vanguard_Lightmap",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    }
+  ],
+  "domain_sizes": {
+    "head": 721,
+    "torso": 252,
+    "left_arm": 141,
+    "right_arm": 610,
+    "legs": 412
+  },
+  "isolation": [
+    {
+      "bone": "head",
+      "displacement_m": {
+        "head": 1.9261820316314697,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "legs": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 6.510666370391846,
+        "right_arm": 0.0,
+        "legs": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.R",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 8.663820266723633,
+        "legs": 0.0
+      }
+    },
+    {
+      "bone": "thigh.L",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "legs": 4.405585289001465
+      }
+    },
+    {
+      "bone": "thigh.R",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "legs": 4.403356552124023
+      }
+    }
+  ],
+  "animations": [
+    {
+      "name": "Sentinel",
+      "joint_gap_m": 0,
+      "non_root_translation_m": 1.3486991523486091e-06,
+      "max_half_frame_angular_step_rad": 0.000976562509701277,
+      "lowest_vertex_m": -5.0857472899679124e-08,
+      "rigid_edge_error_m": 8.106231689453125e-06,
+      "loop_error_m": 2.2043639541502204e-18,
+      "max_displacement_m": 0.21918493509292603,
+      "max_ground_clearance_m": 0
+    },
+    {
+      "name": "RifleBurst",
+      "joint_gap_m": 2.9490749542362644e-06,
+      "non_root_translation_m": 2.9394216551632767e-06,
+      "max_half_frame_angular_step_rad": 0.06693863011626469,
+      "lowest_vertex_m": 8.685628927196376e-08,
+      "rigid_edge_error_m": 6.556510925292969e-06,
+      "loop_error_m": 9.830249609876773e-07,
+      "max_displacement_m": 14.438773155212402,
+      "max_ground_clearance_m": 0.0034279918763786554
+    },
+    {
+      "name": "ShieldGuard",
+      "joint_gap_m": 2.9873762336115045e-06,
+      "non_root_translation_m": 2.9059938772318138e-06,
+      "max_half_frame_angular_step_rad": 0.10544478687704545,
+      "lowest_vertex_m": 1.5847666645640857e-07,
+      "rigid_edge_error_m": 6.3478946685791016e-06,
+      "loop_error_m": 9.830249609876773e-07,
+      "max_displacement_m": 14.009135246276855,
+      "max_ground_clearance_m": 0.0038113428745418787
+    },
+    {
+      "name": "BoostJump",
+      "joint_gap_m": 4.212998639839242e-06,
+      "non_root_translation_m": 3.932099938981686e-06,
+      "max_half_frame_angular_step_rad": 0.07578729443242704,
+      "lowest_vertex_m": 8.94419827091042e-08,
+      "rigid_edge_error_m": 5.245208740234375e-06,
+      "loop_error_m": 9.830249609876773e-07,
+      "max_displacement_m": 9.573583602905273,
+      "max_ground_clearance_m": 6.740685939788818
+    },
+    {
+      "name": "Run",
+      "joint_gap_m": 3.0532475649990313e-06,
+      "non_root_translation_m": 3.932099938981686e-06,
+      "max_half_frame_angular_step_rad": 0.10065580010337298,
+      "lowest_vertex_m": 0.0029987990856170654,
+      "rigid_edge_error_m": 5.662441253662109e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 6.288955211639404,
+      "max_ground_clearance_m": 0.04966510832309723
+    },
+    {
+      "name": "KneelFire",
+      "joint_gap_m": 4.3702847432669066e-06,
+      "non_root_translation_m": 4.672030911985737e-06,
+      "max_half_frame_angular_step_rad": 0.1025433182861869,
+      "lowest_vertex_m": 0.002997159957885742,
+      "rigid_edge_error_m": 6.556510925292969e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 11.20082950592041,
+      "max_ground_clearance_m": 0.030683040618896484
+    },
+    {
+      "name": "Backflip",
+      "joint_gap_m": 7.448434520632414e-06,
+      "non_root_translation_m": 7.647998300717088e-06,
+      "max_half_frame_angular_step_rad": 0.15823082474052852,
+      "lowest_vertex_m": 0.002999195596203208,
+      "rigid_edge_error_m": 6.645917892456055e-06,
+      "loop_error_m": 3.932099843950709e-06,
+      "max_displacement_m": 28.115419387817383,
+      "max_ground_clearance_m": 16.438270568847656
+    }
+  ],
+  "attack_reach_m": {
+    "RifleBurst": 7.769900798797607,
+    "ShieldGuard": 2.914336919784546,
+    "BoostJump": 7.930878639221191
+  },
+  "kneel_contact_m": {
+    "foot.L": 0.0030016819946467876,
+    "foot.R": 1.4362545013427734,
+    "thigh.R": 1.6389951705932617,
+    "shin.R": 0.0029993057250976562
+  },
+  "packed_textures": true
+}

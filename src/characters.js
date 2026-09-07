@@ -5,6 +5,8 @@ import roninCombatBounds from './ronin-combat-bounds.json';
 import roninMotionBounds from './ronin-motion-bounds.json';
 import seraphMotionBounds from './seraph-motion-bounds.json';
 import scorpioMotionBounds from './scorpio-motion-bounds.json';
+import titanMotionBounds from './titan-motion-bounds.json';
+import vanguardMotionBounds from './vanguard-motion-bounds.json';
 
 export const characters = {
   'atlas-09': {
@@ -69,6 +71,44 @@ export const characters = {
       interval: .48,
       useMuzzleDirection: true,
       muzzleAxis: [0, -1, 0]
+    },
+  },
+  'titan-06': {
+    name: 'TITAN', number: '06', model: `${import.meta.env.BASE_URL}models/titan-06.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-titan-06.png`,
+    className: 'SUPER ROBOT CLASS / CLASSIC MECHA', height: '19.0', condition: 'ROYAL BLUE LACQUER / GOLD CREST',
+    tagline: ['Rocket fists.', 'A heart of light.'],
+    description: ['Massive pauldrons. Launchable gauntlets.', 'A chest lens that burns the sky.'],
+    caption: 'SUPER ROBOT FRAME / ROCKET FISTS', study: '006', conceptTitle: 'The classic hero, forged again.',
+    conceptAlt: 'Original TITAN super-robot concept with royal blue armor, a crimson chest with a golden V crest and twin golden horns',
+    accent: '#ffd27a', reactorLightIntensity: 0, displayReferenceHeight: 19.0, fogDensity: .014, inspectionFill: 1.2,
+    motionOrder: ['Sentinel', 'RocketPunch', 'ChestBeam', 'Run', 'KneelFire', 'Backflip'],
+    motionBounds: titanMotionBounds,
+    effects: {
+      muzzleName: 'Muzzle_R', color: '#ffc46a', flashColor: '#fff0c8', radius: .07, length: 1.6, flashRadius: .3, interval: .48,
+      useMuzzleDirection: true, muzzleAxis: [0, -1, 0],
+      events: [
+        { type: 'beam', clip: 'ChestBeam', muzzle: 'Muzzle_Chest', start: 1.28, end: 2.88, color: '#ffc46a', flashColor: '#fff4d0', radius: .26, length: 34 },
+        { type: 'flame', clip: 'RocketPunch', muzzles: ['Muzzle_Rocket_R'], start: 1.05, end: 2.0, color: '#ffa24a', coreColor: '#fff0d0', radius: .34, length: 2.6 },
+      ],
+    },
+  },
+  'vanguard-07': {
+    name: 'VANGUARD', number: '07', model: `${import.meta.env.BASE_URL}models/vanguard-07.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-vanguard-07.png`,
+    className: 'REAL ROBOT CLASS / MOBILE FRAME', height: '18.0', condition: 'WHITE ARMOR / COBALT & SIGNAL RED',
+    tagline: ['Beam rifle. Shield.', 'Discipline under fire.'],
+    description: ['Tricolor military armor. Backpack verniers.', 'A soldier’s frame, not a legend’s.'],
+    caption: 'MOBILE FRAME / RIFLE & SHIELD', study: '007', conceptTitle: 'The grunt that became an icon.',
+    conceptAlt: 'Original VANGUARD real-robot concept with white armor, a cobalt chest, red skirt plates, a beam rifle and a forearm shield',
+    accent: '#c9e4ff', reactorLightIntensity: 0, displayReferenceHeight: 18.0, fogDensity: .014, inspectionFill: 1.2,
+    motionOrder: ['Sentinel', 'RifleBurst', 'ShieldGuard', 'BoostJump', 'Run', 'KneelFire', 'Backflip'],
+    motionBounds: vanguardMotionBounds,
+    effects: {
+      muzzleName: 'Muzzle_Rifle', color: '#e7a8ff', flashColor: '#fbe6ff', radius: .06, length: 1.8, flashRadius: .28, interval: .48,
+      useMuzzleDirection: true, muzzleAxis: [0, -1, 0],
+      events: [
+        { type: 'shots', clip: 'RifleBurst', muzzle: 'Muzzle_Rifle', start: 1.0, end: 2.0, interval: .2 },
+        { type: 'flame', clip: 'BoostJump', muzzles: ['Muzzle_Thruster_L', 'Muzzle_Thruster_R'], start: .55, end: 2.55, color: '#8fc6ff', coreColor: '#eef6ff', radius: .3, length: 3.2 },
+      ],
     },
   },
 };

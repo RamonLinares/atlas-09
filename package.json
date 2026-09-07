@@ -1,7 +1,7 @@
 {
   "name": "atlas-09",
   "version": "1.0.0",
-  "description": "FORGE \u2014 five freely usable CC0 mecha models and an interactive Three.js character lab",
+  "description": "FORGE \u2014 seven freely usable CC0 mecha models and an interactive Three.js character lab",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",

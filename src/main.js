@@ -183,7 +183,7 @@ function showCharacterInfo(id) {
   $('.view-caption').innerHTML = `<span class="cross">+</span><span>MODEL ${c.study}<br><b>${c.caption}</b></span>`;
   $('.edition b').textContent = `${c.study}—26`;
   $('.download').href = c.model;
-  const labels={Sentinel:'IDLE',Run:'RUN',KneelFire:'KNEEL & FIRE',Backflip:'BACKFLIP',PunchCombo:'PUNCH COMBO',Walk:'WALK',Collapse:'COLLAPSE',WingDeploy:'DEPLOY WINGS',Flight:'FLIGHT',BladeSalute:'BLADE SALUTE',SwordSlash:'SWORD SLASH',StingerStrike:'STINGER STRIKE',ClawSlash:'PINCER STRIKE',SwordCombo:'SWORD COMBO',SwordBlock:'SWORD BLOCK',HitChest:'CHEST HIT',HitHead:'HEAD HIT',Knockback:'KNOCKBACK',DodgeRoll:'DODGE ROLL'};
+  const labels={Sentinel:'IDLE',Run:'RUN',KneelFire:'KNEEL & FIRE',Backflip:'BACKFLIP',PunchCombo:'PUNCH COMBO',Walk:'WALK',Collapse:'COLLAPSE',WingDeploy:'DEPLOY WINGS',Flight:'FLIGHT',BladeSalute:'BLADE SALUTE',SwordSlash:'SWORD SLASH',StingerStrike:'STINGER STRIKE',ClawSlash:'PINCER STRIKE',SwordCombo:'SWORD COMBO',SwordBlock:'SWORD BLOCK',HitChest:'CHEST HIT',HitHead:'HEAD HIT',Knockback:'KNOCKBACK',DodgeRoll:'DODGE ROLL',RocketPunch:'ROCKET PUNCH',ChestBeam:'CHEST BEAM',RifleBurst:'RIFLE BURST',ShieldGuard:'SHIELD GUARD',BoostJump:'BOOST JUMP'};
   const order=c.motionOrder || ['Sentinel','Run','KneelFire','Backflip','PunchCombo','Walk','Collapse'];
   $('.toolbar').classList.toggle('expanded',order.filter(name=>actions.has(name)).length>8);
   $('.animation-buttons').innerHTML=order.filter(name=>actions.has(name)).map(name=>`<button data-clip="${name}">${labels[name] || name}</button>`).join('');

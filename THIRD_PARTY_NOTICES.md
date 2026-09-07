@@ -1,6 +1,6 @@
 # Third-party components
 
-The five mecha characters are dedicated under [CC0](ASSET-LICENSE.md). This does not replace the following upstream notices.
+The seven mecha characters are dedicated under [CC0](ASSET-LICENSE.md). This does not replace the following upstream notices.
 
 | Component | Use | License / source |
 | --- | --- | --- |

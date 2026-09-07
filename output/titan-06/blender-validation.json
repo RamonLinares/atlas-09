@@ -1,0 +1,154 @@
+{
+  "rigid_vertices": true,
+  "rigid_faces": true,
+  "uv_maps": [
+    {
+      "name": "Titan_Surface",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    },
+    {
+      "name": "Titan_Lightmap",
+      "out_of_bounds": 0,
+      "zero_area": 0
+    }
+  ],
+  "domain_sizes": {
+    "head": 724,
+    "torso": 170,
+    "left_arm": 1048,
+    "right_arm": 1048,
+    "legs": 168
+  },
+  "isolation": [
+    {
+      "bone": "head",
+      "displacement_m": {
+        "head": 2.06339168548584,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "legs": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.L",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 7.916140079498291,
+        "right_arm": 0.0,
+        "legs": 0.0
+      }
+    },
+    {
+      "bone": "upper_arm.R",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 7.916140556335449,
+        "legs": 0.0
+      }
+    },
+    {
+      "bone": "thigh.L",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "legs": 4.817070484161377
+      }
+    },
+    {
+      "bone": "thigh.R",
+      "displacement_m": {
+        "head": 0.0,
+        "torso": 0.0,
+        "left_arm": 0.0,
+        "right_arm": 0.0,
+        "legs": 4.817070484161377
+      }
+    }
+  ],
+  "animations": [
+    {
+      "name": "Sentinel",
+      "joint_gap_m": 0,
+      "non_root_translation_m": 0,
+      "max_half_frame_angular_step_rad": 0.000976562509701277,
+      "lowest_vertex_m": 0.003005892736837268,
+      "rigid_edge_error_m": 6.854534149169922e-06,
+      "loop_error_m": 3.0371292766088998e-18,
+      "max_displacement_m": 0.18510481715202332,
+      "max_ground_clearance_m": 0.003005892736837268
+    },
+    {
+      "name": "RocketPunch",
+      "joint_gap_m": 2.4437904357910156e-06,
+      "non_root_translation_m": 2.7000311977639496e-06,
+      "max_half_frame_angular_step_rad": 0.26130628531941574,
+      "lowest_vertex_m": 0.0030022249557077885,
+      "rigid_edge_error_m": 5.125999450683594e-06,
+      "loop_error_m": 1.430511474609375e-06,
+      "max_displacement_m": 15.668177604675293,
+      "max_ground_clearance_m": 0.003971706610172987
+    },
+    {
+      "name": "ChestBeam",
+      "joint_gap_m": 3.0532475649990313e-06,
+      "non_root_translation_m": 3.0532475649990313e-06,
+      "max_half_frame_angular_step_rad": 0.07465230097825773,
+      "lowest_vertex_m": 0.003003703663125634,
+      "rigid_edge_error_m": 6.943941116333008e-06,
+      "loop_error_m": 1.430511474609375e-06,
+      "max_displacement_m": 13.241870880126953,
+      "max_ground_clearance_m": 0.0034221489913761616
+    },
+    {
+      "name": "Run",
+      "joint_gap_m": 2.2492363767758854e-06,
+      "non_root_translation_m": 2.0509541671377722e-06,
+      "max_half_frame_angular_step_rad": 0.12563901648568448,
+      "lowest_vertex_m": 0.0017991065979003906,
+      "rigid_edge_error_m": 5.990266799926758e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 7.945843696594238,
+      "max_ground_clearance_m": 0.008876979351043701
+    },
+    {
+      "name": "KneelFire",
+      "joint_gap_m": 4.185926882285938e-06,
+      "non_root_translation_m": 4.3702847432669066e-06,
+      "max_half_frame_angular_step_rad": 0.03818654643846128,
+      "lowest_vertex_m": 0.0030007362365722656,
+      "rigid_edge_error_m": 6.318092346191406e-06,
+      "loop_error_m": 0.0,
+      "max_displacement_m": 10.81521224975586,
+      "max_ground_clearance_m": 0.004982722457498312
+    },
+    {
+      "name": "Backflip",
+      "joint_gap_m": 3.198720899820027e-06,
+      "non_root_translation_m": 2.939346150842633e-06,
+      "max_half_frame_angular_step_rad": 0.11725107466411379,
+      "lowest_vertex_m": 0.003002491081133485,
+      "rigid_edge_error_m": 5.155801773071289e-06,
+      "loop_error_m": 3.84438408218557e-06,
+      "max_displacement_m": 28.021862030029297,
+      "max_ground_clearance_m": 15.98410701751709
+    }
+  ],
+  "attack_reach_m": {
+    "RocketPunch": 11.207315444946289,
+    "ChestBeam": 2.2322559356689453
+  },
+  "kneel_contact_m": {
+    "foot.L": 0.0030026815365999937,
+    "foot.R": 1.450605869293213,
+    "thigh.R": 0.003010272979736328,
+    "shin.R": 0.5379767417907715
+  },
+  "packed_textures": true
+}

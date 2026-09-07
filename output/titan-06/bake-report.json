@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Run",
+    "frames": 37,
+    "duration": 1.2,
+    "max_ground_correction_m": 4.510637154453434e-06,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0071,
+    "interpolation_lift_frame": 31
+  },
+  {
+    "name": "KneelFire",
+    "frames": 241,
+    "duration": 8.0,
+    "max_ground_correction_m": 8.557792170904577e-06,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.005,
+    "interpolation_lift_frame": 194
+  },
+  {
+    "name": "Backflip",
+    "frames": 109,
+    "duration": 3.6,
+    "max_ground_correction_m": 6.452396519307513e-06,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0174,
+    "interpolation_lift_frame": 86
+  },
+  {
+    "name": "Sentinel",
+    "frames": 181,
+    "duration": 6.0,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.003,
+    "interpolation_lift_frame": 1
+  },
+  {
+    "name": "RocketPunch",
+    "frames": 106,
+    "duration": 3.5,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.004,
+    "interpolation_lift_frame": 3
+  },
+  {
+    "name": "ChestBeam",
+    "frames": 121,
+    "duration": 4.0,
+    "rotation_keys": "quaternion",
+    "interpolation_lift_m": 0.0034,
+    "interpolation_lift_frame": 5
+  }
+]

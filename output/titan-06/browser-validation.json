@@ -1,0 +1,32 @@
+{
+  "method": "Interactive in-app browser session against the Vite dev server (127.0.0.1:5175); clip poses set through window.atlas.setClip and atlas.mixer.setTime; effect flags read from atlas.stats.motionFX; layout checked at 1440x1000, 820x600 and 375x812.",
+  "console_errors": 0,
+  "horizontal_overflow": false,
+  "date": "2026-09-07T00:00:00",
+  "character": "titan-06",
+  "stats": {
+    "clips": [
+      "Backflip:3.60",
+      "ChestBeam:4.00",
+      "KneelFire:8.00",
+      "RocketPunch:3.50",
+      "Run:1.20",
+      "Sentinel:6.00"
+    ],
+    "bones": 16,
+    "triangles": 27579
+  },
+  "effects": {
+    "RocketPunch@1.45s": {
+      "flame": true,
+      "launched_gauntlet_visible": true
+    },
+    "ChestBeam@2.0s": {
+      "beam": true
+    },
+    "KneelFire@3.1s": {
+      "projectiles": "visible knuckle-blaster rounds"
+    }
+  },
+  "character_switching": "ATLAS through VANGUARD selectable; picker fits at 375px after the 7-button CSS adjustment"
+}
