@@ -25,13 +25,15 @@
     "original_sha256": "8cee20ab1bc55130092447e810e26df22dd2803eccc54f52137a7d54d7ab88a8",
     "original_bytes": 8091444,
     "subset": "UAL2_selected.glb",
-    "subset_sha256": "ba329385b1555d895e9427285fc78780cc70e8bd2141512fa2f66558ce7c0e55",
+    "subset_sha256": "4edc339d0eea1090f3daa5942fb2bab137dce48dfe2c0955a56363715e4e5cf5",
     "clips": [
       "Melee_Hook",
       "Melee_Hook_Rec",
       "Hit_Knockback",
       "Sword_Regular_Combo",
-      "Sword_Block"
+      "Sword_Block",
+      "Sword_Regular_B",
+      "Sword_Regular_B_Rec"
     ],
     "license": "CC0-1.0",
     "downloaded": "2026-09-06",

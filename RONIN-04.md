@@ -10,9 +10,9 @@ An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold cres
 - [Extracted textures](public/textures/ronin-04/)
 - [Blender preview](output/ronin-04/ronin-04-beauty.png)
 - [Build script](scripts/build_ronin.py), [authored motions](scripts/ronin_motions.py), and [anatomical validation](scripts/validate_ronin.py)
-- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordCombo&v=23)
+- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordSlash&v=24)
 
-The GLB contains twelve ordinary baked skeletal clips. The original seven are: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), Backflip (3.6 s), and PunchCombo (12 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. PunchCombo places the katana on two magnetic back mounts, releases it for a jab–cross–hook sequence and recovery, retrieves it, and returns to the initial stance. The katana remains held in every other clip. Added clips are SwordCombo (three source strikes), SwordBlock, HitChest, HitHead, and Knockback. Knockback plays once and holds the fallen pose.
+The GLB contains twelve ordinary baked skeletal clips. The original seven are: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (2.33 s), Run (1.33 s), KneelFire (8 s), Backflip (3.6 s), and PunchCombo (12 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. PunchCombo places the katana on two magnetic back mounts, releases it for a jab–cross–hook sequence and recovery, retrieves it, and returns to the initial stance. The katana remains held in every other clip. Added clips are SwordCombo (three source strikes), SwordBlock, HitChest, HitHead, and Knockback. Knockback plays once and holds the fallen pose.
 
 ## Provenance and cost
 
@@ -41,7 +41,7 @@ Reports live in [output/ronin-04](output/ronin-04/); browser screenshots are in 
 
 ## Sword slash and grip repair
 
-SwordSlash now raises a guard, makes a fast diagonal cut with a coordinated torso turn, continues into follow-through, then recovers. The wrist and sword retain their rest relationship throughout the cut rather than aiming the blade by opening the wrist. The katana blade is rotated 180° around its length so its single sharpened edge leads the forward cut. The blade base is also aligned with the measured handle centerline through the guard, removing the angular kink between grip and blade. Its separate blade component retains the original UVs and curvature. The generated glove and hilt originally shared fused surfaces. Clean armored palms, thumbs and mechanical fingers now form both fists; the wrapped handle, gold guard and pommel are independent weapon geometry so the whole katana can leave the hand. The original textured blade is preserved.
+SwordSlash now uses the Quaternius Sword_Regular_B strike and recovery: a full-body wind-up, fast diagonal cut, hip and shoulder rotation, weight transfer through both legs, and a controlled return to guard. The attack keeps its source timing; the recovery is shortened to 85% of its original duration. The wrist and sword retain their rest relationship throughout the cut rather than aiming the blade by opening the wrist. The katana blade is rotated 180° around its length so its single sharpened edge leads the forward cut. The blade base is also aligned with the measured handle centerline through the guard, removing the angular kink between grip and blade. Its separate blade component retains the original UVs and curvature. The generated glove and hilt originally shared fused surfaces. Clean armored palms, thumbs and mechanical fingers now form both fists; the wrapped handle, gold guard and pommel are independent weapon geometry so the whole katana can leave the hand. The original textured blade is preserved.
 
 Validation additionally checks the locked wrist, attached elbow/wrist/sword joints, frame-to-frame rotational continuity, and lateral sword-tip travel. These changes rebuild locally with no additional generation charges. The armor, rig pivots, and shoulder shapes are preserved.
 
@@ -49,7 +49,7 @@ Validation additionally checks the locked wrist, attached elbow/wrist/sword join
 
 The 12-second PunchCombo uses a clear placement, a short magnetic docking pause, the same Quaternius jab, cross, hook, and recovery used by ATLAS and AETHER, retargeted to Ronin with full-body movement, and an over-shoulder retrieval. The combat section preserves AETHER’s original 3.9-second timing; the full stow/combat/retrieval clip remains 12 seconds. The shared CC0 motion sources and licenses are preserved in `assets/animations/quaternius`. Two illuminated back mounts have fitted support brackets embedded in the chest armor. Both mounts stay above the waist and move with the chest. The hand lifts in front of the body and passes over the right shoulder along an elbow-guided path; forearm pronation carries the grip while wrist bending remains below 30 degrees. Retrieval reverses that reach. The mounts keep the blade behind the torso while both arms strike. Sword motion is baked into skeletal tracks, including subframe compensation during docking. Validation checks arm joints, held-weapon contact, dock drift, foot contact, fist travel, and rotational continuity.
 
-The additional combat set is reproduced with `scripts/add_combat_motions.py --character RONIN-04` after the base build. The animation-only GLB merge preserves the previous seven clips, including the corrected magnetic mounts and placement/retrieval. See `output/motion/ronin-04-combat-bake.json` for durations and sources.
+The additional combat set is reproduced with `scripts/add_combat_motions.py --character RONIN-04` after the base build. The animation-only GLB merge upgrades SwordSlash and preserves the other existing clips, including the corrected magnetic mounts and placement/retrieval. See `output/motion/ronin-04-combat-bake.json` for durations and sources.
 
 ## Reproduce
 
@@ -57,6 +57,10 @@ The additional combat set is reproduced with `scripts/add_combat_motions.py --ch
 blender -b --python scripts/inspect_ronin.py
 blender -b --python scripts/build_ronin.py
 blender -b --python scripts/validate_ronin.py
+blender -b --python scripts/add_combat_motions.py -- --character RONIN-04
+blender -b --python scripts/validate_combat_motions.py -- --character RONIN-04
+blender -b --python scripts/validate_ronin_slash.py
+blender -b --python scripts/validate_ronin_sword_clearance.py -- --clip SwordSlash
 node scripts/validate_glb.mjs public/models/ronin-04.glb output/ronin-04/gltf-validation.json
 npm run build -- --base=/atlas-09/
 ```

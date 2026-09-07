@@ -1,0 +1,87 @@
+{
+  "revision": "baa526a",
+  "report": [
+    {
+      "id": "atlas-09",
+      "geometryMaterialsRigPreserved": true,
+      "existingClipsPreserved": [
+        "Backflip",
+        "Collapse",
+        "KneelFire",
+        "PunchCombo",
+        "Run",
+        "Sentinel",
+        "Walk",
+        "HitChest",
+        "HitHead",
+        "Knockback"
+      ],
+      "addedClips": []
+    },
+    {
+      "id": "aether-02",
+      "geometryMaterialsRigPreserved": true,
+      "existingClipsPreserved": [
+        "Backflip",
+        "Collapse",
+        "KneelFire",
+        "PunchCombo",
+        "Run",
+        "Sentinel",
+        "Walk",
+        "DodgeRoll",
+        "HitChest",
+        "HitHead",
+        "Knockback"
+      ],
+      "addedClips": []
+    },
+    {
+      "id": "seraph-03",
+      "geometryMaterialsRigPreserved": true,
+      "existingClipsPreserved": [
+        "Backflip",
+        "Flight",
+        "KneelFire",
+        "Run",
+        "Sentinel",
+        "WingDeploy",
+        "HitChest",
+        "HitHead",
+        "Knockback"
+      ],
+      "addedClips": []
+    },
+    {
+      "id": "ronin-04",
+      "geometryMaterialsRigPreserved": true,
+      "existingClipsPreserved": [
+        "Backflip",
+        "BladeSalute",
+        "KneelFire",
+        "PunchCombo",
+        "Run",
+        "Sentinel",
+        "HitChest",
+        "HitHead",
+        "Knockback",
+        "SwordBlock",
+        "SwordCombo"
+      ],
+      "addedClips": []
+    },
+    {
+      "id": "scorpio-05",
+      "geometryMaterialsRigPreserved": true,
+      "existingClipsPreserved": [
+        "Backflip",
+        "ClawSlash",
+        "KneelFire",
+        "Run",
+        "Sentinel",
+        "StingerStrike"
+      ],
+      "addedClips": []
+    }
+  ]
+}

@@ -64,11 +64,29 @@
       "max_interpolation_contact_lift_m": 0.5412403602600098,
       "entry_frames": 16,
       "recovery_frames": 20
+    },
+    {
+      "name": "SwordSlash",
+      "duration": 2.3333333333333335,
+      "frames": 71,
+      "source_clips": [
+        "Sword_Regular_B",
+        "Sword_Regular_B_Rec"
+      ],
+      "max_ground_correction_m": 4.153698682785034e-06,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.35462709856033325,
+      "entry_frames": 9,
+      "recovery_frames": 10,
+      "source_time_multipliers": {
+        "strike": 1.0,
+        "recovery": 0.85
+      }
     }
   ],
   "export": {
     "added_clips": [
-      "SwordCombo"
+      "SwordSlash"
     ],
     "preserved_mesh_and_existing_tracks": true
   }

@@ -1,0 +1,13 @@
+{
+  "clip": "SwordSlash",
+  "duration_s": 2.3333333333333335,
+  "strike_source_duration_s": 0.533333333333,
+  "peak_blade_probe_speed_m_s": 456.2685060275258,
+  "blade_probe_travel_m": 17.726136741720214,
+  "chest_rotation_range_rad": 3.141548009710853,
+  "hip_travel_m": 4.060671352590457,
+  "foot_travel_m": {
+    "L": 9.67576972620389,
+    "R": 3.7326231306203335
+  }
+}

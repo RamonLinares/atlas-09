@@ -1,0 +1,8 @@
+{
+  "clip": "SwordSlash",
+  "samples": 561,
+  "sample_rate_hz": 240,
+  "intersections": [],
+  "minimum_blade_vertex_to_leg_surface_m": 0.3941528797149658,
+  "final_sweep_lateral_gap_m": 4.038846522569656
+}

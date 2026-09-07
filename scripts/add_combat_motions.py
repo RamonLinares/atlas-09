@@ -7,7 +7,7 @@ from retarget_library import MotionSource,retarget_motions
 from append_glb_animations import append_animations
 OUT=ROOT/'output/motion';OUT.mkdir(exist_ok=True)
 sources={i:MotionSource(ROOT/f'assets/animations/quaternius/UAL{i}_selected.glb') for i in [1,2]}
-definitions={'HitChest':(1,'Hit_Chest'),'HitHead':(1,'Hit_Head'),'Knockback':(2,'Hit_Knockback'),'DodgeRoll':(1,'Roll'),'SwordCombo':(2,'Sword_Regular_Combo'),'SwordBlock':(2,'Sword_Block')}
+definitions={'HitChest':(1,'Hit_Chest'),'HitHead':(1,'Hit_Head'),'Knockback':(2,'Hit_Knockback'),'DodgeRoll':(1,'Roll'),'SwordCombo':(2,'Sword_Regular_Combo'),'SwordBlock':(2,'Sword_Block'),'SwordSlash':(2,'Sword_Regular_B')}
 characters=['ATLAS-09','AETHER-02','SERAPH-03','RONIN-04']
 if '--character' in sys.argv:characters=[sys.argv[sys.argv.index('--character')+1]]
 
@@ -24,7 +24,7 @@ for character in characters:
     rig.animation_data.action=bpy.data.actions['Sentinel'];scene.frame_set(1);update()
     neutral={b.name:(b.rotation_euler.to_quaternion().copy(),b.location.copy()) for b in bones}
     rig.animation_data.action=None
-    names=['HitChest','HitHead','Knockback']+(['DodgeRoll'] if character=='AETHER-02' else [])+(['SwordCombo','SwordBlock'] if character=='RONIN-04' else [])
+    names=['HitChest','HitHead','Knockback']+(['DodgeRoll'] if character=='AETHER-02' else [])+(['SwordCombo','SwordBlock','SwordSlash'] if character=='RONIN-04' else [])
     if '--clips' in sys.argv:names=[n for n in names if n in sys.argv[sys.argv.index('--clips')+1].split(',')]
     for track in list(rig.animation_data.nla_tracks):
         if track.name in names:rig.animation_data.nla_tracks.remove(track)
@@ -34,8 +34,12 @@ for character in characters:
     for name in names:
         library,clip=definitions[name];source=sources[library];duration=source.duration(clip)
         if name=='Knockback':duration+=.6
+        if name=='SwordSlash':duration+=.85*source.duration('Sword_Regular_B_Rec')
         def sample(t,name=name,source=source,clip=clip):
             context['name']=name;context['t']=t
+            if name=='SwordSlash':
+                strike=source.duration(clip)
+                return source.sample(clip,t) if t<=strike else source.sample('Sword_Regular_B_Rec',(t-strike)/.85)
             return source.sample(clip,min(t,source.duration(clip)))
         specs.append((name,duration,sample))
     def aim(name,direction):
@@ -95,9 +99,9 @@ for character in characters:
         for track in list(rig.animation_data.nla_tracks):
             if track.name==name:rig.animation_data.nla_tracks.remove(track)
         bpy.data.actions.remove(action)
-        intro=round((.55 if name in ['SwordCombo','DodgeRoll'] else .25)*30)
-        outro=0 if name=='Knockback' else round((.65 if name=='SwordCombo' else .45)*30)
-        hold=12;sequence=[]
+        intro=round((.55 if name in ['SwordCombo','DodgeRoll'] else .3 if name=='SwordSlash' else .25)*30)
+        outro=0 if name=='Knockback' else round((.65 if name=='SwordCombo' else .33 if name=='SwordSlash' else .45)*30)
+        hold=9 if name=='SwordSlash' else 12;sequence=[]
         def blended(a,b,f):return {n:(a[n][0].slerp(b[n][0],f),a[n][1].lerp(b[n][1],f)) for n in a}
         for i in range(intro):sequence.append(blended(neutral,poses[0],smooth(i/intro)))
         sequence+=poses
@@ -148,6 +152,7 @@ for character in characters:
         lo-=Vector((.06,.06,.06));hi+=Vector((.06,.06,max(lifts)+.06))
         bounds[name]={'min':list(lo),'max':list(hi),'poses':[{'min':[v-.10 for v in p['min']],'max':[v+.10+(max(lifts) if i==2 else 0) for i,v in enumerate(p['max'])]} for p in pose_boxes]}
         item.update(frames=len(sequence),duration=(len(sequence)-1)/30,source_clips=[definitions[name][1]],playback='once, hold final pose' if name=='Knockback' else 'loop',entry_frames=intro,recovery_frames=outro)
+        if name=='SwordSlash':item['source_clips'].append('Sword_Regular_B_Rec');item['source_time_multipliers']={'strike':1.0,'recovery':.85}
         rig.animation_data.action=None;track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,action);track.mute=True
         print('COMBAT_BAKED',character,name,item['duration'],flush=True)
     for b in bones:b.rotation_euler=(0,0,0);b.location=(0,0,0)

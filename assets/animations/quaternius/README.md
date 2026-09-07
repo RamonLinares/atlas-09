@@ -3,7 +3,7 @@
 The free Standard downloads were obtained from the official pages on 2026-09-06:
 
 - [Universal Animation Library 1](https://quaternius.itch.io/universal-animation-library): Walk_Loop, Punch_Jab, Punch_Cross, Death01, Hit_Chest, Hit_Head, Roll.
-- [Universal Animation Library 2](https://quaternius.itch.io/universal-animation-library-2): Melee_Hook, Melee_Hook_Rec, Hit_Knockback, Sword_Regular_Combo, Sword_Block.
+- [Universal Animation Library 2](https://quaternius.itch.io/universal-animation-library-2): Melee_Hook, Melee_Hook_Rec, Hit_Knockback, Sword_Regular_Combo, Sword_Block, Sword_Regular_B, Sword_Regular_B_Rec.
 
 Creators: Quaternius and Gonzalo Furnier. License: CC0-1.0; original license texts accompany the subsets. All source motions used here are in the free Standard packs. No paid Source/Pro content was used. `provenance.json` records original and subset hashes.
 
@@ -21,3 +21,5 @@ The existing hands are rigid and have no independently animated fingers, so the 
 
 
 `scripts/add_combat_motions.py` adds the combat expansion to all four saved humanoid assets, or one selected with `--character`. `--clips` accepts a comma-separated subset. It uses the same source calibrations, adds entry/recovery poses and equipment-specific adjustments, and appends animation accessors without changing existing delivery data. The root of AETHER's Roll is additionally baked at 120 Hz to maintain contact. Knockback remains a one-shot fall with a final hold; RONIN's SwordCombo preserves the complete three-strike source clip. No additional download or paid service was needed for these clips.
+
+RONIN’s SwordSlash uses the dedicated Sword_Regular_B strike and Sword_Regular_B_Rec recovery at the original attack timing and 85% recovery duration, with a short ready transition and return to idle.

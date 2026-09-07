@@ -88,5 +88,23 @@
       24.715944290161133,
       21.56816864013672
     ]
+  },
+  {
+    "clip": "SwordSlash",
+    "floor_min_m": 1.8323216863791458e-06,
+    "max_core_ground_clearance_m": 0.35463061928749084,
+    "joint_gap_m": 2.17291428250768e-06,
+    "edge_length_error_m": 2.86102294921875e-06,
+    "max_displacement_m": 22.152658462524414,
+    "half_frame_rotation_step_rad": 1.035623689240244,
+    "loop_error_m": 0.0,
+    "final_hold_error_m": 0.09380871802568436,
+    "minimum_head_height_m": 6.8566436767578125,
+    "torso_turn_rad": 2.635118330279518,
+    "blade_tip_sweep_m": [
+      25.9950532913208,
+      23.671019554138184,
+      15.863455295562744
+    ]
   }
 ]

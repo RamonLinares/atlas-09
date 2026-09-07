@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 P=ROOT/'assets/animations/quaternius'
 report=[]
-for library,names in [(1,['Walk_Loop','Punch_Jab','Punch_Cross','Death01','Hit_Chest','Hit_Head','Roll']),(2,['Melee_Hook','Melee_Hook_Rec','Hit_Knockback','Sword_Regular_Combo','Sword_Block'])]:
+for library,names in [(1,['Walk_Loop','Punch_Jab','Punch_Cross','Death01','Hit_Chest','Hit_Head','Roll']),(2,['Melee_Hook','Melee_Hook_Rec','Hit_Knockback','Sword_Regular_Combo','Sword_Block','Sword_Regular_B','Sword_Regular_B_Rec'])]:
  path=P/f'UAL{library}_Standard.glb';raw=path.read_bytes()
  length=struct.unpack_from('<I',raw,12)[0];doc=json.loads(raw[20:20+length]);binary=raw[28+length:]
  chosen=[a for a in doc['animations'] if a['name'] in names]

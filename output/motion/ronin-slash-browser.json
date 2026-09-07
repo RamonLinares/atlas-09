@@ -1,0 +1,9 @@
+{
+  "clip": "SwordSlash",
+  "model_version": 13,
+  "verification": "CUA rendered playback inspection",
+  "visible_clip_controls": 12,
+  "console_errors_and_warnings": [],
+  "source": "Sword_Regular_B + Sword_Regular_B_Rec",
+  "duration_s": 2.3333333333333335
+}

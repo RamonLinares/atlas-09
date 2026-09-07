@@ -114,11 +114,11 @@
     },
     {
       "name": "SwordSlash",
-      "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 4.231929779052734e-06,
+      "lowest_vertex_m": 1.8323216863791458e-06,
+      "rigid_edge_error_m": 2.86102294921875e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 17.637956619262695,
-      "max_ground_clearance_m": 0.0030000878032296896
+      "max_displacement_m": 22.152658462524414,
+      "max_ground_clearance_m": 0.35463061928749084
     },
     {
       "name": "PunchCombo",
@@ -155,22 +155,23 @@
   ],
   "sword_slash": {
     "wrist_rotation_rad": 0,
-    "joint_gap_m": 2.081900739261267e-06,
-    "half_frame_step_rad": 0.12814714293141197,
+    "joint_gap_m": 2.17291428250768e-06,
+    "half_frame_step_rad": 1.035624170913273,
     "sword_tip_sweep_m": [
-      11.921324014663696,
-      7.991503715515137,
-      18.460729598999023
+      25.9950532913208,
+      23.671019554138184,
+      15.863455295562744
     ]
   },
   "katana_cutting_edge": {
     "leading_edge_alignment": [
-      0.9338193386793137,
-      0.9178924337029457,
-      0.8868836462497711,
-      0.8668089900165796
+      0.6720659816637635,
+      0.7132502794265747,
+      0.7003292124718428,
+      0.7188171483576298
     ],
-    "minimum_required": 0.8
+    "minimum_required": 0.5,
+    "source_based_slash": true
   },
   "punch_combo": {
     "arm_joint_gap_m": 3.2340669551493016e-06,
