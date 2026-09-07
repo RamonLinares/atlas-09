@@ -81,7 +81,7 @@ function resetCamera() {
     // verified offline motion envelope, including its complete root motion.
     const points=[];
     model.updateMatrixWorld(true);
-    for (const x of [bounds.min[0],bounds.max[0]]) for (const y of [bounds.min[1],bounds.max[1]]) for (const z of [bounds.min[2],bounds.max[2]]) points.push(new THREE.Vector3(x,z,-y).applyMatrix4(model.matrixWorld));
+    for (const box of bounds.poses || [bounds]) for (const x of [box.min[0],box.max[0]]) for (const y of [box.min[1],box.max[1]]) for (const z of [box.min[2],box.max[2]]) points.push(new THREE.Vector3(x,z,-y).applyMatrix4(model.matrixWorld));
     const center=new THREE.Box3().setFromPoints(points).getCenter(new THREE.Vector3());
     const direction=new THREE.Vector3(.38,.24,1).normalize();
     const right=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),direction).normalize();
@@ -125,8 +125,8 @@ function setClip(name) {
   if (!next) return;
   // Reset completed fades and root transforms before a large-motion clip.
   mixer.stopAllAction();
-  next.setLoop(name === 'Collapse' ? THREE.LoopOnce : THREE.LoopRepeat, name === 'Collapse' ? 1 : Infinity);
-  next.clampWhenFinished = name === 'Collapse';
+  next.setLoop(['Collapse','Knockback'].includes(name) ? THREE.LoopOnce : THREE.LoopRepeat, ['Collapse','Knockback'].includes(name) ? 1 : Infinity);
+  next.clampWhenFinished = ['Collapse','Knockback'].includes(name);
   next.reset().setEffectiveWeight(1).setEffectiveTimeScale(1).play(); activeAction = next;
   if (characters[activeCharacter]?.motionBounds || ['Backflip','KneelFire','Collapse'].includes(previous) || ['Backflip','KneelFire','Collapse'].includes(name)) resetCamera();
   paused = false; $('#pause').textContent = 'Ⅱ'; $('#pause').setAttribute('aria-label','Pause animation');
@@ -156,8 +156,9 @@ function showCharacterInfo(id) {
   $('.view-caption').innerHTML = `<span class="cross">+</span><span>MODEL ${c.study}<br><b>${c.caption}</b></span>`;
   $('.edition b').textContent = `${c.study}—26`;
   $('.download').href = c.model;
-  const labels={Sentinel:'IDLE',Run:'RUN',KneelFire:'KNEEL & FIRE',Backflip:'BACKFLIP',PunchCombo:'PUNCH COMBO',Walk:'WALK',Collapse:'COLLAPSE',WingDeploy:'DEPLOY WINGS',Flight:'FLIGHT',BladeSalute:'BLADE SALUTE',SwordSlash:'SWORD SLASH',StingerStrike:'STINGER STRIKE',ClawSlash:'PINCER STRIKE'};
+  const labels={Sentinel:'IDLE',Run:'RUN',KneelFire:'KNEEL & FIRE',Backflip:'BACKFLIP',PunchCombo:'PUNCH COMBO',Walk:'WALK',Collapse:'COLLAPSE',WingDeploy:'DEPLOY WINGS',Flight:'FLIGHT',BladeSalute:'BLADE SALUTE',SwordSlash:'SWORD SLASH',StingerStrike:'STINGER STRIKE',ClawSlash:'PINCER STRIKE',SwordCombo:'SWORD COMBO',SwordBlock:'SWORD BLOCK',HitChest:'CHEST HIT',HitHead:'HEAD HIT',Knockback:'KNOCKBACK',DodgeRoll:'DODGE ROLL'};
   const order=c.motionOrder || ['Sentinel','Run','KneelFire','Backflip','PunchCombo','Walk','Collapse'];
+  $('.toolbar').classList.toggle('expanded',order.filter(name=>actions.has(name)).length>8);
   $('.animation-buttons').innerHTML=order.filter(name=>actions.has(name)).map(name=>`<button data-clip="${name}">${labels[name] || name}</button>`).join('');
   $('#conceptDialog img').src = c.concept; $('#conceptDialog img').alt = c.conceptAlt;
   $('#conceptDialog h2').textContent = c.conceptTitle;
@@ -253,3 +254,5 @@ renderer.setAnimationLoop(now => {
 });
 let wasMobile = innerWidth < 701;
 window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); const mobile = innerWidth < 701; if (mobile !== wasMobile || characters[activeCharacter]?.motionBounds) resetCamera(); wasMobile = mobile; });
+
+new ResizeObserver(([entry]) => document.documentElement.style.setProperty('--motion-toolbar-height', `${entry.target.getBoundingClientRect().height}px`)).observe(document.querySelector('.toolbar'));

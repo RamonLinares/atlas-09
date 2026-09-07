@@ -1,6 +1,6 @@
 async page => {
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.reload();await page.waitForFunction(()=>window.atlas?.stats.clips?.length===7);
+ await page.goto('http://127.0.0.1:5175/?character=aether-02');await page.waitForFunction(()=>window.atlas?.stats.character==='aether-02');
  await page.setViewportSize({width:1440,height:1000});
  const results=[];
  for(const [name,id,scale] of [['AETHER / 02','aether-02',1],['ATLAS / 09','atlas-09',1.2]]) {
@@ -23,7 +23,7 @@ async page => {
   await page.getByRole('button',{name:'RUN',exact:true}).click();
   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(resolve)));
   const state=await page.evaluate(()=>({character:atlas.stats.character,clips:atlas.stats.clips.map(c=>c.name),runDuration:atlas.actions.get('Run').getClip().duration,active:atlas.stats.activeClip,download:document.querySelector('.download').href}));
-  if(state.active!=='Run'||state.clips.includes('Awaken')||state.clips.length!==7)throw Error('Wrong clip inventory');
+  if(state.active!=='Run'||state.clips.includes('Awaken')||state.clips.length!==(id==='atlas-09'?10:11))throw Error('Wrong clip inventory');
   results.push({state,motions,held,replay});
  }
  await page.setViewportSize({width:390,height:844});

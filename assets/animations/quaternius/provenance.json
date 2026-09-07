@@ -5,12 +5,15 @@
     "original_sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997",
     "original_bytes": 7618436,
     "subset": "UAL1_selected.glb",
-    "subset_sha256": "fe2339cda41168ed1f21c548720ac6e27274db947fc8f94539b9b22f3fb5faf1",
+    "subset_sha256": "31aa4b8d1a382a00747e3982efec451bd16360534b163f12ce6fe5689737b8d8",
     "clips": [
       "Walk_Loop",
       "Punch_Jab",
       "Punch_Cross",
-      "Death01"
+      "Death01",
+      "Hit_Chest",
+      "Hit_Head",
+      "Roll"
     ],
     "license": "CC0-1.0",
     "downloaded": "2026-09-06",
@@ -22,10 +25,13 @@
     "original_sha256": "8cee20ab1bc55130092447e810e26df22dd2803eccc54f52137a7d54d7ab88a8",
     "original_bytes": 8091444,
     "subset": "UAL2_selected.glb",
-    "subset_sha256": "c1535e425d16f1b33575183b3627f42ef420bd82bac09d622f2e3faf3e79b925",
+    "subset_sha256": "ba329385b1555d895e9427285fc78780cc70e8bd2141512fa2f66558ce7c0e55",
     "clips": [
       "Melee_Hook",
-      "Melee_Hook_Rec"
+      "Melee_Hook_Rec",
+      "Hit_Knockback",
+      "Sword_Regular_Combo",
+      "Sword_Block"
     ],
     "license": "CC0-1.0",
     "downloaded": "2026-09-06",

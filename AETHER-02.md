@@ -38,7 +38,7 @@ The new model uses five materials, packed textures, and two UV channels. The opa
 Validation evidence:
 
 - [Asset inventory](output/aether-02/asset-report.json): geometry, material names, texture dimensions, rig and clip inventory.
-- [Blender checks](output/aether-02/blender-validation.json): 3,288 leg vertices and 1,330 arm vertices tested independently, with zero displacement of the unrelated limb region. All seven clips are sampled for finite positions, rigid edge lengths, ground penetration and loop closure (Collapse is intentionally a one-shot).
+- [Blender checks](output/aether-02/blender-validation.json): 3,288 leg vertices and 1,330 arm vertices tested independently, with zero displacement of the unrelated limb region. The original seven clips are sampled for finite positions, rigid edge lengths, ground penetration and loop closure (Collapse is intentionally a one-shot).
 - [glTF validator](output/aether-02/gltf-validation.json): zero errors and zero warnings. Informational messages concern unused UV/tangent attributes and the intentional muzzle socket.
 - [Browser checks](output/aether-02/browser-validation.json): both run phases, kneeling fire, backflip, repeated character switches and a 390×844 phone viewport. No page errors or horizontal overflow. Repeated swaps retain one skeleton helper and one effect group; reported geometry/texture counts remain stable across the same character.
 - Screenshots in `output/aether-02/`: desktop idle/action poses and mobile run/backflip.
@@ -87,3 +87,8 @@ Validation samples include half-frames: maximum midfoot travel-fit error is 0.00
 Replaced Awaken and the Rest selector with Punch Combo and Walk, and added Collapse. The selected Quaternius CC0 Standard source clips are preserved with their licenses and hashes in `assets/animations/quaternius/`. PunchCombo joins jab, cross, hook and recovery with guard-pose blends. The retargeter adapts the T-pose source to the armor’s A-pose, adds elbow clearance and corrects foot contact, including interpolation between keys. Collapse settles the rigid torso while solving the legs around the boot volume; the viewer holds the last pose until another action or replay is selected.
 
 The resulting seven clips pass rig/deformation checks. In the new clips, sampled floor penetration stays below 0.00005 m, Walk and PunchCombo endpoints match within 0.000005 m, and the collapse hold has zero motion. The prior four clips, skin weights, mesh attributes and UVs match the previous GLB exactly. Updated evidence: `output/motion/library-validation.json`, `output/motion/preserved-assets-validation.json`, and `output/playwright/library-v6-*`.
+
+
+## Additional combat clips
+
+The delivery now contains eleven clips. HitChest, HitHead and Knockback use the Quaternius hit reactions, while DodgeRoll uses the source forward roll with subframe ground-contact compensation. Knockback holds its final fallen pose; select it again to replay. DodgeRoll returns to idle and loops. Run `scripts/add_combat_motions.py --character AETHER-02` after a base rebuild. Sources and durations are recorded in `output/motion/aether-02-combat-bake.json`; the corresponding combat validation report checks the added motions. Earlier clips and geometry remain unchanged.

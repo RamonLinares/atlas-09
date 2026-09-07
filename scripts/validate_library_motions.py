@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parents[1];reports=[]
 for asset in ['AETHER-02','ATLAS-09']:
  bpy.ops.wm.open_mainfile(filepath=str(ROOT/f'blender/{asset}.blend'))
  rig=next(o for o in bpy.context.scene.objects if o.type=='ARMATURE');obj=next(o for o in bpy.context.scene.objects if o.type=='MESH' and 'Armor' in o.name);scene=bpy.context.scene
- assert {a.name for a in bpy.data.actions}=={'Sentinel','Run','KneelFire','Backflip','Walk','PunchCombo','Collapse'}
+ assert {a.name for a in bpy.data.actions}>={'Sentinel','Run','KneelFire','Backflip','Walk','PunchCombo','Collapse'}
  feet={s:[v.index for v in obj.data.vertices if any(g.group==obj.vertex_groups['foot.'+s].index for g in v.groups)] for s in ['L','R']}
  def sample(frame):
   scene.frame_set(int(frame),subframe=float(frame%1));bpy.context.view_layer.update();ev=obj.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=ev.to_mesh();v=np.empty(len(mesh.vertices)*3,dtype=np.float32);mesh.vertices.foreach_get('co',v);ev.to_mesh_clear();return v.reshape((-1,3))

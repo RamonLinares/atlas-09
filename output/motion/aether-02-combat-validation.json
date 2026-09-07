@@ -1,0 +1,54 @@
+[
+  {
+    "clip": "HitChest",
+    "floor_min_m": 0.001083260402083397,
+    "max_core_ground_clearance_m": 0.002170139690861106,
+    "joint_gap_m": 2.239739206797592e-06,
+    "edge_length_error_m": 6.4373016357421875e-06,
+    "max_displacement_m": 2.933288097381592,
+    "half_frame_rotation_step_rad": 0.12454620243432146,
+    "loop_error_m": 0.0,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 11.459158897399902,
+    "torso_turn_rad": 0.38899755282147935
+  },
+  {
+    "clip": "HitHead",
+    "floor_min_m": 0.001083260402083397,
+    "max_core_ground_clearance_m": 0.0027002401184290648,
+    "joint_gap_m": 1.9073486328125e-06,
+    "edge_length_error_m": 6.67572021484375e-06,
+    "max_displacement_m": 2.933485984802246,
+    "half_frame_rotation_step_rad": 0.0801965561606616,
+    "loop_error_m": 0.0,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 11.565750122070312,
+    "torso_turn_rad": 0.38899755282147935
+  },
+  {
+    "clip": "Knockback",
+    "floor_min_m": 0.0,
+    "max_core_ground_clearance_m": 4.034740924835205,
+    "joint_gap_m": 1.430511474609375e-06,
+    "edge_length_error_m": 7.569789886474609e-06,
+    "max_displacement_m": 14.87761116027832,
+    "half_frame_rotation_step_rad": 0.5177376014416892,
+    "loop_error_m": null,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 1.3179266452789307,
+    "torso_turn_rad": 1.51028317487117
+  },
+  {
+    "clip": "DodgeRoll",
+    "floor_min_m": 0.0019989013671875,
+    "max_core_ground_clearance_m": 0.0020008087158203125,
+    "joint_gap_m": 1.8196508315174278e-06,
+    "edge_length_error_m": 7.987022399902344e-06,
+    "max_displacement_m": 13.454456329345703,
+    "half_frame_rotation_step_rad": 0.5844621226797535,
+    "loop_error_m": 1.5983232515281998e-06,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 1.0201983451843262,
+    "torso_turn_rad": 3.071861715769602
+  }
+]

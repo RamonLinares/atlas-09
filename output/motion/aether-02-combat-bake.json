@@ -1,0 +1,62 @@
+{
+  "animations": [
+    {
+      "name": "HitChest",
+      "duration": 1.4666666666666666,
+      "frames": 45,
+      "source_clips": [
+        "Hit_Chest"
+      ],
+      "max_ground_correction_m": 3.6419587559066713e-06,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.0021740246370900423,
+      "entry_frames": 8,
+      "recovery_frames": 14
+    },
+    {
+      "name": "HitHead",
+      "duration": 1.5666666666666667,
+      "frames": 48,
+      "source_clips": [
+        "Hit_Head"
+      ],
+      "max_ground_correction_m": 3.5665307223098353e-06,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.0027033504080027342,
+      "entry_frames": 8,
+      "recovery_frames": 14
+    },
+    {
+      "name": "Knockback",
+      "duration": 2.1,
+      "frames": 64,
+      "source_clips": [
+        "Hit_Knockback"
+      ],
+      "max_ground_correction_m": 0.7494391202926636,
+      "playback": "once, hold final pose",
+      "max_interpolation_contact_lift_m": 0.1822128255367279,
+      "entry_frames": 8,
+      "recovery_frames": 0
+    },
+    {
+      "name": "DodgeRoll",
+      "duration": 2.8666666666666667,
+      "frames": 87,
+      "source_clips": [
+        "Roll"
+      ],
+      "max_ground_correction_m": 0.8570525646209717,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.3672862310409546,
+      "entry_frames": 16,
+      "recovery_frames": 14
+    }
+  ],
+  "export": {
+    "added_clips": [
+      "DodgeRoll"
+    ],
+    "preserved_mesh_and_existing_tracks": true
+  }
+}

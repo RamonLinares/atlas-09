@@ -18,3 +18,8 @@
 body[data-character=seraph-03] h1 span{color:#bca487}body[data-character=seraph-03] dd.wear{color:#e2c3a0;font-size:9px;line-height:1.7}
 @media(max-width:700px){.character-picker button{padding:9px 5px;font-size:9px}.character-picker button small{font-size:8px}body[data-character=seraph-03] .animation-buttons button[data-clip=WingDeploy]{grid-column:auto}}
 @media(max-width:700px){body[data-character=seraph-03] .animation-buttons{grid-template-columns:repeat(3,1fr)}body[data-character=seraph-03] .animation-buttons button{font-size:8px}}
+
+/* Additional clips wrap without shrinking labels or covering inspection controls. */
+@media(min-width:701px){.toolbar.expanded{max-width:calc(100vw - 70px);gap:12px}.toolbar.expanded .animation-buttons{display:grid;grid-template-columns:repeat(6,auto)}.toolbar.expanded .animation-buttons button{padding:10px 9px;font-size:8px}.toolbar.expanded .motion-label{display:none}}
+@media(max-width:700px){.toolbar.expanded .animation-buttons{grid-template-columns:repeat(4,minmax(0,1fr))}.toolbar.expanded .animation-buttons button{grid-column:auto;font-size:7px;padding:10px 2px}.inspector{bottom:calc(62px + var(--motion-toolbar-height, 91px) + 12px)}}
+@media(max-width:700px){.character-picker{gap:0;padding:4px}.character-picker button{min-width:0;padding:9px 3px;font-size:8px;letter-spacing:.2px}.character-picker button small{font-size:6px}}

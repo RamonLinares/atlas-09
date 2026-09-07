@@ -89,6 +89,34 @@
         1.0,
         41.0
       ]
+    },
+    {
+      "name": "HitChest",
+      "frames": [
+        1.0,
+        45.0
+      ]
+    },
+    {
+      "name": "HitHead",
+      "frames": [
+        1.0,
+        48.0
+      ]
+    },
+    {
+      "name": "Knockback",
+      "frames": [
+        1.0,
+        64.0
+      ]
+    },
+    {
+      "name": "DodgeRoll",
+      "frames": [
+        1.0,
+        87.0
+      ]
     }
   ]
 }

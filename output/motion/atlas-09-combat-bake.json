@@ -1,0 +1,51 @@
+{
+  "animations": [
+    {
+      "name": "HitChest",
+      "duration": 1.5333333333333334,
+      "frames": 47,
+      "source_clips": [
+        "Hit_Chest"
+      ],
+      "max_ground_correction_m": 3.704510163515806e-06,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.002282272114418447,
+      "entry_frames": 8,
+      "recovery_frames": 14
+    },
+    {
+      "name": "HitHead",
+      "duration": 1.6666666666666667,
+      "frames": 51,
+      "source_clips": [
+        "Hit_Head"
+      ],
+      "max_ground_correction_m": 3.7673089536838233e-06,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.003530673704110086,
+      "entry_frames": 8,
+      "recovery_frames": 14
+    },
+    {
+      "name": "Knockback",
+      "duration": 2.4,
+      "frames": 73,
+      "source_clips": [
+        "Hit_Knockback"
+      ],
+      "max_ground_correction_m": 2.9577083587646484,
+      "playback": "once, hold final pose",
+      "max_interpolation_contact_lift_m": 0.19630768489837647,
+      "entry_frames": 8,
+      "recovery_frames": 0
+    }
+  ],
+  "export": {
+    "added_clips": [
+      "HitChest",
+      "HitHead",
+      "Knockback"
+    ],
+    "preserved_mesh_and_existing_tracks": true
+  }
+}

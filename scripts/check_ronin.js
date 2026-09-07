@@ -1,7 +1,7 @@
 async page => {
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:5175/?character=ronin-04');await page.waitForFunction(()=>window.atlas?.stats.character==='ronin-04');
- const inventory=await page.evaluate(()=>atlas.stats);if(inventory.clips.length!==7)throw Error('Incorrect Ronin clips');
+ const inventory=await page.evaluate(()=>atlas.stats);if(inventory.clips.length!==12)throw Error('Incorrect Ronin clips');
  const poses=[['IDLE','Sentinel',0],['BLADE SALUTE','BladeSalute',3],['RUN','Run',.37],['KNEEL & FIRE','KneelFire',3.1],['BACKFLIP','Backflip',1.8],['SWORD SLASH','SwordSlash',1.56],['PUNCH COMBO','PunchCombo',5.2]];
  const reports=[];
  for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
@@ -15,7 +15,7 @@ async page => {
   }
  }
  await page.setViewportSize({width:1440,height:1000});
- for(const [label,id,count] of [['ATLAS / 09','atlas-09',7],['AETHER / 02','aether-02',7],['SERAPH / 03','seraph-03',6],['RONIN / 04','ronin-04',7]]){
+ for(const [label,id,count] of [['ATLAS / 09','atlas-09',10],['AETHER / 02','aether-02',11],['SERAPH / 03','seraph-03',9],['RONIN / 04','ronin-04',12]]){
   await page.getByRole('button',{name:label,exact:true}).click();await page.waitForFunction(id=>atlas.stats.character===id,id);
   if(await page.locator('[data-clip]').count()!==count)throw Error('Incorrect buttons after swap');
  }

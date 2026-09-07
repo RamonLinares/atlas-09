@@ -39,7 +39,7 @@ class MotionSource:
    return world[i]
   return {name:get(i) for name,i in self.names.items()}
 
-def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust=None):
+def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust=None,motion_specs=None):
  scene=bpy.context.scene;bones=rig.pose.bones;scene.render.fps=30
  sources=[MotionSource(ROOT/f'assets/animations/quaternius/UAL{i}_selected.glb') for i in [1,2]]
  src=sources[0];rest=src.rest
@@ -78,7 +78,7 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
   bones['root'].matrix=Matrix.Translation(delta)@bones['root'].bone.matrix_local;update()
   for name in ['pelvis','chest','head']:
    q=sample[mapping[name]].to_quaternion()@calibration[name];rotate(name,q)
-   if name=='chest' and kind=='Collapse':
+   if name=='chest' and kind in ['Collapse','DodgeRoll','Knockback']:
     # The source bends through three spine bones; our solid chest has one.
     # Transfer the anatomical torso direction as well as its axial twist.
     current=bones['head'].head-bones['chest'].head
@@ -90,7 +90,7 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
    sign=1 if side=='L' else -1
    for part in ['upper_arm','forearm','hand','thigh','shin','foot']:
     name=part+'.'+side;q=sample[mapping[name]].to_quaternion()@calibration[name];rotate(name,q)
-   if kind!='Collapse':
+   if kind not in ['Collapse','DodgeRoll','Knockback']:
     # Give the armored elbows room outside the ribcage without changing the
     # source's timing or strike direction.
     b=bones['upper_arm.'+side];direction=(b.tail-b.head).normalized()
@@ -119,9 +119,9 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
   update()
   if pose_adjust:pose_adjust()
   ev=obj.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=ev.to_mesh();low=min(v.co.z for v in mesh.vertices);ev.to_mesh_clear()
-  if low<0:
+  if low<0 or kind=='DodgeRoll':
    bones['root'].matrix=Matrix.Translation((0,0,-low))@bones['root'].matrix;update()
-  if kind=='Collapse' and settle>0:
+  if kind in ['Collapse','Knockback'] and settle>0:
    # Let the back/arms settle onto the floor, then bend the knees to keep the
    # thick boots above it. A human foot-only correction left the entire heavy
    # torso suspended above the floor at the end of the source death motion.
@@ -157,6 +157,7 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
    cursor+=transition
   return first
  specs=[('Walk',src.duration('Walk_Loop'),lambda t:src.sample('Walk_Loop',t)),('PunchCombo',combo_duration,combo),('Collapse',src.duration('Death01')+.6,lambda t:src.sample('Death01',min(t,src.duration('Death01'))))]
+ if motion_specs is not None:specs=motion_specs
  if clip_names is not None:specs=[spec for spec in specs if spec[0] in clip_names]
  report=[]
  rig.animation_data.action=None
@@ -164,7 +165,7 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
   frames=round(duration*timescale*30)+1;previous={};maxlift=0
   for frame in range(1,frames+1):
    t=(frame-1)/(frames-1)*duration;sample=sampler(t);settle=max(0,min(1,(t-.75)/.5));settle=settle*settle*(3-2*settle)
-   maxlift=max(maxlift,pose(sample,name,settle if name=='Collapse' else 0))
+   maxlift=max(maxlift,pose(sample,name,settle if name in ['Collapse','Knockback'] else 0))
    for b in bones:
     q=b.rotation_quaternion
     if b.name in previous and q.dot(previous[b.name])<0:q.negate()
@@ -176,7 +177,7 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
      for curve in bag.fcurves:
       for key in curve.keyframe_points:key.interpolation='LINEAR'
   rig.animation_data.action=None;track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,action);track.mute=True
-  report.append({'name':name,'duration':(frames-1)/30,'frames':frames,'source_clips':([n for s,n in segments] if name=='PunchCombo' else ['Walk_Loop' if name=='Walk' else 'Death01']),'max_ground_correction_m':maxlift,'playback':'once, hold final pose' if name=='Collapse' else 'loop'})
+  report.append({'name':name,'duration':(frames-1)/30,'frames':frames,'source_clips':([n for s,n in segments] if name=='PunchCombo' else ([name] if motion_specs is not None else ['Walk_Loop' if name=='Walk' else 'Death01'])),'max_ground_correction_m':maxlift,'playback':'once, hold final pose' if name=='Collapse' else 'loop'})
  clear()
  # Existing clips use Euler curves; restore their rotation mode and identity.
  for b in bones:b.rotation_mode='XYZ';b.rotation_euler=(0,0,0)
@@ -219,7 +220,7 @@ def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust
     ev=obj.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=ev.to_mesh();low=min(v.co.z for v in mesh.vertices);ev.to_mesh_clear()
     deficit=max(deficit,-low)
    if deficit>.0001:lifts[i]=max(lifts[i],deficit+.002);lifts[i+1]=max(lifts[i+1],deficit+.002)
-  if item['name']!='Collapse':lifts[0]=lifts[-1]=max(lifts[0],lifts[-1])
+  if item['name'] not in ['Collapse','Knockback']:lifts[0]=lifts[-1]=max(lifts[0],lifts[-1])
   for layer in action.layers:
    for strip in layer.strips:
     for bag in strip.channelbags:

@@ -1,0 +1,41 @@
+[
+  {
+    "clip": "HitChest",
+    "floor_min_m": 3.981123199991998e-07,
+    "max_core_ground_clearance_m": 0.0021580697502940893,
+    "joint_gap_m": 4.827608282879969e-06,
+    "edge_length_error_m": 6.556510925292969e-06,
+    "max_displacement_m": 11.08986759185791,
+    "half_frame_rotation_step_rad": 0.12819367899414755,
+    "loop_error_m": 0.0,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 12.360349655151367,
+    "torso_turn_rad": 0.38899755282147935
+  },
+  {
+    "clip": "HitHead",
+    "floor_min_m": 2.5224255750799784e-07,
+    "max_core_ground_clearance_m": 0.0030333243776112795,
+    "joint_gap_m": 2.880822652243274e-06,
+    "edge_length_error_m": 6.556510925292969e-06,
+    "max_displacement_m": 8.695059776306152,
+    "half_frame_rotation_step_rad": 0.09688132162728269,
+    "loop_error_m": 0.0,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 12.72340202331543,
+    "torso_turn_rad": 0.3889981696075509
+  },
+  {
+    "clip": "Knockback",
+    "floor_min_m": 0.0,
+    "max_core_ground_clearance_m": 3.29070782661438,
+    "joint_gap_m": 1.9231159454466913e-06,
+    "edge_length_error_m": 5.900859832763672e-06,
+    "max_displacement_m": 19.423391342163086,
+    "half_frame_rotation_step_rad": 0.4161118856916635,
+    "loop_error_m": null,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 2.448460102081299,
+    "torso_turn_rad": 1.5692675318440816
+  }
+]

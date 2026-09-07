@@ -10,7 +10,7 @@ Five original mecha characters, reconstructed and retopologized with Tripo, prep
 | RONIN / 04 | 16-metre samurai mecha with crimson armor, gold crescent helmet and katana | [RONIN-04.blend](blender/RONIN-04.blend) | [ronin-04.glb](public/models/ronin-04.glb) |
 | SCORPIO / 05 | 17-metre scorpion predator mecha with hydraulic pincer claws and plasma stinger tail | [SCORPIO-05.blend](blender/SCORPIO-05.blend) | [scorpio-05.glb](public/models/scorpio-05.glb) |
 
-Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS and AETHER have seven motions; SERAPH, RONIN, and SCORPIO have six motions each, including specialized combat attacks (wing deployment/flight, blade salute/slash, and stinger strike/pincer strike). The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH and SCORPIO framed for their respective wing and stinger envelopes; their physical design heights remain embedded in the source assets.
+Use **SELECT FRAME** to change characters. Each has its own concept, model download, descriptive information, materials, rig and baked clips. ATLAS has ten motions, AETHER eleven, SERAPH nine, RONIN twelve, and SCORPIO six. The humanoid frames share chest/head hit reactions and a knockback; AETHER adds a forward dodge roll, and RONIN adds a source-based sword combo and block alongside his magnetic katana stow/punch/retrieval sequence. The viewer releases the previous character's graphics resources when switching. Body heights are normalized for inspection, with SERAPH and SCORPIO framed for their respective wing and stinger envelopes; their physical design heights remain embedded in the source assets.
 
 Direct links can select a character and motion, for example `/?character=scorpio-05&motion=StingerStrike`. Open the [live viewer](https://ramonlinares.github.io/atlas-09/) or go directly to [SCORPIO](https://ramonlinares.github.io/atlas-09/?character=scorpio-05). GitHub Actions builds and publishes the viewer on every push to `main`. The Pages build uses `npm run build -- --base=/atlas-09/` so models, concept images and downloads resolve under the repository path.
 
@@ -25,7 +25,7 @@ The added characters' full provenance, checks and limitations are in [AETHER-02.
 - Production assessment: `PRODUCTION-READINESS.md`
 - Prompts, provider tasks, settings and cost: `ASSET-PROVENANCE.md`
 
-The `.blend` includes packed textures, two UV layers, a named 18-bone FK rig, rigid weights, seven animation actions, and a studio stage. Press Play on the Blender timeline for Sentinel; select Run, KneelFire, Backflip, Walk, PunchCombo or Collapse in the Action Editor for the other motions. The same character and clips are embedded in the GLB. Blender's studio floor, lights and camera are excluded from that character export.
+The `.blend` includes packed textures, two UV layers, a named 18-bone FK rig, rigid weights, ten animation actions, and a studio stage. Press Play on the Blender timeline for Sentinel; select Run, KneelFire, Backflip, Walk, PunchCombo, Collapse, HitChest, HitHead or Knockback in the Action Editor for the other motions. The same character and clips are embedded in the GLB. Blender's studio floor, lights and camera are excluded from that character export.
 
 ## Run the Three.js viewer
 
@@ -91,4 +91,15 @@ The Blender and GLB downloads include the updated motion. Other clips retain the
 
 ## Imported motion library
 
-Walk, PunchCombo and Collapse are adapted from Quaternius / Gonzalo Furnier’s CC0 Universal Animation Libraries. The free Standard packs supplied all six source clips; no payment, account or cloud animation service was needed. See [motion provenance and rebuild instructions](assets/animations/quaternius/README.md). The existing Idle, Run, KneelFire and Backflip clips are retained.
+Walk, PunchCombo and Collapse are adapted from Quaternius / Gonzalo Furnier’s CC0 Universal Animation Libraries. The free Standard packs supplied all twelve source clips now used by the viewer; no payment, account or cloud animation service was needed. See [motion provenance and rebuild instructions](assets/animations/quaternius/README.md). The existing Idle, Run, KneelFire and Backflip clips are retained.
+
+
+## Additional combat motions
+
+Fifteen additional baked clips use the same free Quaternius CC0 Standard libraries: chest hit, head hit, and knockback for ATLAS, AETHER, SERAPH and RONIN; a forward dodge roll for AETHER; and a three-strike sword combo plus sword block for RONIN. Knockback plays once and holds the fallen pose; select it again to replay. The other new clips include a return to idle and loop for inspection.
+
+RONIN keeps a rigid katana grip. SERAPH carries the cannon clear of the ribs and unfolds its wings during the fall. AETHER's roll includes subframe ground-contact keys. The source moves retain their original attack timing; ATLAS uses a 1.2 duration multiplier. Entry and recovery poses fit the existing idle stance. These are baked display motions, with no runtime ragdoll or impact simulation.
+
+After running a base character builder, run `Blender -b --python scripts/add_combat_motions.py` to append this set to the saved deliveries. `--character RONIN-04` limits it to one frame; `--clips SwordCombo,SwordBlock` limits the added clips. The script preserves existing GLB mesh, material, rig, and animation data and adds only the new tracks. Packed Blender files contain all actions. Source selection and license details are in [the motion library README](assets/animations/quaternius/README.md).
+
+Verification: `scripts/validate_combat_motions.py` checks evaluated armor, contact, joints, loop closure and roll inversion; `node scripts/check_combat_preservation.mjs 36e67c0` compares every earlier clip and asset attribute against the preceding delivery. Reports are in `output/motion/*-combat-validation.json` and `output/motion/combat-preservation.json`.

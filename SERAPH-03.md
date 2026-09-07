@@ -24,9 +24,9 @@ The character is normalized to 20 meters from sole to the highest wingtip in its
 
 ## Motion
 
-Six baked clips: Sentinel (idle), WingDeploy (activation), Run, KneelFire, Backflip, and Flight. The cannon uses a carried pose while running, and the wings fold behind the shoulders. Firing effects use an amber projectile synchronized with the cannon's 0.64 second recoil interval. Flight adds a lift, hover, and landing sequence. The viewer fits each clip's complete motion envelope to its camera.
+The original six baked clips are: Sentinel (idle), WingDeploy (activation), Run, KneelFire, Backflip, and Flight. The cannon uses a carried pose while running, and the wings fold behind the shoulders. Firing effects use an amber projectile synchronized with the cannon's 0.64 second recoil interval. Flight adds a lift, hover, and landing sequence. The viewer fits each clip's complete motion envelope to its camera.
 
-Animation is authored locally, without additional provider charges. The existing ATLAS and AETHER model files are preserved.
+Three additional Quaternius CC0 clips bring the delivery to nine: HitChest, HitHead and Knockback. The cannon stays clear of the torso, and the wings unfold during the fall. Knockback plays once and holds its final pose. Run `scripts/add_combat_motions.py --character SERAPH-03` after a base rebuild. Sources, timing and validation reports are in `output/motion/seraph-03-combat-*.json`. Animation is prepared locally without additional provider charges.
 
 ## Cost and provenance
 

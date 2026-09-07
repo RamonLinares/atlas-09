@@ -1,0 +1,562 @@
+{
+  "reports": [
+    {
+      "character": "atlas-09",
+      "name": "HitChest",
+      "width": 1440,
+      "samples": 24,
+      "minY": 6.089361077804193e-8,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.2202860122303369,
+        -0.6360913093615603,
+        0.39286457652230594,
+        0.5294836119196897
+      ],
+      "overflow": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "HitHead",
+      "width": 1440,
+      "samples": 26,
+      "minY": 6.089361077804193e-8,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.21006042747596929,
+        -0.6622700945931915,
+        0.3976906579878388,
+        0.5419141749256239
+      ],
+      "overflow": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "Knockback",
+      "width": 1440,
+      "samples": 37,
+      "minY": 6.071230209681032e-7,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.2950948778391063,
+        -0.5818317711507232,
+        0.3679155188311801,
+        0.4287444856567932
+      ],
+      "overflow": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "HitChest",
+      "width": 390,
+      "samples": 24,
+      "minY": 6.089361077804193e-8,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.5717407591449112,
+        -0.5343531914200305,
+        0.6215488284445269,
+        0.19676743543482528
+      ],
+      "overflow": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "HitHead",
+      "width": 390,
+      "samples": 26,
+      "minY": 6.089361077804193e-8,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.5500462909411754,
+        -0.5482512102823033,
+        0.6253995700049636,
+        0.20202722040569088
+      ],
+      "overflow": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "Knockback",
+      "width": 390,
+      "samples": 37,
+      "minY": 6.071230209681032e-7,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.65967035365768,
+        -0.47110803472664564,
+        0.5106114264289136,
+        0.11169161814562258
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "HitChest",
+      "width": 1440,
+      "samples": 23,
+      "minY": 0.0009241323876158919,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.11435466238454285,
+        -0.6721231617505556,
+        0.2553847694584126,
+        0.5733459343550958
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "HitHead",
+      "width": 1440,
+      "samples": 24,
+      "minY": 0.0009242015938659158,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.12772025562947925,
+        -0.6955831203403612,
+        0.2510461988769548,
+        0.5818636447216329
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "Knockback",
+      "width": 1440,
+      "samples": 32,
+      "minY": -0.0000015572914379147207,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.2236316917578318,
+        -0.6636070700113392,
+        0.28004997721283414,
+        0.47995539753385275
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "DodgeRoll",
+      "width": 1440,
+      "samples": 44,
+      "minY": 0.0009205242305098049,
+      "maxRollGap": 0.0009407093025639026,
+      "projectedBounds": [
+        -0.15615032032632215,
+        -0.6570082370477338,
+        0.3098078861659741,
+        0.4450660882169194
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "HitChest",
+      "width": 390,
+      "samples": 23,
+      "minY": 0.0009241323876158919,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.3554413909382076,
+        -0.5507484282701225,
+        0.34870941073792905,
+        0.20930341608667274
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "HitHead",
+      "width": 390,
+      "samples": 24,
+      "minY": 0.0009242015938659158,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.3801321332707576,
+        -0.5630917096543729,
+        0.3370579535998594,
+        0.2101449357609162
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "Knockback",
+      "width": 390,
+      "samples": 32,
+      "minY": -0.0000015572914379147207,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.5720984237304961,
+        -0.5522558110892463,
+        0.390882736418799,
+        0.16229601604569885
+      ],
+      "overflow": false
+    },
+    {
+      "character": "aether-02",
+      "name": "DodgeRoll",
+      "width": 390,
+      "samples": 44,
+      "minY": 0.0009205242305098049,
+      "maxRollGap": 0.0009407093025639026,
+      "projectedBounds": [
+        -0.44888508808226596,
+        -0.5506287448591685,
+        0.5068178228709868,
+        0.13768403651071398
+      ],
+      "overflow": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "HitChest",
+      "width": 1440,
+      "samples": 23,
+      "minY": 0.0008389812573270788,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.2675486360636923,
+        -0.5817839242372045,
+        0.3608421028084357,
+        0.4953375509315246
+      ],
+      "overflow": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "HitHead",
+      "width": 1440,
+      "samples": 24,
+      "minY": 0.0008389960815553404,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.2587290147207017,
+        -0.5807033183314673,
+        0.3606608568188765,
+        0.5196950369019983
+      ],
+      "overflow": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "Knockback",
+      "width": 1440,
+      "samples": 32,
+      "minY": 0.000001358679605045765,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.24449689800586277,
+        -0.6317293162484214,
+        0.40544853901510836,
+        0.46323191507640477
+      ],
+      "overflow": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "HitChest",
+      "width": 390,
+      "samples": 23,
+      "minY": 0.0008389812573270788,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.6606189495748962,
+        -0.5057881930676933,
+        0.5932884780071548,
+        0.18796864161641325
+      ],
+      "overflow": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "HitHead",
+      "width": 390,
+      "samples": 24,
+      "minY": 0.0008389960815553404,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.6422830962747393,
+        -0.5036953289126561,
+        0.5779018676445196,
+        0.20560592835682007
+      ],
+      "overflow": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "Knockback",
+      "width": 390,
+      "samples": 32,
+      "minY": 0.000001358679605045765,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.6146640351043927,
+        -0.5355545688323031,
+        0.6967565283490177,
+        0.15073350097402854
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "HitChest",
+      "width": 1440,
+      "samples": 23,
+      "minY": 0.0008126006148114188,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.29319250442871697,
+        -0.5549600488533825,
+        0.37495162512093616,
+        0.5063264854688893
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "HitHead",
+      "width": 1440,
+      "samples": 24,
+      "minY": 0.0008122581183694429,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.29913098071355154,
+        -0.5613204995636867,
+        0.37561147982693827,
+        0.5078174536441736
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "Knockback",
+      "width": 1440,
+      "samples": 32,
+      "minY": -3.4101572410349945e-7,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.33506733616042567,
+        -0.6517704096602158,
+        0.37694080502547506,
+        0.46534091863076515
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordCombo",
+      "width": 1440,
+      "samples": 70,
+      "minY": 7.4977477651574e-7,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.29983138596257175,
+        -0.49909297821125936,
+        0.42030857609071265,
+        0.46802976028498644
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordBlock",
+      "width": 1440,
+      "samples": 36,
+      "minY": 0.0000016067024398080712,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.22898738229386892,
+        -0.5032837418362353,
+        0.36236847221361995,
+        0.469618789904149
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "HitChest",
+      "width": 390,
+      "samples": 23,
+      "minY": 0.0008126006148114188,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.7088657927164841,
+        -0.4880314779820951,
+        0.6047883765619732,
+        0.18474673688976656
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "HitHead",
+      "width": 390,
+      "samples": 24,
+      "minY": 0.0008122581183694429,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.7187097831012705,
+        -0.491634195236589,
+        0.6045410415393119,
+        0.18308289629247057
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "Knockback",
+      "width": 390,
+      "samples": 32,
+      "minY": -3.4101572410349945e-7,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.7918758035657719,
+        -0.5464666396184739,
+        0.5784264347916234,
+        0.15086871659452772
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordCombo",
+      "width": 390,
+      "samples": 70,
+      "minY": 7.4977477651574e-7,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.7423558096895128,
+        -0.4576852957820435,
+        0.6846276258691332,
+        0.16876163767158364
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordBlock",
+      "width": 390,
+      "samples": 36,
+      "minY": 0.0000016067024398080712,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.5922163881030883,
+        -0.45945903593514276,
+        0.6127358983213139,
+        0.16638850409769507
+      ],
+      "overflow": false
+    }
+  ],
+  "playback": [
+    {
+      "character": "atlas-09",
+      "name": "HitChest",
+      "frames": 86,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "HitHead",
+      "frames": 93,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "atlas-09",
+      "name": "Knockback",
+      "frames": 145,
+      "completed": true,
+      "held": true
+    },
+    {
+      "character": "aether-02",
+      "name": "HitChest",
+      "frames": 83,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "aether-02",
+      "name": "HitHead",
+      "frames": 88,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "aether-02",
+      "name": "Knockback",
+      "frames": 127,
+      "completed": true,
+      "held": true
+    },
+    {
+      "character": "aether-02",
+      "name": "DodgeRoll",
+      "frames": 173,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "HitChest",
+      "frames": 82,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "HitHead",
+      "frames": 79,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "seraph-03",
+      "name": "Knockback",
+      "frames": 126,
+      "completed": true,
+      "held": true
+    },
+    {
+      "character": "ronin-04",
+      "name": "HitChest",
+      "frames": 83,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "HitHead",
+      "frames": 90,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "Knockback",
+      "frames": 127,
+      "completed": true,
+      "held": true
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordCombo",
+      "frames": 276,
+      "completed": true,
+      "held": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordBlock",
+      "frames": 142,
+      "completed": true,
+      "held": false
+    }
+  ],
+  "errors": []
+}
