@@ -1,0 +1,7 @@
+{
+  "clip": "SwordCombo",
+  "samples": 1105,
+  "sample_rate_hz": 240,
+  "intersections": [],
+  "minimum_blade_vertex_to_leg_surface_m": 0.4098193645477295
+}

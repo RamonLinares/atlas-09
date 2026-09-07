@@ -54,10 +54,31 @@
       ]
     },
     {
+      "name": "HitChest",
+      "frames": [
+        1.0,
+        45.0
+      ]
+    },
+    {
+      "name": "HitHead",
+      "frames": [
+        1.0,
+        48.0
+      ]
+    },
+    {
       "name": "KneelFire",
       "frames": [
         1.0,
         241.0
+      ]
+    },
+    {
+      "name": "Knockback",
+      "frames": [
+        1.0,
+        64.0
       ]
     },
     {
@@ -82,31 +103,10 @@
       ]
     },
     {
-      "name": "SwordSlash",
+      "name": "SwordBlock",
       "frames": [
         1.0,
-        121.0
-      ]
-    },
-    {
-      "name": "HitChest",
-      "frames": [
-        1.0,
-        45.0
-      ]
-    },
-    {
-      "name": "HitHead",
-      "frames": [
-        1.0,
-        48.0
-      ]
-    },
-    {
-      "name": "Knockback",
-      "frames": [
-        1.0,
-        64.0
+        72.0
       ]
     },
     {
@@ -117,10 +117,10 @@
       ]
     },
     {
-      "name": "SwordBlock",
+      "name": "SwordSlash",
       "frames": [
         1.0,
-        72.0
+        121.0
       ]
     }
   ]

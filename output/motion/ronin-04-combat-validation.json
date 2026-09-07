@@ -54,24 +54,6 @@
     ]
   },
   {
-    "clip": "SwordCombo",
-    "floor_min_m": 2.3760094336466864e-08,
-    "max_core_ground_clearance_m": 1.3024787902832031,
-    "joint_gap_m": 2.2588042064593825e-06,
-    "edge_length_error_m": 3.933906555175781e-06,
-    "max_displacement_m": 24.080177307128906,
-    "half_frame_rotation_step_rad": 1.110324202165137,
-    "loop_error_m": 3.7242173220874975e-06,
-    "final_hold_error_m": 0.0,
-    "minimum_head_height_m": 6.8591718673706055,
-    "torso_turn_rad": 3.001876455260664,
-    "blade_tip_sweep_m": [
-      26.00747013092041,
-      25.675536155700684,
-      22.296265602111816
-    ]
-  },
-  {
     "clip": "SwordBlock",
     "floor_min_m": 1.014994040815509e-06,
     "max_core_ground_clearance_m": 0.09055329114198685,
@@ -87,6 +69,24 @@
       9.531758308410645,
       8.387481212615967,
       8.59632921218872
+    ]
+  },
+  {
+    "clip": "SwordCombo",
+    "floor_min_m": 2.3760094336466864e-08,
+    "max_core_ground_clearance_m": 1.3024787902832031,
+    "joint_gap_m": 2.218221910706567e-06,
+    "edge_length_error_m": 3.874301910400391e-06,
+    "max_displacement_m": 23.04526138305664,
+    "half_frame_rotation_step_rad": 1.110324202165137,
+    "loop_error_m": 3.7242173220874975e-06,
+    "final_hold_error_m": 0.0,
+    "minimum_head_height_m": 6.8591718673706055,
+    "torso_turn_rad": 3.001876455260664,
+    "blade_tip_sweep_m": [
+      26.066031455993652,
+      25.777676582336426,
+      23.589468955993652
     ]
   }
 ]

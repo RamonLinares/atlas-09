@@ -1,0 +1,44 @@
+{
+  "reports": [
+    {
+      "character": "ronin-04",
+      "name": "SwordCombo",
+      "width": 1440,
+      "samples": 70,
+      "minY": 7.4977477651574e-07,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.2874795990299029,
+        -0.5065971625978316,
+        0.41431947936902414,
+        0.46513798456172695
+      ],
+      "overflow": false
+    },
+    {
+      "character": "ronin-04",
+      "name": "SwordCombo",
+      "width": 390,
+      "samples": 70,
+      "minY": 7.4977477651574e-07,
+      "maxRollGap": 0,
+      "projectedBounds": [
+        -0.7155367551588414,
+        -0.4616383001866889,
+        0.6519347905488871,
+        0.1574284061468224
+      ],
+      "overflow": false
+    }
+  ],
+  "playback": [
+    {
+      "character": "ronin-04",
+      "name": "SwordCombo",
+      "frames": 260,
+      "completed": true,
+      "held": false
+    }
+  ],
+  "errors": []
+}

@@ -57,6 +57,13 @@ for character in characters:
                             axis=bones[name].bone.matrix_local.to_3x3().inverted()@Vector((1,0,0))
                             bones[name].rotation_quaternion=Quaternion(axis,.18*unfold)@bones[name].rotation_quaternion
         elif character=='RONIN-04':
+            if context['name']=='SwordCombo':
+                # Open the shoulder through the final cut so the long katana
+                # passes outside the left shin, then ease back into recovery.
+                t=context['t']
+                clearance=smooth((t-1.15)/.35)*(1-smooth((t-2.35)/.55))
+                arm=bones['upper_arm.R']
+                arm.rotation_quaternion=arm.rotation_quaternion@Quaternion((0,0,1),.6*clearance)
             if context['name'] in ['HitChest','HitHead','Knockback']:
                 aim('upper_arm.R',chest@Vector((-.5,-.3,-1)))
                 aim('forearm.R',chest@Vector((-.4,-.8,-.2)))

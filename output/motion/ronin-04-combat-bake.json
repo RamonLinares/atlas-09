@@ -40,19 +40,6 @@
       "recovery_frames": 0
     },
     {
-      "name": "SwordCombo",
-      "duration": 4.6,
-      "frames": 139,
-      "source_clips": [
-        "Sword_Regular_Combo"
-      ],
-      "max_ground_correction_m": 5.063795470050536e-06,
-      "playback": "loop",
-      "max_interpolation_contact_lift_m": 0.5412403602600098,
-      "entry_frames": 16,
-      "recovery_frames": 20
-    },
-    {
       "name": "SwordBlock",
       "duration": 2.3666666666666667,
       "frames": 72,
@@ -64,15 +51,24 @@
       "max_interpolation_contact_lift_m": 0.0905499119758606,
       "entry_frames": 8,
       "recovery_frames": 14
+    },
+    {
+      "name": "SwordCombo",
+      "duration": 4.6,
+      "frames": 139,
+      "source_clips": [
+        "Sword_Regular_Combo"
+      ],
+      "max_ground_correction_m": 5.063795470050536e-06,
+      "playback": "loop",
+      "max_interpolation_contact_lift_m": 0.5412403602600098,
+      "entry_frames": 16,
+      "recovery_frames": 20
     }
   ],
   "export": {
     "added_clips": [
-      "HitChest",
-      "HitHead",
-      "Knockback",
-      "SwordCombo",
-      "SwordBlock"
+      "SwordCombo"
     ],
     "preserved_mesh_and_existing_tracks": true
   }
