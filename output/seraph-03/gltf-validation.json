@@ -2,7 +2,7 @@
   "uri": "public/models/seraph-03.glb",
   "mimeType": "model/gltf-binary",
   "validatorVersion": "2.0.0-dev.3.10",
-  "validatedAt": "2026-09-07T08:13:11.791Z",
+  "validatedAt": "2026-09-07T10:11:04.887Z",
   "issues": {
     "numErrors": 0,
     "numWarnings": 0,
@@ -37,7 +37,7 @@
         "code": "NODE_EMPTY",
         "message": "Empty node encountered.",
         "severity": 2,
-        "pointer": "/nodes/8"
+        "pointer": "/nodes/13"
       }
     ],
     "truncated": false
@@ -54,7 +54,7 @@
         "pointer": "/buffers/0",
         "mimeType": "application/gltf-buffer",
         "storage": "glb",
-        "byteLength": 6701412
+        "byteLength": 7380048
       },
       {
         "pointer": "/images/0",
@@ -112,8 +112,8 @@
     "hasTextures": true,
     "hasDefaultScene": true,
     "drawCallCount": 2,
-    "totalVertexCount": 41291,
-    "totalTriangleCount": 28386,
+    "totalVertexCount": 43574,
+    "totalTriangleCount": 30858,
     "maxUVs": 2,
     "maxInfluences": 4,
     "maxAttributes": 7

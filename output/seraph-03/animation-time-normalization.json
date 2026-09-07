@@ -1,0 +1,38 @@
+[
+  {
+    "clip": "Backflip",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Flight",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "HitChest",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "HitHead",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "KneelFire",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Knockback",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Run",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Sentinel",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "WingDeploy",
+    "removed_leading_seconds": 0.03333333507180214
+  }
+]

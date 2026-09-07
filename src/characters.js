@@ -28,7 +28,7 @@ export const characters = {
     motionOrder: ['Sentinel','Walk','Run','PunchCombo','DodgeRoll','HitChest','HitHead','Knockback','KneelFire','Backflip','Collapse'],
   },
   'seraph-03': {
-    name: 'SERAPH', number: '03', model: `${import.meta.env.BASE_URL}models/seraph-03.glb?v=2`, concept: `${import.meta.env.BASE_URL}concept-seraph-03.png`,
+    name: 'SERAPH', number: '03', model: `${import.meta.env.BASE_URL}models/seraph-03.glb?v=3`, concept: `${import.meta.env.BASE_URL}concept-seraph-03.png`,
     className: 'AERIAL CLASS / WINGED MECHA', height: '20.0', condition: 'TITANIUM / SILVER WINGS',
     tagline: ['Steel in the sky.', 'Thunder in its arm.'],
     description: ['Articulated metal wings.', 'An integrated heavy cannon.'],

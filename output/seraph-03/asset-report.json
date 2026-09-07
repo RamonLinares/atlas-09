@@ -2,9 +2,9 @@
   "source": "assets/seraph-03/retopo/643b8c72-4326-491e-aa6f-1f029a03ab78-model_url.glb",
   "height_m": 20,
   "source_triangles": 25700,
-  "vertices": 15137,
-  "triangles": 28386,
-  "bones": 22,
+  "vertices": 16677,
+  "triangles": 30858,
+  "bones": 32,
   "materials": [
     "SERAPH titanium and silver \u2014 amber emission",
     "SERAPH graphite actuators"
@@ -52,10 +52,31 @@
       ]
     },
     {
+      "name": "HitChest",
+      "frames": [
+        1.0,
+        45.0
+      ]
+    },
+    {
+      "name": "HitHead",
+      "frames": [
+        1.0,
+        48.0
+      ]
+    },
+    {
       "name": "KneelFire",
       "frames": [
         1.0,
         241.0
+      ]
+    },
+    {
+      "name": "Knockback",
+      "frames": [
+        1.0,
+        64.0
       ]
     },
     {
@@ -77,27 +98,6 @@
       "frames": [
         1.0,
         181.0
-      ]
-    },
-    {
-      "name": "HitChest",
-      "frames": [
-        1.0,
-        45.0
-      ]
-    },
-    {
-      "name": "HitHead",
-      "frames": [
-        1.0,
-        48.0
-      ]
-    },
-    {
-      "name": "Knockback",
-      "frames": [
-        1.0,
-        64.0
       ]
     }
   ]

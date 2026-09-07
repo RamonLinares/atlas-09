@@ -15,12 +15,15 @@ Rebuild with Blender 5.1:
 
 ```sh
 /Applications/Blender.app/Contents/MacOS/Blender -b --python scripts/build_seraph.py -- --skip-render
+/Applications/Blender.app/Contents/MacOS/Blender -b --python scripts/add_combat_motions.py -- --character SERAPH-03
+/Applications/Blender.app/Contents/MacOS/Blender -b --python scripts/upgrade_seraph_wings.py
 /Applications/Blender.app/Contents/MacOS/Blender -b --python scripts/validate_seraph.py
+/Applications/Blender.app/Contents/MacOS/Blender -b --python scripts/validate_seraph_feathers.py
 node scripts/validate_glb.mjs public/models/seraph-03.glb output/seraph-03/gltf-validation.json
 npm run build -- --base=/atlas-09/
 ```
 
-The character is normalized to 20 meters from sole to the highest wingtip in its source pose. Its body is approximately 15 meters tall. The final asset has 28,386 triangles, 15,137 mesh vertices, 22 bones, and two materials. Two zero-area source triangles are removed during intake. Rigid armor is separated at inspected anatomical seams; connected-island checks repair lower wing plates and cannon fragments that overlap other parts in front view; four additional wing bones articulate the wing roots and outer plates. A right hand control exists for skeletal compatibility, but the source has a cannon instead of a right hand. `Muzzle_R` is attached to the cannon's forearm bone.
+The character is normalized to 20 meters from sole to the highest wingtip in its source pose. Its body is approximately 15 meters tall. The final asset has 30,858 triangles, 16,677 mesh vertices, 32 bones, and two materials. Two zero-area source triangles are removed during intake. Rigid armor is separated at inspected anatomical seams; connected-island checks repair lower wing plates and cannon fragments that overlap other parts in front view; four additional wing bones articulate the wing roots and outer plates. A right hand control exists for skeletal compatibility, but the source has a cannon instead of a right hand. `Muzzle_R` is attached to the cannon's forearm bone.
 
 ## Motion
 
@@ -36,4 +39,4 @@ Tripo image-to-model task `fa47e26c-98f7-4ae5-baec-99f8e93b748b` used model `v3.
 
 Validation reports are saved under `output/seraph-03/`; browser captures are under `output/playwright/`. The independent anatomical tests rotate both arms, both thighs, and each wing root, checking that unrelated anatomical regions remain stationary. Motion validation samples between animation keys, verifies rigid triangle edges, loop closure, finite coordinates, and floor clearance. Both UV channels are inspected for invalid coordinates and degenerate faces. Mirrored source leg surfaces provide an independent regression against accidentally binding a leg panel to the cannon. The browser also samples actual skinned vertices through each motion on desktop and mobile, checks camera bounds, and verifies muzzle direction and recoil timing. A 1024 × 768 layout check verifies that the feet remain above the toolbar. The final GLB validator reports zero errors and zero warnings; the Vite production build passes with the existing bundle-size advisory.
 
-This is a realtime prototype made from a generated surface. The wing plates articulate as rigid outer assemblies rather than individually simulated feathers. Armor cuts expose some joint gaps at extreme poses, and the source has baked surface detail rather than fully modeled internal mechanisms. The cannon and wings are not physics simulated. Flight is an authored display animation.
+This is a realtime prototype made from a generated surface. Ten independently hinged rigid feathers fold into parallel bundles behind the shoulders, then fan out with an 80 ms stagger during the six-second WingDeploy loop. Mechanical pivots and support rods connect the plates to the wing assembly. Armor cuts expose some joint gaps at extreme poses, and the source has baked surface detail rather than fully modeled internal mechanisms. The cannon and wings are not physics simulated. Flight is an authored display animation.

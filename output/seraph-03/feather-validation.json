@@ -1,0 +1,17 @@
+{
+  "feathers": 10,
+  "samples": 361,
+  "wing_width_m": {
+    "folded": 6.7249274253845215,
+    "open": 20.441768646240234
+  },
+  "feather_direction_spread_rad": {
+    "folded": 0.0,
+    "open": 1.531811237335205
+  },
+  "minimum_floor_m": 0.002999914577230811,
+  "max_half_frame_angle_rad": 0.044227431917389086,
+  "hinge_position_error_m": 3.446777414036026e-06,
+  "loop_vertex_error_m": 0.0,
+  "distal_feather_contacts": []
+}
