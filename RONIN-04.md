@@ -10,7 +10,7 @@ An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold cres
 - [Extracted textures](public/textures/ronin-04/)
 - [Blender preview](output/ronin-04/ronin-04-beauty.png)
 - [Build script](scripts/build_ronin.py), [authored motions](scripts/ronin_motions.py), and [anatomical validation](scripts/validate_ronin.py)
-- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=BladeSalute&v=8)
+- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordSlash&v=15)
 
 The GLB contains six ordinary baked skeletal clips: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), and Backflip (3.6 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. The katana remains held throughout all six clips.
 
@@ -29,7 +29,7 @@ The user's reusable [creation prompt](assets/ronin-04/creation-prompt.txt) autho
 
 The final mesh has **28,185 triangles**, **15,481 Blender vertices**, **21 bones**, four materials and two UV layers. Base color is 2048²; normal and packed occlusion/roughness/metallic textures are 1024². All image textures are packed into the Blender project and embedded in the GLB.
 
-The source was inspected from the front, side and back before binding. The rig includes separate shoulder, arm, leg, skirt, head and sword controls. Geometry is split at mechanical boundaries and given full rigid weights. The shoulder boundary follows the plate's diagonal edge; the sword pommel behind the wrist follows the grip. A sloping blade boundary avoids attaching boot geometry to the weapon. Compact actuator housings cover joints. The skirt follows each thigh around the hip during running and kneeling.
+The source was inspected from the front, side and back before binding. The rig includes separate shoulder, arm, leg, skirt, head and sword controls. Geometry is split at mechanical boundaries and given full rigid weights. Both shoulder protectors are rigidly weighted to their corresponding upper-arm bones, so they move with the arms. The shoulder boundary follows the plate's diagonal edge; the sword pommel behind the wrist follows the grip. A sloping blade boundary avoids attaching boot geometry to the weapon. Compact actuator housings cover joints. The skirt follows each thigh around the hip during running and kneeling.
 
 - Blender validation checks both UV maps for bounds and nonzero face area, one full-weight binding per vertex and per face, independently sampled anatomical domains, finite animation positions, rigid edge lengths, ground contact and loop closure.
 - Quarter-frame contact sampling adds small root corrections where interpolated geometry would touch the floor. The run uses boot geometry for support and toe-off; the kneel seats the rear shin armor.

@@ -20,6 +20,19 @@ def clear():
 def sample(frame=1):
  scene.frame_set(int(frame),subframe=frame-int(frame));bpy.context.view_layer.update();ev=o.evaluated_get(bpy.context.evaluated_depsgraph_get());m=ev.to_mesh();p=np.empty(len(m.vertices)*3,dtype=np.float32);m.vertices.foreach_get('co',p);ev.to_mesh_clear();return p.reshape((-1,3))
 rig.animation_data.action=None;clear();p=sample()
+report['shoulder_protectors']=[]
+for side,sign in [('L',1),('R',-1)]:
+ ids=np.where((p[:,0]*sign>3.0)&(p[:,2]>11.0))[0]
+ driver='upper_arm.'+side
+ assert len(ids)>50
+ assert all(o.vertex_groups[o.data.vertices[int(i)].groups[0].group].name==driver for i in ids)
+ clear();rig.pose.bones[driver].rotation_euler.x=.8;q=sample()
+ transform=rig.pose.bones[driver].matrix@rig.data.bones[driver].matrix_local.inverted()
+ expected=np.array([tuple(transform@o.data.vertices[int(i)].co) for i in ids])
+ error=float(np.linalg.norm(q[ids]-expected,axis=1).max())
+ assert error<1e-5 and np.linalg.norm(q[ids]-p[ids],axis=1).max()>.2
+ report['shoulder_protectors'].append({'side':side,'driver':driver,'sampled_vertices':len(ids),'transform_error_m':error})
+clear()
 # Independent anatomical cores exclude seam hardware and use source geometry.
 domains={
  'legs':np.where((abs(p[:,0])<3.1)&(abs(p[:,0])>.5)&(p[:,2]>1.6)&(p[:,2]<6.3))[0],

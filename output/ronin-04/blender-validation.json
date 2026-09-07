@@ -13,6 +13,20 @@
       "zero_area": 0
     }
   ],
+  "shoulder_protectors": [
+    {
+      "side": "L",
+      "driver": "upper_arm.L",
+      "sampled_vertices": 133,
+      "transform_error_m": 1.5451289888400699e-06
+    },
+    {
+      "side": "R",
+      "driver": "upper_arm.R",
+      "sampled_vertices": 129,
+      "transform_error_m": 1.5451289888400699e-06
+    }
+  ],
   "isolation": [
     {
       "bone": "upper_arm.R",
@@ -117,7 +131,7 @@
     {
       "name": "KneelFire",
       "lowest_vertex_m": 1.8027171222456673e-07,
-      "rigid_edge_error_m": 3.129243850708008e-06,
+      "rigid_edge_error_m": 3.0621886253356934e-06,
       "loop_error_m": 0.0,
       "max_displacement_m": 12.79743480682373,
       "max_ground_clearance_m": 0.007814710028469563

@@ -78,7 +78,11 @@ mesh.materials.append(mat)
 uv=mesh.uv_layers.new(name='Ronin_Surface')
 for i,co in enumerate(uvs):uv.data[i].uv=co
 for f,mi in zip(mesh.polygons,mats):f.material_index=mi;f.use_smooth=True
-for name,indices in weights.items():obj.vertex_groups.new(name=name).add(indices,1,'REPLACE')
+for name,indices in weights.items():
+ # Keep the plate seam geometry, but move the complete protector with its arm.
+ driver=name.replace('shoulder.','upper_arm.')
+ group=obj.vertex_groups.get(driver) or obj.vertex_groups.new(name=driver)
+ group.add(indices,1,'REPLACE')
 
 # Rest-space joints measured from front and side inspection renders (meters).
 bpy.ops.object.armature_add(enter_editmode=True);rig=bpy.context.object;rig.name='RONIN_04_RIG';rig.show_in_front=True
