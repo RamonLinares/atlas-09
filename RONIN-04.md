@@ -10,7 +10,7 @@ An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold cres
 - [Extracted textures](public/textures/ronin-04/)
 - [Blender preview](output/ronin-04/ronin-04-beauty.png)
 - [Build script](scripts/build_ronin.py), [authored motions](scripts/ronin_motions.py), and [anatomical validation](scripts/validate_ronin.py)
-- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordSlash&v=15)
+- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordSlash&v=16)
 
 The GLB contains six ordinary baked skeletal clips: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), and Backflip (3.6 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. The katana remains held throughout all six clips.
 
@@ -41,7 +41,7 @@ Reports live in [output/ronin-04](output/ronin-04/); browser screenshots are in 
 
 ## Sword slash and grip repair
 
-SwordSlash now raises a guard, makes a fast diagonal cut with a coordinated torso turn, continues into follow-through, then recovers. The wrist and sword retain their rest relationship throughout the cut rather than aiming the blade by opening the wrist. The source glove and hilt geometry remain intact; three fitted mechanical finger arcs close the grip and are rigidly attached to the right hand.
+SwordSlash now raises a guard, makes a fast diagonal cut with a coordinated torso turn, continues into follow-through, then recovers. The wrist and sword retain their rest relationship throughout the cut rather than aiming the blade by opening the wrist. The katana blade is rotated 180° around its length so its single sharpened edge leads the forward cut. Its separate blade component retains the original UVs and curvature. The source glove and hilt geometry remain intact; three fitted mechanical finger arcs close the grip and are rigidly attached to the right hand.
 
 Validation additionally checks the locked wrist, attached elbow/wrist/sword joints, frame-to-frame rotational continuity, and lateral sword-tip travel. These changes rebuild locally with no additional generation charges. The armor, rig pivots, and shoulder shapes are preserved.
 

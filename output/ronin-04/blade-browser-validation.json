@@ -1,0 +1,135 @@
+{
+  "inventory": {
+    "character": "ronin-04",
+    "triangles": 28185,
+    "boneCount": 21,
+    "materials": 4,
+    "clips": [
+      {
+        "name": "Backflip",
+        "duration": 3.5999999046325684,
+        "tracks": 63
+      },
+      {
+        "name": "BladeSalute",
+        "duration": 6,
+        "tracks": 63
+      },
+      {
+        "name": "KneelFire",
+        "duration": 8,
+        "tracks": 63
+      },
+      {
+        "name": "Run",
+        "duration": 1.3333333730697632,
+        "tracks": 63
+      },
+      {
+        "name": "Sentinel",
+        "duration": 6,
+        "tracks": 63
+      },
+      {
+        "name": "SwordSlash",
+        "duration": 4,
+        "tracks": 63
+      }
+    ],
+    "motionFX": {
+      "muzzleFound": true,
+      "visibleProjectiles": 0,
+      "flash": false
+    },
+    "activeClip": "Sentinel",
+    "clipTime": 0.01730000000000001
+  },
+  "reports": [
+    {
+      "clip": "Sentinel",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "BladeSalute",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "Run",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "KneelFire",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 127,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "Backflip",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "SwordSlash",
+      "width": 1440,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "Sentinel",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "BladeSalute",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "Run",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "KneelFire",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 127,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "Backflip",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    },
+    {
+      "clip": "SwordSlash",
+      "width": 390,
+      "overflow": false,
+      "drawCalls": 126,
+      "modelDownload": "http://127.0.0.1:5175/models/ronin-04.glb?v=5"
+    }
+  ],
+  "playbackAdvanced": true,
+  "errors": []
+}

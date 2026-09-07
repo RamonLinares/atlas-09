@@ -84,6 +84,9 @@ for name,indices in weights.items():
  group=obj.vertex_groups.get(driver) or obj.vertex_groups.new(name=driver)
  group.add(indices,1,'REPLACE')
 
+from ronin_blade import reverse_blade
+(OUT/'blade-orientation.json').write_text(json.dumps(reverse_blade(obj),indent=2))
+
 # Rest-space joints measured from front and side inspection renders (meters).
 bpy.ops.object.armature_add(enter_editmode=True);rig=bpy.context.object;rig.name='RONIN_04_RIG';rig.show_in_front=True
 eb=rig.data.edit_bones;eb.remove(eb[0])

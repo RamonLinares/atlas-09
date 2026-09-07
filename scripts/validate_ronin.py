@@ -1,5 +1,6 @@
 """Validate rigid binding, anatomy isolation, UVs, and swept motion geometry."""
 import bpy,json,math,numpy as np
+from mathutils import Vector
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'output/ronin-04'
 bpy.ops.wm.open_mainfile(filepath=str(ROOT/'blender/RONIN-04.blend'))
@@ -75,5 +76,19 @@ slash_report['sword_tip_sweep_m']=(positions.max(axis=0)-positions.min(axis=0)).
 assert slash_report['wrist_rotation_rad']<1e-4 and slash_report['joint_gap_m']<1e-4, slash_report
 assert slash_report['half_frame_step_rad']<.30 and slash_report['sword_tip_sweep_m'][0]>2, slash_report
 report['sword_slash']=slash_report
+blade=json.loads((OUT/'blade-orientation.json').read_text())
+rig.animation_data.action=bpy.data.actions['SwordSlash']
+sword=rig.pose.bones['sword.R'];rest=sword.bone.matrix_local.inverted()
+probe=Vector(blade['blade_probe']);edge=Vector(blade['cutting_edge_direction'])
+def blade_point(frame):
+ scene.frame_set(int(frame),subframe=frame-int(frame));bpy.context.view_layer.update()
+ return sword.matrix@rest@probe
+alignment=[]
+for frame in [40,42,44,46]:
+ velocity=(blade_point(frame+.1)-blade_point(frame-.1)).normalized()
+ blade_point(frame);cutting_edge=(sword.matrix@rest).to_3x3()@edge
+ alignment.append(float(cutting_edge.dot(velocity)))
+assert min(alignment)>.8,alignment
+report['katana_cutting_edge']={'leading_edge_alignment':alignment,'minimum_required':.8}
 report['packed_textures']=all(im.packed_file for im in bpy.data.images if im.type=='IMAGE' and im.name!='Render Result');assert report['packed_textures']
 (OUT/'blender-validation.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))

@@ -33,7 +33,7 @@
       "displacement_m": {
         "legs": 0.0,
         "torso": 0.0,
-        "sword": 9.720471382141113,
+        "sword": 9.803718566894531,
         "left_arm": 0.0,
         "right_arm": 4.234111785888672,
         "head": 0.0
@@ -88,7 +88,7 @@
       "displacement_m": {
         "legs": 0.0,
         "torso": 0.0,
-        "sword": 5.916971683502197,
+        "sword": 6.056478977203369,
         "left_arm": 0.0,
         "right_arm": 0.0,
         "head": 0.0
@@ -107,23 +107,23 @@
     {
       "name": "BladeSalute",
       "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 3.2186508178710938e-06,
+      "rigid_edge_error_m": 3.635883331298828e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 19.51112937927246,
+      "max_displacement_m": 19.319522857666016,
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
       "name": "SwordSlash",
       "lowest_vertex_m": 0.0030000878032296896,
-      "rigid_edge_error_m": 3.2186508178710938e-06,
+      "rigid_edge_error_m": 3.337860107421875e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 18.494569778442383,
+      "max_displacement_m": 18.307167053222656,
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
       "name": "Run",
       "lowest_vertex_m": 0.0029995350632816553,
-      "rigid_edge_error_m": 3.7550926208496094e-06,
+      "rigid_edge_error_m": 3.814697265625e-06,
       "loop_error_m": 0.0,
       "max_displacement_m": 5.075571537017822,
       "max_ground_clearance_m": 0.03291158378124237
@@ -133,7 +133,7 @@
       "lowest_vertex_m": 1.8027171222456673e-07,
       "rigid_edge_error_m": 3.0621886253356934e-06,
       "loop_error_m": 0.0,
-      "max_displacement_m": 12.79743480682373,
+      "max_displacement_m": 12.62169075012207,
       "max_ground_clearance_m": 0.007814710028469563
     },
     {
@@ -154,6 +154,15 @@
       7.991503715515137,
       18.460729598999023
     ]
+  },
+  "katana_cutting_edge": {
+    "leading_edge_alignment": [
+      0.9530429812148213,
+      0.9289057850837708,
+      0.8938725143671036,
+      0.8772051653359085
+    ],
+    "minimum_required": 0.8
   },
   "packed_textures": true
 }
