@@ -27,7 +27,7 @@ The user's reusable [creation prompt](assets/ronin-04/creation-prompt.txt) autho
 
 ## Preparation and checks
 
-The final mesh has **27,381 triangles**, **15,025 Blender vertices**, **21 bones**, four materials and two UV layers. Base color is 2048²; normal and packed occlusion/roughness/metallic textures are 1024². All image textures are packed into the Blender project and embedded in the GLB.
+The final mesh has **28,185 triangles**, **15,481 Blender vertices**, **21 bones**, four materials and two UV layers. Base color is 2048²; normal and packed occlusion/roughness/metallic textures are 1024². All image textures are packed into the Blender project and embedded in the GLB.
 
 The source was inspected from the front, side and back before binding. The rig includes separate shoulder, arm, leg, skirt, head and sword controls. Geometry is split at mechanical boundaries and given full rigid weights. The shoulder boundary follows the plate's diagonal edge; the sword pommel behind the wrist follows the grip. A sloping blade boundary avoids attaching boot geometry to the weapon. Compact actuator housings cover joints. The skirt follows each thigh around the hip during running and kneeling.
 
@@ -39,6 +39,12 @@ The source was inspected from the front, side and back before binding. The rig i
 
 Reports live in [output/ronin-04](output/ronin-04/); browser screenshots are in `output/playwright/ronin-*`.
 
+## Sword slash and grip repair
+
+SwordSlash now raises a guard, makes a fast diagonal cut with a coordinated torso turn, continues into follow-through, then recovers. The wrist and sword retain their rest relationship throughout the cut rather than aiming the blade by opening the wrist. The source glove and hilt geometry remain intact; three fitted mechanical finger arcs close the grip and are rigidly attached to the right hand.
+
+Validation additionally checks the locked wrist, attached elbow/wrist/sword joints, frame-to-frame rotational continuity, and lateral sword-tip travel. These changes rebuild locally with no additional generation charges. The armor, rig pivots, and shoulder shapes are preserved.
+
 ## Reproduce
 
 ```sh
@@ -49,8 +55,8 @@ node scripts/validate_glb.mjs public/models/ronin-04.glb output/ronin-04/gltf-va
 npm run build -- --base=/atlas-09/
 ```
 
-The build uses the preserved retopology locally. No API key or paid call is required to rebuild the delivered asset or viewer. Open the Blender Action Editor to choose another motion; the project opens in its blade salute pose.
+The build uses the preserved retopology locally. No API key or paid call is required to rebuild the delivered asset or viewer. Open the Blender Action Editor to choose another motion; the project opens in the sword slash guard pose.
 
 ## Remaining limitations
 
-This is a realtime mechanical character prototype. The generated armor has irregular topology and baked surface detail; separated rigid sections leave 2,625 boundary edges, so this is not a watertight manufacturing mesh. Joint housings and simplified two-panel skirt articulation support these authored clips, but extreme custom poses can reveal seams or armor overlap. Fingers are fixed around the grip; the sword has no separate draw/sheath animation. There is no physics, gameplay collision rig, facial rig, or LOD chain. The backflip is deliberately stylized for a giant mecha. Browser firing effects are not embedded as particles in the GLB.
+This is a realtime mechanical character prototype. The generated armor has irregular topology and baked surface detail; separated rigid sections leave 2,721 boundary edges, so this is not a watertight manufacturing mesh. Joint housings and simplified two-panel skirt articulation support these authored clips, but extreme custom poses can reveal seams or armor overlap. Fingers are fixed around the grip; the sword has no separate draw/sheath animation. There is no physics, gameplay collision rig, facial rig, or LOD chain. The backflip is deliberately stylized for a giant mecha. Browser firing effects are not embedded as particles in the GLB.

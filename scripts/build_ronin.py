@@ -125,6 +125,9 @@ def cylinder(center,radius,length,direction,name,mat):
 for side in ['L','R']:
  for name,radius in [('upper_arm',.40),('forearm',.27),('thigh',.48),('shin',.38),('foot',.25)]:sphere(rig.data.bones[name+'.'+side].head_local,radius,name+'.'+side)
 sphere((0,0,10),.45,'chest');sphere((0,.15,13.05),.32,'head')
+from ronin_grip import add_sword_fingers
+(OUT/'grip-repair.json').write_text(json.dumps(add_sword_fingers(bind,joint),indent=2))
+
 # Pulse emitter integrated into the left wrist bracer.
 direction=Vector((.22,-.09,-1)).normalized();center=Vector((3.92,-.3,8.55))
 cylinder(center,.17,1.0,direction,'forearm.L',joint)
@@ -174,7 +177,7 @@ scene.render.engine='CYCLES';scene.cycles.samples=16;scene.cycles.use_denoising=
 bpy.ops.object.select_all(action='DESELECT');rig.select_set(True);bpy.context.view_layer.objects.active=rig
 for area in bpy.context.screen.areas:
  if area.type=='VIEW_3D':area.spaces.active.region_3d.view_distance=24;area.spaces.active.region_3d.view_location=(0,0,10);area.spaces.active.shading.type='MATERIAL'
-rig.animation_data.action=bpy.data.actions['BladeSalute'];scene.frame_set(61)
+rig.animation_data.action=bpy.data.actions['SwordSlash'];scene.frame_set(31)
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'blender/RONIN-04.blend'))
 scene.render.filepath=str(OUT/'ronin-04-beauty.png')
 if '--skip-render' not in sys.argv:bpy.ops.render.render(write_still=True)

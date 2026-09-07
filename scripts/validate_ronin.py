@@ -1,5 +1,5 @@
 """Validate rigid binding, anatomy isolation, UVs, and swept motion geometry."""
-import bpy,json,numpy as np
+import bpy,json,math,numpy as np
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'output/ronin-04'
 bpy.ops.wm.open_mainfile(filepath=str(ROOT/'blender/RONIN-04.blend'))
@@ -37,12 +37,30 @@ for name,moved in [('upper_arm.R',['right_arm','sword']),('upper_arm.L',['left_a
  assert any(movement[k]>.2 for k in moved)
  report['isolation'].append({'bone':name,'displacement_m':movement})
 clear();edges=np.array([e.vertices[:] for e in o.data.edges]);report['animations']=[]
+slash_report={'wrist_rotation_rad':0,'joint_gap_m':0,'half_frame_step_rad':0,'tip_positions':[]}
 for name in ['Sentinel','BladeSalute','SwordSlash','Run','KneelFire','Backflip']:
  rig.animation_data.action=bpy.data.actions[name];start,end=map(int,rig.animation_data.action.frame_range);first=sample(start);last=sample(end);base=np.linalg.norm(first[edges[:,0]]-first[edges[:,1]],axis=1);low=1e9;stretch=0;motion=0;maxclear=0
+ previous=None
  for frame in np.arange(start,end+.1,.5):
-  q=sample(float(frame));assert np.isfinite(q).all();low=min(low,float(q[:,2].min()));maxclear=max(maxclear,float(q[:,2].min()));stretch=max(stretch,float(abs(np.linalg.norm(q[edges[:,0]]-q[edges[:,1]],axis=1)-base).max()));motion=max(motion,float(np.linalg.norm(q-first,axis=1).max()))
+  q=sample(float(frame))
+  if name=='SwordSlash':
+   bones=rig.pose.bones
+   slash_report['wrist_rotation_rad']=max(slash_report['wrist_rotation_rad'],bones['hand.R'].rotation_euler.to_quaternion().angle)
+   for part in ['forearm.R','hand.R','sword.R']:
+    b=bones[part];slash_report['joint_gap_m']=max(slash_report['joint_gap_m'],(b.head-b.parent.tail).length)
+   current={n:bones[n].matrix.to_quaternion() for n in ['chest','upper_arm.R','forearm.R','hand.R','sword.R']}
+   if previous:
+    slash_report['half_frame_step_rad']=max(slash_report['half_frame_step_rad'],max(2*math.acos(min(1,abs(previous[n].dot(v)))) for n,v in current.items()))
+   previous=current
+   slash_report['tip_positions'].append(list(bones['sword.R'].tail))
+  assert np.isfinite(q).all();low=min(low,float(q[:,2].min()));maxclear=max(maxclear,float(q[:,2].min()));stretch=max(stretch,float(abs(np.linalg.norm(q[edges[:,0]]-q[edges[:,1]],axis=1)-base).max()));motion=max(motion,float(np.linalg.norm(q-first,axis=1).max()))
  closure=float(np.linalg.norm(first-last,axis=1).max())
  assert low>-.004 and stretch<.0001 and closure<.0001 and motion>.01,(name,low,stretch,closure,motion)
  report['animations'].append({'name':name,'lowest_vertex_m':low,'rigid_edge_error_m':stretch,'loop_error_m':closure,'max_displacement_m':motion,'max_ground_clearance_m':maxclear})
+positions=np.array(slash_report.pop('tip_positions'))
+slash_report['sword_tip_sweep_m']=(positions.max(axis=0)-positions.min(axis=0)).tolist()
+assert slash_report['wrist_rotation_rad']<1e-4 and slash_report['joint_gap_m']<1e-4, slash_report
+assert slash_report['half_frame_step_rad']<.30 and slash_report['sword_tip_sweep_m'][0]>2, slash_report
+report['sword_slash']=slash_report
 report['packed_textures']=all(im.packed_file for im in bpy.data.images if im.type=='IMAGE' and im.name!='Render Result');assert report['packed_textures']
 (OUT/'blender-validation.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))

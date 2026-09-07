@@ -2,7 +2,7 @@ async page => {
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:5175/?character=ronin-04');await page.waitForFunction(()=>window.atlas?.stats.character==='ronin-04');
  const inventory=await page.evaluate(()=>atlas.stats);if(inventory.clips.length!==6)throw Error('Incorrect Ronin clips');
- const poses=[['IDLE','Sentinel',0],['BLADE SALUTE','BladeSalute',3],['RUN','Run',.37],['KNEEL & FIRE','KneelFire',3.1],['BACKFLIP','Backflip',1.8],['SWORD SLASH','SwordSlash',1.8]];
+ const poses=[['IDLE','Sentinel',0],['BLADE SALUTE','BladeSalute',3],['RUN','Run',.37],['KNEEL & FIRE','KneelFire',3.1],['BACKFLIP','Backflip',1.8],['SWORD SLASH','SwordSlash',1.56]];
  const reports=[];
  for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await page.setViewportSize(viewport);

@@ -63,18 +63,39 @@ def build_ronin_motions(rig,obj):
   arm('R',Vector((-3.55,-.25,8)).lerp(Vector((-3.4,-1.9,11.8)),b))
   blade(restblade.lerp(Vector((-.12,-.15,1)).normalized(),b))
   bones['head'].rotation_euler.x=.08*b;update()
+ def curve(u,keys):
+  if u<=keys[0][0]:return keys[0][1]
+  for (ta,a),(tb,b) in zip(keys,keys[1:]):
+   if u<=tb:return a+(b-a)*smooth((u-ta)/(tb-ta))
+  return keys[-1][1]
  def slash(u):
-  neutral();ready=smooth(u/.23);strike=smooth((u-.28)/.16);return_=smooth((u-.64)/.36)
-  target=Vector((-3.55,-.25,8)).lerp(Vector((-3.6,-1.5,12.1)),ready).lerp(Vector((-3.4,-2.0,9.2)),strike).lerp(Vector((-3.55,-.25,8)),return_)
-  arm('R',target)
-  direction=restblade.lerp(Vector((-.3,.05,1)).normalized(),ready).lerp(Vector((-.55,-1,-.18)).normalized(),strike).lerp(restblade,return_)
-  blade(direction);bones['chest'].rotation_euler.z=.08*math.sin(u*math.tau)*(1-return_);update()
+  neutral()
+  ready=curve(u,[(0,0),(.23,1),(.31,1),(.91,0),(1,0)])
+  cut=curve(u,[(0,0),(.31,0),(.39,1),(.49,1),(.91,0),(1,0)])
+  follow=curve(u,[(0,0),(.39,0),(.49,1),(.91,0),(1,0)])
+  yaw=-.20*ready+.50*cut+.10*follow
+  pitch=-.035*ready+.09*cut
+  chest=bones['chest'];frame=Matrix.Rotation(yaw,3,'Z')@Matrix.Rotation(pitch,3,'X')
+  chest.matrix=Matrix.Translation(chest.head)@frame.to_4x4()@chest.bone.matrix_local.to_quaternion().to_matrix().to_4x4();update()
+  # The arm carries a firm grip through a diagonal cut. The sword and wrist
+  # keep their rest relationship instead of independently aiming the blade.
+  poses={
+   'upper_arm.R':(-.50*ready-.14*cut, -.18*ready+.48*cut, .12*ready),
+   'forearm.R':(-2.05*ready+.98*cut+.33*follow, -.25*ready+.68*cut, 0),
+   'upper_arm.L':(-.25*ready, .10*ready, -.06*ready),
+   'forearm.L':(-.75*ready, .05*ready,0),
+  }
+  for name,(x,z,y) in poses.items():
+   b=bones[name];rotation=frame@Matrix.Rotation(z,3,'Z')@Matrix.Rotation(y,3,'Y')@Matrix.Rotation(x,3,'X')
+   b.matrix=Matrix.Translation(b.head)@rotation.to_4x4()@b.bone.matrix_local.to_quaternion().to_matrix().to_4x4();update()
+  bones['hand.R'].rotation_euler=(0,0,0);bones['sword.R'].rotation_euler=(0,0,0)
+  bones['head'].rotation_euler.y=-.3*yaw;update()
  for name,frames,fn in [('Sentinel',181,idle),('BladeSalute',181,salute),('SwordSlash',121,slash)]:
   rig.animation_data.action=None;previous={}
   for frame in range(1,frames+1):
    fn((frame-1)/(frames-1));update()
    for b in bones:
-    if b.name in previous:b.rotation_euler.make_compatible(previous[b.name])
+    if b.name in previous:b.rotation_euler=b.rotation_euler.to_quaternion().to_euler('XYZ',previous[b.name])
     previous[b.name]=b.rotation_euler.copy();b.keyframe_insert('rotation_euler',frame=frame,group=b.name);b.keyframe_insert('location',frame=frame,group=b.name)
   a=rig.animation_data.action;a.name=name;a.use_fake_user=True;rig.animation_data.action=None
   track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,a);track.mute=True
