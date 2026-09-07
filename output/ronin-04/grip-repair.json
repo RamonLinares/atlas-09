@@ -1,15 +1,15 @@
 {
-  "closed_fingers": 3,
+  "closed_fingers_per_hand": 3,
   "hilt_axis": [
-    0.2938480079174042,
-    0.7472134828567505,
-    0.5960916876792908
+    0.3402918875217438,
+    0.7154601812362671,
+    0.6101788282394409
   ],
   "hilt_anchor": [
-    -3.7799999713897705,
-    -0.4699999988079071,
-    6.889999866485596
+    -3.8378894329071045,
+    -0.3436709940433502,
+    6.803256034851074
   ],
-  "source_geometry_preserved": true,
-  "binding": "hand.R"
+  "independent_weapon": true,
+  "hand_geometry": "armored palms, thumbs, and curved mechanical fingers"
 }

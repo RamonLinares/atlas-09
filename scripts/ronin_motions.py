@@ -90,7 +90,9 @@ def build_ronin_motions(rig,obj):
    b.matrix=Matrix.Translation(b.head)@rotation.to_4x4()@b.bone.matrix_local.to_quaternion().to_matrix().to_4x4();update()
   bones['hand.R'].rotation_euler=(0,0,0);bones['sword.R'].rotation_euler=(0,0,0)
   bones['head'].rotation_euler.y=-.3*yaw;update()
- for name,frames,fn in [('Sentinel',181,idle),('BladeSalute',181,salute),('SwordSlash',121,slash)]:
+ from ronin_punch_combo import make_punch_combo,refine_docked_keys
+ combo=make_punch_combo(rig)
+ for name,frames,fn in [('Sentinel',181,idle),('BladeSalute',181,salute),('SwordSlash',121,slash),('PunchCombo',361,combo)]:
   rig.animation_data.action=None;previous={}
   for frame in range(1,frames+1):
    fn((frame-1)/(frames-1));update()
@@ -100,6 +102,14 @@ def build_ronin_motions(rig,obj):
   a=rig.animation_data.action;a.name=name;a.use_fake_user=True;rig.animation_data.action=None
   track=rig.animation_data.nla_tracks.new();track.name=name;track.strips.new(name,1,a);track.mute=True
   report.append({'name':name,'frames':frames,'duration':(frames-1)/30})
+ # Set sampled body tracks to linear before resolving the magnetic constraint
+ # between frames; the refinement must use the same interpolation as the GLB.
+ for layer in bpy.data.actions['PunchCombo'].layers:
+  for strip in layer.strips:
+   for bag in strip.channelbags:
+    for c in bag.fcurves:
+     for k in c.keyframe_points:k.interpolation='LINEAR'
+ refine_docked_keys(rig)
  # Bound interpolation as well as keyed poses and save per-clip swept bounds
  # for a stable camera that includes the katana throughout each motion.
  root_up=bones['root'].bone.matrix_local.to_3x3().inverted()@Vector((0,0,1));bounds={}

@@ -60,9 +60,12 @@ def section(p):
  if z>1.25:return 'shin.'+side
  return 'foot.'+side
 labels={f.index:section(f.center) for f in mesh.polygons}
+from ronin_equipment import separate_katana_labels,add_equipment
+(OUT/'katana-separation.json').write_text(json.dumps(separate_katana_labels(mesh,labels),indent=2))
 repairs=[]
 parts=defaultdict(list)
-for fi,name in labels.items():parts[name].append(fi)
+for fi,name in labels.items():
+ if name!='discard':parts[name].append(fi)
 (OUT/'binding-repairs.json').write_text(json.dumps(repairs,indent=2))
 old=mesh;verts=[];faces=[];uvs=[];mats=[];weights=defaultdict(list)
 for name,indices in parts.items():
@@ -134,6 +137,7 @@ for side in ['L','R']:
 sphere((0,0,10),.45,'chest');sphere((0,.15,13.05),.32,'head')
 from ronin_grip import add_sword_fingers
 (OUT/'grip-repair.json').write_text(json.dumps(add_sword_fingers(bind,joint),indent=2))
+(OUT/'magnetic-dock.json').write_text(json.dumps(add_equipment(bind,joint,trim,glow),indent=2))
 
 # Pulse emitter integrated into the left wrist bracer.
 direction=Vector((.22,-.09,-1)).normalized();center=Vector((3.92,-.3,8.55))
@@ -158,15 +162,16 @@ def neutral():
 from ronin_motions import build_ronin_motions
 motion_report=build_ronin_motions(rig,obj)
 (OUT/'bake-report.json').write_text(json.dumps(motion_report,indent=2))
-rig['README']='RONIN-04, 16m samurai mecha. Articulated skirt, right-hand katana and left pulse bracer. Six baked motions. Source retopology remains a realtime prototype.'
+rig['README']='RONIN-04, 16m samurai mecha. Articulated skirt, right-hand katana and left pulse bracer. Seven baked motions. Source retopology remains a realtime prototype.'
 neutral();scene.frame_set(1);scene.frame_start=1;scene.frame_end=181
 bm=bmesh.new();bm.from_mesh(mesh);boundary=sum(e.is_boundary for e in bm.edges);bm.free()
 report={'source':str(source.relative_to(ROOT)),'height_m':16,'source_triangles':intake_triangles,'vertices':len(mesh.vertices),'triangles':sum(len(f.vertices)-2 for f in mesh.polygons),'bones':len(rig.data.bones),'materials':[m.name for m in mesh.materials],'boundary_edges':boundary,'textures':textures,'animations':[{'name':a.name,'frames':list(a.frame_range)} for a in bpy.data.actions]}
 (OUT/'asset-report.json').write_text(json.dumps(report,indent=2))
 bpy.ops.object.select_all(action='DESELECT');obj.select_set(True);rig.select_set(True);muzzle.select_set(True);bpy.context.view_layer.objects.active=rig
 obj.parent=None
-bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/ronin-04.glb'),export_format='GLB',use_selection=True,export_animations=True,export_animation_mode='ACTIONS',export_anim_slide_to_zero=True,export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
+bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/ronin-04.glb'),export_format='GLB',use_selection=True,export_animations=True,export_force_sampling=False,export_animation_mode='ACTIONS',export_anim_slide_to_zero=True,export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
 runpy.run_path(str(ROOT/'scripts/fix_export_tangents.py'),init_globals={'ASSET_PATH':ROOT/'public/models/ronin-04.glb','REPORT_PATH':OUT/'tangent-repairs.json'},run_name='__main__')
+runpy.run_path(str(ROOT/'scripts/normalize_animation_times.py'),init_globals={'ASSET_PATH':ROOT/'public/models/ronin-04.glb','REPORT_PATH':OUT/'animation-time-normalization.json'},run_name='__main__')
 obj.parent=rig
 
 # A reusable studio for Blender inspection, excluded from the GLB selection.

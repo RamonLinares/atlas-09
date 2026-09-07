@@ -2,8 +2,8 @@
   "source": "assets/ronin-04/retopo/d544a72e-1082-4fbd-8f88-7183fe80350b-model_url.glb",
   "height_m": 16,
   "source_triangles": 24466,
-  "vertices": 15481,
-  "triangles": 28185,
+  "vertices": 17156,
+  "triangles": 31349,
   "bones": 21,
   "materials": [
     "RONIN crimson lacquer, aged gold and steel",
@@ -11,7 +11,7 @@
     "RONIN aged gold trim",
     "RONIN wrist reactor emission"
   ],
-  "boundary_edges": 2721,
+  "boundary_edges": 2773,
   "textures": [
     {
       "semantic": "BaseColor",
@@ -58,6 +58,13 @@
       "frames": [
         1.0,
         241.0
+      ]
+    },
+    {
+      "name": "PunchCombo",
+      "frames": [
+        1.0,
+        361.0
       ]
     },
     {

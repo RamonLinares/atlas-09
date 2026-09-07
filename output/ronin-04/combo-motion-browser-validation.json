@@ -1,0 +1,9 @@
+{
+  "maxDockDrift": 0.005574100688939265,
+  "maxSwordStep": 0.030723393501972486,
+  "duration": 12,
+  "playback": {
+    "renderedFrames": 721,
+    "completedLoop": true
+  }
+}

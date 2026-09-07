@@ -2,7 +2,7 @@
   "uri": "public/models/ronin-04.glb",
   "mimeType": "model/gltf-binary",
   "validatorVersion": "2.0.0-dev.3.10",
-  "validatedAt": "2026-09-07T04:34:47.504Z",
+  "validatedAt": "2026-09-07T05:08:31.916Z",
   "issues": {
     "numErrors": 0,
     "numWarnings": 0,
@@ -90,7 +90,7 @@
         "pointer": "/buffers/0",
         "mimeType": "application/gltf-buffer",
         "storage": "glb",
-        "byteLength": 6269684
+        "byteLength": 7165552
       },
       {
         "pointer": "/images/0",
@@ -128,15 +128,15 @@
         }
       }
     ],
-    "animationCount": 6,
+    "animationCount": 7,
     "materialCount": 4,
     "hasMorphTargets": false,
     "hasSkins": true,
     "hasTextures": true,
     "hasDefaultScene": true,
     "drawCallCount": 4,
-    "totalVertexCount": 41508,
-    "totalTriangleCount": 28185,
+    "totalVertexCount": 45041,
+    "totalTriangleCount": 31349,
     "maxUVs": 2,
     "maxInfluences": 4,
     "maxAttributes": 7

@@ -1,0 +1,30 @@
+[
+  {
+    "clip": "Backflip",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "BladeSalute",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "KneelFire",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "PunchCombo",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Run",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Sentinel",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "SwordSlash",
+    "removed_leading_seconds": 0.03333333507180214
+  }
+]

@@ -3,7 +3,7 @@ async page => {
  const reports=[];
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:width===390?844:1000});
-  for(const [label,name] of [['IDLE','Sentinel'],['RUN','Run'],['KNEEL & FIRE','KneelFire'],['BACKFLIP','Backflip'],['BLADE SALUTE','BladeSalute'],['SWORD SLASH','SwordSlash']]){
+  for(const [label,name] of [['IDLE','Sentinel'],['RUN','Run'],['KNEEL & FIRE','KneelFire'],['BACKFLIP','Backflip'],['BLADE SALUTE','BladeSalute'],['SWORD SLASH','SwordSlash'],['PUNCH COMBO','PunchCombo']]){
    await page.getByRole('button',{name:label,exact:true}).click();await page.getByRole('button',{name:'Pause animation',exact:true}).click();
    reports.push(await page.evaluate(({name,width})=>{
     const a=atlas.actions.get(name),duration=a.getClip().duration;

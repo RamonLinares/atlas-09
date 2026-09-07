@@ -35,7 +35,7 @@
         "torso": 0.0,
         "sword": 9.355020523071289,
         "left_arm": 0.0,
-        "right_arm": 4.234111785888672,
+        "right_arm": 3.6340491771698,
         "head": 0.0
       }
     },
@@ -45,7 +45,7 @@
         "legs": 0.0,
         "torso": 0.0,
         "sword": 0.0,
-        "left_arm": 4.492622375488281,
+        "left_arm": 4.346036911010742,
         "right_arm": 0.0,
         "head": 0.0
       }
@@ -121,6 +121,14 @@
       "max_ground_clearance_m": 0.0030000878032296896
     },
     {
+      "name": "PunchCombo",
+      "lowest_vertex_m": 0.0030000878032296896,
+      "rigid_edge_error_m": 3.203749656677246e-06,
+      "loop_error_m": 9.555351425660774e-07,
+      "max_displacement_m": 12.25110149383545,
+      "max_ground_clearance_m": 0.0030000878032296896
+    },
+    {
       "name": "Run",
       "lowest_vertex_m": 0.0029995350632816553,
       "rigid_edge_error_m": 3.874301910400391e-06,
@@ -131,7 +139,7 @@
     {
       "name": "KneelFire",
       "lowest_vertex_m": 1.8027171222456673e-07,
-      "rigid_edge_error_m": 3.0621886253356934e-06,
+      "rigid_edge_error_m": 2.9802322387695312e-06,
       "loop_error_m": 0.0,
       "max_displacement_m": 12.022723197937012,
       "max_ground_clearance_m": 0.007814710028469563
@@ -163,6 +171,17 @@
       0.8668089900165796
     ],
     "minimum_required": 0.8
+  },
+  "punch_combo": {
+    "arm_joint_gap_m": 3.135906800738789e-06,
+    "held_sword_gap_m": 1.215700987241932e-06,
+    "dock_drift_m": 6.4373016357421875e-06,
+    "rotation_step_rad": 0.11405604702267778,
+    "foot_motion_m": 0,
+    "fist_forward_travel_m": {
+      "L": 2.3380424976348877,
+      "R": 2.338043212890625
+    }
   },
   "packed_textures": true
 }

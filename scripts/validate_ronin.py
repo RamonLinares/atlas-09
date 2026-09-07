@@ -40,7 +40,7 @@ domains={
  'torso':np.where((abs(p[:,0])<1)&(p[:,2]>10.5)&(p[:,2]<12.5))[0],
  'sword':np.where((p[:,0]<-4.4)&(p[:,2]>1)&(p[:,2]<4.5))[0],
  'left_arm':np.where((p[:,0]>3.3)&(p[:,2]>6.5)&(p[:,2]<9.8))[0],
- 'right_arm':np.where((p[:,0]<-3.3)&(p[:,2]>7.1)&(p[:,2]<9.8))[0],
+ 'right_arm':np.where((p[:,0]<-3.3)&(p[:,1]<-.25)&(p[:,2]>7.8)&(p[:,2]<9.8))[0],
  'head':np.where((abs(p[:,0])<1)&(p[:,2]>13.7))[0]}
 assert all(len(v)>15 for v in domains.values())
 report['isolation']=[]
@@ -52,7 +52,7 @@ for name,moved in [('upper_arm.R',['right_arm','sword']),('upper_arm.L',['left_a
  report['isolation'].append({'bone':name,'displacement_m':movement})
 clear();edges=np.array([e.vertices[:] for e in o.data.edges]);report['animations']=[]
 slash_report={'wrist_rotation_rad':0,'joint_gap_m':0,'half_frame_step_rad':0,'tip_positions':[]}
-for name in ['Sentinel','BladeSalute','SwordSlash','Run','KneelFire','Backflip']:
+for name in ['Sentinel','BladeSalute','SwordSlash','PunchCombo','Run','KneelFire','Backflip']:
  rig.animation_data.action=bpy.data.actions[name];start,end=map(int,rig.animation_data.action.frame_range);first=sample(start);last=sample(end);base=np.linalg.norm(first[edges[:,0]]-first[edges[:,1]],axis=1);low=1e9;stretch=0;motion=0;maxclear=0
  previous=None
  for frame in np.arange(start,end+.1,.5):
@@ -90,5 +90,32 @@ for frame in [40,42,44,46]:
  alignment.append(float(cutting_edge.dot(velocity)))
 assert min(alignment)>.8,alignment
 report['katana_cutting_edge']={'leading_edge_alignment':alignment,'minimum_required':.8}
+rig.animation_data.action=bpy.data.actions['PunchCombo']
+combo={'arm_joint_gap_m':0,'held_sword_gap_m':0,'dock_drift_m':0,'rotation_step_rad':0,'foot_motion_m':0}
+last=None;dock_reference=None;feet_reference=None;fists={'L':[],'R':[]}
+for frame in np.arange(1,361.1,.5):
+ sample(float(frame));t=(frame-1)/30;bones=rig.pose.bones
+ for side in ['L','R']:
+  for part in ['forearm.','hand.']:
+   bone=bones[part+side];combo['arm_joint_gap_m']=max(combo['arm_joint_gap_m'],(bone.head-bone.parent.tail).length)
+ if t<2.4 or t>9.4:
+  combo['held_sword_gap_m']=max(combo['held_sword_gap_m'],(bones['sword.R'].head-bones['hand.R'].tail).length)
+ if 3.5<=t<=8.4:
+  relative=bones['chest'].matrix.inverted()@bones['sword.R'].matrix
+  if dock_reference is None:dock_reference=relative.copy()
+  combo['dock_drift_m']=max(combo['dock_drift_m'],max(abs(relative[i][j]-dock_reference[i][j]) for i in range(4) for j in range(4)))
+  chest_delta=bones['chest'].matrix@bones['chest'].bone.matrix_local.inverted()
+  for side in ['L','R']:fists[side].append(list(chest_delta.inverted()@bones['hand.'+side].tail))
+ feet=[bones['foot.'+s].head.copy() for s in ['L','R']]
+ if feet_reference is None:feet_reference=feet
+ combo['foot_motion_m']=max(combo['foot_motion_m'],max((a-c).length for a,c in zip(feet,feet_reference)))
+ current={n:bones[n].matrix.to_quaternion() for n in ['chest','upper_arm.R','upper_arm.L','forearm.R','forearm.L','hand.R','sword.R']}
+ if last:combo['rotation_step_rad']=max(combo['rotation_step_rad'],max(2*math.acos(min(1,abs(last[n].dot(q)))) for n,q in current.items()))
+ last=current
+combo['fist_forward_travel_m']={s:float(np.ptp(np.array(points)[:,1])) for s,points in fists.items()}
+assert combo['arm_joint_gap_m']<1e-4 and combo['held_sword_gap_m']<1e-4,combo
+assert combo['dock_drift_m']<.005 and combo['rotation_step_rad']<.35 and combo['foot_motion_m']<.02,combo
+assert min(combo['fist_forward_travel_m'].values())>1.5,combo
+report['punch_combo']=combo
 report['packed_textures']=all(im.packed_file for im in bpy.data.images if im.type=='IMAGE' and im.name!='Render Result');assert report['packed_textures']
 (OUT/'blender-validation.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))

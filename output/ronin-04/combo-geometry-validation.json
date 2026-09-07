@@ -1,0 +1,229 @@
+{
+  "reports": [
+    {
+      "name": "Sentinel",
+      "width": 1440,
+      "samples": 73,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.2568012566261395,
+        -0.5928904627521445
+      ],
+      "projectedMax": [
+        0.34692422253956046,
+        0.5484340036625024
+      ]
+    },
+    {
+      "name": "Run",
+      "width": 1440,
+      "samples": 17,
+      "lowestWorldY": 0.0012188627023035357,
+      "projectedMin": [
+        -0.16642028343360193,
+        -0.6428869707816984
+      ],
+      "projectedMax": [
+        0.3022283266266113,
+        0.578806200259058
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "width": 1440,
+      "samples": 97,
+      "lowestWorldY": -1.3630720810529018e-07,
+      "projectedMin": [
+        -0.3382371659668233,
+        -0.6175086739175568
+      ],
+      "projectedMax": [
+        0.3907619985393922,
+        0.4885416221470621
+      ]
+    },
+    {
+      "name": "Backflip",
+      "width": 1440,
+      "samples": 44,
+      "lowestWorldY": 0.0012324432301831568,
+      "projectedMin": [
+        -0.1489962896883942,
+        -0.6353439603167824
+      ],
+      "projectedMax": [
+        0.31422002210181754,
+        0.5603987481363162
+      ]
+    },
+    {
+      "name": "BladeSalute",
+      "width": 1440,
+      "samples": 73,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.2349677393729937,
+        -0.5697780587246799
+      ],
+      "projectedMax": [
+        0.3207376751661292,
+        0.5570783481280598
+      ]
+    },
+    {
+      "name": "SwordSlash",
+      "width": 1440,
+      "samples": 49,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.22537239825746114,
+        -0.501810525489737
+      ],
+      "projectedMax": [
+        0.3582677551926915,
+        0.5198683337778635
+      ]
+    },
+    {
+      "name": "PunchCombo",
+      "width": 1440,
+      "samples": 145,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.2677692935401358,
+        -0.5920260719605166
+      ],
+      "projectedMax": [
+        0.3509641275140133,
+        0.5310727638503777
+      ]
+    },
+    {
+      "name": "Sentinel",
+      "width": 390,
+      "samples": 73,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.6345275652715873,
+        -0.5081328966861501
+      ],
+      "projectedMax": [
+        0.5388488066583956,
+        0.20062129148876304
+      ]
+    },
+    {
+      "name": "Run",
+      "width": 390,
+      "samples": 17,
+      "lowestWorldY": 0.0012188627023035357,
+      "projectedMin": [
+        -0.45578863151005944,
+        -0.5340145486465369
+      ],
+      "projectedMax": [
+        0.4456949908198888,
+        0.21564155942741192
+      ]
+    },
+    {
+      "name": "KneelFire",
+      "width": 390,
+      "samples": 97,
+      "lowestWorldY": -1.3630720810529018e-07,
+      "projectedMin": [
+        -0.7977400847069723,
+        -0.5260246475311185
+      ],
+      "projectedMax": [
+        0.6272287878351398,
+        0.16390731670639802
+      ]
+    },
+    {
+      "name": "Backflip",
+      "width": 390,
+      "samples": 44,
+      "lowestWorldY": 0.0012324432301831568,
+      "projectedMin": [
+        -0.4231886154133247,
+        -0.5315158254592097
+      ],
+      "projectedMax": [
+        0.4818715930709509,
+        0.20202058257772906
+      ]
+    },
+    {
+      "name": "BladeSalute",
+      "width": 390,
+      "samples": 73,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.5886252402053225,
+        -0.49410289041255895
+      ],
+      "projectedMax": [
+        0.4940924237769233,
+        0.20757184684715674
+      ]
+    },
+    {
+      "name": "SwordSlash",
+      "width": 390,
+      "samples": 49,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.5797637638669272,
+        -0.45593751801239774
+      ],
+      "projectedMax": [
+        0.5789329987230857,
+        0.19809597199350207
+      ]
+    },
+    {
+      "name": "PunchCombo",
+      "width": 390,
+      "samples": 145,
+      "lowestWorldY": 0.0012188361627384564,
+      "projectedMin": [
+        -0.6575565707738669,
+        -0.5085679636779056
+      ],
+      "projectedMax": [
+        0.539348365558539,
+        0.18896279821669731
+      ]
+    }
+  ],
+  "firing": {
+    "alignment": 0.9999255755511527,
+    "states": [
+      {
+        "time": 2.42,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": true
+      },
+      {
+        "time": 2.8,
+        "muzzleFound": true,
+        "visibleProjectiles": 1,
+        "flash": false
+      },
+      {
+        "time": 2.9,
+        "muzzleFound": true,
+        "visibleProjectiles": 2,
+        "flash": true
+      },
+      {
+        "time": 3.38,
+        "muzzleFound": true,
+        "visibleProjectiles": 2,
+        "flash": true
+      }
+    ]
+  }
+}
