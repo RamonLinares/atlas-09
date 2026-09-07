@@ -1,5 +1,7 @@
 # SERAPH / 03
 
+**Free for commercial and noncommercial use under [CC0 1.0](ASSET-LICENSE.md). No attribution or permission required.**
+
 A dark titanium mecha with silver articulated metal wings, amber lighting, and a large cannon replacing its anatomical right forearm. Created using the agreed character creation prompt, alongside ATLAS and AETHER in the existing viewer.
 
 ## Assets and reproduction

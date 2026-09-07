@@ -1,5 +1,7 @@
 # RONIN / 04
 
+**Free for commercial and noncommercial use under [CC0 1.0](ASSET-LICENSE.md). No attribution or permission required.**
+
 An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold crescent helmet, layered skirt plates, a right-hand katana, and a left pulse bracer. RONIN joins ATLAS, AETHER and SERAPH in the same viewer.
 
 ## Deliverables

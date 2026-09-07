@@ -1,5 +1,7 @@
 # AETHER / 02
 
+**Free for commercial and noncommercial use under [CC0 1.0](ASSET-LICENSE.md). No attribution or permission required.**
+
 A second frame in the FORGE character lab: a stylized, athletic humanoid mecha with streamlined white steel, opaque smoked-glass chest and visor panels, graphite actuators, and restrained ice-blue indicators. Its physical design height is 14 metres.
 
 ## Deliverables

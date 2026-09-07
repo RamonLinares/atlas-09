@@ -1,0 +1,14 @@
+* text=auto
+*.sh text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.py text eol=lf
+*.glb binary
+*.blend binary
+*.task binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.exr binary
+*.zip binary

@@ -4,7 +4,7 @@
 <body>
   <canvas id="scene" aria-label="Interactive 3D model of ATLAS, a weathered giant mecha"></canvas>
   <div class="grain"></div>
-  <header><a class="brand" href="%BASE_URL%" aria-label="ATLAS Asset lab home"><span class="brand-icon">Λ</span> FORGE<span class="brand-light"> / ASSET LAB</span></a><span class="edition">CHARACTER STUDY <b>001—26</b></span><a class="download" href="%BASE_URL%models/atlas-09.glb" download>GET MODEL <span>↗</span></a></header>
+  <header><a class="brand" href="%BASE_URL%" aria-label="ATLAS Asset lab home"><span class="brand-icon">Λ</span> FORGE<span class="brand-light"> / ASSET LAB</span></a><span class="edition">CHARACTER STUDY <b>001—26</b></span><a class="download" title="CC0 models — free for commercial and noncommercial use" href="%BASE_URL%models/atlas-09.glb" download>GET MODEL <span>↗</span></a></header>
   <nav class="character-picker" aria-label="Character"><span>SELECT FRAME</span><button data-character="atlas-09" aria-pressed="true">ATLAS <small>/ 09</small></button><button data-character="aether-02" aria-pressed="false">AETHER <small>/ 02</small></button><button data-character="seraph-03" aria-pressed="false">SERAPH <small>/ 03</small></button><button data-character="ronin-04" aria-pressed="false">RONIN <small>/ 04</small></button><button data-character="scorpio-05" aria-pressed="false">SCORPIO <small>/ 05</small></button></nav>
   <main>
     <section class="intro"><div class="eyebrow"><span class="dot"></span> VETERAN CLASS / HEAVY MECHA</div><h1>ATLAS<span>/ 09</span></h1><p class="tagline">Seen better days.<br>Still standing.</p><p class="description">Scarred armor. Exposed machinery.<br>A reactor that refuses to go dark.</p><button id="conceptButton" class="text-button">VIEW THE CONCEPT <span>↗</span></button></section>
@@ -20,7 +20,7 @@
       <small>Processed on your device. No recording or uploads.</small>
     </aside>
   </main>
-  <footer><span>DRAG TO ORBIT <i>·</i> SCROLL TO EXPLORE</span><span class="pipeline">CONCEPT → MESH → BLENDER → THREE.JS</span><span id="renderStatus">REALTIME / PBR</span></footer>
+  <footer><span>DRAG TO ORBIT <i>·</i> SCROLL TO EXPLORE</span><span class="pipeline"><a href="https://github.com/RamonLinares/atlas-09">GITHUB ↗</a> · <a href="%BASE_URL%models/LICENSE.txt" rel="license">MODELS: CC0 · FREE COMMERCIAL USE</a></span><span id="renderStatus">REALTIME / PBR</span></footer>
   <dialog id="conceptDialog"><button id="closeConcept" aria-label="Close concept">×</button><img src="%BASE_URL%concept.png" alt="Original generated ATLAS mecha concept with battered olive armor and a cyan chest reactor"><div><span>01 / THE STARTING POINT</span><h2>Built from a battle scar.</h2><p>Original concept generated with OpenAI image generation. Reconstructed with Tripo, prepared and rigged in Blender, brought to life in Three.js.</p></div></dialog>
   <script type="module" src="/src/main.js"></script>
 </body></html>

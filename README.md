@@ -1,5 +1,7 @@
 # FORGE — Character Lab
 
+**All five mecha models are free for everyone to use, modify, redistribute, and sell, for commercial or noncommercial purposes. No attribution or permission required.** Models, Blender sources, textures, rigs, and animations are released under [CC0 1.0](ASSET-LICENSE.md). Project code is [MIT licensed](LICENSE).
+
 Five original mecha characters, reconstructed and retopologized with Tripo, prepared and rigged in Blender, and exported into an interactive Three.js studio.
 
 | Character | Design | Blender source | Animated model |
@@ -30,11 +32,11 @@ The `.blend` includes packed textures, two UV layers, a named 18-bone FK rig, ri
 ## Run the Three.js viewer
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
-Open the localhost address printed by Vite. In this session the server is at `http://127.0.0.1:5175` because two lower ports were already occupied.
+Use Node.js 22 and npm (run `nvm use` if available). Open the localhost address printed by Vite. Blender 5.1 is only needed for asset preparation.
 
 Drag to orbit, scroll/pinch to zoom, and choose **Idle**, **Run**, **Kneel & Fire**, **Backflip**, **Punch Combo**, **Walk**, or **Collapse**. The pulse cannon's muzzle flash and projectiles are added in Three.js and synchronized to the firing clip. The backflip camera pulls back to keep the jump visible. Wireframe, skeleton and turntable remain available. The core-intensity slider changes emissive output. Get Model downloads the complete animated GLB. Concept opens the original reference.
 
@@ -113,3 +115,11 @@ Tracking runs on-device using MediaPipe Pose Landmarker Lite in a background wor
 `src/pose-rig.js` maps landmark directions to each GLB's actual rest skeleton, smooths rotations, keeps child joint offsets fixed and grounds the lowest boot using its skinned surface. It supports all five existing mechas, including attached weapons and wings. Tracking loss eases back to neutral after 650 ms. Single-camera depth is approximate; hidden limbs, extreme rotations and self-occlusion can reduce fidelity. This is live pose control, not recorded motion capture or full-body collision simulation.
 
 Runtime preparation is automatic in `npm run dev` and `npm run build`. Asset provenance is in `public/tracking/README.md`. Browser verification uses `scripts/validate-pose-browser.js` as an evaluated async function in the running viewer: standing, one arm raised, T pose, squat, mirror-side selection, fixed joint offsets, rigid triangle edges, grounded feet and recovery after tracking loss on every character. Camera lifecycle checks use simulated streams rather than personal camera footage.
+
+## Repository guide
+
+- [Contributing](CONTRIBUTING.md) and [security reporting](SECURITY.md).
+- [Asset license](ASSET-LICENSE.md), [code license](LICENSE), and [third-party notices](THIRD_PARTY_NOTICES.md).
+- [Source assets](assets/README.md), [Blender projects](blender/README.md), [build and validation scripts](scripts/README.md), and [runtime files](public/README.md).
+
+The repository contains the asset sources as well as the viewer, so a full clone includes large binary files. You can download individual GLBs from the character table or live viewer without cloning. The npm package remains marked private to prevent accidental npm publication; this does not restrict repository visibility or licensed reuse.

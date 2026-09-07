@@ -1,5 +1,7 @@
 # SCORPIO / 05
 
+**Free for commercial and noncommercial use under [CC0 1.0](ASSET-LICENSE.md). No attribution or permission required.**
+
 An original 17-metre scorpion predator mecha with blackened ceramic chitin armor, weathered desert bronze plating, dual hydraulic pincer claws, an eleven-link dorsal tail plus articulated stinger, an integrated plasma stinger rail-cannon, and vivid venom-green reactor emission. SCORPIO joins ATLAS, AETHER, SERAPH, and RONIN in the same interactive studio viewer.
 
 ## Deliverables

@@ -1,7 +1,7 @@
 {
   "name": "atlas-09",
   "version": "1.0.0",
-  "description": "ATLAS / 09 \u2014 veteran mecha asset lab",
+  "description": "FORGE \u2014 five freely usable CC0 mecha models and an interactive Three.js character lab",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
@@ -11,7 +11,7 @@
     "prebuild": "node scripts/prepare-pose-runtime.mjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ramon Linares",
   "type": "module",
   "private": true,
   "dependencies": {
@@ -21,5 +21,11 @@
   },
   "devDependencies": {
     "gltf-validator": "^2.0.0-dev.3.10"
+  },
+  "license": "MIT",
+  "homepage": "https://ramonlinares.github.io/atlas-09/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RamonLinares/atlas-09.git"
   }
 }
