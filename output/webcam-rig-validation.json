@@ -47,6 +47,38 @@
         "triangleError": 1.1035932401259885e-07
       }
     ],
+    "upperBody": [
+      {
+        "mirror": false,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "knees-hidden",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "knees-hidden",
+        "passed": true
+      }
+    ],
     "lossRecovered": true
   },
   {
@@ -95,6 +127,38 @@
         "footMin": -2.220446049250313e-16,
         "allMin": -2.220446049250313e-16,
         "triangleError": 6.157419726315894e-07
+      }
+    ],
+    "upperBody": [
+      {
+        "mirror": false,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "knees-hidden",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "knees-hidden",
+        "passed": true
       }
     ],
     "lossRecovered": true
@@ -147,6 +211,38 @@
         "triangleError": 3.0209041679274407e-07
       }
     ],
+    "upperBody": [
+      {
+        "mirror": false,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "knees-hidden",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "knees-hidden",
+        "passed": true
+      }
+    ],
     "lossRecovered": true
   },
   {
@@ -197,6 +293,38 @@
         "triangleError": 1.4300893108609714e-07
       }
     ],
+    "upperBody": [
+      {
+        "mirror": false,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "knees-hidden",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "knees-hidden",
+        "passed": true
+      }
+    ],
     "lossRecovered": true
   },
   {
@@ -245,6 +373,38 @@
         "footMin": 2.220446049250313e-16,
         "allMin": 2.220446049250313e-16,
         "triangleError": 9.143722007332045e-08
+      }
+    ],
+    "upperBody": [
+      {
+        "mirror": false,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": false,
+        "hidden": "knees-hidden",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "low-confidence",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "outside-frame",
+        "passed": true
+      },
+      {
+        "mirror": true,
+        "hidden": "knees-hidden",
+        "passed": true
       }
     ],
     "lossRecovered": true

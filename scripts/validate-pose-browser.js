@@ -55,6 +55,26 @@ async () => {
       assert(triangleError<.001,`${id} armor stretch: ${triangleError}`);
       result.poses.push({kind,arm:arm.toArray(),footMin,allMin,triangleError});
     }
+    result.upperBody=[];
+    for (const mirror of [false,true]) for (const hidden of ['low-confidence','outside-frame','knees-hidden']) {
+      rig.restore();rig.accept(pose('squat'),mirror,start);
+      for(let i=0;i<80;i++)rig.update(1/60,start);
+      const upper=pose('raised');
+      const image=Array.from({length:33},()=>({x:.5,y:.5,visibility:1}));
+      for(let i=hidden==='knees-hidden'?25:23;i<33;i++) {
+        if(hidden==='low-confidence')Object.assign(upper[i],{visibility:0,x:NaN,y:NaN,z:NaN});
+        else image[i].y=1.2;
+      }
+      assert(rig.accept(upper,mirror,start,image),`${id}: upper body rejected`);
+      assert(rig.trackingMode==='upper',`${id}: cropped legs inferred as visible`);
+      for(let i=0;i<100;i++)rig.update(1/60,start);
+      const side=mirror?'R':'L';
+      assert(world(`forearm.${side}`).sub(world(`upper_arm.${side}`)).normalize().y>.97,`${id}: cropped arm failed`);
+      for(const [n,q] of neutral)if(/^(pelvis|thigh|shin|foot)/.test(n))assert(rig.bones.get(n).quaternion.angleTo(q)<.001,`${id}: hidden ${n} did not return to standing`);
+      assert(rig.accept(pose('standing'),mirror,start),`${id}: full body did not resume`);
+      assert(rig.trackingMode==='full',`${id}: stuck in upper-body mode`);
+      result.upperBody.push({mirror,hidden,passed:true});
+    }
     rig.restore();rig.accept(pose('raised'),true,start);for(let i=0;i<80;i++)rig.update(1/60,start);
     assert(world('forearm.R').sub(world('upper_arm.R')).normalize().y>.97,`${id} mirror side incorrect`);
     rig.accept([],true,start);for(let i=0;i<180;i++)rig.update(1/60,start+1000);

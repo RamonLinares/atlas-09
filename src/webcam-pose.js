@@ -47,7 +47,7 @@ export function createWebcamPose({ onStart, onStop, onPose }) {
     active = true; panel.hidden = false;
     button.setAttribute('aria-pressed', 'true'); button.textContent = 'STOP WEBCAM';
     document.body.classList.add('webcam-active');
-    message('Allow camera access, then step back so your body is visible.');
+    message('Allow camera access and keep your shoulders and arms visible.');
     try {
       if (!navigator.mediaDevices?.getUserMedia) throw new Error('unsupported');
       if (!onStart()) throw new Error('model');
@@ -64,11 +64,11 @@ export function createWebcamPose({ onStart, onStop, onPose }) {
       worker.onmessage = ({ data }) => {
         if (!active || token !== generation) return;
         clearTimeout(timer);
-        if (data.type === 'ready') { message('Step back until your shoulders and hips are visible.'); frame(token); }
+        if (data.type === 'ready') { message('Show your shoulders and arms. Your upper body is enough.'); frame(token); }
         else if (data.type === 'pose') {
           busy = false; draw(data.landmarks);
-          const tracked = onPose(data.world, mirror.checked, performance.now());
-          message(tracked ? 'Tracking live · move your arms and legs' : 'Body not visible · step back into the frame');
+          const tracked = onPose(data.world, mirror.checked, performance.now(), data.landmarks);
+          message(tracked === 'upper' ? 'Upper body live · legs stay planted' : tracked ? 'Full body live · move your arms and legs' : 'Show your shoulders and arms to start tracking');
         } else if (data.type === 'error') stop('Body tracking could not start. Try webcam control again.');
       };
       timer = setTimeout(() => stop('Body tracking took too long to load. Try again.'), 45000);

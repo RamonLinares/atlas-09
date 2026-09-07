@@ -80,7 +80,7 @@ const webcam = createWebcamPose({
     $('#pause').disabled = true; resetCamera(); return true;
   },
   onStop(resume) { poseRig?.restore(); $('#pause').disabled = false; if (resume && mixer) setClip(actions.has(clipName) ? clipName : 'Sentinel'); },
-  onPose(world, mirror, now) { return poseRig?.accept(world, mirror, now) ?? false; },
+  onPose(world, mirror, now, landmarks) { return poseRig?.accept(world, mirror, now, landmarks) ? poseRig.trackingMode : false; },
 });
 const actions = new Map(), materials = new Set(), emitters = [];
 const powerLight = new THREE.PointLight('#63f4ff', 0, 3, 2); scene.add(powerLight);

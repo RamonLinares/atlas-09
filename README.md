@@ -106,7 +106,7 @@ Verification: `scripts/validate_combat_motions.py` checks evaluated armor, conta
 
 ## Webcam body control
 
-Click **WEBCAM CONTROL**, allow camera access, and step back until your shoulders, hips, and feet are visible. The selected mecha follows your arms, legs, torso and head, with mirrored movement enabled by default. Uncheck **Mirror my movements** for anatomical left/right mapping. **STOP WEBCAM**, closing the preview, selecting an animation, changing characters, or hiding the page stops camera capture and releases the tracking worker.
+Click **WEBCAM CONTROL**, allow camera access, and keep your shoulders and arms visible. Upper-body tracking works while seated or when your hips and legs are off camera; the mecha’s legs ease into a stable standing pose. When both legs become visible, full-body tracking resumes automatically. The selected mecha follows your arms, legs, torso and head, with mirrored movement enabled by default. Uncheck **Mirror my movements** for anatomical left/right mapping. **STOP WEBCAM**, closing the preview, selecting an animation, changing characters, or hiding the page stops camera capture and releases the tracking worker.
 
 Tracking runs on-device using MediaPipe Pose Landmarker Lite in a background worker. The model and runtime are self-hosted; frames are neither recorded nor uploaded, and no microphone is requested. The camera requires HTTPS or localhost and a browser that supports webcam access, ImageBitmap, WebAssembly and worker WebGL. If access is denied, the panel explains how to retry.
 
