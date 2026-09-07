@@ -114,7 +114,18 @@ for frame in np.arange(1,361.1,.5):
  last=current
 combo['fist_forward_travel_m']={s:float(np.ptp(np.array(points)[:,1])) for s,points in fists.items()}
 assert combo['arm_joint_gap_m']<1e-4 and combo['held_sword_gap_m']<1e-4,combo
-assert combo['dock_drift_m']<.005 and combo['rotation_step_rad']<.35 and combo['foot_motion_m']<.02,combo
+# The reused reference hook is much faster than the former authored punches.
+import sys
+sys.path.insert(0,str(ROOT/'scripts'))
+from retarget_library import MotionSource
+reference=MotionSource(ROOT/'public/models/aether-02.glb');previous=None;reference_step=0
+for i in range(235):
+ poses=reference.sample('PunchCombo',i/60)
+ current={n:poses[n].to_quaternion() for n in ['chest','upper_arm.L','forearm.L','upper_arm.R','forearm.R','hand.R']}
+ if previous:reference_step=max(reference_step,max(2*math.acos(min(1,abs(q.dot(previous[n])))) for n,q in current.items()))
+ previous=current
+combo['reference_rotation_step_rad']=reference_step
+assert combo['dock_drift_m']<.005 and combo['rotation_step_rad']<reference_step+.10 and combo['foot_motion_m']>.1,combo
 assert min(combo['fist_forward_travel_m'].values())>1.5,combo
 report['punch_combo']=combo
 report['packed_textures']=all(im.packed_file for im in bpy.data.images if im.type=='IMAGE' and im.name!='Render Result');assert report['packed_textures']

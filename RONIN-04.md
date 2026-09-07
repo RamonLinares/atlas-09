@@ -10,9 +10,9 @@ An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold cres
 - [Extracted textures](public/textures/ronin-04/)
 - [Blender preview](output/ronin-04/ronin-04-beauty.png)
 - [Build script](scripts/build_ronin.py), [authored motions](scripts/ronin_motions.py), and [anatomical validation](scripts/validate_ronin.py)
-- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=PunchCombo&v=18)
+- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=PunchCombo&v=19)
 
-The GLB contains seven ordinary baked skeletal clips: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), Backflip (3.6 s), and PunchCombo (12 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. PunchCombo places the katana on two magnetic back mounts, releases it for a jab–cross–hook–cross sequence, retrieves it, and returns to the initial stance. The katana remains held in the other six clips.
+The GLB contains seven ordinary baked skeletal clips: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), Backflip (3.6 s), and PunchCombo (12 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. PunchCombo places the katana on two magnetic back mounts, releases it for a jab–cross–hook sequence and recovery, retrieves it, and returns to the initial stance. The katana remains held in the other six clips.
 
 ## Provenance and cost
 
@@ -47,7 +47,7 @@ Validation additionally checks the locked wrist, attached elbow/wrist/sword join
 
 ## Punch combo and magnetic docking
 
-The 12-second PunchCombo uses a clear placement, a short magnetic docking pause, four alternating punches with torso rotation, and an over-shoulder retrieval. Two illuminated back mounts keep the blade behind the torso while both arms strike. Sword motion is baked into skeletal tracks, including subframe compensation during docking. Validation checks arm joints, held-weapon contact, dock drift, planted feet, fist travel, and rotational continuity.
+The 12-second PunchCombo uses a clear placement, a short magnetic docking pause, the same Quaternius jab, cross, hook, and recovery used by ATLAS and AETHER, retargeted to Ronin with full-body movement, and an over-shoulder retrieval. The combat section preserves AETHER’s original 3.9-second timing; the full stow/combat/retrieval clip remains 12 seconds. The shared CC0 motion sources and licenses are preserved in `assets/animations/quaternius`. Two illuminated back mounts keep the blade behind the torso while both arms strike. Sword motion is baked into skeletal tracks, including subframe compensation during docking. Validation checks arm joints, held-weapon contact, dock drift, foot contact, fist travel, and rotational continuity.
 
 ## Reproduce
 

@@ -1,11 +1,11 @@
-"""Baked magnetic katana stow, four-hit unarmed combo, and retrieval."""
+"""Magnetic katana stow around the same library combo used by Atlas and Aether."""
 import math
 from mathutils import Vector,Matrix
 from ronin_equipment import ANCHOR,HANDLE_AXIS,DOCK_ANCHOR,DOCK_AXIS
 
 DURATION=12.0
 
-def make_punch_combo(rig):
+def make_punch_combo(rig,obj):
     b=rig.pose.bones
     rest={n:x.bone.matrix_local.copy() for n,x in b.items()}
     def update():
@@ -42,57 +42,52 @@ def make_punch_combo(rig):
         set_q('forearm.R',direction_q('forearm.R',target-lower.head))
         q=rest['hand.R'].to_quaternion().slerp(dock_hand.to_quaternion(),smooth(t/2.4))
         set_q('hand.R',q)
-    # Capture the final dock arm orientation for smooth withdrawal/re-gripping.
+    def dock_weapon():
+        chest_delta=b['chest'].matrix@rest['chest'].inverted()
+        b['sword.R'].matrix=chest_delta@dock@rest['sword.R'];update()
+        for side in ['L','R']:
+            thigh=b['thigh.'+side];skirt=b['skirt.'+side]
+            delta=thigh.matrix.to_3x3()@thigh.bone.matrix_local.to_3x3().inverted()
+            skirt.matrix=Matrix.Translation(skirt.head)@delta.to_4x4()@rest[skirt.name].to_quaternion().to_matrix().to_4x4()
+        update()
+    # Retarget the exact same CC0 jab/cross/hook sequence, with Aether's timing,
+    # using the shared calibration, armor clearance and foot-contact solver.
+    import bpy,json
+    from pathlib import Path
+    from retarget_library import retarget_motions
+    report=retarget_motions(rig,obj,clip_names=['PunchCombo'],timescale_override=1.0,pose_adjust=dock_weapon)
+    action=bpy.data.actions['PunchCombo'];rig.animation_data.action=action
+    samples=[]
+    for frame in range(1,report[0]['frames']+1):
+        bpy.context.scene.frame_set(frame);update()
+        samples.append({bone.name:(bone.rotation_euler.to_quaternion().copy(),bone.location.copy()) for bone in b})
+    rig.animation_data.action=None
+    for track in list(rig.animation_data.nla_tracks):
+        if track.name=='PunchCombo':rig.animation_data.nla_tracks.remove(track)
+    bpy.data.actions.remove(action)
+    (Path(__file__).resolve().parents[1]/'output/ronin-04/punch-library-source.json').write_text(json.dumps(report,indent=2))
+    # Capture the final dock pose before blending into the source fighting guard.
     for bone in b:bone.rotation_euler=(0,0,0);bone.location=(0,0,0)
     update();carry(2.4)
-    dock_arm={n:b[n].matrix.to_quaternion() for n in ['upper_arm.R','forearm.R','hand.R']}
-    guard={}
-    for sign,side in [(1,'L'),(-1,'R')]:
-        guard['upper_arm.'+side]=direction_q('upper_arm.'+side,(sign*.38,-.28,-1))
-        guard['forearm.'+side]=direction_q('forearm.'+side,(-sign*.08,-.80,.65))
-    hand_guard=guard['forearm.R']@rest['forearm.R'].to_quaternion().inverted()@rest['hand.R'].to_quaternion()
+    dock_pose={bone.name:(bone.rotation_euler.to_quaternion().copy(),bone.location.copy()) for bone in b}
     def pose(u):
         t=u*DURATION
         for bone in b:bone.rotation_euler=(0,0,0);bone.location=(0,0,0);bone.scale=(1,1,1)
         update()
-        active=smooth((t-2.8)/.7)*(1-smooth((t-8.4)/.7))
-        hits=[]
-        for side,start,kind in [('L',4.05,'jab'),('R',4.95,'cross'),('L',5.85,'hook'),('R',6.85,'cross')]:
-            hit=curve(t,[(0,0),(start,0),(start+.25,1),(start+.33,1),(start+.72,0),(12,0)])
-            wind=curve(t,[(0,0),(start-.23,0),(start,1),(start+.25,0),(12,0)])
-            hits.append((side,hit,wind,kind))
-        yaw=sum((1 if side=='L' else -1)*(.29*hit-.065*wind) for side,hit,wind,kind in hits)
-        pitch=.025*active+sum(.075*hit for _,hit,_,_ in hits)
-        torso=Matrix.Rotation(yaw,3,'Z')@Matrix.Rotation(pitch,3,'X')
-        set_q('chest',torso.to_quaternion()@rest['chest'].to_quaternion())
-        b['head'].rotation_euler.y=-yaw*.35;update()
         if t<2.8:
             carry(min(t,2.4))
         elif t>9.1:
             carry(max(0,2.4*(1-smooth((t-9.4)/2.4))))
         else:
-            for name in ['upper_arm.R','forearm.R']:
-                q=dock_arm[name].slerp(guard[name],active)
-                for side,hit,wind,kind in hits:
-                    if side=='R':
-                        target=( -.14,-1,-.1) if name.startswith('upper') else (-.03,-1,-.08)
-                        q=q.slerp(direction_q(name,target),hit)
-                set_q(name,torso.to_quaternion()@q)
-            set_q('hand.R',torso.to_quaternion()@dock_arm['hand.R'].slerp(hand_guard,active))
-            # Keep the striking wrist aligned with its forearm.
-            if active>.999:
-                set_q('hand.R',b['forearm.R'].matrix.to_quaternion()@rest['forearm.R'].to_quaternion().inverted()@rest['hand.R'].to_quaternion())
-        for name in ['upper_arm.L','forearm.L']:
-            q=rest[name].to_quaternion().slerp(guard[name],active)
-            for side,hit,wind,kind in hits:
-                if side=='L':
-                    direction=((.75,-.7,-.3) if name.startswith('upper') else (-.75,-1,.04)) if kind=='hook' else ((.14,-1,-.1) if name.startswith('upper') else (.03,-1,-.08))
-                    q=q.slerp(direction_q(name,direction),hit)
-            set_q(name,torso.to_quaternion()@q)
-        b['hand.L'].rotation_euler=(0,0,0);update()
-        if 2.4<=t<=9.4:
-            chest_delta=b['chest'].matrix@rest['chest'].inverted()
-            b['sword.R'].matrix=chest_delta@dock@rest['sword.R'];update()
+            blend=smooth((t-2.8)/.7)*(1-smooth((t-8.4)/.7))
+            frame=max(0,min(len(samples)-1,(t-4.0)*30))
+            i=min(len(samples)-2,int(frame));f=frame-i
+            for bone in b:
+                q0,p0=dock_pose[bone.name];qa,pa=samples[i][bone.name];qc,pc=samples[i+1][bone.name]
+                bone.rotation_euler=q0.slerp(qa.slerp(qc,f),blend).to_euler()
+                bone.location=p0.lerp(pa.lerp(pc,f),blend)
+            update()
+        if 2.4<=t<=9.4:dock_weapon()
         else:
             b['sword.R'].rotation_euler=(0,0,0);b['sword.R'].location=(0,0,0);update()
     return pose
@@ -116,4 +111,11 @@ def refine_docked_keys(rig):
         previous=sword.rotation_euler.copy()
         sword.keyframe_insert('rotation_euler',frame=frame,group=sword.name)
         sword.keyframe_insert('location',frame=frame,group=sword.name)
+    # Carry the refined Euler branch through retrieval. Equivalent identity
+    # rotations such as (0,0,0) and (pi,pi,pi) must not interpolate into a flip.
+    for frame in range(284,362):
+        s.frame_set(frame);bpy.context.view_layer.update()
+        sword.rotation_euler=sword.rotation_euler.to_quaternion().to_euler('XYZ',previous)
+        previous=sword.rotation_euler.copy()
+        sword.keyframe_insert('rotation_euler',frame=frame,group=sword.name)
     rig.animation_data.action=None

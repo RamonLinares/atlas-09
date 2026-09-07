@@ -1,0 +1,16 @@
+[
+  {
+    "name": "PunchCombo",
+    "duration": 3.9,
+    "frames": 118,
+    "source_clips": [
+      "Punch_Jab",
+      "Punch_Cross",
+      "Melee_Hook",
+      "Melee_Hook_Rec"
+    ],
+    "max_ground_correction_m": 5.706237971025985e-06,
+    "playback": "loop",
+    "max_interpolation_contact_lift_m": 0.21753632616996765
+  }
+]

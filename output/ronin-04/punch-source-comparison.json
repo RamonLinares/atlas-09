@@ -1,0 +1,12 @@
+{
+  "reference": "AETHER-02 PunchCombo",
+  "combat_start_s": 4.0,
+  "combat_duration_s": 3.9,
+  "samples": 118,
+  "minimum_arm_direction_cosine": {
+    "upper_arm.L": 0.9999998658895493,
+    "forearm.L": 0.9999998584389687,
+    "upper_arm.R": 0.9999998658895493,
+    "forearm.R": 0.9999998137354851
+  }
+}

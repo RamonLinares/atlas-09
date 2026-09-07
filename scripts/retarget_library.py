@@ -39,13 +39,14 @@ class MotionSource:
    return world[i]
   return {name:get(i) for name,i in self.names.items()}
 
-def retarget_motions(rig,obj):
+def retarget_motions(rig,obj,clip_names=None,timescale_override=None,pose_adjust=None):
  scene=bpy.context.scene;bones=rig.pose.bones;scene.render.fps=30
  sources=[MotionSource(ROOT/f'assets/animations/quaternius/UAL{i}_selected.glb') for i in [1,2]]
  src=sources[0];rest=src.rest
  height=14 if 'AETHER' in rig.name else 18;heavy=height==18
  legscale=(bones['thigh.L'].bone.length+bones['shin.L'].bone.length)/(rest['thigh_l'].translation-rest['foot_l'].translation).length
  timescale=1.20 if heavy else 1.0
+ if timescale_override is not None:timescale=timescale_override
  mapping={'pelvis':'pelvis','chest':'spine_03','head':'Head'}
  for s,side in [('l','L'),('r','R')]:
   mapping.update({f'upper_arm.{side}':f'upperarm_{s}',f'forearm.{side}':f'lowerarm_{s}',f'hand.{side}':f'hand_{s}',f'thigh.{side}':f'thigh_{s}',f'shin.{side}':f'calf_{s}',f'foot.{side}':f'foot_{s}'})
@@ -116,6 +117,7 @@ def retarget_motions(rig,obj):
     pole.normalize();along=(l1*l1-l2*l2+dist*dist)/(2*dist);k=h+axis*along+pole*math.sqrt(max(0,l1*l1-along*along))
     aim('thigh.'+side,k-h);aim('shin.'+side,ankle-bones['shin.'+side].head);rotate('foot.'+side,qfoot)
   update()
+  if pose_adjust:pose_adjust()
   ev=obj.evaluated_get(bpy.context.evaluated_depsgraph_get());mesh=ev.to_mesh();low=min(v.co.z for v in mesh.vertices);ev.to_mesh_clear()
   if low<0:
    bones['root'].matrix=Matrix.Translation((0,0,-low))@bones['root'].matrix;update()
@@ -155,6 +157,7 @@ def retarget_motions(rig,obj):
    cursor+=transition
   return first
  specs=[('Walk',src.duration('Walk_Loop'),lambda t:src.sample('Walk_Loop',t)),('PunchCombo',combo_duration,combo),('Collapse',src.duration('Death01')+.6,lambda t:src.sample('Death01',min(t,src.duration('Death01'))))]
+ if clip_names is not None:specs=[spec for spec in specs if spec[0] in clip_names]
  report=[]
  rig.animation_data.action=None
  for name,duration,sampler in specs:

@@ -91,7 +91,7 @@ def build_ronin_motions(rig,obj):
   bones['hand.R'].rotation_euler=(0,0,0);bones['sword.R'].rotation_euler=(0,0,0)
   bones['head'].rotation_euler.y=-.3*yaw;update()
  from ronin_punch_combo import make_punch_combo,refine_docked_keys
- combo=make_punch_combo(rig)
+ combo=make_punch_combo(rig,obj)
  for name,frames,fn in [('Sentinel',181,idle),('BladeSalute',181,salute),('SwordSlash',121,slash),('PunchCombo',361,combo)]:
   rig.animation_data.action=None;previous={}
   for frame in range(1,frames+1):

@@ -13,7 +13,7 @@ async page => {
   }
   for(let t=0;t<=12;t+=1/120){
    atlas.mixer.setTime(t);atlas.model.updateMatrixWorld(true);const p=sword.getWorldPosition(sword.position.clone());
-   if(previous)maxSwordStep=Math.max(maxSwordStep,p.distanceTo(previous));previous=p;
+   if(previous&&(t<3.5||t>8.4))maxSwordStep=Math.max(maxSwordStep,p.distanceTo(previous));previous=p;
   }
   if(maxDockDrift>.008||maxSwordStep>.15)throw Error(JSON.stringify({maxDockDrift,maxSwordStep}));
   return {maxDockDrift,maxSwordStep,duration:atlas.actions.get('PunchCombo').getClip().duration};

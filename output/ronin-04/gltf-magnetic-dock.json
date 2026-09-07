@@ -1,0 +1,7 @@
+{
+  "constraint": "sword.R to chest during magnetic docking",
+  "sampling_hz": 240,
+  "keys": 1966,
+  "start_s": 2.4,
+  "end_s": 9.4
+}

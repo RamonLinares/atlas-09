@@ -172,6 +172,7 @@ obj.parent=None
 bpy.ops.export_scene.gltf(filepath=str(ROOT/'public/models/ronin-04.glb'),export_format='GLB',use_selection=True,export_animations=True,export_force_sampling=False,export_animation_mode='ACTIONS',export_anim_slide_to_zero=True,export_nla_strips=True,export_skins=True,export_yup=True,export_texcoords=True,export_normals=True,export_tangents=True,export_image_format='AUTO')
 runpy.run_path(str(ROOT/'scripts/fix_export_tangents.py'),init_globals={'ASSET_PATH':ROOT/'public/models/ronin-04.glb','REPORT_PATH':OUT/'tangent-repairs.json'},run_name='__main__')
 runpy.run_path(str(ROOT/'scripts/normalize_animation_times.py'),init_globals={'ASSET_PATH':ROOT/'public/models/ronin-04.glb','REPORT_PATH':OUT/'animation-time-normalization.json'},run_name='__main__')
+runpy.run_path(str(ROOT/'scripts/bake_gltf_magnetic_dock.py'),run_name='__main__')
 obj.parent=rig
 
 # A reusable studio for Blender inspection, excluded from the GLB selection.
