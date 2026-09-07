@@ -40,7 +40,7 @@ export const characters = {
     effects: {color:'#ffc171',flashColor:'#ffe5b0',radius:.075,length:1.8,flashRadius:.3,interval:.64,useMuzzleDirection:true,muzzleAxis:[0,-1,0]},
   },
   'ronin-04': {
-    name:'RONIN', number:'04', model:`${import.meta.env.BASE_URL}models/ronin-04.glb?v=11`, concept:`${import.meta.env.BASE_URL}concept-ronin-04.png`,
+    name:'RONIN', number:'04', model:`${import.meta.env.BASE_URL}models/ronin-04.glb?v=12`, concept:`${import.meta.env.BASE_URL}concept-ronin-04.png`,
     className:'SAMURAI CLASS / BLADE MECHA', height:'16.0', condition:'CRIMSON LACQUER / AGED GOLD',
     tagline:['A quiet resolve.','An unbroken blade.'], description:['Layered steel. A crescent of gold.','Precision at the edge of battle.'],
     caption:'SAMURAI FRAME / KATANA', study:'004', conceptTitle:'Discipline, cast in steel.',

@@ -75,18 +75,18 @@
     "clip": "SwordCombo",
     "floor_min_m": 2.3760094336466864e-08,
     "max_core_ground_clearance_m": 1.3024787902832031,
-    "joint_gap_m": 2.218221910706567e-06,
-    "edge_length_error_m": 3.874301910400391e-06,
-    "max_displacement_m": 23.04526138305664,
-    "half_frame_rotation_step_rad": 1.110324202165137,
-    "loop_error_m": 3.7242173220874975e-06,
+    "joint_gap_m": 3.0464038319708384e-06,
+    "edge_length_error_m": 3.904104232788086e-06,
+    "max_displacement_m": 20.40334701538086,
+    "half_frame_rotation_step_rad": 1.1351053729893121,
+    "loop_error_m": 4.024968802696094e-06,
     "final_hold_error_m": 0.0,
     "minimum_head_height_m": 6.8591718673706055,
     "torso_turn_rad": 3.001876455260664,
     "blade_tip_sweep_m": [
-      26.066031455993652,
-      25.777676582336426,
-      23.589468955993652
+      23.928269386291504,
+      24.715944290161133,
+      21.56816864013672
     ]
   }
 ]

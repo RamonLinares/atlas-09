@@ -1,0 +1,9 @@
+{
+  "clip": "SwordCombo",
+  "model_version": 12,
+  "local_viewer": "http://127.0.0.1:5175/?character=ronin-04&motion=SwordCombo",
+  "verification": "CUA inspection of rendered playback",
+  "visible_clip_controls": 12,
+  "visible_raised_recovery": true,
+  "console_errors_and_warnings": []
+}

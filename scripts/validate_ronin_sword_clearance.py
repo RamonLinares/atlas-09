@@ -14,6 +14,8 @@ start,end=map(int,r.animation_data.action.frame_range)
 sample_count=(end-start)*8+1
 result=[]
 minimum=1e9
+final_lateral_gap=1e9
+left_leg_vertices={i for name,polygons in legs.items() if name.endswith('.L') for polygon in polygons for i in polygon}
 blade_vertices={i for p in blade for i in p}
 for tick in range(sample_count):
  f=start+tick/8;s.frame_set(int(f),subframe=f-int(f));bpy.context.view_layer.update()
@@ -22,9 +24,13 @@ for tick in range(sample_count):
  hits={n:len(b.overlap(tree)) for n,tree in trees.items()};hits={n:v for n,v in hits.items() if v}
  for tree in trees.values():
   minimum=min(minimum,min(tree.find_nearest(verts[i])[3] for i in blade_vertices))
+ if 2.1<=(f-1)/30<=3.5334:
+  final_lateral_gap=min(final_lateral_gap,min(verts[i].x for i in left_leg_vertices)-max(verts[i].x for i in blade_vertices))
  if hits:result.append({'t':(f-1)/30,'hits':hits})
-report={'clip':'SwordCombo','samples':sample_count,'sample_rate_hz':240,'intersections':result,'minimum_blade_vertex_to_leg_surface_m':minimum}
+report={'clip':'SwordCombo','samples':sample_count,'sample_rate_hz':240,'intersections':result,'minimum_blade_vertex_to_leg_surface_m':minimum,'final_sweep_lateral_gap_m':final_lateral_gap}
 (ROOT/'output/motion/ronin-sword-clearance.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report),flush=True)
 assert not result, 'Katana intersects leg armor'
 assert minimum>.05, 'Insufficient katana clearance'
+
+assert final_lateral_gap>.5, 'Final blade sweep crosses the left leg silhouette'

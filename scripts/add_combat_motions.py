@@ -58,12 +58,20 @@ for character in characters:
                             bones[name].rotation_quaternion=Quaternion(axis,.18*unfold)@bones[name].rotation_quaternion
         elif character=='RONIN-04':
             if context['name']=='SwordCombo':
-                # Open the shoulder through the final cut so the long katana
-                # passes outside the left shin, then ease back into recovery.
+                # Replace the last inward cut with an outboard diagonal and
+                # raised recovery. The whole arm carries the locked grip.
                 t=context['t']
-                clearance=smooth((t-1.15)/.35)*(1-smooth((t-2.35)/.55))
-                arm=bones['upper_arm.R']
-                arm.rotation_quaternion=arm.rotation_quaternion@Quaternion((0,0,1),.6*clearance)
+                weight=smooth((t-1.05)/.4)
+                original={n:bones[n].rotation_quaternion.copy() for n in ['upper_arm.R','forearm.R']}
+                aim('upper_arm.R',Vector((-.7,-.35,-1)))
+                arm=bones['upper_arm.R'];arm.rotation_quaternion=original[arm.name].slerp(arm.rotation_quaternion,weight);update()
+                cut=smooth((t-1.4)/.32);recover=smooth((t-2.1)/.9)
+                direction=Vector((-.55,-.4,1)).lerp(Vector((-1,-.5,-.18)),cut).lerp(Vector((-.55,-.35,.9)),recover)
+                forearm=bones['forearm.R']
+                blade_axis=Vector((-.3402919,-.7154602,-.6101788))
+                q=blade_axis.rotation_difference(direction)@forearm.bone.matrix_local.to_quaternion()
+                forearm.matrix=Matrix.Translation(forearm.head)@q.to_matrix().to_4x4();update()
+                forearm.rotation_quaternion=original[forearm.name].slerp(forearm.rotation_quaternion,weight)
             if context['name'] in ['HitChest','HitHead','Knockback']:
                 aim('upper_arm.R',chest@Vector((-.5,-.3,-1)))
                 aim('forearm.R',chest@Vector((-.4,-.8,-.2)))

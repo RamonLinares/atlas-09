@@ -10,7 +10,7 @@ An original 16-metre samurai mecha with crimson lacquer armor, an aged-gold cres
 - [Extracted textures](public/textures/ronin-04/)
 - [Blender preview](output/ronin-04/ronin-04-beauty.png)
 - [Build script](scripts/build_ronin.py), [authored motions](scripts/ronin_motions.py), and [anatomical validation](scripts/validate_ronin.py)
-- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordCombo&v=22)
+- [Live RONIN viewer](https://ramonlinares.github.io/atlas-09/?character=ronin-04&motion=SwordCombo&v=23)
 
 The GLB contains twelve ordinary baked skeletal clips. The original seven are: Sentinel (6 s), BladeSalute / activation (6 s), SwordSlash (4 s), Run (1.33 s), KneelFire (8 s), Backflip (3.6 s), and PunchCombo (12 s). Muzzle flash and projectiles are viewer effects synchronized with the baked left-arm recoil at 0.48-second intervals. PunchCombo places the katana on two magnetic back mounts, releases it for a jab–cross–hook sequence and recovery, retrieves it, and returns to the initial stance. The katana remains held in every other clip. Added clips are SwordCombo (three source strikes), SwordBlock, HitChest, HitHead, and Knockback. Knockback plays once and holds the fallen pose.
 
@@ -67,4 +67,4 @@ The build uses the preserved retopology locally. No API key or paid call is requ
 
 This is a realtime mechanical character prototype. The generated armor has irregular topology and baked surface detail; separated rigid sections leave 2,773 boundary edges, so this is not a watertight manufacturing mesh. Joint housings and simplified two-panel skirt articulation support these authored clips, but extreme custom poses can reveal seams or armor overlap. The hands use rigid mechanical finger shapes. Magnetic stow and retrieval are baked into PunchCombo; there is no scabbard or magnetic physics simulation. There is no physics, gameplay collision rig, facial rig, or LOD chain. The backflip is deliberately stylized for a giant mecha. Browser firing effects are not embedded as particles in the GLB.
 
-The final SwordCombo strike opens the right shoulder before the downward cut and eases back through recovery, keeping the katana outside the leg armor. `scripts/validate_ronin_sword_clearance.py` checks the actual blade and both legs, including skirt plates, at 240 samples per second.
+The final SwordCombo strike is reauthored as an outward diagonal on Ronin’s right side, followed by a raised recovery. The blade stays outside the left leg’s silhouette throughout the final sweep. `scripts/validate_ronin_sword_clearance.py` checks the actual blade and both legs, including skirt plates, at 240 samples per second.

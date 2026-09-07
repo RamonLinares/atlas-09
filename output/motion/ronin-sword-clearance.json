@@ -3,5 +3,6 @@
   "samples": 1105,
   "sample_rate_hz": 240,
   "intersections": [],
-  "minimum_blade_vertex_to_leg_surface_m": 0.4098193645477295
+  "minimum_blade_vertex_to_leg_surface_m": 0.4098188877105713,
+  "final_sweep_lateral_gap_m": 3.7972066402435303
 }
