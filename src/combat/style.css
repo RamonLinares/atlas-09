@@ -67,3 +67,9 @@ header{position:fixed;top:0;left:40px;right:40px;height:72px;display:flex;align-
 .touch .pad button:active{background:#d5f3a544}
 @media(pointer:coarse){.touch{display:block}.controls{display:none}}
 @media(max-width:700px){header{left:16px;right:16px}.bars{left:16px;right:16px;top:80px;gap:14px}.bar .label{font-size:15px}.controls,.status{left:16px;right:16px}#select{padding:80px 16px 24px}.grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}.slot{min-width:0}.card .name{font-size:16px}}
+.dmg{position:absolute;left:0;top:0;font:800 30px 'Barlow Condensed',sans-serif;letter-spacing:1px;text-shadow:0 3px 14px #000c;pointer-events:none;will-change:transform,opacity}
+.touch .move{position:absolute;left:24px;bottom:60px;display:flex;gap:12px;pointer-events:auto}
+.touch .move button{width:76px;height:76px;border-radius:50%;border:1px solid var(--line);background:#ffffff10;font:700 22px 'IBM Plex Mono',monospace;touch-action:none;user-select:none}
+.touch .move button:active{background:#d5f3a544}
+.touch .stick{display:none}
+.tell{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font:800 18px 'IBM Plex Mono',monospace;letter-spacing:4px;color:var(--p2);opacity:0}
