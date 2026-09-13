@@ -85,23 +85,23 @@ The preparation script reads the already downloaded Tripo retopology in `assets/
 - Walk: 1.33 seconds on AETHER, 1.60 seconds on ATLAS.
 - PunchCombo: jab, cross, hook and recovery, 3.90 seconds on AETHER and 4.70 seconds on ATLAS.
 - Collapse: backward fall followed by a held pose, 3.0 seconds on AETHER and 3.60 seconds on ATLAS. It plays once; click Collapse again to replay.
-- Run: ATLAS uses the Quaternius CC0 `Jog_Fwd_Loop` retargeted to its rigid armor (1.13-second cycle at the heavy 1.2× timing, in place, vertical bounce and foot lift damped for an 18-metre frame); AETHER keeps the 0.93-second procedural cycle with narrower foot placement, heel settling, toe push-off, early heel recovery and opposing hip/shoulder rotation. KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
+- Run: both frames use the Quaternius CC0 `Jog_Fwd_Loop` retargeted to their rigid armor, in place, with pelvis bounce and foot lift damped for the scale (1.13-second ATLAS cycle at the heavy 1.2× timing; 0.93-second AETHER cycle at source timing). KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
 - New poses use an analytic two-bone IK solver during baking; the exported clips use ordinary bone transforms and require no runtime IK library.
 - Rig uses `.L` / `.R` suffixes in Blender. Three.js sanitizes dots in node names when loading; use the loaded bone names when extending the viewer.
 
 This is a realtime prototype and presentation asset. Read the production assessment before using it for demanding animation, close-up film shots or mobile production.
 
-## Refined run cycles
+## Run cycles
 
-ATLAS's run was replaced on 2026-09-13 by the retargeted motion-capture jog from the same CC0 library as its walk: `scripts/update_atlas_run.py` closes the source loop, damps pelvis bounce to 40% and foot lift to 55% of the leg-scaled source, re-solves both legs against the actual boot geometry and bakes ordinary keys. Its checks are in `output/motion/atlas-run-library-bake.json`; the review sheet is `output/atlas-09/motion/sheet-Run.png`. The procedural cycle described below remains on AETHER.
+Both runs were replaced on 2026-09-13 by the retargeted motion-capture jog from the same CC0 library as the walk: `scripts/update_library_run.py -- ATLAS-09` (or `AETHER-02`) closes the source loop onto its first pose, damps pelvis bounce and foot lift of the leg-scaled source (40% / 55% for the 18-metre ATLAS, 55% / 70% for the 14-metre AETHER), re-solves both legs against the actual boot geometry and bakes ordinary keys. Checks are in `output/motion/<character>-run-library-bake.json`; review sheets are `output/<character>/motion/sheet-Run.png`. The earlier procedural cycle is preserved in Git history only.
 
-The procedural run uses contact and recovery phases instead of broad oval foot paths. Foot spacing is approximately the hip-joint spacing (previously much wider), with compact elbow motion and a small torso counter-rotation. Boot geometry determines ground height and the forefoot pivot. ATLAS has longer support and less flight; AETHER has a faster cadence and more pronounced heel recovery. Baked Run keys use linear interpolation to prevent planted-foot overshoot. All exported clips start at zero, eliminating the previous initial hold.
+The procedural run used contact and recovery phases instead of broad oval foot paths. Foot spacing is approximately the hip-joint spacing (previously much wider), with compact elbow motion and a small torso counter-rotation. Boot geometry determines ground height and the forefoot pivot. ATLAS has longer support and less flight; AETHER has a faster cadence and more pronounced heel recovery. Baked Run keys use linear interpolation to prevent planted-foot overshoot. All exported clips start at zero, eliminating the previous initial hold.
 
-The Blender and GLB downloads include the updated motion. Other clips retain their sampled poses. `scripts/validate_run.py` measures contact, placement, rolling, coordination and flight of the procedural cycle from the actual baked armor (AETHER only since the ATLAS replacement); [run validation](output/motion/run-validation.json) and [browser verification](output/motion/run-browser-validation.json) record the results. Existing rig, head and thigh isolation checks also pass.
+The Blender and GLB downloads include the updated motion. Other clips retain their sampled poses. Its validator and reports were retired with it; the retargeted runs are checked for loop closure, floor contact and support inside the update script. Existing rig, head and thigh isolation checks also pass.
 
 ## Imported motion library
 
-Walk, PunchCombo, Collapse and ATLAS's Run are adapted from Quaternius / Gonzalo Furnier’s CC0 Universal Animation Libraries. The free Standard packs supplied all source clips now used by the viewer; no payment, account or cloud animation service was needed. See [motion provenance and rebuild instructions](assets/animations/quaternius/README.md). The existing Idle, KneelFire and Backflip clips are retained, as is AETHER's procedural Run.
+Walk, Run, PunchCombo and Collapse are adapted from Quaternius / Gonzalo Furnier’s CC0 Universal Animation Libraries. The free Standard packs supplied all source clips now used by the viewer; no payment, account or cloud animation service was needed. See [motion provenance and rebuild instructions](assets/animations/quaternius/README.md). The existing Idle, KneelFire and Backflip clips are retained.
 
 
 ## Additional combat motions

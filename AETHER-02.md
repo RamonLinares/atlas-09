@@ -80,7 +80,7 @@ The regression check in `validate_aether.py` confirms 12 vertices around the pic
 
 ## Athletic run refinement
 
-The Run clip now lasts 0.933 seconds. Its ankle tracks are 1.9 m apart, close to the 1.96 m hip-joint spacing, replacing the previous 3.6 m track width. A planted-foot phase rolls from heel settling through toe-off, then the heel recovers behind the body before swinging forward. The pelvis and chest counter-rotate, elbows stay flexed closer to the torso, and a small support-phase compression replaces the old additive hopping motion. The head keeps its alignment to the chest.
+The Run clip lasts 0.933 seconds. Since 2026-09-13 it is the Quaternius CC0 `Jog_Fwd_Loop` retargeted onto the rigid armor by `scripts/update_library_run.py -- AETHER-02`: the source loop is eased onto its first pose, pelvis bounce and foot lift are damped to 55% and 70% of the leg-scaled source for the 14-metre frame, and both legs are re-solved on the boot geometry. The earlier procedural cycle described in the history is retained in Git only; its checks in `output/motion/aether-02-run-library-bake.json` cover loop closure, floor contact and support, and the review sheet is `output/aether-02/motion/sheet-Run.png`.
 
 Validation samples include half-frames: maximum midfoot travel-fit error is 0.00035 m, planted-foot ground error remains below 0.008 m, foot roll spans approximately -4.6 to 35.5 degrees, and the detected flight fraction is 14%. All five motion/rig checks and the waist-skirt regression pass. The GLB starts each clip at zero for seamless loops; pose values of the other four animations are unchanged. See `output/motion/run-validation.json` and the `run-v5-*` browser screenshots.
 

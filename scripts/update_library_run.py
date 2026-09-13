@@ -1,6 +1,6 @@
-"""Replace ATLAS-09's procedural Run with the Quaternius CC0 Jog_Fwd_Loop, retargeted.
+"""Replace a humanoid's procedural Run with the Quaternius CC0 Jog_Fwd_Loop, retargeted.
 
-Usage: blender -b --python scripts/update_atlas_run.py [-- --with-sprint]
+Usage: blender -b --python scripts/update_library_run.py -- <ATLAS-09|AETHER-02> [--with-sprint]
 
 Only animation data changes: the mesh, UVs, materials, rig and every other
 clip are preserved. `--with-sprint` also bakes Sprint_Loop as `Sprint` for
@@ -12,10 +12,15 @@ ROOT = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(ROOT / 'scrip
 from retarget_library import retarget_motions, MotionSource
 argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
 WITH_SPRINT = '--with-sprint' in argv
+ASSET = next((a for a in argv if a in ('ATLAS-09', 'AETHER-02')), 'ATLAS-09'); KEY = ASSET.lower(); PREFIX = ASSET.replace('-', '_')
+# Vertical travel scales with leg length (about 8.7x a human for ATLAS, 6.8x
+# for AETHER), so the human jog's pelvis bounce and foot lift are damped per
+# frame: the 18 m heavy machine more than the 14 m athletic one.
+DAMPING = {'ATLAS-09': (.40, .55), 'AETHER-02': (.55, .70)}[ASSET]
 OUT = ROOT / 'output/motion'; OUT.mkdir(parents=True, exist_ok=True)
 
-bpy.ops.wm.open_mainfile(filepath=str(ROOT / 'blender/ATLAS-09.blend'))
-rig = bpy.data.objects['ATLAS_09_RIG']; obj = bpy.data.objects['ATLAS_09_Armor']; scene = bpy.context.scene
+bpy.ops.wm.open_mainfile(filepath=str(ROOT / 'blender' / f'{ASSET}.blend'))
+rig = bpy.data.objects[f'{PREFIX}_RIG']; obj = bpy.data.objects[f'{PREFIX}_Armor']; scene = bpy.context.scene
 rig.animation_data.action = None
 previous = {a.name: list(a.frame_range) for a in bpy.data.actions}
 replace = ['Run', 'Sprint']
@@ -26,11 +31,9 @@ for a in list(bpy.data.actions):
 
 src = MotionSource(ROOT / 'assets/animations/quaternius/UAL1_selected.glb')
 from mathutils import Matrix, Vector
-# Vertical travel scales with the mecha's leg length (about 8.7x a human's),
-# so the human jog's 24 cm pelvis bounce and 50 cm foot lift would become a
-# 2 m leap every stride. Timing, lean and limb swing are kept; only the
-# vertical excursions are damped toward the rest heights for an 18 m machine.
-PELVIS_BOUNCE = .40; FOOT_LIFT = .55
+# Timing, lean and limb swing are kept; only the vertical excursions are
+# damped toward the rest heights.
+PELVIS_BOUNCE, FOOT_LIFT = DAMPING
 def closed_loop(clip, tail=.15):
     """The source jog and sprint loops end a few centimetres from their first
     pose. Ease the final part of the cycle onto the first pose so the baked
@@ -78,16 +81,16 @@ for item in report:
     assert low > -.001, (item['name'], 'penetration', low)
     assert closure < .0001, (item['name'], 'closure', closure)
 rig.animation_data.action = None
-(OUT / 'atlas-run-library-bake.json').write_text(json.dumps({'retarget': report, 'checks': checks, 'previous_actions': previous}, indent=2) + '\n')
+(OUT / f'{KEY}-run-library-bake.json').write_text(json.dumps({'retarget': report, 'checks': checks, 'previous_actions': previous}, indent=2) + '\n')
 
-rig['Motion notes'] = 'Run is the Quaternius / Gonzalo Furnier CC0 Jog_Fwd_Loop retargeted to the rigid armor (in place, 1.2x heavy timing). KneelFire drops onto the right knee, holds a firing pose, then stands. Backflip uses authored root motion around the pelvis. All controls are baked into ordinary bone keyframes.'
+rig['Motion notes'] = f'Run is the Quaternius / Gonzalo Furnier CC0 Jog_Fwd_Loop retargeted to the rigid armor (in place, {"1.2x heavy" if ASSET == "ATLAS-09" else "original"} timing). KneelFire drops onto the right knee, holds a firing pose, then stands. Backflip uses authored root motion around the pelvis. All controls are baked into ordinary bone keyframes.'
 bpy.ops.object.select_all(action='DESELECT'); obj.select_set(True); rig.select_set(True)
 for o in bpy.context.scene.objects:
     if o.name == 'Muzzle_R': o.select_set(True)
 bpy.context.view_layer.objects.active = rig; obj.parent = None
-bpy.ops.export_scene.gltf(filepath=str(ROOT / 'public/models/atlas-09.glb'), export_format='GLB', use_selection=True, export_animations=True, export_animation_mode='ACTIONS',
+bpy.ops.export_scene.gltf(filepath=str(ROOT / 'public/models' / f'{KEY}.glb'), export_format='GLB', use_selection=True, export_animations=True, export_animation_mode='ACTIONS',
                           export_anim_slide_to_zero=True, export_nla_strips=True, export_skins=True, export_yup=True, export_texcoords=True, export_normals=True, export_tangents=True, export_image_format='AUTO')
-runpy.run_path(str(ROOT / 'scripts/fix_export_tangents.py'), init_globals={'ASSET_PATH': ROOT / 'public/models/atlas-09.glb', 'REPORT_PATH': OUT / 'atlas-run-tangent-repairs.json'}, run_name='__main__')
+runpy.run_path(str(ROOT / 'scripts/fix_export_tangents.py'), init_globals={'ASSET_PATH': ROOT / 'public/models' / f'{KEY}.glb', 'REPORT_PATH': OUT / f'{KEY}-run-tangent-repairs.json'}, run_name='__main__')
 obj.parent = rig; rig.animation_data.action = bpy.data.actions['Sentinel']; scene.frame_set(1)
-bpy.ops.wm.save_as_mainfile(filepath=str(ROOT / 'blender/ATLAS-09.blend'))
-print('ATLAS_RUN_REPORT', json.dumps({'retarget': report, 'checks': checks}))
+bpy.ops.wm.save_as_mainfile(filepath=str(ROOT / 'blender' / f'{ASSET}.blend'))
+print('RUN_REPORT', ASSET, json.dumps({'retarget': report, 'checks': checks}))

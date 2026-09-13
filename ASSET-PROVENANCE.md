@@ -41,7 +41,7 @@ The browser loads the Blender-exported GLB with GLTFLoader and plays the embedde
 
 Reference documentation: [Tripo image generation](https://developers.tripo3d.ai/en/docs/generation-image-to-model/h), [Tripo pricing](https://developers.tripo3d.ai/en/pricing), [Three.js](https://threejs.org/docs/).
 
-On 2026-09-13 ATLAS's procedural Run was replaced by the Quaternius CC0 `Jog_Fwd_Loop` retargeted locally (`scripts/update_atlas_run.py`); no provider calls or credits. The earlier run refinement below was also local: `motion_library.py` now authors foot contact, rolling, recovery and body counter-rotation using character-specific timing. Both Blender sources and GLBs include it.
+On 2026-09-13 the procedural Run of ATLAS and AETHER was replaced by the Quaternius CC0 `Jog_Fwd_Loop` retargeted locally (`scripts/update_library_run.py`); no provider calls or credits. The earlier run refinement below was also local: `motion_library.py` now authors foot contact, rolling, recovery and body counter-rotation using character-specific timing. Both Blender sources and GLBs include it.
 
 ## CC0 animation library update — 2026-09-06
 
