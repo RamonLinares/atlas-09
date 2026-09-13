@@ -16,7 +16,7 @@ ASSET = next((a for a in argv if a in ('ATLAS-09', 'AETHER-02')), 'ATLAS-09'); K
 # Vertical travel scales with leg length (about 8.7x a human for ATLAS, 6.8x
 # for AETHER), so the human jog's pelvis bounce and foot lift are damped per
 # frame: the 18 m heavy machine more than the 14 m athletic one.
-DAMPING = {'ATLAS-09': (.40, .55), 'AETHER-02': (.55, .70)}[ASSET]
+DAMPING = {'ATLAS-09': (.40, .55), 'AETHER-02': (.45, .60)}[ASSET]
 OUT = ROOT / 'output/motion'; OUT.mkdir(parents=True, exist_ok=True)
 
 bpy.ops.wm.open_mainfile(filepath=str(ROOT / 'blender' / f'{ASSET}.blend'))
