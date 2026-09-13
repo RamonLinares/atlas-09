@@ -20,6 +20,12 @@ Direct links can select a character and motion, for example `/?character=scorpio
 
 The added characters' full provenance, checks and limitations are in [AETHER-02.md](AETHER-02.md), [SERAPH-03.md](SERAPH-03.md), [RONIN-04.md](RONIN-04.md), [SCORPIO-05.md](SCORPIO-05.md), [TITAN-06.md](TITAN-06.md), and [VANGUARD-07.md](VANGUARD-07.md). The remaining original asset notes below describe ATLAS unless stated otherwise.
 
+## Combat arena
+
+`combat.html` (linked as **COMBAT** in the lab header, or `/combat.html?p1=ronin-04&p2=titan-06`) pits any two frames against each other in a floodlit night arena. The first pick is yours, the second is driven by a state-machine AI that closes distance, picks attacks by reach, strafes between cooldowns and sometimes blocks or dodges what you start. Move with **W A S D**, light attack **J**, heavy attack **K**, block **L** (RONIN and VANGUARD), dodge **Space**, back with **Esc**; touch devices get a stick and four buttons. The first to run out of health, or the healthier frame after 99 seconds, wins.
+
+Every move is one of the baked clips already in the models, with timed hit windows in [src/combat/roster.js](src/combat/roster.js): ATLAS and AETHER punch and kneel-fire, SERAPH fires its cannon and lashes with its wings, RONIN slashes and combos, SCORPIO claws and stings, TITAN launches its rocket fist and fires the chest beam, VANGUARD shoots bursts and stomps out of a boost jump. Ranged rounds and beams chip without staggering; melee hits use the frames' hit reactions, and defeated frames play Collapse or Knockback where they have one and topple otherwise. The viewer's synchronized rounds, beams and thruster flames render in the arena too. Match logic lives in [src/combat/](src/combat/); the arena, AI and fighters share nothing with the lab except the character registry and the effects module.
+
 ## Open the result
 
 - Blender source: `blender/ATLAS-09.blend`

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"><meta name="theme-color" content="#0d1214"><title>FORGE — Combat</title><link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23182020%22/><path d=%22M20 80 50 15 80 80H65L50 43 35 80Z%22 fill=%22%23ddffad%22/></svg>"></head>
+<body>
+  <canvas id="scene" aria-label="Mecha combat arena"></canvas>
+  <header><a class="brand" href="%BASE_URL%" aria-label="Back to the asset lab"><span class="brand-icon">Λ</span> FORGE<span class="brand-light"> / COMBAT</span></a><a class="text-button" href="%BASE_URL%">ASSET LAB ↗</a></header>
+  <section id="select" aria-label="Fighter selection">
+    <h1>CHOOSE YOUR <span>FRAME</span></h1>
+    <p class="lead">FIRST PICK IS YOURS · SECOND PICK IS THE AI OPPONENT</p>
+    <div class="slots"><div class="slot p1"><div><small>PLAYER</small><b id="slotP1">—</b></div></div><span class="vs">VS</span><div class="slot p2"><div><small>AI OPPONENT</small><b id="slotP2">—</b></div></div></div>
+    <div class="grid" id="grid"></div>
+    <div class="actions"><button id="fight" class="primary" disabled>FIGHT</button><button id="random" class="text-button">RANDOM</button><button id="clear" class="text-button">CLEAR</button></div>
+  </section>
+  <div id="loading" hidden><div class="load-ring"></div><span id="loadingText">ASSEMBLING FIGHTERS</span></div>
+  <div id="hud" hidden>
+    <div class="bars">
+      <div class="bar p1"><div class="label"><span id="nameP1">—</span><small>PLAYER</small></div><div class="track"><div class="ghost" id="ghostP1"></div><div class="fill" id="fillP1"></div></div></div>
+      <div class="bar p2"><div class="label"><span id="nameP2">—</span><small>AI</small></div><div class="track"><div class="ghost" id="ghostP2"></div><div class="fill" id="fillP2"></div></div></div>
+    </div>
+    <div class="timer" id="timer">99</div>
+    <div class="banner" id="banner"></div>
+    <div class="controls"><span><b>W A S D</b> MOVE</span><span><b>J</b> LIGHT</span><span><b>K</b> HEAVY</span><span><b>L</b> BLOCK</span><span><b>SPACE</b> DODGE</span><span><b>ESC</b> BACK</span></div>
+    <div class="status" id="status"></div>
+    <div class="touch"><div class="stick" id="stick"><i></i></div><div class="pad"><button data-act="light">LIGHT</button><button data-act="heavy">HEAVY</button><button data-act="block">BLOCK</button><button data-act="dodge">DODGE</button></div></div>
+  </div>
+  <div id="result" hidden><h2 id="resultTitle">K.O.</h2><p id="resultText"></p><div class="actions"><button id="rematch" class="primary">REMATCH</button><button id="reselect" class="text-button">CHANGE FIGHTERS</button></div></div>
+  <script type="module" src="/src/combat/main.js"></script>
+</body></html>
