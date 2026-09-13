@@ -153,8 +153,46 @@ def run_character(ASSET):
         return duration, sampler
     specs = [('Run', *closed_loop('Jog_Fwd_Loop'))]
     if WITH_SPRINT: specs.append(('Sprint', *closed_loop('Sprint_Loop')))
+    # Detect the rig's keying convention from the clips that stay, not from
+    # the bones' current mode (a previous bad export could have left it wrong).
+    curves = [c for a in bpy.data.actions for layer in a.layers for strip in layer.strips for bag in strip.channelbags for c in bag.fcurves]
+    target_mode = 'QUATERNION' if any(c.data_path.endswith('rotation_quaternion') for c in curves) else 'XYZ'
     report = retarget_motions(rig, obj, motion_specs=specs, timescale_override=cfg['timescale'], pose_adjust=make_adjuster(cfg.get('adjust'), rig, context))
     for item in report: item['source_clips'] = ['Jog_Fwd_Loop'] if item['name'] == 'Run' else ['Sprint_Loop']; item['timescale'] = cfg['timescale']; item['damping'] = cfg['damping']
+    # The retargeter leaves every bone in XYZ Euler mode with Euler-keyed
+    # clips. The classic frames (TITAN, VANGUARD) key every clip as
+    # quaternions and their bones must stay in QUATERNION mode, otherwise the
+    # other clips evaluate as static and export frozen. Re-key the new clips
+    # to match and restore the rig's original mode.
+    bones = rig.pose.bones
+    if target_mode == 'QUATERNION':
+        for item in report:
+            a = bpy.data.actions[item['name']]; rig.animation_data.action = a
+            for b in bones: b.rotation_mode = 'XYZ'
+            rotations = {b.name: [] for b in bones}
+            for frame in range(1, item['frames'] + 1):
+                scene.frame_set(frame); update()
+                for b in bones:
+                    q = b.rotation_euler.to_quaternion()
+                    if rotations[b.name] and q.dot(rotations[b.name][-1]) < 0: q.negate()
+                    rotations[b.name].append(q)
+            for layer in a.layers:
+                for strip in layer.strips:
+                    for bag in strip.channelbags:
+                        for c in [c for c in bag.fcurves if c.data_path.endswith('rotation_euler')]: bag.fcurves.remove(c)
+            for b in bones: b.rotation_mode = 'QUATERNION'
+            for i, frame in enumerate(range(1, item['frames'] + 1)):
+                for b in bones:
+                    b.rotation_quaternion = rotations[b.name][i]; b.keyframe_insert('rotation_quaternion', frame=frame, group=b.name)
+            for layer in a.layers:
+                for strip in layer.strips:
+                    for bag in strip.channelbags:
+                        for c in bag.fcurves:
+                            for k in c.keyframe_points: k.interpolation = 'LINEAR'
+            item['rotation_keys'] = 'quaternion'
+        rig.animation_data.action = None
+    for b in bones: b.rotation_mode = target_mode; b.rotation_euler = (0, 0, 0); b.rotation_quaternion = (1, 0, 0, 0); b.location = (0, 0, 0)
+    update()
 
     # Gait checks on the evaluated armor: loop closure, floor contact, support
     # and counter-rotation. These replace the procedural-run contact model checks.
