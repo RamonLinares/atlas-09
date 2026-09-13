@@ -91,7 +91,7 @@ The preparation script reads the already downloaded Tripo retopology in `assets/
 - Walk: 1.33 seconds on AETHER, 1.60 seconds on ATLAS.
 - PunchCombo: jab, cross, hook and recovery, 3.90 seconds on AETHER and 4.70 seconds on ATLAS.
 - Collapse: backward fall followed by a held pose, 3.0 seconds on AETHER and 3.60 seconds on ATLAS. It plays once; click Collapse again to replay.
-- Run: both frames use the Quaternius CC0 `Jog_Fwd_Loop` retargeted to their rigid armor, in place, with pelvis bounce and foot lift damped for the scale (1.13-second ATLAS cycle at the heavy 1.2× timing; 0.93-second AETHER cycle at source timing). KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
+- Run: every frame uses the Quaternius CC0 `Jog_Fwd_Loop` retargeted to its rigid armor, in place, with pelvis bounce and foot lift damped for the scale (1.13-second ATLAS cycle at the heavy 1.2× timing; 0.93-second AETHER cycle at source timing; the other five between 1.03 and 1.17 seconds). KneelFire: 8-second drop/fire/stand sequence. Backflip: 3.6-second crouch/jump/full backward rotation/landing sequence.
 - New poses use an analytic two-bone IK solver during baking; the exported clips use ordinary bone transforms and require no runtime IK library.
 - Rig uses `.L` / `.R` suffixes in Blender. Three.js sanitizes dots in node names when loading; use the loaded bone names when extending the viewer.
 
@@ -99,11 +99,11 @@ This is a realtime prototype and presentation asset. Read the production assessm
 
 ## Run cycles
 
-Both runs were replaced on 2026-09-13 by the retargeted motion-capture jog from the same CC0 library as the walk: `scripts/update_library_run.py -- ATLAS-09` (or `AETHER-02`) closes the source loop onto its first pose, damps pelvis bounce and foot lift of the leg-scaled source (40% / 55% for the 18-metre ATLAS, 45% / 60% for the 14-metre AETHER), re-solves both legs against the actual boot geometry and bakes ordinary keys. Checks are in `output/motion/<character>-run-library-bake.json`; review sheets are `output/<character>/motion/sheet-Run.png`. The earlier procedural cycle is preserved in Git history only.
+All seven runs were replaced on 2026-09-13 by the retargeted motion-capture jog from the same CC0 library as the walk: `scripts/update_library_run.py -- <CHARACTER>` (or `all`) closes the source loop onto its first pose, damps pelvis bounce and foot lift of the leg-scaled source (40% / 55% for the 18-metre ATLAS, 45% / 60% for the 14-metre AETHER, similar per-frame factors for the rest), re-solves both legs against the actual boot geometry and bakes ordinary keys. A per-character pass keeps the carried equipment in place after the humanoid retarget: SERAPH holds the cannon forward with folded wings, RONIN keeps the katana raised and the skirt plates on the thighs, SCORPIO carries its claws and arched tail, VANGUARD carries the rifle across the chest with the shield arm swinging. Checks are in `output/motion/<character>-run-library-bake.json`; review sheets are `output/<character>/motion/sheet-Run.png`. The earlier procedural cycle is preserved in Git history only.
 
 The procedural run used contact and recovery phases instead of broad oval foot paths. Foot spacing is approximately the hip-joint spacing (previously much wider), with compact elbow motion and a small torso counter-rotation. Boot geometry determines ground height and the forefoot pivot. ATLAS has longer support and less flight; AETHER has a faster cadence and more pronounced heel recovery. Baked Run keys use linear interpolation to prevent planted-foot overshoot. All exported clips start at zero, eliminating the previous initial hold.
 
-The Blender and GLB downloads include the updated motion. Other clips retain their sampled poses. Its validator and reports were retired with it; the retargeted runs are checked for loop closure, floor contact and support inside the update script. Existing rig, head and thigh isolation checks also pass.
+The Blender and GLB downloads of every character include the updated motion. Other clips retain their sampled poses. Its validator and reports were retired with it; the retargeted runs are checked for loop closure, floor contact and support inside the update script. Existing rig, head and thigh isolation checks also pass.
 
 ## Imported motion library
 

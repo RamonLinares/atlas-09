@@ -30,7 +30,7 @@ export const characters = {
     motionOrder: ['Sentinel','Walk','Run','PunchCombo','DodgeRoll','HitChest','HitHead','Knockback','KneelFire','Backflip','Collapse'],
   },
   'seraph-03': {
-    name: 'SERAPH', number: '03', model: `${import.meta.env.BASE_URL}models/seraph-03.glb?v=3`, concept: `${import.meta.env.BASE_URL}concept-seraph-03.png`,
+    name: 'SERAPH', number: '03', model: `${import.meta.env.BASE_URL}models/seraph-03.glb?v=4`, concept: `${import.meta.env.BASE_URL}concept-seraph-03.png`,
     className: 'AERIAL CLASS / WINGED MECHA', height: '20.0', condition: 'TITANIUM / SILVER WINGS',
     tagline: ['Steel in the sky.', 'Thunder in its arm.'],
     description: ['Articulated metal wings.', 'An integrated heavy cannon.'],
@@ -42,7 +42,7 @@ export const characters = {
     effects: {color:'#ffc171',flashColor:'#ffe5b0',radius:.075,length:1.8,flashRadius:.3,interval:.64,useMuzzleDirection:true,muzzleAxis:[0,-1,0]},
   },
   'ronin-04': {
-    name:'RONIN', number:'04', model:`${import.meta.env.BASE_URL}models/ronin-04.glb?v=13`, concept:`${import.meta.env.BASE_URL}concept-ronin-04.png`,
+    name:'RONIN', number:'04', model:`${import.meta.env.BASE_URL}models/ronin-04.glb?v=14`, concept:`${import.meta.env.BASE_URL}concept-ronin-04.png`,
     className:'SAMURAI CLASS / BLADE MECHA', height:'16.0', condition:'CRIMSON LACQUER / AGED GOLD',
     tagline:['A quiet resolve.','An unbroken blade.'], description:['Layered steel. A crescent of gold.','Precision at the edge of battle.'],
     caption:'SAMURAI FRAME / KATANA', study:'004', conceptTitle:'Discipline, cast in steel.',
@@ -52,7 +52,7 @@ export const characters = {
     effects:{muzzleName:'Muzzle_L',forearmName:'forearmL',handName:'handL',color:'#ffcc83',flashColor:'#ffe8b8',interval:.48,useMuzzleDirection:true,muzzleAxis:[0,-1,0]},
   },
   'scorpio-05': {
-    name: 'SCORPIO', number: '05', model: `${import.meta.env.BASE_URL}models/scorpio-05.glb?v=3`, concept: `${import.meta.env.BASE_URL}concept-scorpio-05.png`,
+    name: 'SCORPIO', number: '05', model: `${import.meta.env.BASE_URL}models/scorpio-05.glb?v=4`, concept: `${import.meta.env.BASE_URL}concept-scorpio-05.png`,
     className: 'PREDATOR CLASS / SCORPION MECHA', height: '17.0', condition: 'BLACKENED CHITIN / VENOM EMISSION',
     tagline: ['Predator of the dunes.', 'Silent sting.'],
     description: ['Hydraulic pincer claws. Segmented plasma tail.', 'Built for ambush and lethal precision.'],
@@ -74,7 +74,7 @@ export const characters = {
     },
   },
   'titan-06': {
-    name: 'TITAN', number: '06', model: `${import.meta.env.BASE_URL}models/titan-06.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-titan-06.png`,
+    name: 'TITAN', number: '06', model: `${import.meta.env.BASE_URL}models/titan-06.glb?v=2`, concept: `${import.meta.env.BASE_URL}concept-titan-06.png`,
     className: 'SUPER ROBOT CLASS / CLASSIC MECHA', height: '19.0', condition: 'ROYAL BLUE LACQUER / GOLD CREST',
     tagline: ['Rocket fists.', 'A heart of light.'],
     description: ['Massive pauldrons. Launchable gauntlets.', 'A chest lens that burns the sky.'],
@@ -93,7 +93,7 @@ export const characters = {
     },
   },
   'vanguard-07': {
-    name: 'VANGUARD', number: '07', model: `${import.meta.env.BASE_URL}models/vanguard-07.glb?v=1`, concept: `${import.meta.env.BASE_URL}concept-vanguard-07.png`,
+    name: 'VANGUARD', number: '07', model: `${import.meta.env.BASE_URL}models/vanguard-07.glb?v=2`, concept: `${import.meta.env.BASE_URL}concept-vanguard-07.png`,
     className: 'REAL ROBOT CLASS / MOBILE FRAME', height: '18.0', condition: 'WHITE ARMOR / COBALT & SIGNAL RED',
     tagline: ['Beam rifle. Shield.', 'Discipline under fire.'],
     description: ['Tricolor military armor. Backpack verniers.', 'A soldier’s frame, not a legend’s.'],

@@ -14,13 +14,13 @@ An original 19-metre classic super-robot mecha in the heroic 1970s silhouette: d
 - [Anatomy](scripts/titan_anatomy.py), [build script](scripts/build_titan.py), [authored motions](scripts/titan_motions.py), shared [preparation module](scripts/classic_mecha.py) and [validation](scripts/validate_classic.py)
 - [Live studio viewer](https://ramonlinares.github.io/atlas-09/?character=titan-06&motion=RocketPunch)
 
-The GLB contains six baked skeletal actions: Sentinel idle (6 s), RocketPunch (3.5 s), ChestBeam (4 s), Run (1.2 s), KneelFire (8 s) and Backflip (3.6 s). The rocket fist is real geometry: the right gauntlet bone translates 9.5 m along its own axis, exposing a thruster nozzle recessed in the elbow, then returns. The viewer adds a thruster flame during the launch, a chest beam with bloom while the lens fires, and knuckle-blaster rounds during the kneeling burst.
+The GLB contains six baked skeletal actions: Sentinel idle (6 s), RocketPunch (3.5 s), ChestBeam (4 s), Run (1.17 s), KneelFire (8 s) and Backflip (3.6 s). The rocket fist is real geometry: the right gauntlet bone translates 9.5 m along its own axis, exposing a thruster nozzle recessed in the elbow, then returns. The viewer adds a thruster flame during the launch, a chest beam with bloom while the lens fires, and knuckle-blaster rounds during the kneeling burst.
 
 ## Movements
 
 - **Rocket Punch** — fighting stance, right arm cocked back with a torso twist, driven forward, gauntlet launched and recovered, relax. The left fist holds a guard throughout; both boots stay planted.
 - **Chest Beam** — arms swing wide and back, legs brace lower and wider, the chest thrusts forward while the beam fires from the crest lens with a slight recoil shiver, then the frame relaxes.
-- **Run** — heavy in-place cycle from the shared motion library with wide, slower footfalls and swinging fists clear of the hips.
+- **Run** — the Quaternius CC0 `Jog_Fwd_Loop` retargeted in place at 1.25× timing for the mass, with pelvis bounce and foot lift damped for the 19 m frame (`scripts/update_library_run.py -- TITAN-06`).
 - **Kneel & Fire** — drops until the folded rear leg rests on the floor, lines the right arm up on the target for a knuckle-blaster burst while the left arm stays bent with the fist forward, then stands. The rear leg is seated by its own contact pass so the front boot stays planted.
 - **Backflip** — crouch, launch, full backward rotation around the pelvis, landing absorb.
 - **Idle** — subtle breathing, head scan and pauldron sway.

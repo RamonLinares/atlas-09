@@ -8,7 +8,19 @@
     "removed_leading_seconds": 0.03333333507180214
   },
   {
+    "clip": "HitChest",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "HitHead",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
     "clip": "KneelFire",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "Knockback",
     "removed_leading_seconds": 0.03333333507180214
   },
   {
@@ -21,6 +33,14 @@
   },
   {
     "clip": "Sentinel",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "SwordBlock",
+    "removed_leading_seconds": 0.03333333507180214
+  },
+  {
+    "clip": "SwordCombo",
     "removed_leading_seconds": 0.03333333507180214
   },
   {

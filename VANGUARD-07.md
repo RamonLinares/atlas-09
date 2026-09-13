@@ -21,7 +21,7 @@ The GLB contains seven baked skeletal actions: Sentinel idle (6 s), RifleBurst (
 - **Rifle Burst** — the torso turns the rifle side forward, the right arm brings the rifle to shoulder height, the shield arm rises beside it as a forward guard, six shots at 0.2-second intervals kick the rifle and torso, then the frame lowers.
 - **Shield Guard** — the left forearm crosses the chest so the shield covers the torso and head, the body turns behind it and drops lower, the rifle arm swings back out of the way, an impact at 1.4 s pushes the frame back, then it recovers.
 - **Boost Jump** — crouch, vernier launch to 6.5 m with the legs trailing and the arms spread, a hovering bob, descent, landing compression and stand. Root motion is vertical only so the clip loops in place.
-- **Run** — shared-library in-place cycle with the rifle carried across the front and the shield arm swinging less.
+- **Run** — the Quaternius CC0 `Jog_Fwd_Loop` retargeted in place at 1.15× timing, pelvis bounce and foot lift damped for the scale, with the rifle carried across the front and the shield arm keeping the jog swing (`scripts/update_library_run.py -- VANGUARD-07`).
 - **Kneel & Fire** — drops onto the folded rear leg, the rifle aims forward for the burst with recoil, the left arm stays bent with the hand forward at knee height and the shield outboard, then stands.
 - **Backflip** — crouch, launch, full backward rotation, landing absorb, rifle kept clear of the legs.
 - **Idle** — breathing, head turn and small arm settling.
