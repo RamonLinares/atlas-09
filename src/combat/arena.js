@@ -13,7 +13,7 @@ export function createArena(canvas) {
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#0d1214'); scene.fog = new THREE.FogExp2('#0d1214', .0062);
-  const camera = new THREE.PerspectiveCamera(44, innerWidth / innerHeight, .5, 900);
+  const camera = new THREE.PerspectiveCamera(36, innerWidth / innerHeight, .5, 900);
   const pmrem = new THREE.PMREMGenerator(renderer); const room = new RoomEnvironment();
   scene.environment = pmrem.fromScene(room, .04).texture; scene.environmentIntensity = .35; room.dispose(); pmrem.dispose();
   scene.add(new THREE.HemisphereLight('#b9c9d6', '#1a1f1a', .9));

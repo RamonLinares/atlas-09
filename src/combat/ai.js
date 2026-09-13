@@ -5,10 +5,13 @@ import * as THREE from 'three';
  * strafes while waiting and sometimes dodges or blocks incoming attacks.
  */
 export function createAI(me, target, { aggression = .55, reaction = .28 } = {}) {
-  let cooldown = 2.0, strafeDir = 1, strafeTimer = 0, sawAttackAt = -1, responded = false;
+  let cooldown = 2.0, strafeDir = 1, strafeTimer = 0, sawAttackAt = -1, responded = false, heavies = 0, reposition = 0, repositionDir = 0;
   const input = { forward: 0, strafe: 0 };
-  const lightReach = () => Math.max(...me.profile.light.hits.map(h => h.range)) + me.profile.radius + target.profile.radius * .5;
-  const heavyReach = () => Math.max(...me.profile.heavy.hits.map(h => h.range)) + me.profile.radius + target.profile.radius * .5;
+  // Ranged windows reach 70 m in the rules, but the brain only commits to a
+  // shot from closer, so the fight keeps moving instead of sniping.
+  const reach = spec => Math.min(46, Math.max(...spec.hits.map(h => h.range))) + me.profile.radius + target.profile.radius * .5;
+  const lightReach = () => reach(me.profile.light);
+  const heavyReach = () => reach(me.profile.heavy);
   return {
     input,
     update(dt, distance, now) {
@@ -27,18 +30,28 @@ export function createAI(me, target, { aggression = .55, reaction = .28 } = {}) 
       } else sawAttackAt = -1;
       if (!me.canAct()) return;
       const light = lightReach(), heavy = heavyReach();
-      const ranged = me.profile.light.hits[0].kind === 'ranged' || me.profile.heavy.hits[0].kind === 'ranged';
       if (cooldown <= 0) {
-        const wantHeavy = Math.random() < .35;
-        if (wantHeavy && distance <= heavy && me.startAttack('heavy')) { cooldown = 3.6 + Math.random() * 2.2 - aggression; return; }
-        if (distance <= light && me.startAttack('light')) { cooldown = 2.4 + Math.random() * 1.8 - aggression; return; }
-        if (!wantHeavy && distance <= heavy && me.startAttack('heavy')) { cooldown = 3.8 + Math.random() * 2.2 - aggression; return; }
+        // Never more than one heavy in a row; lights are the bread and butter.
+        const wantHeavy = heavies < 1 && Math.random() < .3;
+        const swing = kind => {
+          if (!me.startAttack(kind)) return false;
+          heavies = kind === 'heavy' ? heavies + 1 : 0;
+          cooldown = (kind === 'heavy' ? 3.6 + Math.random() * 2.2 : 2.2 + Math.random() * 1.8) - aggression;
+          // After a swing, sometimes step off the line instead of standing still.
+          if (Math.random() < .5) { reposition = 1 + Math.random(); repositionDir = Math.random() < .5 ? -1 : 1; }
+          return true;
+        };
+        if (wantHeavy && distance <= heavy && swing('heavy')) return;
+        if (distance <= light && swing('light')) return;
+        if (distance <= heavy && heavies < 1 && swing('heavy')) return;
       }
-      // Ranged frames keep their distance; melee frames close in, then circle.
-      const preferred = ranged ? Math.min(light, heavy) * .8 : light * .85;
+      if (reposition > 0) { reposition -= dt; input.strafe = repositionDir; input.forward = -.35; return; }
+      // Close to the light-attack range, then circle while the cooldown runs;
+      // creep in when ready so the next swing is not thrown from too far.
+      const preferred = light * (cooldown <= 0 ? .7 : .9);
       if (distance > preferred) input.forward = 1;
-      else if (distance < preferred * .55) input.forward = -.7;
-      else input.strafe = strafeDir * .8;
+      else if (distance < preferred * .5) input.forward = -.7;
+      else { input.strafe = strafeDir * .85; input.forward = cooldown <= 0 ? .3 : 0; }
     },
   };
 }

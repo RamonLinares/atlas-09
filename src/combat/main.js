@@ -63,7 +63,7 @@ function readInput() {
 
 // ---------------------------------------------------------------- match
 let match = null;
-window.combat = { get match() { return match; }, fighters, start: startMatch };
+window.combat = { get match() { return match; }, fighters, start: startMatch, camera };
 async function startMatch(p1, p2) {
   endMatch(); $('#result').hidden = true; $('#select').hidden = true; $('#loading').hidden = false;
   const profiles = [fighters.find(f => f.id === p1), fighters.find(f => f.id === p2)];
@@ -117,6 +117,8 @@ function frame(dt, render = true) {
   const { player, enemy, ai } = match;
   if (!match.started) { match.countdown -= dt; if (match.countdown <= 0) { match.started = true; banner('FIGHT'); } }
   const input = match.started && !match.over ? readInput() : { forward: 0, strafe: 0 };
+  // Strafe follows the camera's right so A/D always mean screen left/right.
+  input.cameraRight = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion).setY(0).normalize();
   if (match.started && !match.over && !player.dead) {
     if (pressed.light) player.startAttack('light'); if (pressed.heavy) player.startAttack('heavy'); if (pressed.block) player.startBlock();
     if (pressed.dodge) player.startDodge(enemy.root.position.clone().sub(player.root.position).setY(0).normalize().negate());
@@ -148,10 +150,13 @@ function frame(dt, render = true) {
   }
   // Camera: over the player's shoulder, framing both fighters.
   const back = player.root.position.clone().sub(enemy.root.position).setY(0).normalize();
-  const span = THREE.MathUtils.clamp(distance, 20, 90);
+  // Three-quarter view swung about 55 degrees round the player's right, so
+  // both hulls read side by side at melee range instead of overlapping.
+  const span = THREE.MathUtils.clamp(distance, 16, 90);
   const scale = Math.max(player.height, enemy.height) / 18;
-  cameraGoal.copy(player.root.position).addScaledVector(back, (34 + span * .45) * scale).add(new THREE.Vector3(back.z * 12, (20 + span * .16) * scale, -back.x * 12));
-  cameraTarget.lerpVectors(player.root.position, enemy.root.position, .45).add(new THREE.Vector3(0, 8 * scale, 0));
+  const azimuth = new THREE.Vector3(back.x * Math.cos(.96) - back.z * Math.sin(.96), 0, back.x * Math.sin(.96) + back.z * Math.cos(.96));
+  cameraGoal.lerpVectors(player.root.position, enemy.root.position, .35).addScaledVector(azimuth, (44 + span * .75) * scale).setY((24 + span * .22) * scale);
+  cameraTarget.lerpVectors(player.root.position, enemy.root.position, .45).add(new THREE.Vector3(0, 6 * scale, 0));
   camera.position.lerp(cameraGoal, Math.min(1, dt * 3.2)); camera.lookAt(cameraTarget);
   if (render) composer.render();
 }

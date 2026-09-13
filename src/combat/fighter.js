@@ -101,16 +101,19 @@ export class Fighter {
   update(dt, opponent, input) {
     const toOpponent = opponent.root.position.clone().sub(this.root.position).setY(0);
     const distance = toOpponent.length(); toOpponent.normalize();
-    if (!this.dead) {
+    // Track the opponent only while free: a committed attack, block, dodge or
+    // stagger keeps its facing, so strafing out of the arc makes it miss.
+    if (!this.dead && (this.state === 'idle' || this.state === 'move')) {
       const yaw = Math.atan2(toOpponent.x, toOpponent.z);
       let current = this.root.rotation.y; let delta = yaw - current;
-      delta = Math.atan2(Math.sin(delta), Math.cos(delta)); this.root.rotation.y = current + delta * Math.min(1, dt * 8);
+      delta = Math.atan2(Math.sin(delta), Math.cos(delta)); this.root.rotation.y = current + delta * Math.min(1, dt * 7);
     }
     if (this.state === 'hit' && this.flinch > 0) {
       this.timers.hitLock -= dt;
       if (this.timers.hitLock <= 0) { this.flinch = 0; this.idle(); }
     }
-    const right = new THREE.Vector3(toOpponent.z, 0, -toOpponent.x);
+    // Screen-right when the camera supplies it; otherwise the fighter's own right.
+    const right = input?.cameraRight ?? new THREE.Vector3(-toOpponent.z, 0, toOpponent.x);
     const wanted = new THREE.Vector3();
     if (input && (this.state === 'idle' || this.state === 'move')) {
       wanted.addScaledVector(toOpponent, input.forward).addScaledVector(right, input.strafe);

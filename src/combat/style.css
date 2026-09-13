@@ -34,7 +34,7 @@ header{position:fixed;top:0;left:40px;right:40px;height:72px;display:flex;align-
 #hud{position:fixed;inset:0;pointer-events:none;z-index:3}
 #hud[hidden]{display:none}
 .bars{position:absolute;top:90px;left:40px;right:40px;display:flex;justify-content:space-between;gap:40px}
-.bar{flex:1;max-width:520px}
+.bar{flex:1;max-width:min(520px,38vw)}
 .bar .label{display:flex;justify-content:space-between;font:700 20px 'Barlow Condensed',sans-serif;letter-spacing:1px;margin-bottom:6px}
 .bar .label small{font:11px 'IBM Plex Mono',monospace;color:var(--muted);letter-spacing:1px;align-self:flex-end}
 .bar .track{height:12px;background:#ffffff14;border:1px solid var(--line);position:relative;overflow:hidden}
