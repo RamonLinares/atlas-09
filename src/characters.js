@@ -10,7 +10,7 @@ import vanguardMotionBounds from './vanguard-motion-bounds.json';
 
 export const characters = {
   'atlas-09': {
-    name: 'ATLAS', number: '09', model: `${import.meta.env.BASE_URL}models/atlas-09.glb?v=7`, concept: `${import.meta.env.BASE_URL}concept.png`,
+    name: 'ATLAS', number: '09', model: `${import.meta.env.BASE_URL}models/atlas-09.glb?v=8`, concept: `${import.meta.env.BASE_URL}concept.png`,
     className: 'VETERAN CLASS / HEAVY MECHA', height: '18.0', condition: 'HEAVILY WORN',
     tagline: ['Seen better days.', 'Still standing.'],
     description: ['Scarred armor. Exposed machinery.', 'A reactor that refuses to go dark.'],

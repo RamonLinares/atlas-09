@@ -4,7 +4,9 @@ import numpy as np
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 reports=[]
-for asset,mesh_name,rig_name,stance in [('ATLAS-09','ATLAS_09_Armor','ATLAS_09_RIG',.44),('AETHER-02','AETHER_02_Armor','AETHER_02_RIG',.40)]:
+# ATLAS-09's Run is now the retargeted Quaternius jog (checked by update_atlas_run.py);
+# this contact-phase model applies to the procedural AETHER cycle only.
+for asset,mesh_name,rig_name,stance in [('AETHER-02','AETHER_02_Armor','AETHER_02_RIG',.40)]:
  bpy.ops.wm.open_mainfile(filepath=str(ROOT/'blender'/f'{asset}.blend'))
  scene=bpy.context.scene;obj=bpy.data.objects[mesh_name];rig=bpy.data.objects[rig_name]
  rig.animation_data.action=bpy.data.actions['Run'];start,end=rig.animation_data.action.frame_range

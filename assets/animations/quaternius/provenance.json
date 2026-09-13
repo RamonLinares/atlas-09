@@ -5,9 +5,11 @@
     "original_sha256": "69591853d817488edaa8fd9bf8fc1d821eaeaf789f8627b3cd23b41c4ed67997",
     "original_bytes": 7618436,
     "subset": "UAL1_selected.glb",
-    "subset_sha256": "31aa4b8d1a382a00747e3982efec451bd16360534b163f12ce6fe5689737b8d8",
+    "subset_sha256": "9585fe028b07a520c5ed9e2f5bf2edca3c77e51d0dae4cb99fcbe916ab8ada3e",
     "clips": [
       "Walk_Loop",
+      "Jog_Fwd_Loop",
+      "Sprint_Loop",
       "Punch_Jab",
       "Punch_Cross",
       "Death01",

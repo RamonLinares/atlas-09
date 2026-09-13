@@ -38,11 +38,11 @@
     },
     {
       "name": "Run",
-      "max_vertex_displacement_m": 6.793566703796387,
-      "max_rigid_edge_length_change_m": 5.796551704406738e-06,
-      "loop_closure_max_error_m": 0.0,
-      "ground_min_m": -2.213989205301914e-07,
-      "max_clearance_m": 0.017965465784072876
+      "max_vertex_displacement_m": 16.560712814331055,
+      "max_rigid_edge_length_change_m": 4.798173904418945e-06,
+      "loop_closure_max_error_m": 6.2718136177863926e-06,
+      "ground_min_m": 0.048804521560668945,
+      "max_clearance_m": 1.3901386260986328
     },
     {
       "name": "KneelFire",

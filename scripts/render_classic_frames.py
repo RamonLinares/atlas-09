@@ -11,7 +11,8 @@ BLEND, CHAR = argv[0], argv[1]; PER = int(argv[2]) if len(argv) > 2 else 6
 ONLY = argv[3].split(',') if len(argv) > 3 else None
 ROOT = Path(__file__).resolve().parents[1]; OUT = ROOT / 'output' / CHAR / 'motion'; OUT.mkdir(parents=True, exist_ok=True)
 bpy.ops.wm.open_mainfile(filepath=str(ROOT / 'blender' / f'{BLEND}.blend'))
-scene = bpy.context.scene; rig = bpy.data.objects[f'{BLEND}_RIG']; armor = bpy.data.objects[f'{BLEND}_Armor']
+PREFIX = BLEND.replace('-', '_')
+scene = bpy.context.scene; rig = bpy.data.objects[f'{PREFIX}_RIG']; armor = bpy.data.objects[f'{PREFIX}_Armor']
 scene.render.engine = 'BLENDER_EEVEE'; scene.render.resolution_x = 520; scene.render.resolution_y = 520; scene.render.resolution_percentage = 100
 scene.eevee.taa_render_samples = 12
 cam = scene.camera; cam.data.type = 'PERSP'; cam.data.lens = 40
